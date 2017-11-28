@@ -1,7 +1,6 @@
 import React from 'react';
 
 const FormStep = ({step, index}) => {
-  {console.log(step)}
   return (
     <div id={index}>
       <h2>
