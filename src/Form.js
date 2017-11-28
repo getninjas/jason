@@ -1,28 +1,15 @@
 import React from 'react';
-import { Form, Field } from 'react-final-form';
+import FormStep from './FormStep';
 
-
-const onSubmit = () => console.log('ok')
-const validate = () => console.log('ok')
-const handleSubmit = () => console.log('ok')
-
-const MyForm = ({data}) => {
+const Form = ({data}) => {
   return (
-    <Form
-      render={() => {
-        console.log(data);
-        return (
-          <form onSubmit={onSubmit}>
-            <h2>Simple Default Input</h2>
-            <div>
-              <label>First Name</label>
-              <Field name="firstName" component="input" placeholder="First Name" />
-            </div>
-          </form>
-        );
-      }}
-    />
+    <form>
+      {Object.keys(data).map((stepKey, index) => {
+        return <FormStep step={data[stepKey]} index={stepKey + index} key={stepKey} />;
+      })}
+    </form>
   );
+
 };
 
-export default MyForm;
+export default Form;

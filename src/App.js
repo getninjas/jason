@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import MyForm from './Form'
+import Form from './Form'
 // import request from './services/request'
 
 class App extends Component {
   state = {
-    data: {}
+    data: ''
   };
 
   componentWillMount() {
@@ -13,7 +13,7 @@ class App extends Component {
         return response.json();
       })
       .then(data => {
-        this.setState({ data: data });
+        this.setState({ data: data._embedded });
       })
       .catch(error => {
         console.log('fetch fails', error);
@@ -21,7 +21,7 @@ class App extends Component {
   };
 
   render() {
-    return <MyForm data={this.state.data} />;
+    return (!!this.state.data ? <Form data={this.state.data} />  : '' );
   };
 }
 
