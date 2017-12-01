@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import FormStep from './FormStep';
 
-const Form = ({data}) => {
-  return (
-    <form>
-      {Object.keys(data).map((stepKey, index) => {
-        return <FormStep step={data[stepKey]} index={stepKey + index} key={stepKey} />;
-      })}
-    </form>
-  );
+class Form extends Component {
 
-};
+  state = {
+    step: 0
+  }
+
+  render() {
+    return (
+      <form>
+        {Object.keys(this.props.data).map((stepKey, index) => {
+          return <FormStep step={this.props.data[stepKey]} index={stepKey + index} key={stepKey} />;
+        })}
+      </form>
+    );
+  }
+}
 
 export default Form;
