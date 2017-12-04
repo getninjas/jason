@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import Form from './Form'
 import request from './services/request'
 
-// primeiro bloco do form - request_fields
-// submit do primeiro bloco de form troca para o proximo bloco
-// segundo bloco do form - user_fields
+// corrigir a mensagem de warning
+// criar novo json para identificar qual é o tipo de form que deve ser renderizado
 
 class App extends Component {
   state = {

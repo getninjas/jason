@@ -23,7 +23,7 @@ class Form extends Component {
               <div key={stepKey}>
                 <FormStepBy
                   step={this.props.data[stepKey]}
-                  index={stepKey + index}
+                  index={index}
                   last={this.state.totalSteps}
                   valueInput={this.state.formData}
                   onBackClick={this.onBackClick.bind(this)}

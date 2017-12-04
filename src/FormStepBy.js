@@ -3,7 +3,7 @@ import React from 'react';
 const FormStep = ({ step, index, last, valueInput, onBackClick, dataHandler}) => {
   return (
     <div id={index}>
-      <h2>Tab {index}</h2>
+      <h2>Step {index}</h2>
 
       {step.map((field, i) => {
         return (
@@ -20,13 +20,16 @@ const FormStep = ({ step, index, last, valueInput, onBackClick, dataHandler}) =>
         )
       })}
 
-      <button type="button" onClick={onBackClick}>
-        Back
-      </button>
-
+      {index !== 0 && (
+        <button type="button" onClick={onBackClick}>
+          Back
+        </button>
+      )}
       <button>
         Next
       </button>
+
+
     </div>
   );
 }
