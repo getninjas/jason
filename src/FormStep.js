@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FormStep = ({step, index}) => {
+const FormStep = ({step, index, last}) => {
   return (
     <div id={index}>
       <h2>
@@ -14,6 +14,9 @@ const FormStep = ({step, index}) => {
           </div>
         )
       })}
+      <button type={index === last ? 'submit' : 'button'}>
+        Click
+      </button>
     </div>
   );
 }
