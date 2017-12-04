@@ -11,7 +11,16 @@ class Form extends Component {
     return (
       <form>
         {Object.keys(this.props.data).map((stepKey, index) => {
-          return <FormStep step={this.props.data[stepKey]} index={stepKey + index} key={stepKey} />;
+          if(index === this.state.step){
+            return (
+              <div key={stepKey}>
+                <FormStep step={this.props.data[stepKey]} index={stepKey + index} />
+                <button>
+                  Click
+                </button>
+              </div>
+            )
+          }
         })}
       </form>
     );
