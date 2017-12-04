@@ -3,9 +3,8 @@ import React from 'react';
 const FormStep = ({step, index, last}) => {
   return (
     <div id={index}>
-      <h2>
-        Tab {index}
-      </h2>
+      <h2>Tab {index}</h2>
+
       {step.map((field, i) => {
         return (
           <div key={i}>
@@ -14,7 +13,8 @@ const FormStep = ({step, index, last}) => {
           </div>
         )
       })}
-      <button type={index === last ? 'submit' : 'button'}>
+
+      <button>
         Click
       </button>
     </div>
