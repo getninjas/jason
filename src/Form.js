@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FormStepBy from './FormStepBy';
+import FormStep from './FormStep';
 
 class Form extends Component {
 
@@ -21,13 +21,13 @@ class Form extends Component {
           if (index === this.state.step){
             return (
               <div key={stepKey}>
-                <FormStepBy
+                <FormStep
                   step={this.props.data[stepKey]}
                   index={index}
-                  last={this.state.totalSteps}
                   valueInput={this.state.formData}
                   onBackClick={this.onBackClick.bind(this)}
                   dataHandler={this.dataHandler.bind(this)}
+                  stepBy={this.props.type === 'stepby' ? true : false}
                 />
               </div>
             )
