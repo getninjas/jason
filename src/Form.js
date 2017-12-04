@@ -53,7 +53,7 @@ class Form extends Component {
   }
 
   dataHandler(e) {
-    const datas = Object.assign({}, this.state.formData, {[e.target.name]: e.target.value})
+    const datas = Object.assign({}, this.state.formData, {[e.target.name]: e.target.value});
     this.setState({ formData: datas });
   }
 }
