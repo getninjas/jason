@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import FormStep from './FormStep';
+import FormStepBy from './FormStepBy';
 
 class Form extends Component {
 
   state = {
     step: 0,
-    totalSteps: Object.keys(this.props.data).length
+    totalSteps: Object.keys(this.props.data).length,
+    formData: {}
   }
 
   render() {
@@ -20,10 +21,13 @@ class Form extends Component {
           if (index === this.state.step){
             return (
               <div key={stepKey}>
-                <FormStep 
-                  step={this.props.data[stepKey]} 
-                  index={stepKey + index} 
+                <FormStepBy
+                  step={this.props.data[stepKey]}
+                  index={stepKey + index}
                   last={this.state.totalSteps}
+                  valueInput={this.state.formData}
+                  onBackClick={this.onBackClick.bind(this)}
+                  dataHandler={this.dataHandler.bind(this)}
                 />
               </div>
             )
@@ -40,6 +44,17 @@ class Form extends Component {
     }
 
     alert('submit');
+  }
+
+  onBackClick() {
+    if (!this.state.step) return;
+    this.setState({ step: --this.state.step });
+    return;
+  }
+
+  dataHandler(e) {
+    const datas = Object.assign({}, this.state.formData, {[e.target.name]: e.target.value})
+    this.setState({ formData: datas });
   }
 }
 

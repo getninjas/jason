@@ -15,7 +15,7 @@ const FormStep = ({step, index, last}) => {
       })}
 
       <button>
-        Click
+        Next
       </button>
     </div>
   );
