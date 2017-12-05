@@ -1,16 +1,6 @@
 <template>
   <form class="jason" v-on:submit.prevent="buttonOnClick">
-    <FormStep />
-    <div v-bind:key='key' v-for='(value, key, index) in data' v-if='index === step'>
-      <h1>{{key}}</h1>
-      <div v-bind:key='i' v-for="(field, i) in value">
-        <label v-bind:for="field.name">{{field.name}}</label><br>
-        <input type="text" v-bind:id="field.name" v-bind:name="field.name" v-bind:placeholder="field.placeholder">
-      </div>
-
-      <button type="button" v-if="stepBy && step !== 0" v-on:click="onBackClick">Back</button>
-      <button>Next</button>
-    </div>
+    <FormStep v-bind:key='key' v-for='(value, key, index) in data' :position='index' :formData='formData' :value='value' :stepBy='stepBy' :step='step' :onBackClick='onBackClick' v-if='index === step' />
   </form>
 </template>
 
@@ -18,13 +8,14 @@
 import FormStep from './FormStep';
 
 export default {
-  name: 'Jason',
+  name: 'FormVue',
   components: {
     FormStep,
   },
   data() {
     return {
       data: {},
+      formData: {},
       stepBy: false,
       step: 0,
       totalSteps: 0,

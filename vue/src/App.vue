@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <Jason />
+    <FormVue />
   </div>
 </template>
 
 <script>
-import Jason from './components/Jason';
+import FormVue from './components/FormVue';
 
 export default {
   name: 'app',
   components: {
-    Jason,
+    FormVue,
   },
 };
 </script>
