@@ -1,0 +1,201 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#Test Form Component #Should render form for normal 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <div>
+    <div
+      id={0}
+    >
+      <h2>
+        Step 
+        0
+      </h2>
+      <div>
+        <label
+          htmlFor="Qual será o serviço?"
+        >
+          Qual será o serviço?
+        </label>
+        <br />
+        <input
+          name="Qual será o serviço?"
+          onChange={[Function]}
+          placeholder="tipo de serviço"
+          required={true}
+          type="text"
+          value={undefined}
+        />
+      </div>
+      <div>
+        <label
+          htmlFor="Para quem será o serviço?"
+        >
+          Para quem será o serviço?
+        </label>
+        <br />
+        <input
+          name="Para quem será o serviço?"
+          onChange={[Function]}
+          placeholder="indique para quem será o serviço"
+          required={false}
+          type="text"
+          value={undefined}
+        />
+      </div>
+      <div>
+        <label
+          htmlFor="O serviço será para quantas pessoas?"
+        >
+          O serviço será para quantas pessoas?
+        </label>
+        <br />
+        <input
+          name="O serviço será para quantas pessoas?"
+          onChange={[Function]}
+          placeholder="indique o número de pessoas"
+          required={false}
+          type="text"
+          value={undefined}
+        />
+      </div>
+      <div>
+        <label
+          htmlFor="Para quando você precisa deste serviço?"
+        >
+          Para quando você precisa deste serviço?
+        </label>
+        <br />
+        <input
+          name="Para quando você precisa deste serviço?"
+          onChange={[Function]}
+          placeholder="Indique o prazo do serviço"
+          required={true}
+          type="text"
+          value={undefined}
+        />
+      </div>
+      <div>
+        <label
+          htmlFor="Informações Adicionais"
+        >
+          Informações Adicionais
+        </label>
+        <br />
+        <input
+          name="Informações Adicionais"
+          onChange={[Function]}
+          placeholder={undefined}
+          required={false}
+          type="text"
+          value={undefined}
+        />
+      </div>
+      <button>
+        Next
+      </button>
+    </div>
+  </div>
+</form>
+`;
+
+exports[`#Test Form Component #Should render form for step by step 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <div>
+    <div
+      id={0}
+    >
+      <h2>
+        Step 
+        0
+      </h2>
+      <div>
+        <label
+          htmlFor="Qual será o serviço?"
+        >
+          Qual será o serviço?
+        </label>
+        <br />
+        <input
+          name="Qual será o serviço?"
+          onChange={[Function]}
+          placeholder="tipo de serviço"
+          required={true}
+          type="text"
+          value={undefined}
+        />
+      </div>
+      <div>
+        <label
+          htmlFor="Para quem será o serviço?"
+        >
+          Para quem será o serviço?
+        </label>
+        <br />
+        <input
+          name="Para quem será o serviço?"
+          onChange={[Function]}
+          placeholder="indique para quem será o serviço"
+          required={false}
+          type="text"
+          value={undefined}
+        />
+      </div>
+      <div>
+        <label
+          htmlFor="O serviço será para quantas pessoas?"
+        >
+          O serviço será para quantas pessoas?
+        </label>
+        <br />
+        <input
+          name="O serviço será para quantas pessoas?"
+          onChange={[Function]}
+          placeholder="indique o número de pessoas"
+          required={false}
+          type="text"
+          value={undefined}
+        />
+      </div>
+      <div>
+        <label
+          htmlFor="Para quando você precisa deste serviço?"
+        >
+          Para quando você precisa deste serviço?
+        </label>
+        <br />
+        <input
+          name="Para quando você precisa deste serviço?"
+          onChange={[Function]}
+          placeholder="Indique o prazo do serviço"
+          required={true}
+          type="text"
+          value={undefined}
+        />
+      </div>
+      <div>
+        <label
+          htmlFor="Informações Adicionais"
+        >
+          Informações Adicionais
+        </label>
+        <br />
+        <input
+          name="Informações Adicionais"
+          onChange={[Function]}
+          placeholder={undefined}
+          required={false}
+          type="text"
+          value={undefined}
+        />
+      </div>
+      <button>
+        Next
+      </button>
+    </div>
+  </div>
+</form>
+`;
