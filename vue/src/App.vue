@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Jason/>
+    <Jason />
   </div>
 </template>
 
@@ -14,8 +14,3 @@ export default {
   },
 };
 </script>
-
-<style>
-#app {
-}
-</style>

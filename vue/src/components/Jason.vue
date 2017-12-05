@@ -1,8 +1,9 @@
 <template>
   <form class="jason" v-on:submit.prevent="buttonOnClick">
-    <div v-for="(value, key, index) in data" v-if="index === step">
+    <FormStep />
+    <div v-bind:key='key' v-for='(value, key, index) in data' v-if='index === step'>
       <h1>{{key}}</h1>
-      <div v-for="field in value">
+      <div v-bind:key='i' v-for="(field, i) in value">
         <label v-bind:for="field.name">{{field.name}}</label><br>
         <input type="text" v-bind:id="field.name" v-bind:name="field.name" v-bind:placeholder="field.placeholder">
       </div>
@@ -14,9 +15,13 @@
 </template>
 
 <script>
+import FormStep from './FormStep';
+
 export default {
   name: 'Jason',
-
+  components: {
+    FormStep,
+  },
   data() {
     return {
       data: {},
@@ -25,7 +30,6 @@ export default {
       totalSteps: 0,
     }
   },
-
   created() {
     fetch('https://gist.githubusercontent.com/nathpaiva/6e2bda071405e2e6711a642ff139dacf/raw/d6cf5ff96f8d3294972c5dbb24482d4d17a37da7/form-stepby')
     // fetch('https://gist.githubusercontent.com/nathpaiva/6b1aad9203ab8c3abf97113c45e310ea/raw/5150fe9f8a2c9930ae02bb967408f45c5b2e1870/form-normal')
@@ -37,7 +41,6 @@ export default {
       })
       .catch((error) => { console.log(error) });
   },
-
   methods: {
     buttonOnClick: function() {
       if (this.step + 1 !== this.totalSteps) {
@@ -53,10 +56,5 @@ export default {
       return;
     }
   }
-
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
