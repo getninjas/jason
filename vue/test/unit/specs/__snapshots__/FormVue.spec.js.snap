@@ -3,5 +3,97 @@
 exports[`FormVue.vue check if form is redering form 1`] = `
 <form
   class="jason"
-/>
+>
+  
+  Oi
+  
+  <div>
+    <h1>
+      Step 0
+    </h1>
+     
+    <div>
+      <label
+        for="Qual será o serviço?"
+      >
+        Qual será o serviço?
+      </label>
+      <br />
+       
+      <input
+        id="Qual será o serviço?"
+        name="Qual será o serviço?"
+        placeholder="Qual será o serviço?"
+        type="text"
+      />
+    </div>
+    <div>
+      <label
+        for="Para quem será o serviço?"
+      >
+        Para quem será o serviço?
+      </label>
+      <br />
+       
+      <input
+        id="Para quem será o serviço?"
+        name="Para quem será o serviço?"
+        placeholder="Para quem será o serviço?"
+        type="text"
+      />
+    </div>
+    <div>
+      <label
+        for="O serviço será para quantas pessoas?"
+      >
+        O serviço será para quantas pessoas?
+      </label>
+      <br />
+       
+      <input
+        id="O serviço será para quantas pessoas?"
+        name="O serviço será para quantas pessoas?"
+        placeholder="O serviço será para quantas pessoas?"
+        type="text"
+      />
+    </div>
+    <div>
+      <label
+        for="Para quando você precisa deste serviço?"
+      >
+        Para quando você precisa deste serviço?
+      </label>
+      <br />
+       
+      <input
+        id="Para quando você precisa deste serviço?"
+        name="Para quando você precisa deste serviço?"
+        placeholder="Para quando você precisa deste serviço?"
+        type="text"
+      />
+    </div>
+    <div>
+      <label
+        for="Informações Adicionais"
+      >
+        Informações Adicionais
+      </label>
+      <br />
+       
+      <input
+        id="Informações Adicionais"
+        name="Informações Adicionais"
+        placeholder="Descreva o que você precisa"
+        type="text"
+      />
+    </div>
+     
+    <!---->
+     
+    <button>
+      Next
+    </button>
+  </div>
+  <!---->
+</form>
 `;

@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import FormVue from '@/components/FormVue';
 import fetch from 'isomorphic-fetch';
+// Vue.use(require('vue-resource'))
+// Vue.use(require('json-loader'))
 
 
 const data = {
@@ -129,13 +131,13 @@ describe('FormVue.vue', () => {
   });
 
   it('check if form is redering form', (done) => {
-    const vm = new Vue(FormVue).$mount();
-    expect(vm.$el).toMatchSnapshot();
-    Vue.nextTick(() => {
-      // console.log("vm.$el", vm.$el);
-      // expect(vm.$el.textContent).toBe('foo')
-      expect(true).toBe(true);
+    const Widget = Vue.extend(FormVue)
+    const vm = new Widget();
+
+    setTimeout(function(){
+      vm.$mount()
+      expect(vm.$el).toMatchSnapshot();
       done();
-    });
+    }, 1000);
   });
 });
