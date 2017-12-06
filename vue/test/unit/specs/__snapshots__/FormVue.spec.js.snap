@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormVue.vue check if form is redering form 1`] = `
+<form
+  class="jason"
+/>
+`;
