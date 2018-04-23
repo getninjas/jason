@@ -4,6 +4,8 @@ ratings:
 exclude_paths:
 - "build"
 - "coverage"
+- "node_modules"
 - "public"
 - "spec"
+- "src/spec/**/*"
 - "task"
