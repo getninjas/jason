@@ -1,0 +1,17 @@
+pipeline:
+  build:
+    image: getninjas/nodejs:9-chrome64
+    commands:
+      - npm install --silent
+      - npm test
+      - npm run build
+
+  notify:
+    secrets: [ slack_webhook, icon ]
+    image: plugins/slack
+    channel: jason-tests
+    webhook: slack_webhook
+    username: droneci
+    icon_url: icon
+    when:
+      status: [ success, failure ]
