@@ -1,4 +1,6 @@
 [![Build](https://droneci.getninjas.com.br/api/badges/getninjas/jason/status.svg?branch=master)](https://droneci.getninjas.com.br/getninjas/jason)
+[![Maintainability](https://api.codeclimate.com/v1/badges/f3ff27575c8f7872b296/maintainability)](https://codeclimate.com/github/getninjas/jason/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/f3ff27575c8f7872b296/test_coverage)](https://codeclimate.com/github/getninjas/jason/test_coverage)
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
