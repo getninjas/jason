@@ -59,6 +59,7 @@
     "eslint-config-getninjas": "^4.0.0",
     "eslint-plugin-babel": "^4.1.2",
     "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jest": "^21.15.1",
     "eslint-plugin-react": "^7.4.0",
     "gaiden": "^17.1.2"
   },
@@ -70,8 +71,7 @@
       "<rootDir>/config/polyfills.js"
     ],
     "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
-      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
+      "<rootDir>/spec/**/?(*.)(spec|test).{js,jsx,mjs}"
     ],
     "testEnvironment": "node",
     "testURL": "http://localhost",

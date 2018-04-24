@@ -9,7 +9,8 @@
 
   "plugins": [
     "babel",
-    "import"
+    "import",
+    "jest"
   ],
 
   "rules": {
@@ -19,5 +20,9 @@
 
   "globals": {
     "document": true
+  },
+
+  "env": {
+    "jest/globals": true
   }
 }
