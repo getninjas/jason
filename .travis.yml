@@ -17,3 +17,5 @@ script:
 - npm run coverage
 after_script:
 - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+notifications:
+  email: false
