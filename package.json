@@ -1,7 +1,7 @@
 {
   "name": "jason",
   "version": "0.3.0",
-  "private": true,
+  "main": "build/static/js/main.js",
   "scripts": {
     "start": "PORT=7777 node scripts/start.js",
     "build": "node scripts/build.js",
