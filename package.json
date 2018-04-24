@@ -1,6 +1,6 @@
 {
   "name": "jason",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "start": "PORT=7777 node scripts/start.js",
