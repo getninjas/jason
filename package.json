@@ -47,7 +47,7 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "coverage": "node scripts/test.js --env=jsdom --coverage",
-    "version": "npm run build && git add -A dist",
+    "version": "npm run build && git add -A build",
     "postversion": "git push && git push --tags",
     "config": "npm config set progress=false && npm config set git-tag-version=true",
     "clear": "rm -rf ./build"
