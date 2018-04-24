@@ -6,7 +6,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/f3ff27575c8f7872b296/maintainability)](https://codeclimate.com/github/getninjas/jason/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/f3ff27575c8f7872b296/test_coverage)](https://codeclimate.com/github/getninjas/jason/test_coverage)
 
-Killer JSON form generator.
+Killer JSON form generator.  [NPM](https://www.npmjs.com/package/jason-react-form)
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
