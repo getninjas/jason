@@ -1,7 +1,0 @@
-pipeline:
-  build:
-    image: getninjas/nodejs:9-chrome64
-    commands:
-      - npm install
-      - npm run coverage
-      - npm run build
