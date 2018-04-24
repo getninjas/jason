@@ -1,7 +1,7 @@
 sudo: required
 language: node_js
 node_js:
-- '9'
+- '8'
 env:
   global:
     - CC_TEST_REPORTER_ID=38e7c4a1b2546f768f1b349e3fabb002015c4bb54b3ad40df6f0f860412dc12b
