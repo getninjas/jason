@@ -7,5 +7,5 @@ exclude_paths:
 - "node_modules"
 - "public"
 - "spec"
-- "src/spec/**/*"
+- "src/**/*.dev.{js,jsx,mjs}"
 - "task"
