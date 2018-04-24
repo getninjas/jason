@@ -12,6 +12,10 @@
     "config": "npm config set progress=false && npm config set git-tag-version=true",
     "clear": "rm -rf ./build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/getninjas/jason.git"
+  },
   "dependencies": {
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
