@@ -8,6 +8,6 @@ export default class Jason {
   }
 
   init() {
-    ReactDOM.render(<App />, this.element);
+    ReactDOM.render(<App jsonFields={this.jsonFields} />, this.element);
   }
 }

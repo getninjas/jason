@@ -1,7 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import StartText from './components/StartText';
+import ParserFields from './lib/ParserFields';
 
-class App extends React.Component {
+export default class App extends React.Component {
+  constructor() {
+    super();
+  }
+
+  componentDidMount() {
+    console.log(new ParserFields(this.props.jsonFields).init());
+  }
+
   render() {
     return (
       <div className="App">
@@ -15,4 +25,6 @@ class App extends React.Component {
   }
 }
 
-export default App;
+App.propTypes = {
+  jsonFields: PropTypes.object.isRequired
+}
