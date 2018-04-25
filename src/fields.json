@@ -1,0 +1,174 @@
+{
+  "data": {
+    "category": {
+      "slug": "reformas-e-reparos/pedreiro",
+      "titleHeader": "Precisando de Pedreiros?",
+      "form": {
+        "databaseId": 81,
+        "fields": {
+          "edges": [
+            {
+              "node": {
+                "title": "Qual é o tipo de serviço que você precisa?",
+                "values": {
+                  "edges": [
+                    {
+                      "node": {
+                        "databaseId": 7117,
+                        "value": "Construção"
+                      }
+                    },
+                    {
+                      "node": {
+                        "databaseId": 7118,
+                        "value": "Reformas"
+                      }
+                    },
+                    {
+                      "node": {
+                        "databaseId": 7119,
+                        "value": "Instalações"
+                      }
+                    },
+                    {
+                      "node": {
+                        "databaseId": 7120,
+                        "value": "Troca"
+                      }
+                    },
+                    {
+                      "node": {
+                        "databaseId": 7121,
+                        "value": "Outros"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "node": {
+                "title": "Onde o serviço será feito?",
+                "values": {
+                  "edges": [
+                    {
+                      "node": {
+                        "databaseId": 7122,
+                        "value": "1"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "node": {
+                "title": "Qual o local?",
+                "values": {
+                  "edges": [
+                    {
+                      "node": {
+                        "databaseId": 2492,
+                        "value": "Casa"
+                      }
+                    },
+                    {
+                      "node": {
+                        "databaseId": 2493,
+                        "value": "Apartamento"
+                      }
+                    },
+                    {
+                      "node": {
+                        "databaseId": 2494,
+                        "value": "Comercial"
+                      }
+                    },
+                    {
+                      "node": {
+                        "databaseId": 2495,
+                        "value": "Lote de terreno"
+                      }
+                    },
+                    {
+                      "node": {
+                        "databaseId": 4884,
+                        "value": "Outro"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "node": {
+                "title": "Quais são as medidas?",
+                "values": {
+                  "edges": [
+                    {
+                      "node": {
+                        "databaseId": 4889,
+                        "value": "Pequeno (até 50 m²)"
+                      }
+                    },
+                    {
+                      "node": {
+                        "databaseId": 4890,
+                        "value": "Médio (de 50 a 150 m²)"
+                      }
+                    },
+                    {
+                      "node": {
+                        "databaseId": 4891,
+                        "value": "Grande (mais de 150 m²)"
+                      }
+                    },
+                    {
+                      "node": {
+                        "databaseId": 6516,
+                        "value": "Não tenho certeza"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "node": {
+                "title": "Para quando você precisa deste serviço?",
+                "values": {
+                  "edges": [
+                    {
+                      "node": {
+                        "databaseId": 4885,
+                        "value": "O quanto antes possível"
+                      }
+                    },
+                    {
+                      "node": {
+                        "databaseId": 4886,
+                        "value": "Nos próximos 30 dias"
+                      }
+                    },
+                    {
+                      "node": {
+                        "databaseId": 4887,
+                        "value": "Nos próximos 3 meses"
+                      }
+                    },
+                    {
+                      "node": {
+                        "databaseId": 4888,
+                        "value": "Não tenho certeza"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
