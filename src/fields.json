@@ -10,6 +10,9 @@
             {
               "node": {
                 "title": "Qual é o tipo de serviço que você precisa?",
+                "placeholder": "Qual é o tipo de serviço que você precisa?",
+                "required": false,
+                "type": "enumerable",
                 "values": {
                   "edges": [
                     {
@@ -49,6 +52,9 @@
             {
               "node": {
                 "title": "Onde o serviço será feito?",
+                "placeholder": "Onde o serviço será feito?",
+                "required": false,
+                "type": "enumerable",
                 "values": {
                   "edges": [
                     {
@@ -64,6 +70,9 @@
             {
               "node": {
                 "title": "Qual o local?",
+                "placeholder": "Qual o local?",
+                "required": false,
+                "type": "enumerable",
                 "values": {
                   "edges": [
                     {
@@ -103,6 +112,9 @@
             {
               "node": {
                 "title": "Quais são as medidas?",
+                "placeholder": "Quais são as medidas?",
+                "required": false,
+                "type": "enumerable",
                 "values": {
                   "edges": [
                     {
@@ -136,6 +148,9 @@
             {
               "node": {
                 "title": "Para quando você precisa deste serviço?",
+                "placeholder": "Para quando você precisa deste serviço?",
+                "required": false,
+                "type": "enumerable",
                 "values": {
                   "edges": [
                     {
