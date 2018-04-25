@@ -1,9 +1,11 @@
 export default class ParserFields {
   constructor(json) {
-    this.json = json;
+    this.json = JSON.parse(json);
   }
 
   init() {
-    alert('yo');
+    const fields = this.json.data.form.fields.edges;
+
+    fields.map((field) => field.node);
   }
 }
