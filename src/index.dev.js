@@ -4,7 +4,6 @@
 import fields from './fields.json';
 import ParserFields from './lib/ParserFields';
 
-console.log(fields);
 
 console.log(new ParserFields(fields).init());
 
