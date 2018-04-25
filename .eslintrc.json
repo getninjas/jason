@@ -1,0 +1,40 @@
+{
+  "extends": [
+    "airbnb-base",
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+
+  "parser": "babel-eslint",
+
+  "plugins": [
+    "babel",
+    "import",
+    "jest"
+  ],
+
+  "rules": {
+    "no-console": 1,
+    "func-names": 0,
+    "curly": ["error", "all"]
+  },
+
+  "globals": {
+    "document": true
+  },
+
+  "env": {
+    "jest/globals": true
+  },
+
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    }
+  }
+}
