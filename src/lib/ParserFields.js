@@ -4,7 +4,7 @@ export default class ParserFields {
   }
 
   init() {
-    this._extractData();
+    return this._extractData();
   }
 
   _extractData() {
