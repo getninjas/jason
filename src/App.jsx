@@ -1,5 +1,5 @@
 import React from 'react';
-import StartText from './components/StartText.jsx';
+import StartText from './components/StartText';
 
 class App extends React.Component {
   render() {
