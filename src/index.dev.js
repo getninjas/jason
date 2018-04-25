@@ -1,7 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+// import App from './App';
 import fields from './fields.json';
+import ParserFields from './lib/ParserFields';
 
+console.log(fields);
 
-ReactDOM.render(<App fields={fields} />, document.getElementById('root'));
+console.log(new ParserFields(fields).init());
+
+// ReactDOM.render(<App fields={fields} />, document.getElementById('root'));
