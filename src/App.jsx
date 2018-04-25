@@ -9,7 +9,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log(new ParserFields(this.props.jsonFields).init());
+    new ParserFields(this.props.jsonFields).init();
   }
 
   render() {
