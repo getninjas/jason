@@ -1,5 +1,6 @@
 import React from 'react';
 import StartText from './components/StartText';
+import ParserFields from './lib/ParserFields';
 
 class App extends React.Component {
   render() {
