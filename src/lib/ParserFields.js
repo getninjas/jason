@@ -13,7 +13,7 @@ export default class ParserFields {
     const formatedFields = fields.map((field) => {
       const { title, values, placeholder, type, required } = field.node;
 
-      const formatedValues = this._extractChildrenValues(values);
+      const formatedValues = this._extractChildrenValues(values.edges);
 
       return {
         title,
@@ -28,7 +28,7 @@ export default class ParserFields {
   }
 
   _extractChildrenValues(values) {
-    return values.edges.map((item) => {
+    return values.map((item) => {
       const { databaseId, value } = item.node;
 
       return { databaseId, value };
