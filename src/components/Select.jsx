@@ -6,11 +6,11 @@ export default class Select extends React.Component {
     const { id, selected, values } = this.props;
 
     return (
-      <select id={id} name={id} selected={selected} className="form__input">
+      <select id={id} name={id} defaultValue={selected} className="form__input">
         {
          values.map((item, index) => {
             return (
-              <option key={index} value={item.databaseId} selected={item.databaseId === selected ? true : false}>
+              <option key={index} defaultValue={item.databaseId}>
                 {item.value}
               </option>
             );
