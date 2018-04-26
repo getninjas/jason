@@ -12,16 +12,16 @@ export default class Form extends Component {
     formatedJSON: '',
   }
 
-  getField(field) {
+  getField(field, key) {
     if (field.type === 'enumerable') {
-      return <Select id={field.title} selected={field.value} values={field.values} />;
+      return <Select key={key} id={field.title} selected={field.value} values={field.values} />;
     }
 
     if (field.type === 'big_text') {
-      return <TextArea id={field.title} placeholder={field.placeholder} />;
+      return <TextArea key={key} id={field.title} placeholder={field.placeholder} />;
     }
 
-    return <Input id={field.title} placeholder={field.placeholder} />
+    return <Input key={key} id={field.title} placeholder={field.placeholder} />
   }
 
   render() {
@@ -29,7 +29,7 @@ export default class Form extends Component {
 
     return (
       <form action={action} method={method} name={name}>
-        { formatedJSON.map((item) => this.getField(item)) }
+        { formatedJSON.map((item, index) => this.getField(item, index)) }
       </form>
     );
   }

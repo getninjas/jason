@@ -6,15 +6,38 @@ exports[`Form renders custom props 1`] = `
   method="POST"
   name="form"
 >
-  <input
+  <select
     className="form__input"
+    defaultValue={7120}
     id="Qual é o tipo de serviço que você precisa?"
     name="Qual é o tipo de serviço que você precisa?"
-    placeholder="Qual é o tipo de serviço que você precisa?"
-    required={false}
-    title="Qual é o tipo de serviço que você precisa?"
-    value=""
-  />
+  >
+    <option
+      value={7117}
+    >
+      Construção
+    </option>
+    <option
+      value={7118}
+    >
+      Reformas
+    </option>
+    <option
+      value={7119}
+    >
+      Instalações
+    </option>
+    <option
+      value={7120}
+    >
+      Troca
+    </option>
+    <option
+      value={7121}
+    >
+      Outros
+    </option>
+  </select>
   <input
     className="form__input"
     id="Especifique melhor a metragem do serviço"
@@ -24,7 +47,7 @@ exports[`Form renders custom props 1`] = `
     title="Especifique melhor a metragem do serviço"
     value=""
   />
-  <input
+  <textarea
     className="form__input"
     id="Informações adicionais"
     name="Informações adicionais"
@@ -42,15 +65,38 @@ exports[`Form renders defaultProps 1`] = `
   method="POST"
   name="form"
 >
-  <input
+  <select
     className="form__input"
+    defaultValue={7120}
     id="Qual é o tipo de serviço que você precisa?"
     name="Qual é o tipo de serviço que você precisa?"
-    placeholder="Qual é o tipo de serviço que você precisa?"
-    required={false}
-    title="Qual é o tipo de serviço que você precisa?"
-    value=""
-  />
+  >
+    <option
+      value={7117}
+    >
+      Construção
+    </option>
+    <option
+      value={7118}
+    >
+      Reformas
+    </option>
+    <option
+      value={7119}
+    >
+      Instalações
+    </option>
+    <option
+      value={7120}
+    >
+      Troca
+    </option>
+    <option
+      value={7121}
+    >
+      Outros
+    </option>
+  </select>
   <input
     className="form__input"
     id="Especifique melhor a metragem do serviço"
@@ -60,7 +106,7 @@ exports[`Form renders defaultProps 1`] = `
     title="Especifique melhor a metragem do serviço"
     value=""
   />
-  <input
+  <textarea
     className="form__input"
     id="Informações adicionais"
     name="Informações adicionais"
