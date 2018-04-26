@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select renders custom props 1`] = `
+<select
+  className="form__input"
+  defaultValue=""
+  id="idTest"
+  name="idTest"
+>
+  <option
+    value={7117}
+  >
+    Construção
+  </option>
+  <option
+    value={7118}
+  >
+    Reformas
+  </option>
+</select>
+`;
+
+exports[`Select renders defaultProps 1`] = `
+<select
+  className="form__input"
+  defaultValue=""
+  id=""
+  name=""
+/>
+`;
