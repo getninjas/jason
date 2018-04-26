@@ -1,6 +1,7 @@
 [
   {
     "title": "Qual é o tipo de serviço que você precisa?",
+    "value": 7120,
     "values": [
       {
         "databaseId": 7117,
@@ -28,95 +29,8 @@
     "required": false
   },
   {
-    "title": "Onde o serviço será feito?",
-    "values": [
-      {
-        "databaseId": 7122,
-        "value": "1"
-      }
-    ],
-    "placeholder": "Onde o serviço será feito?",
-    "type": "enumerable",
-    "required": false
-  },
-  {
-    "title": "Qual o local?",
-    "values": [
-      {
-        "databaseId": 2492,
-        "value": "Casa"
-      },
-      {
-        "databaseId": 2493,
-        "value": "Apartamento"
-      },
-      {
-        "databaseId": 2494,
-        "value": "Comercial"
-      },
-      {
-        "databaseId": 2495,
-        "value": "Lote de terreno"
-      },
-      {
-        "databaseId": 4884,
-        "value": "Outro"
-      }
-    ],
-    "placeholder": "Qual o local?",
-    "type": "enumerable",
-    "required": false
-  },
-  {
-    "title": "Quais são as medidas?",
-    "values": [
-      {
-        "databaseId": 4889,
-        "value": "Pequeno (até 50 m²)"
-      },
-      {
-        "databaseId": 4890,
-        "value": "Médio (de 50 a 150 m²)"
-      },
-      {
-        "databaseId": 4891,
-        "value": "Grande (mais de 150 m²)"
-      },
-      {
-        "databaseId": 6516,
-        "value": "Não tenho certeza"
-      }
-    ],
-    "placeholder": "Quais são as medidas?",
-    "type": "enumerable",
-    "required": false
-  },
-  {
-    "title": "Para quando você precisa deste serviço?",
-    "values": [
-      {
-        "databaseId": 4885,
-        "value": "O quanto antes possível"
-      },
-      {
-        "databaseId": 4886,
-        "value": "Nos próximos 30 dias"
-      },
-      {
-        "databaseId": 4887,
-        "value": "Nos próximos 3 meses"
-      },
-      {
-        "databaseId": 4888,
-        "value": "Não tenho certeza"
-      }
-    ],
-    "placeholder": "Para quando você precisa deste serviço?",
-    "type": "enumerable",
-    "required": false
-  },
-  {
     "title": "Especifique melhor a metragem do serviço",
+    "value": null,
     "values": [],
     "placeholder": "Bora pra action",
     "required": false,
