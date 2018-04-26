@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input renders custom props 1`] = `
+<input
+  className="form__input"
+  id="idTest"
+  name="idTest"
+  placeholder="placeholderTest"
+  required={false}
+  title="idTest"
+  value="ola test value"
+/>
+`;
