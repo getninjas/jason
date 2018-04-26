@@ -180,6 +180,17 @@
                   ]
                 }
               }
+            },
+            {
+              "node": {
+                "title": "Especifique melhor a metragem do serviço",
+                "required": false,
+                "type": "small_text",
+                "placeholder": "Bora pra action",
+                "values": {
+                  "edges": []
+                }
+              }
             }
           ]
         }

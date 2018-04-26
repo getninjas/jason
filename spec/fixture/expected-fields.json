@@ -114,5 +114,12 @@
     "placeholder": "Para quando você precisa deste serviço?",
     "type": "enumerable",
     "required": false
+  },
+  {
+    "title": "Especifique melhor a metragem do serviço",
+    "values": [],
+    "placeholder": "Bora pra action",
+    "required": false,
+    "type": "small_text"
   }
 ]
