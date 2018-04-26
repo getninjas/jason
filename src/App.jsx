@@ -24,11 +24,13 @@ export default class App extends Component {
       const selectField = this.state.data[0];
       const inputField = this.state.data[1];
 
+      console.log(inputField);
+
       return (
         <Fragment>
           <h1>Welcome to Jason!</h1>
 
-          <Select id={selectField.title} value={selectField.value} values={selectField.values} />
+          <Select id={selectField.title} selected={selectField.value} values={selectField.values} />
 
           <Input id={inputField.title} placeholder={inputField.placeholder} />
         </Fragment>

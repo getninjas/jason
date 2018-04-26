@@ -17,8 +17,8 @@ export default class Input extends React.Component {
 }
 
 Input.propTypes = {
-  id: PropTypes.string.required,
+  id: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
-  required: PropTypes.boolean,
+  required: PropTypes.bool,
   value: PropTypes.any,
 }

@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 
 export default class Select extends React.Component {
   render() {
-    const { id, value, values } = this.props;
+    const { id, selected, values } = this.props;
 
     return (
-      <select id={id} name={id} value={value} className="form__input">
+      <select id={id} name={id} selected={selected} className="form__input">
         {
          values.map((item, index) => {
             return (
-              <option key={index} value={item.databaseId} selected={item.databaseId === value ? true : false}>
+              <option key={index} value={item.databaseId} selected={item.databaseId === selected ? true : false}>
                 {item.value}
               </option>
             );
@@ -23,6 +23,6 @@ export default class Select extends React.Component {
 
 Select.propTypes = {
   id: PropTypes.string.isRequired,
-  value: PropTypes.any,
+  selected: PropTypes.any,
   values: PropTypes.array,
 }
