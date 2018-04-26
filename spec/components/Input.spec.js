@@ -13,6 +13,15 @@ describe('Input', () => {
     );
 
     const tree = component.toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('renders defaultProps', () => {
+    const component = renderer.create(<Input />);
+
+    const tree = component.toJSON();
+
     expect(tree).toMatchSnapshot();
   });
 });
