@@ -40,4 +40,60 @@ describe('ParserFields', () => {
       expect(result).toEqual(expectedFields);
     });
   });
+
+  describe('._extractChildrenValues', () => {
+    it('expect to return values structured properly', () => {
+      const values = [
+        {
+          "node": {
+            "databaseId": 4885,
+            "value": "O quanto antes possível"
+          }
+        },
+        {
+          "node": {
+            "databaseId": 4886,
+            "value": "Nos próximos 30 dias"
+          }
+        },
+        {
+          "node": {
+            "databaseId": 4887,
+            "value": "Nos próximos 3 meses"
+          }
+        },
+        {
+          "node": {
+            "databaseId": 4888,
+            "value": "Não tenho certeza"
+          }
+        }
+      ];
+
+      const expectedValues = [
+        {
+          "databaseId": 4885,
+          "value": "O quanto antes possível"
+        },
+        {
+          "databaseId": 4886,
+          "value": "Nos próximos 30 dias"
+        },
+        {
+          "databaseId": 4887,
+          "value": "Nos próximos 3 meses"
+        },
+        {
+          "databaseId": 4888,
+          "value": "Não tenho certeza"
+        }
+      ];
+
+      const parserFields = new ParserFields(fields);
+
+      const result = parserFields._extractChildrenValues(values);
+
+      expect(result).toEqual(expectedValues);
+    });
+  });
 });
