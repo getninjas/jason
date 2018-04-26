@@ -2,6 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default class Input extends React.Component {
+  static defaultProps = {
+    id: '',
+    placeholder: '',
+    required: false,
+    value: '',
+  }
+
   render() {
     return (
       <input

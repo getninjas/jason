@@ -10,7 +10,7 @@ export default class App extends Component {
     super();
 
     this.state = {
-      data: []
+      data: [{},{},{}]
     }
   }
 
@@ -21,25 +21,21 @@ export default class App extends Component {
   }
 
   render() {
-    if (this.state.data.length) {
-      const selectField = this.state.data[0];
-      const inputField = this.state.data[1];
-      const textArea = this.state.data[2];
+    const selectField = this.state.data[0];
+    const inputField = this.state.data[1];
+    const textArea = this.state.data[2];
 
-      return (
-        <Fragment>
-          <h1>Welcome to Jason!</h1>
+    return (
+      <Fragment>
+        <h1>Welcome to Jason!</h1>
 
-          <Select id={selectField.title} selected={selectField.value} values={selectField.values} />
+        <Select id={selectField.title} selected={selectField.value} values={selectField.values} />
 
-          <Input id={inputField.title} placeholder={inputField.placeholder} />
+        <Input id={inputField.title} placeholder={inputField.placeholder} />
 
-          <TextArea id={textArea.title} placeholder={textArea.placeholder} />
-        </Fragment>
-      );
-    }
-
-    return <h1>Loading...</h1>;
+        <TextArea id={textArea.title} placeholder={textArea.placeholder} />
+      </Fragment>
+    );
   }
 }
 

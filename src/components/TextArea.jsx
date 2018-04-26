@@ -2,6 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default class TextArea extends React.Component {
+  static defaultProps = {
+    id: '',
+    placeholder: '',
+    required: false,
+    value: '',
+  }
+
   render() {
     return (
       <textarea
