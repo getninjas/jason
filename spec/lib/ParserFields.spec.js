@@ -1,5 +1,6 @@
 import ParserFields from '../../src/lib/ParserFields';
 import fields from '../../src/fields.json';
+import expectedFields from '../fixture/expected-fields.json';
 
 describe('ParserFields', () => {
   describe('.constructor', () => {
@@ -29,6 +30,14 @@ describe('ParserFields', () => {
       parserFields.init();
 
       expect(parserFields._extractChildrenValues).toHaveBeenCalled();
+    });
+
+    it('expects result to be parsed', () => {
+      const parserFields = new ParserFields(fields);
+
+      const result = parserFields.init();
+
+      expect(result).toEqual(expectedFields);
     });
   });
 });
