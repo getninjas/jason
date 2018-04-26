@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import Select from './components/Select';
 import ParserFields from './lib/ParserFields';
+import Select from './components/Select';
+import Input from './components/Input';
 
-export default class App extends React.Component {
+export default class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      data: [{
-        values: []
-      }]
+      data: []
     }
   }
 
@@ -21,15 +20,22 @@ export default class App extends React.Component {
   }
 
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to Jason!</h1>
-        </header>
+    if (this.state.data.length) {
+      const selectField = this.state.data[0];
+      const inputField = this.state.data[1];
 
-        <Select id={'teste-select'} databaseId={0} values={this.state.data[0].values} name={'my-custom-select'}/>
-      </div>
-    );
+      return (
+        <Fragment>
+          <h1>Welcome to Jason!</h1>
+
+          <Select id={selectField.title} value={selectField.value} values={selectField.values} />
+
+          <Input id={inputField.title} placeholder={inputField.placeholder} />
+        </Fragment>
+      );
+    }
+
+    return <h1>Loading...</h1>;
   }
 }
 
