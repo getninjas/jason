@@ -12,20 +12,24 @@ export default class Form extends Component {
     formatedJSON: '',
   }
 
-  render() {
-    const { action, method, name} = this.props;
+  getField(field) {
+    if (field.type === 'enumerable') {
+      return <Select id={field.title} selected={field.value} values={field.values} />;
+    }
 
-    const selectField = this.props.formatedJSON[0];
-    const inputField = this.props.formatedJSON[1];
-    const textArea = this.props.formatedJSON[2];
+    if (field.type === 'big_text') {
+      return <TextArea id={field.title} placeholder={field.placeholder} />;
+    }
+
+    return <Input id={field.title} placeholder={field.placeholder} />
+  }
+
+  render() {
+    const { action, method, name, formatedJSON } = this.props;
 
     return (
       <form action={action} method={method} name={name}>
-        <Select id={selectField.title} selected={selectField.value} values={selectField.values} />
-
-        <Input id={inputField.title} placeholder={inputField.placeholder} />
-
-        <TextArea id={textArea.title} placeholder={textArea.placeholder} />
+        { formatedJSON.map((item) => this.getField(item)) }
       </form>
     );
   }
