@@ -27,7 +27,7 @@ export default class App extends React.Component {
           <h1 className="App-title">Welcome to Jason!</h1>
         </header>
 
-        <Select id={'teste-select'} values={this.state.data[0].values} name={'my-custom-select'}/>
+        <Select id={'teste-select'} databaseId={0} values={this.state.data[0].values} name={'my-custom-select'}/>
       </div>
     );
   }
