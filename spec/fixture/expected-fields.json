@@ -35,5 +35,13 @@
     "placeholder": "Bora pra action",
     "required": false,
     "type": "small_text"
+  },
+  {
+    "title": "Informações adicionais",
+    "required": false,
+    "type": "big_text",
+    "placeholder": "Descreva o que você precisa",
+    "value": null,
+    "values": []
   }
 ]

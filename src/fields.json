@@ -61,6 +61,18 @@
                   "edges": []
                 }
               }
+            },
+            {
+              "node": {
+                "title": "Informações adicionais",
+                "required": false,
+                "type": "big_text",
+                "placeholder": "Descreva o que você precisa",
+                "value": null,
+                "values": {
+                  "edges": []
+                }
+              }
             }
           ]
         }
