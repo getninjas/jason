@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import StartText from './components/StartText';
 import Select from './components/Select';
 import ParserFields from './lib/ParserFields';
-
 
 export default class App extends React.Component {
   constructor() {
     super();
+
     this.state = {
       data: [{
         values: []
@@ -16,9 +15,9 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    this.data = new ParserFields(this.props.jsonFields).init();
-    this.setState({ data: this.data });
+    const data = new ParserFields(this.props.jsonFields).init();
 
+    this.setState({ data });
   }
 
   render() {
@@ -28,7 +27,6 @@ export default class App extends React.Component {
           <h1 className="App-title">Welcome to Jason!</h1>
         </header>
 
-        <StartText name="Ion" />
         <Select id={'teste-select'} values={this.state.data[0].values} name={'my-custom-select'}/>
       </div>
     );
