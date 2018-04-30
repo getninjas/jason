@@ -24,7 +24,7 @@ export default class Step extends React.Component {
 
   render() {
     return (
-      <div style={ {border: '1px solid red'} }>
+      <div>
         {
           this.props.fields.map((item, index) => {
             return (

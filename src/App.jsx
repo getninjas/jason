@@ -4,8 +4,7 @@ import Form from './components/Form';
 
 export default class App extends React.Component {
   render() {
-    console.log('app>>>>', this.props.form)
-    return <Form form={this.props.form} />;
+    return <Form name={'title'} form={this.props.form} />;
   }
 }
 

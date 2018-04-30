@@ -11,7 +11,7 @@ export default class Field extends React.Component {
   render() {
     return (
       <div className="form__field form__field--fluid input">
-        <label forHTML={this.props.id} className="form__label">
+        <label htmlFor={this.props.id} className="form__label">
           { this.props.label }
         </label>
 
