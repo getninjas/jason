@@ -4,6 +4,8 @@
     "databaseId": 81,
     "steps": [
       {
+        "title": "Dados gerais",
+        "breadcrumbTitle": "1. Seu pedido",
         "fields": [
           {
             "title": "Qual é o tipo de serviço que você precisa?",
@@ -59,6 +61,8 @@
         ]
       },
       {
+        "title": "Dados de usuário",
+        "breadcrumbTitle": "2. Seus dados",
         "fields": [
           {
             "title": "Em que bairro será o serviço?",
