@@ -6,6 +6,7 @@
       {
         "title": "Dados gerais",
         "breadcrumbTitle": "Seu pedido",
+        "button": "Fazer um orçamento grátis",
         "fields": [
           {
             "title": "Qual é o tipo de serviço que você precisa?",
@@ -63,6 +64,7 @@
       {
         "title": "Dados de usuário",
         "breadcrumbTitle": "Seus dados",
+        "button": "Finalizar",
         "fields": [
           {
             "title": "Em que bairro será o serviço?",

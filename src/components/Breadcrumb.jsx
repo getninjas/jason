@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 export default class Breadcrumb extends React.Component {
   static defaultProps = {
-    steps: []
+    steps: [],
+    active: 0
   }
 
   render() {
@@ -12,7 +13,7 @@ export default class Breadcrumb extends React.Component {
         {
           this.props.steps.map((step, index) => {
             return (
-              <li key={`breadcrumb-${index}`} className="form__steps-item form__steps-item--active">
+              <li key={`breadcrumb-${index}`} className={`form__steps-item ${this.props.active === index ? 'form__steps-item--active' : ''}`}>
                 {step.breadcrumbTitle}
               </li>
             );
@@ -25,4 +26,5 @@ export default class Breadcrumb extends React.Component {
 
 Breadcrumb.propTypes = {
   steps: PropTypes.array.isRequired,
+  active: PropTypes.number.isRequired,
 }

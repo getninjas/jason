@@ -7,7 +7,8 @@ import Field from './Field';
 
 export default class Step extends React.Component {
   static defaultProps = {
-    fields: [],
+    step: [],
+    visible: false
   }
 
   getField(field, key) {
@@ -23,10 +24,12 @@ export default class Step extends React.Component {
   }
 
   render() {
+    const { fields, button } = this.props.step;
+
     return (
-      <fieldset className="form__container inputs">
+      <fieldset className="form__container inputs" style={ {display: this.props.visible ? 'block' : 'none' } }>
         {
-          this.props.fields.map((item, index) => {
+          fields.map((item, index) => {
             return (
               <Field
                 key={`field-${index}`}
@@ -38,11 +41,16 @@ export default class Step extends React.Component {
             )
           })
         }
+
+        <button type="button" className="btn btn--regular btn--high-contrast btn--fluid space-box-medium">
+          { button }
+        </button>
       </fieldset>
     );
   }
 }
 
 Step.propTypes = {
-  fields: PropTypes.array.isRequired,
+  step: PropTypes.object.isRequired,
+  visible: PropTypes.bool.isRequired,
 }
