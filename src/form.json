@@ -12,7 +12,7 @@
           {
             "title": "Qual é o tipo de serviço que você precisa?",
             "placeholder": "Qual é o tipo de serviço que você precisa?",
-            "required": false,
+            "required": true,
             "id": "1_id",
             "name": "1_name_select",
             "type": "select",

@@ -25,12 +25,17 @@ export default class Form extends Component {
   handleButtonClick(evt) {
     evt.preventDefault();
 
+    console.log(this.form);
+
+    // this.form.submit();
+
     const { activeStep, stepsCount } = this.state;
 
     if (activeStep < stepsCount) {
-      this.setState({ activeStep: activeStep + 1 });
+      // this.setState({ activeStep: activeStep + 1 });
       return;
     }
+
 
     window.alert('finish');
   }
@@ -40,7 +45,7 @@ export default class Form extends Component {
 
     return (
       <section className="wall--inverted col-normal-8 col-small-12">
-        <form action={action} method={method} name={name} className="form container">
+        <form ref={(form=> this.form = form)} action={action} method={method} name={name} className="form container">
           {
             form.steps.map((step, index) => {
               return (
