@@ -23,6 +23,7 @@ export default class Input extends React.Component {
   render() {
     return (
       <input
+        type={this.props.type==='phone'? 'tel': this.props.type}
         id={this.props.id}
         name={this.props.name}
         title={this.props.title}
@@ -40,6 +41,7 @@ Input.defaultProps = {
   placeholder: '',
   required: false,
   name: '',
+  text: 'text',
   title: '',
   value: '',
 }
@@ -49,6 +51,7 @@ Input.propTypes = {
   name: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
+  type: PropTypes.string,
   required: PropTypes.bool,
   value: PropTypes.any,
 }

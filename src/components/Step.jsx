@@ -16,7 +16,9 @@ export default class Step extends React.Component {
       return <TextArea key={`textarea-${key}`} id={field.name} name={field.name} placeholder={field.placeholder} />;
     }
 
-    return <Input key={`input-${key}`} id={field.name} name={field.name} placeholder={field.placeholder} />
+    if (field.type === 'phone' || field.type === 'email' || field.type === 'text') {
+      return <Input type={field.type} key={`input-${key}`} id={field.name} name={field.name} placeholder={field.placeholder} />;
+    }
   }
 
   _createMarkup(html) {
