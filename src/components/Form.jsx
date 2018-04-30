@@ -25,26 +25,14 @@ export default class Form extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    console.log('form submit');
   }
 
   handleButtonClick(evt) {
-    console.log('click');
+    const { activeStep, stepsCount } = this.state;
 
-     //this.form.submit();
-
-
-
-
-      // const { activeStep, stepsCount } = this.state;
-
-      // if (activeStep < stepsCount) {
-      //   // this.setState({ activeStep: activeStep + 1 });
-      //   return;
-      // }
-
-
-      // window.alert('finish');
+    if (activeStep < stepsCount) {
+      this.setState({ activeStep: activeStep + 1 });
+    }
   }
 
   render() {
