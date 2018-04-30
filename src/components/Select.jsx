@@ -18,7 +18,7 @@ export default class Select extends React.Component {
         {
          values.map((item, index) => {
             return (
-              <option key={index} value={item.databaseId}>
+              <option key={`option-${index}`} value={item.databaseId}>
                 {item.value}
               </option>
             );

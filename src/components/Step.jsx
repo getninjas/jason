@@ -12,14 +12,14 @@ export default class Step extends React.Component {
 
   getField(field, key) {
     if (field.type === 'select') {
-      return <Select key={key} id={field.name} name={field.name} selected={field.value} values={field.values} />;
+      return <Select key={`select-${key}`} id={field.name} name={field.name} selected={field.value} values={field.values} />;
     }
 
     if (field.type === 'textarea') {
-      return <TextArea key={key} id={field.name} name={field.name} placeholder={field.placeholder} />;
+      return <TextArea key={`textarea-${key}`} id={field.name} name={field.name} placeholder={field.placeholder} />;
     }
 
-    return <Input key={key} id={field.name} name={field.name} placeholder={field.placeholder} />
+    return <Input key={`input-${key}`} id={field.name} name={field.name} placeholder={field.placeholder} />
   }
 
   render() {
@@ -29,7 +29,7 @@ export default class Step extends React.Component {
           this.props.fields.map((item, index) => {
             return (
               <Field
-                key={index}
+                key={`field-${index}`}
                 label={item.label}
                 id={item.id}
                 errorMessage='dsds'>

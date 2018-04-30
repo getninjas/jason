@@ -17,7 +17,7 @@ export default class Form extends Component {
       <form action={action} method={method} name={name}>
         {
           form.steps.map((step, index) => {
-            return <Step key={index} fields={step.fields} />
+            return <Step key={`step-${index}`} fields={step.fields} />
           })
         }
       </form>
