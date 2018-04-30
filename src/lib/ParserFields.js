@@ -11,7 +11,7 @@ export default class ParserFields {
     const fields = this.json.data.category.form.fields.edges;
 
     const formatedFields = fields.map((field) => {
-      const { title, name, value, values, placeholder, type, required } = field.node;
+      const { title, name, value, values, placeholder, component, required } = field.node;
 
       const formatedValues = this._extractChildrenValues(values.edges);
 
@@ -21,7 +21,7 @@ export default class ParserFields {
         value,
         values: formatedValues,
         placeholder,
-        type,
+        type: component,
         required,
       };
     });
