@@ -19,11 +19,17 @@ export default class Step extends React.Component {
     return <Input key={`input-${key}`} id={field.name} name={field.name} placeholder={field.placeholder} />
   }
 
+  _createMarkup(html) {
+    return { __html: html };
+  }
+
   render() {
-    const { fields, button } = this.props.step;
+    const { fields, button, headerMarkup } = this.props.step;
 
     return (
       <fieldset className="form__container inputs" style={ {display: this.props.visible ? 'block' : 'none' } }>
+        { headerMarkup ? <div dangerouslySetInnerHTML={this._createMarkup(headerMarkup)} /> : '' }
+
         {
           fields.map((item, index) => {
             return (
