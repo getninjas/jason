@@ -25,7 +25,7 @@
       }
     ],
     "placeholder": "Qual é o tipo de serviço que você precisa?",
-    "type": "enumerable",
+    "type": "select",
     "required": false
   },
   {
@@ -34,12 +34,12 @@
     "values": [],
     "placeholder": "Bora pra action",
     "required": false,
-    "type": "small_text"
+    "type": "text"
   },
   {
     "title": "Informações adicionais",
     "required": false,
-    "type": "big_text",
+    "type": "textarea",
     "placeholder": "Descreva o que você precisa",
     "value": null,
     "values": []

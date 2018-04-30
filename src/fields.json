@@ -12,7 +12,9 @@
                 "title": "Qual é o tipo de serviço que você precisa?",
                 "placeholder": "Qual é o tipo de serviço que você precisa?",
                 "required": false,
-                "type": "enumerable",
+                "id": "1_id",
+                "name": "1_name_select",
+                "type": "select",
                 "value": 7120,
                 "values": {
                   "edges": [
@@ -54,7 +56,9 @@
               "node": {
                 "title": "Especifique melhor a metragem do serviço",
                 "required": false,
-                "type": "small_text",
+                "id": "2_id",
+                "name": "2_name_text",
+                "type": "text",
                 "placeholder": "Bora pra action",
                 "value": null,
                 "values": {
@@ -66,7 +70,9 @@
               "node": {
                 "title": "Informações adicionais",
                 "required": false,
-                "type": "big_text",
+                "type": "textarea",
+                "id": "3_id",
+                "name": "3_name_textarea",
                 "placeholder": "Descreva o que você precisa",
                 "value": null,
                 "values": {

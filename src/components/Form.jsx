@@ -13,11 +13,11 @@ export default class Form extends Component {
   }
 
   getField(field, key) {
-    if (field.type === 'enumerable') {
+    if (field.type === 'select') {
       return <Select key={key} id={field.title} selected={field.value} values={field.values} />;
     }
 
-    if (field.type === 'big_text') {
+    if (field.type === 'textarea') {
       return <TextArea key={key} id={field.title} placeholder={field.placeholder} />;
     }
 

@@ -5,6 +5,8 @@ export default class TextArea extends React.Component {
   static defaultProps = {
     id: '',
     placeholder: '',
+    name: '',
+    title: '',
     required: false,
     value: '',
   }
@@ -13,8 +15,8 @@ export default class TextArea extends React.Component {
     return (
       <textarea
         id={this.props.id}
-        name={this.props.id}
-        title={this.props.id}
+        name={this.props.name}
+        title={this.props.title}
         className="form__input"
         placeholder={this.props.placeholder}
         required={this.props.required}
@@ -25,6 +27,8 @@ export default class TextArea extends React.Component {
 
 TextArea.propTypes = {
   id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   value: PropTypes.any,

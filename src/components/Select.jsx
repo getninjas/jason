@@ -5,14 +5,16 @@ export default class Select extends React.Component {
   static defaultProps = {
     id: '',
     selected: '',
+    name: '',
+    title: '',
     values: [],
   }
 
   render() {
-    const { id, selected, values } = this.props;
+    const { id, name, selected, values } = this.props;
 
     return (
-      <select id={id} name={id} defaultValue={selected} className="form__input">
+      <select id={id} name={name} defaultValue={selected} className="form__input">
         {
          values.map((item, index) => {
             return (
@@ -29,6 +31,8 @@ export default class Select extends React.Component {
 
 Select.propTypes = {
   id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   selected: PropTypes.any,
   values: PropTypes.array,
 }
