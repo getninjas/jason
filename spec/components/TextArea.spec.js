@@ -5,7 +5,9 @@ import TextArea from '../../src/components/TextArea';
 describe('TextArea', () => {
   it('renders custom props', () => {
     const component = renderer.create(
-      <TextArea id={'idTest'}
+      <TextArea
+        id={'idTest'}
+        name={'nameTest'}
         placeholder={'placeholderTest'}
         required={false}
         value={'ola test value'}

@@ -8,7 +8,9 @@ describe('Select', () => {
     const values = expectedFields[0].values.slice(0, 2);
 
     const component = renderer.create(
-      <Select id={'idTest'}
+      <Select
+        id={'idTest'}
+        name={'nameTest'}
         placeholder={'placeholderTest'}
         required={false}
         values={values}

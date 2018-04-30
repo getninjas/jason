@@ -14,14 +14,14 @@ export default class Form extends Component {
 
   getField(field, key) {
     if (field.type === 'select') {
-      return <Select key={key} id={field.title} selected={field.value} values={field.values} />;
+      return <Select key={key} id={field.name} name={field.name} selected={field.value} values={field.values} />;
     }
 
     if (field.type === 'textarea') {
-      return <TextArea key={key} id={field.title} placeholder={field.placeholder} />;
+      return <TextArea key={key} id={field.name} name={field.name} placeholder={field.placeholder} />;
     }
 
-    return <Input key={key} id={field.title} placeholder={field.placeholder} />
+    return <Input key={key} id={field.name} name={field.name} placeholder={field.placeholder} />
   }
 
   render() {

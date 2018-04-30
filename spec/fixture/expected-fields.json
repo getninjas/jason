@@ -1,6 +1,7 @@
 [
   {
     "title": "Qual é o tipo de serviço que você precisa?",
+    "name": "1_name_select",
     "value": 7120,
     "values": [
       {
@@ -30,6 +31,7 @@
   },
   {
     "title": "Especifique melhor a metragem do serviço",
+    "name": "2_name_text",
     "value": null,
     "values": [],
     "placeholder": "Bora pra action",
@@ -38,6 +40,7 @@
   },
   {
     "title": "Informações adicionais",
+    "name": "3_name_textarea",
     "required": false,
     "type": "textarea",
     "placeholder": "Descreva o que você precisa",

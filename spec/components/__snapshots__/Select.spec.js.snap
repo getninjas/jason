@@ -5,7 +5,7 @@ exports[`Select renders custom props 1`] = `
   className="form__input"
   defaultValue=""
   id="idTest"
-  name="idTest"
+  name="nameTest"
 >
   <option
     value={7117}

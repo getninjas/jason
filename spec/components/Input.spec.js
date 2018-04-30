@@ -5,7 +5,9 @@ import Input from '../../src/components/Input';
 describe('Input', () => {
   it('renders custom props', () => {
     const component = renderer.create(
-      <Input id={'idTest'}
+      <Input
+        id={'idTest'}
+        name={'nameTest'}
         placeholder={'placeholderTest'}
         required={false}
         value={'ola test value'}
