@@ -1,88 +1,107 @@
 {
-  "data": {
-    "category": {
-      "slug": "reformas-e-reparos/pedreiro",
-      "titleHeader": "Precisando de Pedreiros?",
-      "form": {
-        "databaseId": 81,
-        "fields": {
-          "edges": [
-            {
-              "node": {
-                "title": "Qual é o tipo de serviço que você precisa?",
-                "placeholder": "Qual é o tipo de serviço que você precisa?",
-                "required": false,
-                "id": "1_id",
-                "name": "1_name_select",
-                "type": "select",
-                "value": 7120,
-                "values": {
-                  "edges": [
-                    {
-                      "node": {
-                        "databaseId": 7117,
-                        "value": "Construção"
-                      }
-                    },
-                    {
-                      "node": {
-                        "databaseId": 7118,
-                        "value": "Reformas"
-                      }
-                    },
-                    {
-                      "node": {
-                        "databaseId": 7119,
-                        "value": "Instalações"
-                      }
-                    },
-                    {
-                      "node": {
-                        "databaseId": 7120,
-                        "value": "Troca"
-                      }
-                    },
-                    {
-                      "node": {
-                        "databaseId": 7121,
-                        "value": "Outros"
-                      }
-                    }
-                  ]
-                }
+  "form": {
+    "title": "sadasdasd",
+    "databaseId": 81,
+    "steps": [
+      {
+        "fields": [
+          {
+            "title": "Qual é o tipo de serviço que você precisa?",
+            "placeholder": "Qual é o tipo de serviço que você precisa?",
+            "required": false,
+            "id": "1_id",
+            "name": "1_name_select",
+            "type": "select",
+            "value": 7120,
+            "values": [
+              {
+                "databaseId": 7117,
+                "value": "Construção"
+              },
+              {
+                "databaseId": 7118,
+                "value": "Reformas"
+              },
+              {
+                "databaseId": 7119,
+                "value": "Instalações"
+              },
+              {
+                "databaseId": 7120,
+                "value": "Troca"
+              },
+              {
+                "databaseId": 7121,
+                "value": "Outros"
               }
-            },
-            {
-              "node": {
-                "title": "Especifique melhor a metragem do serviço",
-                "required": false,
-                "id": "2_id",
-                "name": "2_name_text",
-                "type": "text",
-                "placeholder": "Bora pra action",
-                "value": null,
-                "values": {
-                  "edges": []
-                }
-              }
-            },
-            {
-              "node": {
-                "title": "Informações adicionais",
-                "required": false,
-                "type": "textarea",
-                "id": "3_id",
-                "name": "3_name_textarea",
-                "placeholder": "Descreva o que você precisa",
-                "value": null,
-                "values": {
-                  "edges": []
-                }
-              }
-            }
-          ]
-        }
+            ]
+          },
+          {
+            "title": "Especifique melhor a metragem do serviço",
+            "required": false,
+            "id": "2_id",
+            "name": "2_name_text",
+            "type": "text",
+            "placeholder": "Bora pra action",
+            "value": null,
+            "values": []
+          },
+          {
+            "title": "Informações adicionais",
+            "required": false,
+            "type": "textarea",
+            "id": "3_id",
+            "name": "3_name_textarea",
+            "placeholder": "Descreva o que você precisa",
+            "value": null,
+            "values": []
+          }
+        ]
+      },
+      {
+        "fields": [
+          {
+            "title": "Em que bairro será o serviço?",
+            "id": "user_field_1",
+            "name": "user_field_1",
+            "type": "text",
+            "placeholder": "",
+            "required": true,
+            "value": null,
+            "values": []
+          },
+          {
+            "title": "Nome",
+            "id": "user_field_2",
+            "name": "user_field_2",
+            "type": "text",
+            "placeholder": "",
+            "required": true,
+            "value": null,
+            "values": []
+          },
+          {
+            "title": "E-mail",
+            "id": "user_field_3",
+            "name": "user_field_3",
+            "type": "text",
+            "placeholder": "Ex: nome@email.com",
+            "required": true,
+            "value": null,
+            "values": []
+          },
+          {
+            "title": "DDD + Celular",
+            "id": "user_field_4",
+            "name": "user_field_4",
+            "type": "text",
+            "placeholder": "",
+            "required": true,
+            "value": null,
+            "values": []
+          }
+        ]
       }
-    }
+    ]
   }
 }
