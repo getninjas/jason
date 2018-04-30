@@ -13,6 +13,7 @@ export default class Form extends Component {
     };
 
     this.handleButtonClick = this.handleButtonClick.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -22,22 +23,28 @@ export default class Form extends Component {
     });
   }
 
-  handleButtonClick(evt) {
+  handleSubmit(evt) {
     evt.preventDefault();
+    console.log('form submit');
+  }
 
-    console.log(this.form);
+  handleButtonClick(evt) {
+    console.log('click');
 
-    // this.form.submit();
-
-    const { activeStep, stepsCount } = this.state;
-
-    if (activeStep < stepsCount) {
-      // this.setState({ activeStep: activeStep + 1 });
-      return;
-    }
+     //this.form.submit();
 
 
-    window.alert('finish');
+
+
+      // const { activeStep, stepsCount } = this.state;
+
+      // if (activeStep < stepsCount) {
+      //   // this.setState({ activeStep: activeStep + 1 });
+      //   return;
+      // }
+
+
+      // window.alert('finish');
   }
 
   render() {
@@ -45,7 +52,7 @@ export default class Form extends Component {
 
     return (
       <section className="wall--inverted col-normal-8 col-small-12">
-        <form ref={(form=> this.form = form)} action={action} method={method} name={name} className="form container">
+        <form onSubmit={this.handleSubmit} ref={(form=> this.form = form)} action={action} method={method} name={name} className="form container">
           {
             form.steps.map((step, index) => {
               return (
@@ -67,6 +74,9 @@ export default class Form extends Component {
 }
 
 Form.defaultProps = {
+  name:'jason-form',
+  method:'POST',
+  action:'http://uol.com.br',
   form: {
     steps: [],
   }

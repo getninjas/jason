@@ -28,7 +28,7 @@ export default class Input extends React.Component {
         title={this.props.title}
         className="form__input"
         placeholder={this.props.placeholder}
-        required={this.props.required ? 'required' :  ''}
+        required={this.props.required ? 'true' : 'false'}
         value={this.state.value}
         onChange={this.onChange} />
     );

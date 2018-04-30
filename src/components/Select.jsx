@@ -2,8 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default class Select extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      values: []
+    }
+  }
+
+  componentDidMount() {
+    const values = [...this.props.values];
+
+    this.props.placeholder.length? values.unshift({databaseId: '', value: this.props.placeholder}) : '';
+
+    this.setState({values: values})
+  }
+
   render() {
-    const { id, name, selected, values, required } = this.props;
+    const { id, name, selected, required } = this.props;
 
     return (
       <select
@@ -13,7 +29,7 @@ export default class Select extends React.Component {
         className="form__input"
         required={required ? 'true' : 'false'}>
         {
-         values.map((item, index) => {
+          this.state.values.map((item, index) => {
             return (
               <option key={`option-${index}`} value={item.databaseId}>
                 {item.value}

@@ -11,7 +11,7 @@
         "fields": [
           {
             "title": "Qual é o tipo de serviço que você precisa?",
-            "placeholder": "Qual é o tipo de serviço que você precisa?",
+            "placeholder": "Placeholder",
             "required": true,
             "id": "1_id",
             "name": "1_name_select",
@@ -42,7 +42,7 @@
           },
           {
             "title": "Especifique melhor a metragem do serviço",
-            "required": false,
+            "required": true,
             "id": "2_id",
             "name": "2_name_text",
             "type": "text",
@@ -52,7 +52,7 @@
           },
           {
             "title": "Informações adicionais",
-            "required": false,
+            "required": true,
             "type": "textarea",
             "id": "3_id",
             "name": "3_name_textarea",

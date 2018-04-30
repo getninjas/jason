@@ -9,7 +9,7 @@ import Button from './Button';
 export default class Step extends React.Component {
   getField(field, key) {
     if (field.type === 'select') {
-      return <Select key={`select-${key}`} id={field.name} name={field.name} selected={field.value} values={field.values} />;
+      return <Select placeholder={field.placeholder} key={`select-${key}`} id={field.name} name={field.name} selected={field.value} values={field.values} />;
     }
 
     if (field.type === 'textarea') {
