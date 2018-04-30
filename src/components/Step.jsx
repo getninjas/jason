@@ -4,6 +4,7 @@ import Select from './Select';
 import Input from './Input';
 import TextArea from './TextArea';
 import Field from './Field';
+import Button from './Button';
 
 export default class Step extends React.Component {
   getField(field, key) {
@@ -37,9 +38,7 @@ export default class Step extends React.Component {
           })
         }
 
-        <button type="button" className="btn btn--regular btn--high-contrast btn--fluid space-box-medium">
-          { button }
-        </button>
+        <Button isSubmit={this.props.isLast}>{ button }</Button>
       </fieldset>
     );
   }
@@ -47,10 +46,12 @@ export default class Step extends React.Component {
 
 Step.defaultProps = {
   step: [],
-  visible: false
+  visible: false,
+  isLast: false,
 }
 
 Step.propTypes = {
   step: PropTypes.object.isRequired,
   visible: PropTypes.bool.isRequired,
+  isLast: PropTypes.bool.isRequired,
 }

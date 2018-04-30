@@ -18,18 +18,25 @@ export default class Form extends Component {
 
   render() {
     const { action, method, name, form } = this.props;
+    const stepsCount = form.steps.length - 1;
 
     return (
       <section className="wall--inverted col-normal-8 col-small-12">
         <form action={action} method={method} name={name} className="form container">
           {
             form.steps.map((step, index) => {
-              return <Step visible={this.state.activeStep === index} key={`step-${index}`} step={step} />
+              return (
+                <Step
+                  visible={this.state.activeStep === index}
+                  key={`step-${index}`}
+                  step={step}
+                  isLast={index === stepsCount} />
+              )
             })
           }
         </form>
 
-        <Breadcrumb active={this.state.activeStep} steps={form.steps} />
+        <Breadcrumb active={this.state.activeStep} steps={form.steps}  />
       </section>
     );
   }
