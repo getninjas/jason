@@ -32,7 +32,7 @@ describe('Button', () => {
     it('renders button with type=submit', () => {
       const component = shallow(<Button isSubmit={true} handleButtonClick={() => { }}>Test</Button>);
 
-      expect(component.type()).toBe('submit');
+      expect(component.find('.btn').prop('type')).toBe('submit');
     });
   });
 });
