@@ -2,11 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default class Breadcrumb extends React.Component {
-  static defaultProps = {
-    steps: [],
-    active: 0
-  }
-
   render() {
     return (
       <ol className="form__steps space-box-medium">
@@ -22,6 +17,11 @@ export default class Breadcrumb extends React.Component {
       </ol>
     );
   }
+}
+
+Breadcrumb.defaultProps = {
+  steps: [],
+  active: 0
 }
 
 Breadcrumb.propTypes = {

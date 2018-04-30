@@ -2,12 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default class Field extends React.Component {
-  static defaultProps = {
-    label: '',
-    id: '',
-    errorMessage: ''
-  }
-
   render() {
     return (
       <div className="form__field form__field--fluid input">
@@ -23,6 +17,12 @@ export default class Field extends React.Component {
       </div>
     );
   }
+}
+
+Field.defaultProps = {
+  label: '',
+  id: '',
+  errorMessage: ''
 }
 
 Field.propTypes = {

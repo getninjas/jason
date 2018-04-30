@@ -2,13 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default class TextArea extends React.Component {
-  static defaultProps = {
-    id: '',
-    placeholder: '',
-    name: '',
-    title: '',
-    required: false,
-    value: '',
+  constructor() {
+    super();
+
+    this.state = {
+      value: '',
+    }
+
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(evt) {
+    this.setState({ value: evt.target.value });
+  }
+
+  componentWillMount() {
+    this.setState({ value: this.props.value });
   }
 
   render() {
@@ -20,9 +29,19 @@ export default class TextArea extends React.Component {
         className="form__input"
         placeholder={this.props.placeholder}
         required={this.props.required}
-        value={this.props.value} />
+        value={this.state.value}
+        onChange={this.onChange} />
     );
   }
+}
+
+TextArea.defaultProps = {
+  id: '',
+  placeholder: '',
+  name: '',
+  title: '',
+  required: false,
+  value: '',
 }
 
 TextArea.propTypes = {

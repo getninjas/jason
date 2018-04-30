@@ -6,11 +6,6 @@ import TextArea from './TextArea';
 import Field from './Field';
 
 export default class Step extends React.Component {
-  static defaultProps = {
-    step: [],
-    visible: false
-  }
-
   getField(field, key) {
     if (field.type === 'select') {
       return <Select key={`select-${key}`} id={field.name} name={field.name} selected={field.value} values={field.values} />;
@@ -48,6 +43,11 @@ export default class Step extends React.Component {
       </fieldset>
     );
   }
+}
+
+Step.defaultProps = {
+  step: [],
+  visible: false
 }
 
 Step.propTypes = {

@@ -2,14 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default class Select extends React.Component {
-  static defaultProps = {
-    id: '',
-    selected: '',
-    name: '',
-    title: '',
-    values: [],
-  }
-
   render() {
     const { id, name, selected, values } = this.props;
 
@@ -27,6 +19,14 @@ export default class Select extends React.Component {
       </select>
     );
   }
+}
+
+Select.defaultProps = {
+  id: '',
+  selected: '',
+  name: '',
+  title: '',
+  values: [],
 }
 
 Select.propTypes = {

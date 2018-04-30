@@ -13,13 +13,7 @@ export default class Form extends Component {
   }
 
   componentDidMount() {
-    this.setState({ activeStep: 1 });
-  }
-
-  static defaultProps = {
-    form: {
-      steps: [],
-    }
+    this.setState({ activeStep: 0 });
   }
 
   render() {
@@ -38,6 +32,12 @@ export default class Form extends Component {
         <Breadcrumb active={this.state.activeStep} steps={form.steps} />
       </section>
     );
+  }
+}
+
+Form.defaultProps = {
+  form: {
+    steps: [],
   }
 }
 
