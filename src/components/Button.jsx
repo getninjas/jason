@@ -6,7 +6,7 @@ export default class Button extends React.Component {
     const type = this.props.isSubmit ? 'submit' : 'button';
 
     return (
-      <button type={type} className="btn btn--regular btn--high-contrast btn--fluid space-box-medium">
+      <button type={type} className="btn btn--regular btn--high-contrast btn--fluid space-box-medium" onClick={this.props.handleButtonClick}>
         {this.props.children}
       </button>
     );
@@ -21,4 +21,5 @@ Button.defaultProps = {
 Button.propTypes = {
   children: PropTypes.string.isRequired,
   isSubmit: PropTypes.bool,
+  handleButtonClick: PropTypes.func.isRequired
 }

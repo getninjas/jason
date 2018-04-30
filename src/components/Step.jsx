@@ -38,7 +38,7 @@ export default class Step extends React.Component {
           })
         }
 
-        <Button isSubmit={this.props.isLast}>{ button }</Button>
+        <Button isSubmit={this.props.isLast} handleButtonClick={this.props.handleButtonClick}>{ button }</Button>
       </fieldset>
     );
   }
@@ -54,4 +54,5 @@ Step.propTypes = {
   step: PropTypes.object.isRequired,
   visible: PropTypes.bool.isRequired,
   isLast: PropTypes.bool.isRequired,
+  handleButtonClick: PropTypes.func.isRequired,
 }

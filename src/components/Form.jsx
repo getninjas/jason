@@ -9,16 +9,34 @@ export default class Form extends Component {
 
     this.state =  {
       activeStep: 0,
+      stepsCount: 0,
     };
+
+    this.handleButtonClick = this.handleButtonClick.bind(this);
   }
 
   componentDidMount() {
-    this.setState({ activeStep: 0 });
+    this.setState({
+      activeStep: 0,
+      stepsCount: this.props.form.steps.length - 1,
+    });
+  }
+
+  handleButtonClick(evt) {
+    evt.preventDefault();
+
+    const { activeStep, stepsCount } = this.state;
+
+    if (activeStep < stepsCount) {
+      this.setState({ activeStep: activeStep + 1 });
+      return;
+    }
+
+    window.alert('finish');
   }
 
   render() {
     const { action, method, name, form } = this.props;
-    const stepsCount = form.steps.length - 1;
 
     return (
       <section className="wall--inverted col-normal-8 col-small-12">
@@ -30,7 +48,8 @@ export default class Form extends Component {
                   visible={this.state.activeStep === index}
                   key={`step-${index}`}
                   step={step}
-                  isLast={index === stepsCount} />
+                  isLast={index === this.state.stepsCount}
+                  handleButtonClick={this.handleButtonClick} />
               )
             })
           }
