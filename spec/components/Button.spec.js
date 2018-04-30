@@ -1,7 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { shallow } from 'enzyme';
+import Enzyme, { shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import Button from '../../src/components/Button';
+
+Enzyme.configure({ adapter: new Adapter() });
 
 describe('Button', () => {
   it('renders custom props', () => {
@@ -29,7 +32,7 @@ describe('Button', () => {
     it('renders button with type=submit', () => {
       const component = shallow(<Button isSubmit={true} handleButtonClick={() => { }}>Test</Button>);
 
-      expect(component.type()).to.equal('submit');
+      expect(component.type()).toBe('submit');
     });
   });
 });
