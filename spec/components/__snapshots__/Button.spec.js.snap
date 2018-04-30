@@ -19,13 +19,3 @@ exports[`Button renders defaultProps 1`] = `
   Test
 </button>
 `;
-
-exports[`Button when prop submit is true renders button with type=submit 1`] = `
-<button
-  className="btn btn--regular btn--high-contrast btn--fluid space-box-medium"
-  onClick={[Function]}
-  type="submit"
->
-  Test
-</button>
-`;
