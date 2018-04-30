@@ -41,7 +41,7 @@ Input.defaultProps = {
   placeholder: '',
   required: false,
   name: '',
-  text: 'text',
+  type: 'text',
   title: '',
   value: '',
 }

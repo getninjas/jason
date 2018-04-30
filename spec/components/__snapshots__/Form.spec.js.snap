@@ -96,6 +96,7 @@ exports[`Form renders custom props 1`] = `
           placeholder="Bora pra action"
           required="false"
           title=""
+          type="text"
           value=""
         />
         <span
@@ -169,6 +170,7 @@ exports[`Form renders custom props 1`] = `
           placeholder=""
           required="false"
           title=""
+          type="text"
           value=""
         />
         <span
@@ -194,6 +196,7 @@ exports[`Form renders custom props 1`] = `
           placeholder=""
           required="false"
           title=""
+          type="text"
           value=""
         />
         <span
@@ -219,6 +222,7 @@ exports[`Form renders custom props 1`] = `
           placeholder="Ex: nome@email.com"
           required="false"
           title=""
+          type="email"
           value=""
         />
         <span
@@ -244,6 +248,7 @@ exports[`Form renders custom props 1`] = `
           placeholder=""
           required="false"
           title=""
+          type="tel"
           value=""
         />
         <span
@@ -374,6 +379,7 @@ exports[`Form renders defaultProps 1`] = `
           placeholder="Bora pra action"
           required="false"
           title=""
+          type="text"
           value=""
         />
         <span
@@ -447,6 +453,7 @@ exports[`Form renders defaultProps 1`] = `
           placeholder=""
           required="false"
           title=""
+          type="text"
           value=""
         />
         <span
@@ -472,6 +479,7 @@ exports[`Form renders defaultProps 1`] = `
           placeholder=""
           required="false"
           title=""
+          type="text"
           value=""
         />
         <span
@@ -497,6 +505,7 @@ exports[`Form renders defaultProps 1`] = `
           placeholder="Ex: nome@email.com"
           required="false"
           title=""
+          type="email"
           value=""
         />
         <span
@@ -522,6 +531,7 @@ exports[`Form renders defaultProps 1`] = `
           placeholder=""
           required="false"
           title=""
+          type="tel"
           value=""
         />
         <span
