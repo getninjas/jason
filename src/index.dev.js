@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import fields from './fields.json';
+import data from './form.json';
 
- ReactDOM.render(<App jsonFields={fields} />, document.getElementById('root'));
+ReactDOM.render(<App form={data.form} />, document.getElementById('root'));
