@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Select from './Select';
 import Input from './Input';
 import TextArea from './TextArea';
+import Field from './Field';
 
 export default class Step extends React.Component {
   static defaultProps = {
@@ -24,7 +25,19 @@ export default class Step extends React.Component {
   render() {
     return (
       <div style={ {border: '1px solid red'} }>
-        { this.props.fields.map((item, index) => this.getField(item, index)) }
+        {
+          this.props.fields.map((item, index) => {
+            return (
+              <Field
+                key={index}
+                label={item.label}
+                id={item.id}
+                errorMessage='dsds'>
+                { this.getField(item, index) }
+              </Field>
+            )
+          })
+        }
       </div>
     );
   }
