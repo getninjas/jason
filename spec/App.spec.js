@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from '../src/App';
-import fields from '../src/fields.json';
+import form from '../src/form.json';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<App jsonFields={fields}/>, div);
+  ReactDOM.render(<App form={form}/>, div);
   ReactDOM.unmountComponentAtNode(div);
 });

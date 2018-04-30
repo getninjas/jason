@@ -1,11 +1,11 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Select from '../../src/components/Select';
-import expectedFields from '../fixture/expected-fields.json';
+import formData from '../../src/form.json';
 
 describe('Select', () => {
   it('renders custom props', () => {
-    const values = expectedFields[0].values.slice(0, 2);
+    const values = formData.form.steps[0].fields[0].values.slice(0, 2);
 
     const component = renderer.create(
       <Select

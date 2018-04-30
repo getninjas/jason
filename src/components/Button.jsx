@@ -20,6 +20,6 @@ Button.defaultProps = {
 
 Button.propTypes = {
   children: PropTypes.string.isRequired,
+  handleButtonClick: PropTypes.func.isRequired,
   isSubmit: PropTypes.bool,
-  handleButtonClick: PropTypes.func.isRequired
 }

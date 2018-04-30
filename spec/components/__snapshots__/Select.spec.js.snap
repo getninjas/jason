@@ -6,7 +6,13 @@ exports[`Select renders custom props 1`] = `
   defaultValue=""
   id="idTest"
   name="nameTest"
+  required="false"
 >
+  <option
+    value=""
+  >
+    placeholderTest
+  </option>
   <option
     value={7117}
   >
@@ -26,5 +32,6 @@ exports[`Select renders defaultProps 1`] = `
   defaultValue=""
   id=""
   name=""
+  required="false"
 />
 `;
