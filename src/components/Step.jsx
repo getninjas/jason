@@ -24,7 +24,7 @@ export default class Step extends React.Component {
 
   render() {
     return (
-      <div>
+      <fieldset className="form__container inputs">
         {
           this.props.fields.map((item, index) => {
             return (
@@ -38,7 +38,7 @@ export default class Step extends React.Component {
             )
           })
         }
-      </div>
+      </fieldset>
     );
   }
 }
