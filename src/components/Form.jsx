@@ -15,8 +15,8 @@ export default class Form extends Component {
     const { action, method, name, form } = this.props;
 
     return (
-      <Fragment>
-        <form action={action} method={method} name={name} className="form widget col-small-12 col-medium-8 col-normal-6 col-centered">
+      <section className="wall--inverted col-normal-8 col-small-12">
+        <form action={action} method={method} name={name} className="form container">
           {
             form.steps.map((step, index) => {
               return <Step key={`step-${index}`} fields={step.fields} />
@@ -25,7 +25,7 @@ export default class Form extends Component {
         </form>
 
         <Breadcrumb steps={form.steps} />
-      </Fragment>
+      </section>
     );
   }
 }

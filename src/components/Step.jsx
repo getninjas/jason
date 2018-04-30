@@ -30,7 +30,7 @@ export default class Step extends React.Component {
             return (
               <Field
                 key={`field-${index}`}
-                label={item.label}
+                label={item.title}
                 id={item.id}
                 errorMessage='dsds'>
                 { this.getField(item, index) }
