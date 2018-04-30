@@ -5,7 +5,7 @@
     "steps": [
       {
         "title": "Dados gerais",
-        "breadcrumbTitle": "1. Seu pedido",
+        "breadcrumbTitle": "Seu pedido",
         "fields": [
           {
             "title": "Qual é o tipo de serviço que você precisa?",
@@ -62,7 +62,7 @@
       },
       {
         "title": "Dados de usuário",
-        "breadcrumbTitle": "2. Seus dados",
+        "breadcrumbTitle": "Seus dados",
         "fields": [
           {
             "title": "Em que bairro será o serviço?",

@@ -14,7 +14,7 @@ export default class Breadcrumb extends React.Component {
             this.props.steps.map((step, index) => {
               return (
                 <li key={`breadcrumb-${index}`} className="form__steps-item form__steps-item--active active">
-                  {step.title}
+                  {step.breadcrumbTitle}
                 </li>
               );
             })

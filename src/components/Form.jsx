@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Step from './Step';
+import Breadcrumb from './Breadcrumb';
 
 export default class Form extends Component {
 
@@ -20,6 +21,8 @@ export default class Form extends Component {
             return <Step key={`step-${index}`} fields={step.fields} />
           })
         }
+
+        <Breadcrumb steps={form.steps} />
       </form>
     );
   }
