@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Input from '../../src/components/Input';
-import {enzimeConfig, shallow} from '../enzimeConfig';
+import { enzimeConfig, shallow } from '../enzimeConfig';
 
 enzimeConfig();
 

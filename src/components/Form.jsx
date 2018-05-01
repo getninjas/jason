@@ -82,8 +82,8 @@ Form.defaultProps = {
 }
 
 Form.propTypes = {
-  action: PropTypes.string,
-  method: PropTypes.string,
   name: PropTypes.string.isRequired,
   form: PropTypes.object.isRequired,
+  action: PropTypes.string,
+  method: PropTypes.string,
 }
