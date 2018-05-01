@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 export default class Button extends React.Component {
   render() {
     const type = this.props.isSubmit ? 'submit' : 'button';
+    const style = "btn btn--regular btn--high-contrast btn--fluid space-box-medium";
 
     return (
-      <button type={type} className="btn btn--regular btn--high-contrast btn--fluid space-box-medium" onClick={this.props.handleButtonClick}>
+      <button type={type} className={style} onClick={this.props.handleButtonClick}>
         {this.props.children}
       </button>
     );
