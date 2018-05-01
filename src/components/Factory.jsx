@@ -5,16 +5,39 @@ import TextArea from './TextArea';
 
 export default class Factory {
   static getComponent(field, key) {
-    if (field.type === 'select') {
-      return <Select placeholder={field.placeholder} key={`select-${key}`} id={field.name} name={field.name} selected={field.value} values={field.values} />;
+    const { type, placeholder, name, value, values } = field;
+
+    if (type === 'select') {
+      return (
+        <Select
+          placeholder={placeholder}
+          key={`select-${key}`}
+          id={name}
+          name={name}
+          selected={value}
+          values={values} />
+      )
     }
 
-    if (field.type === 'textarea') {
-      return <TextArea key={`textarea-${key}`} id={field.name} name={field.name} placeholder={field.placeholder} />;
+    if (type === 'textarea') {
+      return (
+        <TextArea
+          key={`textarea-${key}`}
+          id={name}
+          name={name}
+          placeholder={placeholder} />
+      );
     }
 
-    if (field.type === 'phone' || field.type === 'email' || field.type === 'text') {
-      return <Input type={field.type} key={`input-${key}`} id={field.name} name={field.name} placeholder={field.placeholder} />;
+    if (type === 'phone' || type === 'email' || type === 'text') {
+      return (
+        <Input
+          type={type}
+          key={`input-${key}`}
+          id={name}
+          name={name}
+          placeholder={placeholder} />
+      );
     }
   }
 }
