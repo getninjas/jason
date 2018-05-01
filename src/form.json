@@ -109,6 +109,54 @@
             "values": []
           }
         ]
+      },
+      {
+        "title": "Enviar de usuário",
+        "breadcrumbTitle": "Seus dados",
+        "button": "Finalizar",
+        "headerMarkup": "<div class='form__alert-message space-element-large'><img src='https://www.getninjas.com.br/assets/request/phone_call.svg' class='form__icon' alt='Estamos quase lá'><h2 class='form__info'>Estamos quase lá<small>Não perca tempo ligando para vários profissionais. Preencha os dados abaixo e <strong>nós encontraremos os melhores pra você!</strong></small></h2></div>",
+        "fields": [
+          {
+            "title": "Em que bairro será o serviço?",
+            "id": "user_field_1",
+            "name": "user_field_1",
+            "type": "text",
+            "placeholder": "",
+            "required": true,
+            "value": null,
+            "values": []
+          },
+          {
+            "title": "Nome",
+            "id": "user_field_2",
+            "name": "user_field_2",
+            "type": "text",
+            "placeholder": "",
+            "required": true,
+            "value": null,
+            "values": []
+          },
+          {
+            "title": "E-mail",
+            "id": "user_field_3",
+            "name": "user_field_3",
+            "type": "email",
+            "placeholder": "Ex: nome@email.com",
+            "required": true,
+            "value": null,
+            "values": []
+          },
+          {
+            "title": "DDD + Celular",
+            "id": "user_field_4",
+            "name": "user_field_4",
+            "type": "phone",
+            "placeholder": "",
+            "required": true,
+            "value": null,
+            "values": []
+          }
+        ]
       }
     ]
   }
