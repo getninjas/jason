@@ -4,9 +4,9 @@ exports[`Button renders custom props 1`] = `
 <button
   className="btn btn--regular btn--high-contrast btn--fluid space-box-medium"
   onClick={[Function]}
-  type="button"
+  type="submit"
 >
-  Test
+  Custom
 </button>
 `;
 
