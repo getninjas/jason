@@ -5,8 +5,8 @@ exports[`Form renders custom props 1`] = `
   className="wall--inverted col-normal-8 col-small-12"
 >
   <form
-    action="http://uol.com.br"
-    className="form container"
+    action="http://yourendpoint"
+    className="form container sh-form-content space-box-small"
     method="POST"
     name="form"
     onSubmit={[Function]}
@@ -288,8 +288,8 @@ exports[`Form renders defaultProps 1`] = `
   className="wall--inverted col-normal-8 col-small-12"
 >
   <form
-    action="http://uol.com.br"
-    className="form container"
+    action="http://yourendpoint"
+    className="form container sh-form-content space-box-small"
     method="POST"
     name="form"
     onSubmit={[Function]}
