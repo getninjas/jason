@@ -11,7 +11,6 @@ export default class Select extends React.Component {
   }
 
   componentDidMount() {
-
     const values = this.addPlaceholder(this.props);
 
     this.setState({values});
