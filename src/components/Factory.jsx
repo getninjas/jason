@@ -5,14 +5,14 @@ import TextArea from './TextArea';
 
 export default class Factory {
   static getComponent(field, key) {
-    const { type, placeholder, name, value, values } = field;
+    const { type, placeholder, id, name, value, values } = field;
 
     if (type === 'select') {
       return (
         <Select
           placeholder={placeholder}
           key={`select-${key}`}
-          id={name}
+          id={id}
           name={name}
           selected={value}
           values={values} />
@@ -23,7 +23,7 @@ export default class Factory {
       return (
         <TextArea
           key={`textarea-${key}`}
-          id={name}
+          id={id}
           name={name}
           placeholder={placeholder} />
       );
@@ -34,7 +34,7 @@ export default class Factory {
         <Input
           type={type}
           key={`input-${key}`}
-          id={name}
+          id={id}
           name={name}
           placeholder={placeholder} />
       );
