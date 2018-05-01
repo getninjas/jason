@@ -6,21 +6,21 @@ import {enzimeConfig, shallow} from '../enzimeConfig';
 enzimeConfig();
 
 describe('Button', () => {
-  it('renders custom props', () => {
-    const component = renderer.create(
-      <Button
-        isSubmit={false}
-        handleButtonClick={()=>{}}
-      >Test</Button>,
-    );
+  it('renders defaultProps', () => {
+    const component = renderer.create(<Button handleButtonClick={() => { }}>Test</Button>);
 
     const tree = component.toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
-  it('renders defaultProps', () => {
-    const component = renderer.create(<Button handleButtonClick={() => { }}>Test</Button>);
+  it('renders custom props', () => {
+    const component = renderer.create(
+      <Button
+        isSubmit={true}
+        handleButtonClick={()=>{}}
+      >Custom</Button>,
+    );
 
     const tree = component.toJSON();
 
