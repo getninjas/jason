@@ -20,7 +20,7 @@ export default class Input extends React.Component {
     this.setState({ value: this.props.value });
   }
 
-  getIputType(type) {
+  getInputType(type) {
     return type ==='phone'? 'tel': type;
   }
 
