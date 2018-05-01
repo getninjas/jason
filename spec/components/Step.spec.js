@@ -38,8 +38,29 @@ describe('Step', () => {
       />,
     );
 
-    const header = component.find('fieldset').html();
+    const result = component.html();
 
-    expect(header).stringContaining('widget__title');
+    expect(result).toContain('widget__title')
+  });
+
+  it('shows inputs, select and textarea inner component', () => {
+    const step = formData.form.steps[0];
+
+    const component = shallow(
+      <Step
+        visible={true}
+        key={'step'}
+        step={step}
+        isLast={false}
+        handleButtonClick={() => { }}
+      />,
+    );
+
+    const result = component.html();
+
+    expect(result.includes('1_name_select')).toBe(true);
+    expect(result.includes('2_name_text')).toBe(true);
+    expect(result.includes('3_name_textarea')).toBe(true);
+    expect(result.includes('breadcrumb')).toBe(false);
   });
 });

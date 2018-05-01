@@ -40,6 +40,7 @@ export default class Step extends React.Component {
                 label={item.title}
                 id={item.id}
                 errorMessage='dsds'>
+
                 { this.getField(item, index) }
               </Field>
             )
