@@ -7,7 +7,7 @@
         "title": "Dados gerais",
         "breadcrumbTitle": "Seu pedido",
         "button": "Fazer um orçamento grátis",
-        "headerMarkup": "<h4 class='widget__title section-title--high-contrast'>Explique o que você precisa<small>Peça orçamento grátis, online!</small></h4>",
+        "headerMarkup": "<h2 class='widget__title section-title--high-contrast'>Explique o que você precisa<small>Peça orçamento grátis, online!</small></h2>",
         "fields": [
           {
             "title": "Qual é o tipo de serviço que você precisa?",
@@ -118,8 +118,8 @@
         "fields": [
           {
             "title": "Em que bairro será o serviço?",
-            "id": "user_field_1",
-            "name": "user_field_1",
+            "id": "finish_id_1",
+            "name": "finish_name_1",
             "type": "text",
             "placeholder": "",
             "required": true,
@@ -128,8 +128,8 @@
           },
           {
             "title": "Nome",
-            "id": "user_field_2",
-            "name": "user_field_2",
+            "id": "finish_id_2",
+            "name": "finish_name_2",
             "type": "text",
             "placeholder": "",
             "required": true,
@@ -138,8 +138,8 @@
           },
           {
             "title": "E-mail",
-            "id": "user_field_3",
-            "name": "user_field_3",
+            "id": "finish_id_3",
+            "name": "finish_name_3",
             "type": "email",
             "placeholder": "Ex: nome@email.com",
             "required": true,
@@ -148,8 +148,8 @@
           },
           {
             "title": "DDD + Celular",
-            "id": "user_field_4",
-            "name": "user_field_4",
+            "id": "finish_id_4",
+            "name": "finish_name_4",
             "type": "phone",
             "placeholder": "",
             "required": true,
