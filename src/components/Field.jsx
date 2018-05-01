@@ -9,7 +9,7 @@ export default class Field extends React.Component {
           { this.props.label }
         </label>
 
-        {this.props.children}
+        { this.props.children }
 
         <span className="form__message form__message--invalid space-element-small error">
           { this.props.errorMessage }
@@ -28,6 +28,6 @@ Field.defaultProps = {
 Field.propTypes = {
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  errorMessage: PropTypes.string,
   children: PropTypes.any.isRequired,
+  errorMessage: PropTypes.string,
 }
