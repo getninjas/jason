@@ -21,14 +21,55 @@
     -->
     <link rel="stylesheet" href="https://getninjas.github.io/gaiden/gaiden.css">
     <title>React App</title>
+    <style>
+    .widget__title {
+      color: rgb(19, 147, 246);
+      font-size: 24px;
+      text-align: center;
+      width: 100%;
+      border-bottom: 2px solid rgba(19, 147, 246, 0.2);
+      margin: 0px 0px 36px;
+      padding: 15px 0px;
+    }
+    .form__icon {
+      display: block;
+      margin: 0 auto;
+    }
+    .form__info {
+      color: rgb(83, 110, 123);
+      font-size: 20px;
+      font-style: italic;
+      font-weight: 900;
+      margin-top: 16px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .form__info small {
+      font-size: 16px;
+      margin-top: 16px;
+      text-align: left;
+    }
+
+    #root {
+      margin-bottom: 40px;
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .title {
+      text-align: center;
+      margin-top: 20px;
+    }
+    </style>
   </head>
   <body>
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
-    <h1>GetNinjas</h1>
+    <h1 class="title">GetNinjas</h1>
 
-    <div id="root"></div>
+    <div id="root" class="col-centered"></div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

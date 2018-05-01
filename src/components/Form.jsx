@@ -40,7 +40,7 @@ export default class Form extends Component {
 
     return (
       <section className="wall--inverted col-normal-8 col-small-12">
-        <form onSubmit={this.handleSubmit} ref={(form=> this.form = form)} action={action} method={method} name={name} className="form container">
+        <form onSubmit={this.handleSubmit} ref={(form=> this.form = form)} action={action} method={method} name={name} className="form container sh-form-content space-box-small">
           {
             form.steps.map((step, index) => {
               return (
