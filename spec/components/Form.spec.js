@@ -32,14 +32,14 @@ describe('Form', () => {
       <Form name={'form'} form={data.form} />,
     );
 
-    const { activeStep } = component.state();
+    const initialStep = component.state().activeStep;
 
     component.instance().handleButtonClick();
 
-    const changedStep = component.state().activeStep;
+    const { activeStep } = component.state();
 
-    expect(activeStep).toEqual(0);
-    expect(changedStep).toEqual(activeStep + 1);
+    expect(initialStep).toEqual(0);
+    expect(activeStep).toEqual(initialStep + 1);
   });
 
   it('.isStepVisible', () => {
@@ -47,11 +47,11 @@ describe('Form', () => {
       <Form name={'form'} form={data.form} />,
     );
 
-    const result = component.instance().isStepVisible(0);
-    const secondResult = component.instance().isStepVisible(1);
+    const stepOneIsVisible = component.instance().isStepVisible(0);
+    const stepTwoIsVisible = component.instance().isStepVisible(1);
 
-    expect(result).toBe(true);
-    expect(secondResult).toBe(false);
+    expect(stepOneIsVisible).toBe(true);
+    expect(stepTwoIsVisible).toBe(false);
   });
 
   it('.isLastStep', () => {
@@ -59,13 +59,16 @@ describe('Form', () => {
       <Form name={'form'} form={data.form} />,
     );
 
-    const { activeStep } = component.state();
+    const stepOne = component.state().activeStep;
 
     component.instance().handleButtonClick();
 
-    const changedStep = component.state().activeStep;
+    const stepTwo = component.state().activeStep;
 
-    expect(component.instance().isLastStep(activeStep)).toBe(false);
-    expect(component.instance().isLastStep(changedStep)).toBe(true);
+    const stepOneIsLast = component.instance().isLastStep(stepOne);
+    const stepTwoIsLast = component.instance().isLastStep(stepTwo);
+
+    expect(stepOneIsLast).toBe(false);
+    expect(stepTwoIsLast).toBe(true);
   });
 });
