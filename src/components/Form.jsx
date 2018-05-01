@@ -30,7 +30,7 @@ export default class Form extends Component {
     evt.preventDefault();
   }
 
-  handleButtonClick(evt) {
+  handleButtonClick() {
     const { activeStep, stepsCount } = this.state;
 
     if (activeStep < stepsCount) {
