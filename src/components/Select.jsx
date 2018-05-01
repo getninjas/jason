@@ -11,11 +11,18 @@ export default class Select extends React.Component {
   }
 
   componentDidMount() {
-    const values = [...this.props.values];
 
-    this.props.placeholder.length? values.unshift({databaseId: '', value: this.props.placeholder}) : '';
+    const values = this.addPlaceholder(this.props);
 
-    this.setState({values: values})
+    this.setState({values});
+  }
+
+  addPlaceholder({ values, placeholder }) {
+    const localValues = [...values];
+
+    placeholder.length? localValues.unshift({databaseId: '', value: placeholder}) : '';
+
+    return localValues;
   }
 
   render() {
