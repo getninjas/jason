@@ -47,7 +47,6 @@ describe('Input', () => {
       const component = shallow(<Input type={'phone'}/>);
 
       expect(component.prop('type')).toBe('tel');
-
     });
   });
 });
