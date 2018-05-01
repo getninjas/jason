@@ -22,7 +22,7 @@ exports[`Form renders custom props 1`] = `
       <div
         dangerouslySetInnerHTML={
           Object {
-            "__html": "<h4 class='widget__title section-title--high-contrast'>Explique o que você precisa<small>Peça orçamento grátis, online!</small></h4>",
+            "__html": "<h2 class='widget__title section-title--high-contrast'>Explique o que você precisa<small>Peça orçamento grátis, online!</small></h2>",
           }
         }
       />
@@ -38,7 +38,7 @@ exports[`Form renders custom props 1`] = `
         <select
           className="form__input"
           defaultValue={7120}
-          id="1_name_select"
+          id="1_id"
           name="1_name_select"
           required="false"
         >
@@ -90,7 +90,7 @@ exports[`Form renders custom props 1`] = `
         </label>
         <input
           className="form__input"
-          id="2_name_text"
+          id="2_id"
           name="2_name_text"
           onChange={[Function]}
           placeholder="Bora pra action"
@@ -116,7 +116,7 @@ exports[`Form renders custom props 1`] = `
         </label>
         <textarea
           className="form__input"
-          id="3_name_textarea"
+          id="3_id"
           name="3_name_textarea"
           onChange={[Function]}
           placeholder="Descreva o que você precisa"
@@ -305,7 +305,7 @@ exports[`Form renders defaultProps 1`] = `
       <div
         dangerouslySetInnerHTML={
           Object {
-            "__html": "<h4 class='widget__title section-title--high-contrast'>Explique o que você precisa<small>Peça orçamento grátis, online!</small></h4>",
+            "__html": "<h2 class='widget__title section-title--high-contrast'>Explique o que você precisa<small>Peça orçamento grátis, online!</small></h2>",
           }
         }
       />
@@ -321,7 +321,7 @@ exports[`Form renders defaultProps 1`] = `
         <select
           className="form__input"
           defaultValue={7120}
-          id="1_name_select"
+          id="1_id"
           name="1_name_select"
           required="false"
         >
@@ -373,7 +373,7 @@ exports[`Form renders defaultProps 1`] = `
         </label>
         <input
           className="form__input"
-          id="2_name_text"
+          id="2_id"
           name="2_name_text"
           onChange={[Function]}
           placeholder="Bora pra action"
@@ -399,7 +399,7 @@ exports[`Form renders defaultProps 1`] = `
         </label>
         <textarea
           className="form__input"
-          id="3_name_textarea"
+          id="3_id"
           name="3_name_textarea"
           onChange={[Function]}
           placeholder="Descreva o que você precisa"
