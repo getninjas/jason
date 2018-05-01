@@ -18,8 +18,24 @@ describe('Factory', () => {
     expect(result.type.name).toEqual('TextArea');
   });
 
-  it('renders input', () => {
+  it('renders input on text', () => {
     const result = Factory.getComponent(input, 1);
+
+    expect(result.type.name).toEqual('Input');
+  });
+
+  it('renders input on phone', () => {
+    const phone = Object.assign({}, input, { type: 'phone' });
+
+    const result = Factory.getComponent(phone, 1);
+
+    expect(result.type.name).toEqual('Input');
+  });
+
+  it('renders input on email', () => {
+    const email = Object.assign({}, input, { type: 'email' });
+
+    const result = Factory.getComponent(email, 1);
 
     expect(result.type.name).toEqual('Input');
   });
