@@ -1,9 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Button from '../../src/components/Button';
-import {config, shallow} from '../config';
+import {enzimeConfig, shallow} from '../enzimeConfig';
 
-config();
+enzimeConfig();
 
 describe('Button', () => {
   it('renders custom props', () => {
