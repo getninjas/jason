@@ -6,8 +6,8 @@ export default class Breadcrumb extends React.Component {
     return this.props.active === index;
   }
 
-  handleActiveSyle(index) {
-    return this.isActive(index)? 'form__steps-item--active' : '';
+  handleActiveStyle(index) {
+    return this.isActive(index) ? 'form__steps-item--active' : '';
   }
 
   render() {
@@ -16,7 +16,7 @@ export default class Breadcrumb extends React.Component {
         {
           this.props.steps.map((step, index) => {
             return (
-              <li key={`breadcrumb-${index}`} className={`form__steps-item ${this.handleActiveSyle(index)}`}>
+              <li key={`breadcrumb-${index}`} className={`form__steps-item ${this.handleActiveStyle(index)}`}>
                 {step.breadcrumbTitle}
               </li>
             );
