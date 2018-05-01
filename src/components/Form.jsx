@@ -12,6 +12,9 @@ export default class Form extends Component {
       stepsCount: 0,
     };
 
+    this.sectionStyle = "wall--inverted col-normal-8 col-small-12";
+    this.formStyle = "form container sh-form-content space-box-small";
+
     this.handleButtonClick = this.handleButtonClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -35,20 +38,28 @@ export default class Form extends Component {
     }
   }
 
+  isStepVisible(index) {
+    return this.state.activeStep === index;
+  }
+
+  isLastStep(index) {
+    return index === this.state.stepsCount;
+  }
+
   render() {
     const { action, method, name, form } = this.props;
 
     return (
-      <section className="wall--inverted col-normal-8 col-small-12">
-        <form onSubmit={this.handleSubmit} ref={(form=> this.form = form)} action={action} method={method} name={name} className="form container sh-form-content space-box-small">
+      <section className={this.sectionStyle}>
+        <form onSubmit={this.handleSubmit} action={action} method={method} name={name} className={this.formStyle}>
           {
             form.steps.map((step, index) => {
               return (
                 <Step
-                  visible={this.state.activeStep === index}
+                  visible={this.isStepVisible(index)}
                   key={`step-${index}`}
                   step={step}
-                  isLast={index === this.state.stepsCount}
+                  isLast={this.isLastStep(index)}
                   handleButtonClick={this.handleButtonClick} />
               )
             })
@@ -64,7 +75,7 @@ export default class Form extends Component {
 Form.defaultProps = {
   name:'jason-form',
   method:'POST',
-  action:'http://uol.com.br',
+  action:'http://yourendpoint',
   form: {
     steps: [],
   }
