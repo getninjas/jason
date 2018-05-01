@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export default class Breadcrumb extends React.Component {
+export default class Breadcrumb extends Component {
   isActive(index) {
     return this.props.active === index;
   }

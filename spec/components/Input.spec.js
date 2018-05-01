@@ -30,6 +30,22 @@ describe('Input', () => {
     expect(tree).toMatchSnapshot();
   });
 
+  it('.onChange', () => {
+    const component = shallow(
+      <Input
+        id={'idTest'}
+        name={'nameTest'}
+        placeholder={'placeholderTest'}
+        required={false}
+        value={'ola test value'}
+      />
+    );
+
+    component.simulate('change', { target: { value: 'Bora pra action' } });
+
+    expect(component.instance().state.value).toEqual('Bora pra action');
+  });
+
   describe('with type', () => {
     it('renders type text', () => {
       const component = shallow(<Input/>);

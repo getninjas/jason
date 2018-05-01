@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Field from './Field';
 import Button from './Button';
 import Factory from './Factory';
 
-export default class Step extends React.Component {
+export default class Step extends Component {
   _createMarkup(html) {
     return { __html: html };
   }

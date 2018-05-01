@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export default class Field extends React.Component {
+export default class Field extends Component {
   render() {
     return (
       <div className="form__field form__field--fluid input">
