@@ -20,10 +20,14 @@ export default class Input extends React.Component {
     this.setState({ value: this.props.value });
   }
 
+  getIputType(type) {
+    return type ==='phone'? 'tel': type;
+  }
+
   render() {
     return (
       <input
-        type={this.props.type==='phone'? 'tel': this.props.type}
+        type={this.getInputType(this.props.type)}
         id={this.props.id}
         name={this.props.name}
         title={this.props.title}
