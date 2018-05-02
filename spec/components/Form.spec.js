@@ -2,9 +2,9 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Form from '../../src/components/Form';
 import { form } from '../../src/form.json';
-import { enzimeConfig, shallow } from '../enzimeConfig';
+import { enzymeConfig, shallow } from '../enzymeConfig';
 
-enzimeConfig();
+enzymeConfig();
 
 describe('Form', () => {
   it('renders custom props', () => {

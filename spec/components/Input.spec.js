@@ -1,9 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Input from '../../src/components/Input';
-import { enzimeConfig, shallow } from '../enzimeConfig';
+import { enzymeConfig, shallow } from '../enzymeConfig';
 
-enzimeConfig();
+enzymeConfig();
 
 describe('Input', () => {
   it('renders custom props', () => {

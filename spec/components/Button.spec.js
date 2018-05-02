@@ -1,9 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Button from '../../src/components/Button';
-import {enzimeConfig, shallow} from '../enzimeConfig';
+import {enzymeConfig, shallow} from '../enzymeConfig';
 
-enzimeConfig();
+enzymeConfig();
 
 describe('Button', () => {
   it('renders defaultProps', () => {

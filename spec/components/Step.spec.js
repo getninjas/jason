@@ -2,9 +2,9 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Step from '../../src/components/Step';
 import formData from '../../src/form.json';
-import { enzimeConfig, shallow } from '../enzimeConfig';
+import { enzymeConfig, shallow } from '../enzymeConfig';
 
-enzimeConfig();
+enzymeConfig();
 
 describe('Step', () => {
   it('renders with props', () => {

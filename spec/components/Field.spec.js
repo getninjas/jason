@@ -2,9 +2,9 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Field from '../../src/components/Field';
 import Input from '../../src/components/Input';
-import { enzimeConfig, shallow } from '../enzimeConfig';
+import { enzymeConfig, shallow } from '../enzymeConfig';
 
-enzimeConfig();
+enzymeConfig();
 
 describe('Field', () => {
   it('renders defaultProps', () => {

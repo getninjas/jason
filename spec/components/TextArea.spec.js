@@ -1,9 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import TextArea from '../../src/components/TextArea';
-import { enzimeConfig, shallow } from '../enzimeConfig';
+import { enzymeConfig, shallow } from '../enzymeConfig';
 
-enzimeConfig();
+enzymeConfig();
 
 describe('TextArea', () => {
   it('renders custom props', () => {

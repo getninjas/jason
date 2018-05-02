@@ -2,9 +2,9 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Breadcrumb from '../../src/components/Breadcrumb';
 import { form } from '../../src/form.json';
-import { enzimeConfig, shallow } from '../enzimeConfig';
+import { enzymeConfig, shallow } from '../enzymeConfig';
 
-enzimeConfig();
+enzymeConfig();
 
 describe('Breadcrumb', () => {
   it('renders defaultProps', () => {
