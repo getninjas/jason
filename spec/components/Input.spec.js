@@ -23,7 +23,7 @@ describe('Input', () => {
   });
 
   it('renders defaultProps', () => {
-    const component = renderer.create(<Input />);
+    const component = renderer.create(<Input id={'id_input'} />);
 
     const tree = component.toJSON();
 
@@ -48,19 +48,19 @@ describe('Input', () => {
 
   describe('with type', () => {
     it('renders type text', () => {
-      const component = shallow(<Input/>);
+      const component = shallow(<Input id={'id_input'}/>);
 
       expect(component.prop('type')).toBe('text');
     });
 
     it('renders type email', () => {
-      const component = shallow(<Input type={'email'}/>);
+      const component = shallow(<Input id={'id_input'} type={'email'}/>);
 
       expect(component.prop('type')).toBe('email');
     });
 
     it('renders type tel', () => {
-      const component = shallow(<Input type={'phone'}/>);
+      const component = shallow(<Input id={'id_input'} type={'phone'}/>);
 
       expect(component.prop('type')).toBe('tel');
     });

@@ -8,15 +8,7 @@ enzymeConfig();
 
 describe('Breadcrumb', () => {
   it('renders defaultProps', () => {
-    const component = renderer.create(<Breadcrumb steps={form.steps} />);
-
-    const tree = component.toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-
-  it('renders custom props', () => {
-    const component = renderer.create(<Breadcrumb active={1} steps={form.steps} />);
+    const component = renderer.create(<Breadcrumb active={0} steps={form.steps} />);
 
     const tree = component.toJSON();
 
