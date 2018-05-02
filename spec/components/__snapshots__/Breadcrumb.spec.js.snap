@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Breadcrumb renders defaultProps 1`] = `
+<ol
+  className="form__steps space-box-medium"
+>
+  <li
+    className="form__steps-item form__steps-item--active"
+  >
+    Your request
+  </li>
+  <li
+    className="form__steps-item "
+  >
+    Your data
+  </li>
+</ol>
+`;

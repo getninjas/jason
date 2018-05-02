@@ -14,13 +14,15 @@
   ],
 
   "rules": {
+    "no-unused-vars": 1,
     "no-console": 1,
     "func-names": 0,
     "curly": ["error", "all"]
   },
 
   "globals": {
-    "document": true
+    "document": true,
+    "window": true
   },
 
   "env": {

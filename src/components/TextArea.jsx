@@ -1,0 +1,57 @@
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
+  required: PropTypes.bool,
+  value: PropTypes.any,
+};
+
+const defaultProps = {
+  id: '',
+  placeholder: '',
+  name: '',
+  title: '',
+  required: false,
+  value: '',
+};
+
+export default class TextArea extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      value: '',
+    }
+
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(evt) {
+    this.setState({ value: evt.target.value });
+  }
+
+  componentWillMount() {
+    this.setState({ value: this.props.value });
+  }
+
+  render() {
+    return (
+      <textarea
+        id={this.props.id}
+        name={this.props.name}
+        title={this.props.title}
+        className="form__input"
+        placeholder={this.props.placeholder}
+        required={this.props.required}
+        value={this.state.value}
+        onChange={this.onChange} />
+    );
+  }
+}
+
+TextArea.propTypes = propTypes;
+TextArea.defaultProps = defaultProps;
