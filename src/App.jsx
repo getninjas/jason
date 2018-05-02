@@ -4,10 +4,10 @@ import Form from './components/Form';
 
 export default class App extends Component {
   render() {
-    return <Form name={'title'} form={this.props.form} />;
+    return <Form name={'title'} form={this.props.data} />;
   }
 }
 
 App.propTypes = {
-  form: PropTypes.object.isRequired
+  data: PropTypes.object.isRequired
 }

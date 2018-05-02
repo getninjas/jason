@@ -5,6 +5,6 @@ import { form } from '../src/form.json';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<App form={form}/>, div);
+  ReactDOM.render(<App data={form}/>, div);
   ReactDOM.unmountComponentAtNode(div);
 });
