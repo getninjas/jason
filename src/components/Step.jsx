@@ -13,7 +13,7 @@ export default class Step extends Component {
     const { fields, button, headerMarkup } = this.props.step;
 
     return (
-      <fieldset className="form__container inputs" style={ {display: this.props.visible ? 'block' : 'none' } }>
+      <fieldset className="form__container inputs" style={{ display: this.props.visible ? 'block' : 'none' }}>
         { headerMarkup ? <div dangerouslySetInnerHTML={this._createMarkup(headerMarkup)} /> : '' }
 
         {

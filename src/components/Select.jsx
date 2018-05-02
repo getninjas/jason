@@ -19,7 +19,7 @@ export default class Select extends Component {
   addPlaceholder({ values, placeholder }) {
     const localValues = [...values];
 
-    placeholder.length? localValues.unshift({databaseId: '', value: placeholder}) : '';
+    placeholder.length ? localValues.unshift({databaseId: '', value: placeholder}) : '';
 
     return localValues;
   }
