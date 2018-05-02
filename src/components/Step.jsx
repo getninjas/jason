@@ -23,7 +23,7 @@ export default class Step extends Component {
                 key={`field-${index}`}
                 label={item.title}
                 id={item.id}
-                errorMessage='dsds'>
+                errorMessage='Required field'>
 
                 { Factory.getComponent(item, index) }
               </Field>
