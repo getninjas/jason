@@ -10,7 +10,7 @@ export default class Field extends Component {
   }
 
   static defaultProps = {
-    errorMessage: ''
+    errorMessage: '',
   }
 
   render() {

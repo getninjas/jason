@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export default class Button extends Component {
   static defaultProps = {
     children: 'Prosseguir',
-    isSubmit: false
+    isSubmit: false,
   }
 
   render() {

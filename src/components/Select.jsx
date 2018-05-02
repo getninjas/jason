@@ -6,7 +6,7 @@ export default class Select extends Component {
     super(props);
 
     this.state = {
-      values: []
+      values: [],
     }
   }
 
