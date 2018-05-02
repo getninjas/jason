@@ -1,6 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+const propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  required: PropTypes.bool.isRequired,
+  selected: PropTypes.any,
+  values: PropTypes.array,
+  placeholder: PropTypes.string,
+};
+
+const defaultProps = {
+  id: '',
+  selected: '',
+  name: '',
+  title: '',
+  required: false,
+  values: [],
+  placeholder: '',
+};
 export default class Select extends Component {
   constructor(props) {
     super(props);
@@ -8,16 +27,6 @@ export default class Select extends Component {
     this.state = {
       values: [],
     }
-  }
-
-  static defaultProps = {
-    id: '',
-    selected: '',
-    name: '',
-    title: '',
-    required: false,
-    values: [],
-    placeholder: '',
   }
 
   componentDidMount() {
@@ -58,12 +67,5 @@ export default class Select extends Component {
   }
 }
 
-Select.propTypes = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  required: PropTypes.bool.isRequired,
-  selected: PropTypes.any,
-  values: PropTypes.array,
-  placeholder: PropTypes.string,
-}
+Select.propTypes = propTypes;
+Select.defaultProps = defaultProps;

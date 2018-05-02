@@ -3,6 +3,22 @@ import PropTypes from 'prop-types';
 import Step from './Step';
 import Breadcrumb from './Breadcrumb';
 
+const propTypes = {
+  name: PropTypes.string.isRequired,
+  data: PropTypes.object.isRequired,
+  action: PropTypes.string,
+  method: PropTypes.string,
+};
+
+const defaultProps = {
+  name: 'jason-form',
+  method: 'POST',
+  action: 'http://yourendpoint',
+  data: {
+    steps: [],
+  }
+};
+
 export default class Form extends Component {
   constructor() {
     super();
@@ -17,15 +33,6 @@ export default class Form extends Component {
 
     this.handleButtonClick = this.handleButtonClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  static defaultProps = {
-    name:'jason-form',
-    method:'POST',
-    action:'http://yourendpoint',
-    data: {
-      steps: [],
-    }
   }
 
   componentDidMount() {
@@ -81,9 +88,5 @@ export default class Form extends Component {
   }
 }
 
-Form.propTypes = {
-  name: PropTypes.string.isRequired,
-  data: PropTypes.object.isRequired,
-  action: PropTypes.string,
-  method: PropTypes.string,
-}
+Form.propTypes = propTypes;
+Form.defaultProps = defaultProps;

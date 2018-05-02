@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export default class Button extends Component {
-  static defaultProps = {
-    children: 'Prosseguir',
-    isSubmit: false,
-  }
+const propTypes = {
+  children: PropTypes.string.isRequired,
+  handleButtonClick: PropTypes.func.isRequired,
+  isSubmit: PropTypes.bool,
+};
 
+const defaultProps = {
+  children: 'Prosseguir',
+  isSubmit: false,
+};
+
+export default class Button extends Component {
   render() {
     const type = this.props.isSubmit ? 'submit' : 'button';
     const style = "btn btn--regular btn--high-contrast btn--fluid space-box-medium";
@@ -19,8 +25,5 @@ export default class Button extends Component {
   }
 }
 
-Button.propTypes = {
-  children: PropTypes.string.isRequired,
-  handleButtonClick: PropTypes.func.isRequired,
-  isSubmit: PropTypes.bool,
-}
+Button.propTypes = propTypes;
+Button.defaultProps = defaultProps;

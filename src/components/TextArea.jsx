@@ -1,6 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+const propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
+  required: PropTypes.bool,
+  value: PropTypes.any,
+};
+
+const defaultProps = {
+  id: '',
+  placeholder: '',
+  name: '',
+  title: '',
+  required: false,
+  value: '',
+};
+
 export default class TextArea extends Component {
   constructor() {
     super();
@@ -10,15 +28,6 @@ export default class TextArea extends Component {
     }
 
     this.onChange = this.onChange.bind(this);
-  }
-
-  static defaultProps = {
-    id: '',
-    placeholder: '',
-    name: '',
-    title: '',
-    required: false,
-    value: '',
   }
 
   onChange(evt) {
@@ -44,11 +53,5 @@ export default class TextArea extends Component {
   }
 }
 
-TextArea.propTypes = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  placeholder: PropTypes.string,
-  required: PropTypes.bool,
-  value: PropTypes.any,
-}
+TextArea.propTypes = propTypes;
+TextArea.defaultProps = defaultProps;

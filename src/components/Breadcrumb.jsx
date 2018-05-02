@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+const propTypes = {
+  steps: PropTypes.array.isRequired,
+  active: PropTypes.number.isRequired,
+};
 export default class Breadcrumb extends Component {
   isActive(index) {
     return this.props.active === index;
@@ -27,7 +31,4 @@ export default class Breadcrumb extends Component {
   }
 }
 
-Breadcrumb.propTypes = {
-  steps: PropTypes.array.isRequired,
-  active: PropTypes.number.isRequired,
-}
+Breadcrumb.propTypes = propTypes;

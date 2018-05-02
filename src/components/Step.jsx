@@ -4,13 +4,20 @@ import Field from './Field';
 import Button from './Button';
 import Factory from './Factory';
 
-export default class Step extends Component {
-  static defaultProps = {
-    step: [],
-    visible: false,
-    isLast: false,
-  }
+const propTypes = {
+  step: PropTypes.object.isRequired,
+  visible: PropTypes.bool.isRequired,
+  isLast: PropTypes.bool.isRequired,
+  handleButtonClick: PropTypes.func.isRequired,
+};
 
+const defaultProps = {
+  step: [],
+  visible: false,
+  isLast: false,
+};
+
+export default class Step extends Component {
   _createMarkup(html) {
     return { __html: html };
   }
@@ -43,9 +50,5 @@ export default class Step extends Component {
   }
 }
 
-Step.propTypes = {
-  step: PropTypes.object.isRequired,
-  visible: PropTypes.bool.isRequired,
-  isLast: PropTypes.bool.isRequired,
-  handleButtonClick: PropTypes.func.isRequired,
-}
+Step.propTypes = propTypes;
+Step.defaultProps = defaultProps;

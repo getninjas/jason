@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+const propTypes = {
+  label: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  children: PropTypes.any.isRequired,
+  errorMessage: PropTypes.string,
+};
+
+const defaultProps = {
+  errorMessage: '',
+};
+
 export default class Field extends Component {
   constructor() {
     super();
 
     this.wrapperStyle = 'form__field form__field--fluid input';
     this.spanStyle = 'form__message form__message--invalid space-element-small error';
-  }
-
-  static defaultProps = {
-    errorMessage: '',
   }
 
   render() {
@@ -30,9 +37,5 @@ export default class Field extends Component {
   }
 }
 
-Field.propTypes = {
-  label: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  children: PropTypes.any.isRequired,
-  errorMessage: PropTypes.string,
-}
+Field.propTypes = propTypes;
+Field.defaultProps = defaultProps;

@@ -1,6 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+const propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  placeholder: PropTypes.string,
+  type: PropTypes.string,
+  required: PropTypes.bool,
+  value: PropTypes.any,
+};
+
+const defaultProps = {
+  placeholder: '',
+  required: false,
+  name: '',
+  title: '',
+  type: 'text',
+  value: '',
+};
+
 export default class Input extends Component {
   constructor() {
     super();
@@ -12,15 +31,6 @@ export default class Input extends Component {
     this.onChange = this.onChange.bind(this);
 
     this.inputStyle = 'form__input';
-  }
-
-  static defaultProps = {
-    placeholder: '',
-    required: false,
-    name: '',
-    title: '',
-    type: 'text',
-    value: '',
   }
 
   onChange(evt) {
@@ -51,12 +61,5 @@ export default class Input extends Component {
   }
 }
 
-Input.propTypes = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  title: PropTypes.string,
-  placeholder: PropTypes.string,
-  type: PropTypes.string,
-  required: PropTypes.bool,
-  value: PropTypes.any,
-}
+Input.propTypes = propTypes;
+Input.defaultProps = defaultProps;
