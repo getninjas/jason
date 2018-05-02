@@ -22,7 +22,7 @@ export default class Form extends Component {
   componentDidMount() {
     this.setState({
       activeStep: 0,
-      stepsCount: this.props.form.steps.length - 1,
+      stepsCount: this.props.data.steps.length - 1,
     });
   }
 
@@ -47,13 +47,13 @@ export default class Form extends Component {
   }
 
   render() {
-    const { action, method, name, form } = this.props;
+    const { action, method, name, data } = this.props;
 
     return (
       <section className={this.sectionStyle}>
         <form onSubmit={this.handleSubmit} action={action} method={method} name={name} className={this.formStyle}>
           {
-            form.steps.map((step, index) => {
+            data.steps.map((step, index) => {
               return (
                 <Step
                   visible={this.isStepVisible(index)}
@@ -66,7 +66,7 @@ export default class Form extends Component {
           }
         </form>
 
-        <Breadcrumb active={this.state.activeStep} steps={form.steps}  />
+        <Breadcrumb active={this.state.activeStep} steps={data.steps}  />
       </section>
     );
   }
@@ -76,14 +76,14 @@ Form.defaultProps = {
   name:'jason-form',
   method:'POST',
   action:'http://yourendpoint',
-  form: {
+  data: {
     steps: [],
   }
 }
 
 Form.propTypes = {
   name: PropTypes.string.isRequired,
-  form: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired,
   action: PropTypes.string,
   method: PropTypes.string,
 }

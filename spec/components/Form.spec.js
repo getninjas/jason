@@ -9,7 +9,7 @@ enzymeConfig();
 describe('Form', () => {
   it('renders custom props', () => {
     const component = renderer.create(
-      <Form name={'form'} form={form} />,
+      <Form name={'form'} data={form} />,
     );
 
     const tree = component.toJSON();
@@ -19,7 +19,7 @@ describe('Form', () => {
 
   it('renders defaultProps', () => {
     const component = renderer.create(
-      <Form name={'form'} form={form} />,
+      <Form name={'form'} data={form} />,
     );
 
     const tree = component.toJSON();
@@ -29,7 +29,7 @@ describe('Form', () => {
 
   it('.handleButtonClick', () => {
     const component = shallow(
-      <Form name={'form'} form={form} />,
+      <Form name={'form'} data={form} />,
     );
 
     const initialStep = component.state().activeStep;
@@ -44,7 +44,7 @@ describe('Form', () => {
 
   it('.isStepVisible', () => {
     const component = shallow(
-      <Form name={'form'} form={form} />,
+      <Form name={'form'} data={form} />,
     );
 
     const stepOneIsVisible = component.instance().isStepVisible(0);
@@ -56,7 +56,7 @@ describe('Form', () => {
 
   it('.isLastStep', () => {
     const component = shallow(
-      <Form name={'form'} form={form} />,
+      <Form name={'form'} data={form} />,
     );
 
     const stepOne = component.state().activeStep;
