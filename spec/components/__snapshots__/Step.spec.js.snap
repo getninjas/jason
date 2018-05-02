@@ -66,7 +66,7 @@ exports[`Step renders with props 1`] = `
     <span
       className="form__message form__message--invalid space-element-small error"
     >
-      dsds
+      Required field
     </span>
   </div>
   <div
@@ -92,7 +92,7 @@ exports[`Step renders with props 1`] = `
     <span
       className="form__message form__message--invalid space-element-small error"
     >
-      dsds
+      Required field
     </span>
   </div>
   <div
@@ -117,7 +117,7 @@ exports[`Step renders with props 1`] = `
     <span
       className="form__message form__message--invalid space-element-small error"
     >
-      dsds
+      Required field
     </span>
   </div>
   <button
