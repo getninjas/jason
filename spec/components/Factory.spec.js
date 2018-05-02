@@ -39,4 +39,12 @@ describe('Factory', () => {
 
     expect(result.type.name).toEqual('Input');
   });
+
+  it('throws exception when argument is invalid', () => {
+    const invalidArg = Object.assign({}, input, { type: 'xpto' });
+
+    expect(() => {
+      Factory.getComponent(invalidArg, 1)
+    }).toThrow('Invalid argument type');
+  });
 });

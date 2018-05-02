@@ -39,5 +39,7 @@ export default class Factory {
           placeholder={placeholder} />
       );
     }
+
+    throw new Error('Invalid argument type');
   }
 }
