@@ -10,6 +10,8 @@ export default class Input extends Component {
     }
 
     this.onChange = this.onChange.bind(this);
+
+    this.inputStyle = 'form__input';
   }
 
   onChange(evt) {
@@ -31,7 +33,7 @@ export default class Input extends Component {
         id={this.props.id}
         name={this.props.name}
         title={this.props.title}
-        className="form__input"
+        className={this.inputStyle}
         placeholder={this.props.placeholder}
         required={this.props.required ? 'true' : 'false'}
         value={this.state.value}
