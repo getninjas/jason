@@ -22,7 +22,7 @@ exports[`Form renders custom props 1`] = `
       <div
         dangerouslySetInnerHTML={
           Object {
-            "__html": "<h2 class='widget__title section-title--high-contrast'>Explique o que você precisa<small>Peça orçamento grátis, online!</small></h2>",
+            "__html": "<h2 class='widget__title section-title--high-contrast'>Lorem Ipsum is simply dummy text <small>It has survived not</small></h2>",
           }
         }
       />
@@ -135,7 +135,7 @@ exports[`Form renders custom props 1`] = `
         onClick={[Function]}
         type="button"
       >
-        Fazer um orçamento grátis
+        Start request
       </button>
     </fieldset>
     <fieldset
@@ -149,7 +149,7 @@ exports[`Form renders custom props 1`] = `
       <div
         dangerouslySetInnerHTML={
           Object {
-            "__html": "<div class='form__alert-message space-element-large'><img src='https://www.getninjas.com.br/assets/request/phone_call.svg' class='form__icon' alt='Estamos quase lá'><h2 class='form__info'>Estamos quase lá<small>Não perca tempo ligando para vários profissionais. Preencha os dados abaixo e <strong>nós encontraremos os melhores pra você!</strong></small></h2></div>",
+            "__html": "<div class='form__alert-message space-element-large'><img src='https://www.getninjas.com.br/assets/request/phone_call.svg' class='form__icon' alt='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'><h2 class='form__info'>Almost there<small>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's<strong>standard dummy text ever since the 1500s</strong></small></h2></div>",
           }
         }
       />
@@ -262,7 +262,7 @@ exports[`Form renders custom props 1`] = `
         onClick={[Function]}
         type="submit"
       >
-        Finalizar
+        Finish
       </button>
     </fieldset>
   </form>
@@ -272,12 +272,12 @@ exports[`Form renders custom props 1`] = `
     <li
       className="form__steps-item form__steps-item--active"
     >
-      Seu pedido
+      Your request
     </li>
     <li
       className="form__steps-item "
     >
-      Seus dados
+      Your data
     </li>
   </ol>
 </section>
@@ -305,7 +305,7 @@ exports[`Form renders defaultProps 1`] = `
       <div
         dangerouslySetInnerHTML={
           Object {
-            "__html": "<h2 class='widget__title section-title--high-contrast'>Explique o que você precisa<small>Peça orçamento grátis, online!</small></h2>",
+            "__html": "<h2 class='widget__title section-title--high-contrast'>Lorem Ipsum is simply dummy text <small>It has survived not</small></h2>",
           }
         }
       />
@@ -418,7 +418,7 @@ exports[`Form renders defaultProps 1`] = `
         onClick={[Function]}
         type="button"
       >
-        Fazer um orçamento grátis
+        Start request
       </button>
     </fieldset>
     <fieldset
@@ -432,7 +432,7 @@ exports[`Form renders defaultProps 1`] = `
       <div
         dangerouslySetInnerHTML={
           Object {
-            "__html": "<div class='form__alert-message space-element-large'><img src='https://www.getninjas.com.br/assets/request/phone_call.svg' class='form__icon' alt='Estamos quase lá'><h2 class='form__info'>Estamos quase lá<small>Não perca tempo ligando para vários profissionais. Preencha os dados abaixo e <strong>nós encontraremos os melhores pra você!</strong></small></h2></div>",
+            "__html": "<div class='form__alert-message space-element-large'><img src='https://www.getninjas.com.br/assets/request/phone_call.svg' class='form__icon' alt='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'><h2 class='form__info'>Almost there<small>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's<strong>standard dummy text ever since the 1500s</strong></small></h2></div>",
           }
         }
       />
@@ -545,7 +545,7 @@ exports[`Form renders defaultProps 1`] = `
         onClick={[Function]}
         type="submit"
       >
-        Finalizar
+        Finish
       </button>
     </fieldset>
   </form>
@@ -555,12 +555,12 @@ exports[`Form renders defaultProps 1`] = `
     <li
       className="form__steps-item form__steps-item--active"
     >
-      Seu pedido
+      Your request
     </li>
     <li
       className="form__steps-item "
     >
-      Seus dados
+      Your data
     </li>
   </ol>
 </section>

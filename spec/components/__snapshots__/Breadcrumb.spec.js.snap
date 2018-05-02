@@ -7,12 +7,12 @@ exports[`Breadcrumb renders defaultProps 1`] = `
   <li
     className="form__steps-item form__steps-item--active"
   >
-    Seu pedido
+    Your request
   </li>
   <li
     className="form__steps-item "
   >
-    Seus dados
+    Your data
   </li>
 </ol>
 `;

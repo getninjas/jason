@@ -12,7 +12,7 @@ exports[`Step renders with props 1`] = `
   <div
     dangerouslySetInnerHTML={
       Object {
-        "__html": "<h2 class='widget__title section-title--high-contrast'>Explique o que você precisa<small>Peça orçamento grátis, online!</small></h2>",
+        "__html": "<h2 class='widget__title section-title--high-contrast'>Lorem Ipsum is simply dummy text <small>It has survived not</small></h2>",
       }
     }
   />
@@ -125,7 +125,7 @@ exports[`Step renders with props 1`] = `
     onClick={[Function]}
     type="button"
   >
-    Fazer um orçamento grátis
+    Start request
   </button>
 </fieldset>
 `;
