@@ -21,7 +21,7 @@ export default class Input extends Component {
   }
 
   getInputType(type) {
-    return type ==='phone'? 'tel': type;
+    return type === 'phone' ? 'tel' : type;
   }
 
   render() {
