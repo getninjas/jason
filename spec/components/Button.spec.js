@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Button from '../../src/components/Button';
-import {enzymeConfig, shallow} from '../enzymeConfig';
+import { enzymeConfig, shallow } from '../enzymeConfig';
 
 enzymeConfig();
 
