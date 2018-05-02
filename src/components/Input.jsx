@@ -14,6 +14,15 @@ export default class Input extends Component {
     this.inputStyle = 'form__input';
   }
 
+  static defaultProps = {
+    placeholder: '',
+    required: false,
+    name: '',
+    title: '',
+    type: 'text',
+    value: '',
+  }
+
   onChange(evt) {
     this.setState({ value: evt.target.value });
   }
@@ -42,20 +51,10 @@ export default class Input extends Component {
   }
 }
 
-Input.defaultProps = {
-  id: '',
-  placeholder: '',
-  required: false,
-  name: '',
-  type: 'text',
-  title: '',
-  value: '',
-}
-
 Input.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   placeholder: PropTypes.string,
   type: PropTypes.string,
   required: PropTypes.bool,

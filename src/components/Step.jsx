@@ -5,6 +5,12 @@ import Button from './Button';
 import Factory from './Factory';
 
 export default class Step extends Component {
+  static defaultProps = {
+    step: [],
+    visible: false,
+    isLast: false,
+  }
+
   _createMarkup(html) {
     return { __html: html };
   }
@@ -35,12 +41,6 @@ export default class Step extends Component {
       </fieldset>
     );
   }
-}
-
-Step.defaultProps = {
-  step: [],
-  visible: false,
-  isLast: false,
 }
 
 Step.propTypes = {

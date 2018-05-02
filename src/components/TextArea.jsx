@@ -12,6 +12,15 @@ export default class TextArea extends Component {
     this.onChange = this.onChange.bind(this);
   }
 
+  static defaultProps = {
+    id: '',
+    placeholder: '',
+    name: '',
+    title: '',
+    required: false,
+    value: '',
+  }
+
   onChange(evt) {
     this.setState({ value: evt.target.value });
   }
@@ -33,15 +42,6 @@ export default class TextArea extends Component {
         onChange={this.onChange} />
     );
   }
-}
-
-TextArea.defaultProps = {
-  id: '',
-  placeholder: '',
-  name: '',
-  title: '',
-  required: false,
-  value: '',
 }
 
 TextArea.propTypes = {

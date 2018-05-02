@@ -27,11 +27,6 @@ export default class Breadcrumb extends Component {
   }
 }
 
-Breadcrumb.defaultProps = {
-  steps: [],
-  active: 0
-}
-
 Breadcrumb.propTypes = {
   steps: PropTypes.array.isRequired,
   active: PropTypes.number.isRequired,

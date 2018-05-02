@@ -10,6 +10,16 @@ export default class Select extends Component {
     }
   }
 
+  static defaultProps = {
+    id: '',
+    selected: '',
+    name: '',
+    title: '',
+    required: false,
+    values: [],
+    placeholder: '',
+  }
+
   componentDidMount() {
     const values = this.addPlaceholder(this.props);
 
@@ -46,16 +56,6 @@ export default class Select extends Component {
       </select>
     );
   }
-}
-
-Select.defaultProps = {
-  id: '',
-  selected: '',
-  name: '',
-  title: '',
-  required: false,
-  values: [],
-  placeholder: '',
 }
 
 Select.propTypes = {

@@ -9,6 +9,10 @@ export default class Field extends Component {
     this.spanStyle = 'form__message form__message--invalid space-element-small error';
   }
 
+  static defaultProps = {
+    errorMessage: ''
+  }
+
   render() {
     return (
       <div className={this.wrapperStyle}>
@@ -24,12 +28,6 @@ export default class Field extends Component {
       </div>
     );
   }
-}
-
-Field.defaultProps = {
-  label: '',
-  id: '',
-  errorMessage: ''
 }
 
 Field.propTypes = {

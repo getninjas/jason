@@ -19,6 +19,15 @@ export default class Form extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  static defaultProps = {
+    name:'jason-form',
+    method:'POST',
+    action:'http://yourendpoint',
+    data: {
+      steps: [],
+    }
+  }
+
   componentDidMount() {
     this.setState({
       activeStep: 0,
@@ -69,15 +78,6 @@ export default class Form extends Component {
         <Breadcrumb active={this.state.activeStep} steps={data.steps}  />
       </section>
     );
-  }
-}
-
-Form.defaultProps = {
-  name:'jason-form',
-  method:'POST',
-  action:'http://yourendpoint',
-  data: {
-    steps: [],
   }
 }
 
