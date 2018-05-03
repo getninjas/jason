@@ -40,6 +40,10 @@ export default class Form extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
+
+    if (!this.isLastStep(this.state.activeStep) && !evt.target.checkValidity()) {
+      this.setState({ activeStep: this.state.activeStep + 1 });
+    }
   }
 
   handleButtonClick(evt) {
@@ -65,7 +69,7 @@ export default class Form extends Component {
 
     return (
       <section className={this.sectionStyle}>
-        <form onSubmit={this.handleSubmit} action={action} method={method} name={name} className={this.formStyle}>
+        <form noValidate onSubmit={this.handleSubmit} action={action} method={method} name={name} className={this.formStyle}>
           {
             data.steps.map((step, index) => {
               return (
