@@ -55,12 +55,6 @@ export default class Step extends Component {
   }
 
   validateValue({ required, type, value }) {
-    const skip = (type === 'select');
-
-    if (skip) {
-      return '';
-    }
-
     if (required && value === null) {
       return 'This field is required';
     }
@@ -101,9 +95,9 @@ export default class Step extends Component {
     return isValid;
   }
 
-  handleStepButtonClick() {
+  handleStepButtonClick(evt) {
     if (this.validate) {
-      this.props.handleButtonClick();
+      this.props.handleButtonClick(evt);
     }
   }
 

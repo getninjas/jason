@@ -16,6 +16,7 @@ export default class Factory {
           name={name}
           selected={value}
           values={values}
+          onFieldChange={onFieldChange}
           required={required} />
       )
     }

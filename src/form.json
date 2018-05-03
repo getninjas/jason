@@ -16,7 +16,7 @@
             "id": "1_id",
             "name": "1_name_select",
             "type": "select",
-            "value": 7120,
+            "value": null,
             "values": [
               {
                 "databaseId": 7117,
