@@ -18,12 +18,74 @@ const defaultProps = {
 };
 
 export default class Step extends Component {
-  _createMarkup(html) {
-    return { __html: html };
+  constructor() {
+    super();
+
+    this.state = {
+      step: {},
+      valid: true,
+    };
+
+    this.handleStepButtonClick = this.handleStepButtonClick.bind(this);
+    this.onFieldChange = this.onFieldChange.bind(this);
+  }
+
+  onFieldChange({ value, id }) {
+    console.log('>>> value: ', value);
+    console.log('>>> id: ', id);
+
+  }
+
+  validate() {
+    let isValid = true;
+
+    const fields = this.state.step.fields.map((field) => {
+      const modifiedField = Object.assign({}, field);
+
+      modifiedField.errorMessage = null;
+
+      if (modifiedField.required && !modifiedField.value) {
+        modifiedField.errorMessage = 'This field is required';
+      }
+
+      if (modifiedField.type === 'phone') {
+        modifiedField.errorMessage = 'Invalid phone';
+      }
+
+      if (modifiedField.type === 'email') {
+        modifiedField.errorMessage = 'Invalid email';
+      }
+
+      if (modifiedField.errorMessage) {
+        isValid = false;
+      }
+
+      return modifiedField;
+    });
+
+    this.setState({
+      step: Object.assign({}, this.state.step, { fields }),
+    });
+
+    return isValid;
+  }
+
+  handleStepButtonClick() {
+    this.validate();
+
+    if (this.isValid) {
+      this.props.handleButtonClick();
+    }
+  }
+
+  componentWillMount() {
+    this.setState({
+      step: this.props.step,
+    });
   }
 
   render() {
-    const { fields, button, headerMarkup } = this.props.step;
+    const { fields, button, headerMarkup } = this.state.step;
 
     return (
       <fieldset className="form__container inputs" style={{ display: this.props.visible ? 'block' : 'none' }}>
@@ -36,17 +98,21 @@ export default class Step extends Component {
                 key={`field-${index}`}
                 label={item.title}
                 id={item.id}
-                errorMessage='Required field'>
+                errorMessage={item.errorMessage} >
 
-                { Factory.getComponent(item, index) }
+                { Factory.getComponent({ item, index, onFieldChange: this.onFieldChange }) }
               </Field>
             )
           })
         }
 
-        <Button isSubmit={this.props.isLast} handleButtonClick={this.props.handleButtonClick}>{ button }</Button>
+        <Button isSubmit={this.props.isLast} handleButtonClick={this.handleStepButtonClick}>{ button }</Button>
       </fieldset>
     );
+  }
+
+  _createMarkup(html) {
+    return { __html: html };
   }
 }
 

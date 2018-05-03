@@ -6,10 +6,12 @@ const propTypes = {
   id: PropTypes.string.isRequired,
   children: PropTypes.any.isRequired,
   errorMessage: PropTypes.string,
+  value: PropTypes.string,
 };
 
 const defaultProps = {
   errorMessage: '',
+  value: '',
 };
 
 export default class Field extends Component {

@@ -5,6 +5,7 @@ const propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  onFieldChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   value: PropTypes.any,
@@ -31,6 +32,11 @@ export default class TextArea extends Component {
   }
 
   onChange(evt) {
+    this.props.onFieldChange({
+      value: evt.target.value,
+      id: this.props.id,
+    });
+
     this.setState({ value: evt.target.value });
   }
 

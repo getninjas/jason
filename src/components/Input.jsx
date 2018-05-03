@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 const propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  onFieldChange: PropTypes.func.isRequired,
   title: PropTypes.string,
   placeholder: PropTypes.string,
   type: PropTypes.string,
@@ -34,6 +35,11 @@ export default class Input extends Component {
   }
 
   onChange(evt) {
+    this.props.onFieldChange({
+      value: evt.target.value,
+      id: this.props.id,
+    });
+
     this.setState({ value: evt.target.value });
   }
 

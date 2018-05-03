@@ -4,14 +4,14 @@ import Input from './Input';
 import TextArea from './TextArea';
 
 export default class Factory {
-  static getComponent(field, key) {
-    const { type, placeholder, id, name, value, values } = field;
+  static getComponent({ item, index, onFieldChange }) {
+    const { type, placeholder, id, name, value, values } = item;
 
     if (type === 'select') {
       return (
         <Select
           placeholder={placeholder}
-          key={`select-${key}`}
+          key={`select-${index}`}
           id={id}
           name={name}
           selected={value}
@@ -22,10 +22,11 @@ export default class Factory {
     if (type === 'textarea') {
       return (
         <TextArea
-          key={`textarea-${key}`}
+          key={`textarea-${index}`}
           id={id}
           name={name}
-          placeholder={placeholder} />
+          placeholder={placeholder}
+          onFieldChange={onFieldChange} />
       );
     }
 
@@ -33,10 +34,11 @@ export default class Factory {
       return (
         <Input
           type={type}
-          key={`input-${key}`}
+          key={`input-${index}`}
           id={id}
           name={name}
-          placeholder={placeholder} />
+          placeholder={placeholder}
+          onFieldChange={onFieldChange} />
       );
     }
 
