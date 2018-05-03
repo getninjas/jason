@@ -32,9 +32,20 @@ export default class Step extends Component {
   }
 
   onFieldChange({ value, id }) {
-    console.log('>>> value: ', value);
-    console.log('>>> id: ', id);
+    const fields = this.state.step.fields.map((item) => {
+      const itemID = `${this.props.formName}-${item.id}`;
 
+      if (itemID === id) {
+        return Object.assign({}, item, { value });
+      }
+
+      return item;
+    });
+
+
+    this.setState({
+      step: Object.assign({}, this.state.step, { fields }),
+    });
   }
 
   validate() {

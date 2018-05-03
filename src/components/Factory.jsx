@@ -11,8 +11,8 @@ export default class Factory {
       return (
         <Select
           placeholder={placeholder}
-          key={`${formName}-select-${index}`}
-          id={`${formName}-select-${id}`}
+          key={`${formName}-${index}`}
+          id={`${formName}-${id}`}
           name={name}
           selected={value}
           values={values} />
@@ -22,8 +22,8 @@ export default class Factory {
     if (type === 'textarea') {
       return (
         <TextArea
-          key={`${formName}-textarea-${index}`}
-          id={`${formName}-textarea-${id}`}
+          key={`${formName}-${index}`}
+          id={`${formName}-${id}`}
           name={name}
           placeholder={placeholder}
           onFieldChange={onFieldChange} />
@@ -34,8 +34,8 @@ export default class Factory {
       return (
         <Input
           type={type}
-          key={`${formName}-input-${index}`}
-          id={`${formName}-input-${id}`}
+          key={`${formName}-${index}`}
+          id={`${formName}-${id}`}
           name={name}
           placeholder={placeholder}
           onFieldChange={onFieldChange} />
