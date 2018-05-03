@@ -9,6 +9,7 @@ const propTypes = {
   visible: PropTypes.bool.isRequired,
   isLast: PropTypes.bool.isRequired,
   handleButtonClick: PropTypes.func.isRequired,
+  formName: PropTypes.string.isRequired,
 };
 
 const defaultProps = {
@@ -100,7 +101,14 @@ export default class Step extends Component {
                 id={item.id}
                 errorMessage={item.errorMessage} >
 
-                { Factory.getComponent({ item, index, onFieldChange: this.onFieldChange }) }
+                {
+                  Factory.getComponent({
+                    item,
+                    index,
+                    onFieldChange: this.onFieldChange,
+                    formName: this.props.formName,
+                  })
+                }
               </Field>
             )
           })

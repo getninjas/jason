@@ -11,12 +11,8 @@ const propTypes = {
 };
 
 const defaultProps = {
-  name: 'jason-form',
   method: 'POST',
   action: 'http://yourendpoint',
-  data: {
-    steps: [],
-  }
 };
 
 export default class Form extends Component {
@@ -76,7 +72,8 @@ export default class Form extends Component {
                   key={`step-${index}`}
                   step={step}
                   isLast={this.isLastStep(index)}
-                  handleButtonClick={this.handleButtonClick} />
+                  handleButtonClick={this.handleButtonClick}
+                  formName={name} />
               )
             })
           }
