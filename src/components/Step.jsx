@@ -31,12 +31,17 @@ export default class Step extends Component {
     this.onFieldChange = this.onFieldChange.bind(this);
   }
 
-  onFieldChange({ value, id }) {
+  onFieldChange({ value, id, required, type }) {
     const fields = this.state.step.fields.map((item) => {
       const itemID = `${this.props.formName}-${item.id}`;
 
       if (itemID === id) {
-        return Object.assign({}, item, { value });
+        const errorMessage = this.validateValue({ required, type, value });
+
+        // console.log('>> errorMessage: ', errorMessage);
+        // console.log('>> value: ', value);
+
+        return Object.assign({}, item, { value, errorMessage });
       }
 
       return item;
@@ -51,27 +56,33 @@ export default class Step extends Component {
     });
   }
 
+  validateValue({ required, type, value }) {
+    console.log(required);
+    if (required && !value.length) {
+      return 'This field is required';
+    }
+
+    if (type === 'phone') {
+      return 'Invalid phone';
+    }
+
+    if (type === 'email') {
+      return 'Invalid email';
+    }
+
+    return '';
+  }
+
   get validate() {
     let isValid = true;
 
     const fields = this.state.step.fields.map((field) => {
       const modifiedField = Object.assign({}, field);
 
-      modifiedField.errorMessage = null;
+      const errorMessage = this.validateValue(modifiedField);
 
-      if (modifiedField.required && !modifiedField.value) {
-        modifiedField.errorMessage = 'This field is required';
-      }
-
-      if (modifiedField.type === 'phone') {
-        modifiedField.errorMessage = 'Invalid phone';
-      }
-
-      if (modifiedField.type === 'email') {
-        modifiedField.errorMessage = 'Invalid email';
-      }
-
-      if (modifiedField.errorMessage) {
+      if (errorMessage) {
+        modifiedField.errorMessage = errorMessage;
         isValid = false;
       }
 

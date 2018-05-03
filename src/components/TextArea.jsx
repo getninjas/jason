@@ -35,6 +35,7 @@ export default class TextArea extends Component {
     this.props.onFieldChange({
       value: evt.target.value,
       id: this.props.id,
+      required: this.props.required,
     });
 
     this.setState({ value: evt.target.value });

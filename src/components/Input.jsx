@@ -38,6 +38,8 @@ export default class Input extends Component {
     this.props.onFieldChange({
       value: evt.target.value,
       id: this.props.id,
+      required: this.props.required,
+      type: this.props.type,
     });
 
     this.setState({ value: evt.target.value });

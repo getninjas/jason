@@ -5,7 +5,7 @@ import TextArea from './TextArea';
 
 export default class Factory {
   static getComponent({ item, index, onFieldChange, formName }) {
-    const { type, placeholder, id, name, value, values } = item;
+    const { type, placeholder, id, name, value, values, required } = item;
 
     if (type === 'select') {
       return (
@@ -15,7 +15,8 @@ export default class Factory {
           id={`${formName}-${id}`}
           name={name}
           selected={value}
-          values={values} />
+          values={values}
+          required={required} />
       )
     }
 
@@ -26,7 +27,8 @@ export default class Factory {
           id={`${formName}-${id}`}
           name={name}
           placeholder={placeholder}
-          onFieldChange={onFieldChange} />
+          onFieldChange={onFieldChange}
+          required={required} />
       );
     }
 
@@ -38,7 +40,8 @@ export default class Factory {
           id={`${formName}-${id}`}
           name={name}
           placeholder={placeholder}
-          onFieldChange={onFieldChange} />
+          onFieldChange={onFieldChange}
+          required={required} />
       );
     }
 
