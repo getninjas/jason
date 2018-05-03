@@ -10,11 +10,12 @@ const propTypes = {
   visible: PropTypes.bool.isRequired,
   isLast: PropTypes.bool.isRequired,
   handleButtonClick: PropTypes.func.isRequired,
+  isValidStep: PropTypes.func,
   formName: PropTypes.string.isRequired,
 };
 
 const defaultProps = {
-  step: [],
+  step: {},
   visible: false,
   isLast: false,
 };
@@ -91,6 +92,8 @@ export default class Step extends Component {
     });
 
     this.updateStep(fields);
+
+    this.props.isValidStep(isValid);
 
     return isValid;
   }

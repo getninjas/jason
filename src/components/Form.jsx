@@ -29,6 +29,8 @@ export default class Form extends Component {
 
     this.handleButtonClick = this.handleButtonClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
+    this.isValidStep = this.isValidStep.bind(this);
   }
 
   componentDidMount() {
@@ -42,8 +44,12 @@ export default class Form extends Component {
     evt.preventDefault();
 
     if (!this.isLastStep(this.state.activeStep) && !evt.target.checkValidity()) {
-      this.setState({ activeStep: this.state.activeStep + 1 });
+      //this.setState({ activeStep: this.state.activeStep + 1 });
     }
+  }
+
+  isValidStep(valid) {
+    console.log('currentStep', valid);
   }
 
   handleButtonClick(evt) {
@@ -77,6 +83,7 @@ export default class Form extends Component {
                   visible={this.isStepVisible(index)}
                   key={`step-${index}`}
                   step={step}
+                  isValidStep={this.isValidStep}
                   isLast={this.isLastStep(index)}
                   handleButtonClick={this.handleButtonClick}
                   formName={name} />
