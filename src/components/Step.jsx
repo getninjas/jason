@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import validator from 'validator';
 import Field from './Field';
 import Button from './Button';
 import Factory from './Factory';
@@ -38,9 +39,6 @@ export default class Step extends Component {
       if (itemID === id) {
         const errorMessage = this.validateValue({ required, type, value });
 
-        // console.log('>> errorMessage: ', errorMessage);
-        // console.log('>> value: ', value);
-
         return Object.assign({}, item, { value, errorMessage });
       }
 
@@ -57,17 +55,26 @@ export default class Step extends Component {
   }
 
   validateValue({ required, type, value }) {
-    console.log(required);
-    if (required && !value.length) {
+    const skip = (type === 'select');
+
+    if (skip) {
+      return '';
+    }
+
+    if (required && value === null) {
       return 'This field is required';
     }
 
-    if (type === 'phone') {
+    if (type === 'phone' && validator.isEmpty(value)) {
       return 'Invalid phone';
     }
 
-    if (type === 'email') {
+    if (type === 'email' && !validator.isEmail(value)) {
       return 'Invalid email';
+    }
+
+    if (required && validator.isEmpty(value)) {
+      return 'This field is required';
     }
 
     return '';
