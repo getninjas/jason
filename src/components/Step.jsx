@@ -42,13 +42,16 @@ export default class Step extends Component {
       return item;
     });
 
+    this.updateStep(fields);
+  }
 
+  updateStep(fields) {
     this.setState({
       step: Object.assign({}, this.state.step, { fields }),
     });
   }
 
-  validate() {
+  get validate() {
     let isValid = true;
 
     const fields = this.state.step.fields.map((field) => {
@@ -75,17 +78,13 @@ export default class Step extends Component {
       return modifiedField;
     });
 
-    this.setState({
-      step: Object.assign({}, this.state.step, { fields }),
-    });
+    this.updateStep(fields);
 
     return isValid;
   }
 
   handleStepButtonClick() {
-    this.validate();
-
-    if (this.isValid) {
+    if (this.validate) {
       this.props.handleButtonClick();
     }
   }
