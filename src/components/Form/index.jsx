@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import validator from 'validator';
-import Step from './Step';
-import Breadcrumb from './Breadcrumb';
+import Step from '../Step';
+import Breadcrumb from '../Breadcrumb';
+import { validateValue, validateStep } from './validaton';
 
 const propTypes = {
   name: PropTypes.string.isRequired,
@@ -19,7 +19,7 @@ export default class Form extends Component {
   constructor() {
     super();
 
-    this.state =  {
+    this.state = {
       activeStep: 0,
       stepsCount: 0,
       steps: [],
@@ -31,6 +31,12 @@ export default class Form extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
     this.onFieldChange = this.onFieldChange.bind(this);
+  }
+
+  get actualStep() {
+    const { steps, activeStep } = this.state;
+
+    return steps[activeStep];
   }
 
   componentDidMount() {
@@ -54,23 +60,28 @@ export default class Form extends Component {
   }
 
   validateChangeStep() {
-    if (this.validateStep()) {
-      const { activeStep, stepsCount } = this.state;
+    const { updatedFields, isValid } = validateStep(this.actualStep.fields);
 
-      if (activeStep < stepsCount) {
-        this.setState({ activeStep: activeStep + 1 });
-      }
+    this.updateStep(updatedFields);
+
+    console.log('isValid', isValid )
+    if (isValid) {
+      this.nextStep(this.state);
+    }
+  }
+
+  nextStep({ activeStep, stepsCount }) {
+    if (activeStep < stepsCount) {
+      this.setState({ activeStep: activeStep + 1 });
     }
   }
 
   onFieldChange({ value, id, required, type }) {
-    const { steps, activeStep } = this.state;
-
-    const fields = steps[activeStep].fields.map((item) => {
+    const fields = this.actualStep.fields.map((item) => {
       const itemID = `${this.props.name}-${item.id}`;
 
       if (itemID === id) {
-        const errorMessage = this.validateValue({ required, type, value });
+        const errorMessage = validateValue({ required, type, value });
 
         return Object.assign({}, item, { value, errorMessage });
       }
@@ -79,50 +90,6 @@ export default class Form extends Component {
     });
 
     this.updateStep(fields);
-  }
-
-  validateStep() {
-    let isValid = true;
-
-    const { steps, activeStep } = this.state;
-
-    const fields = steps[activeStep].fields.map((field) => {
-      const modifiedField = Object.assign({}, field);
-
-      const errorMessage = this.validateValue(modifiedField);
-
-      if (errorMessage) {
-        modifiedField.errorMessage = errorMessage;
-        isValid = false;
-      }
-
-      return modifiedField;
-    });
-
-
-    this.updateStep(fields);
-
-    return isValid;
-  }
-
-  validateValue({ required, type, value }) {
-    if (required && value === null) {
-      return 'This field is required';
-    }
-
-    if (type === 'phone' && validator.isEmpty(value)) {
-      return 'Invalid phone';
-    }
-
-    if (type === 'email' && !validator.isEmail(value)) {
-      return 'Invalid email';
-    }
-
-    if (required && validator.isEmpty(value)) {
-      return 'This field is required';
-    }
-
-    return '';
   }
 
   updateStep(fields) {
@@ -172,7 +139,7 @@ export default class Form extends Component {
           }
         </form>
 
-        <Breadcrumb active={this.state.activeStep} steps={this.state.steps}  />
+        <Breadcrumb active={this.state.activeStep} steps={this.state.steps} />
       </section>
     );
   }
