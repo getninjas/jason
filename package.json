@@ -17,6 +17,7 @@
     "url": "git+https://github.com/getninjas/jason.git"
   },
   "dependencies": {
+    "imask": "^3.3.0",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2"
