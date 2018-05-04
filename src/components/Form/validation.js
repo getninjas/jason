@@ -8,6 +8,11 @@ export const isValidEmail = (value) => {
   return regex.test(value.trim());
 };
 
+export const isValidZipcode = (value) => {
+  const regex = /^[0-9]{5}-[0-9]{3}$/;
+  return regex.test(value.trim());
+};
+
 export const isValidPhone = (value) => {
   const regex = /^\d{2}[6-9]{1}[0-9]{8}$/g;
   return regex.test(value.replace(/\D+/g, '').trim());
@@ -24,6 +29,10 @@ export const validateField = ({ required, type, value }) => {
 
   if (type === 'email' && !isValidEmail(value)) {
     return 'E-mail válido requerido';
+  }
+
+  if (type === 'zipcode' && !isValidZipcode(value)) {
+    return 'CEP válido requerido';
   }
 
   if (required && isEmpty(value)) {
