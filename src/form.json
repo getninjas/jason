@@ -107,16 +107,6 @@
             "required": true,
             "value": null,
             "values": []
-          },
-          {
-            "title": "CEP",
-            "id": "user_field_5",
-            "name": "user_field_5",
-            "type": "zipcode",
-            "placeholder": "",
-            "required": true,
-            "value": null,
-            "values": []
           }
         ]
       }

@@ -9,7 +9,7 @@ exports[`TextArea renders custom props 1`] = `
   placeholder="placeholderTest"
   required={false}
   title=""
-  value="ola test value"
+  value=""
 />
 `;
 

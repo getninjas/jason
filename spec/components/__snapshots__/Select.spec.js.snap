@@ -6,6 +6,7 @@ exports[`Select renders custom props 1`] = `
   defaultValue=""
   id="idTest"
   name="nameTest"
+  onChange={[Function]}
   required="false"
 >
   <option
@@ -32,6 +33,7 @@ exports[`Select renders defaultProps 1`] = `
   defaultValue=""
   id=""
   name=""
+  onChange={[Function]}
   required="false"
 />
 `;

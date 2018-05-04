@@ -12,6 +12,7 @@ describe('TextArea', () => {
         id={'idTest'}
         name={'nameTest'}
         placeholder={'placeholderTest'}
+        onFieldChange={()=>{}}
         required={false}
         value={'ola test value'}
       />,
@@ -23,7 +24,7 @@ describe('TextArea', () => {
   });
 
   it('renders defaultProps', () => {
-    const component = renderer.create(<TextArea />);
+    const component = renderer.create(<TextArea onFieldChange={()=>{}}/>);
 
     const tree = component.toJSON();
 
@@ -36,6 +37,7 @@ describe('TextArea', () => {
         id={'idTest'}
         name={'nameTest'}
         placeholder={'placeholderTest'}
+        onFieldChange={()=>{}}
         required={false}
         value={'ola test value'}
       />

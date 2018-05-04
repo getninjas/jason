@@ -13,6 +13,7 @@ describe('Select', () => {
         name={'nameTest'}
         placeholder={'placeholderTest'}
         required={false}
+        onFieldChange={()=>{}}
         values={values}
       />,
     );
@@ -23,7 +24,7 @@ describe('Select', () => {
   });
 
   it('renders defaultProps', () => {
-    const component = renderer.create(<Select />);
+    const component = renderer.create(<Select onFieldChange={()=>{}} />);
 
     const tree = component.toJSON();
 

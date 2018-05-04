@@ -17,7 +17,6 @@ const propTypes = {
 const defaultProps = {
   placeholder: '',
   required: false,
-  name: '',
   title: '',
   type: 'text',
   value: '',
@@ -90,8 +89,7 @@ export default class Input extends Component {
         placeholder={placeholder}
         required={required ? 'true' : 'false'}
         value={this.state.value}
-        onChange={this.onChange}
-        ref={this.ref} />
+        onChange={this.onChange} />
     );
   }
 }
