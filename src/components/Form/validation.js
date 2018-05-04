@@ -15,19 +15,19 @@ export const isValidPhone = (value) => {
 
 export const validateField = ({ required, type, value }) => {
   if (required && value === null) {
-    return 'This field is required';
+    return 'Este campo é requerido';
   }
 
   if (type === 'phone' && (isEmpty(value) || !isValidPhone(value))) {
-    return 'Invalid phone';
+    return 'Celular válido requerido';
   }
 
   if (type === 'email' && !isValidEmail(value)) {
-    return 'Invalid email';
+    return 'E-mail válido requerido';
   }
 
   if (required && isEmpty(value)) {
-    return 'This field is required';
+    return 'Este campo é requerido';
   }
 
   return '';
