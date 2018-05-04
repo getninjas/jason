@@ -9,6 +9,7 @@ const propTypes = {
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   value: PropTypes.any,
+  style: PropTypes.string,
 };
 
 const defaultProps = {
@@ -18,6 +19,7 @@ const defaultProps = {
   title: '',
   required: false,
   value: '',
+  style: 'form__input',
 };
 
 export default class TextArea extends Component {
@@ -46,14 +48,23 @@ export default class TextArea extends Component {
   }
 
   render() {
+    const {
+      id,
+      name,
+      title,
+      placeholder,
+      required,
+      style,
+    } = this.props;
+
     return (
       <textarea
-        id={this.props.id}
-        name={this.props.name}
-        title={this.props.title}
-        className="form__input"
-        placeholder={this.props.placeholder}
-        required={this.props.required}
+        id={id}
+        name={name}
+        title={title}
+        className={style}
+        placeholder={placeholder}
+        required={required}
         value={this.state.value}
         onChange={this.onChange} />
     );

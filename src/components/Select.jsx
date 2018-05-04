@@ -12,6 +12,7 @@ const propTypes = {
   values: PropTypes.array,
   type: PropTypes.string,
   placeholder: PropTypes.string,
+  style: PropTypes.string,
 };
 
 const defaultProps = {
@@ -22,6 +23,7 @@ const defaultProps = {
   required: false,
   values: [],
   placeholder: '',
+  style: 'form__input',
 };
 export default class Select extends Component {
   constructor(props) {
@@ -61,14 +63,14 @@ export default class Select extends Component {
   }
 
   render() {
-    const { id, name, selected, required } = this.props;
+    const { id, name, selected, required, style } = this.props;
 
     return (
       <select
         id={id}
         name={name}
         defaultValue={selected}
-        className="form__input"
+        className={style}
         onChange={this.onChange}
         required={required ? 'true' : 'false'}>
         {
