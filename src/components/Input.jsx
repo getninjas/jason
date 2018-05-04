@@ -48,17 +48,25 @@ export default class Input extends Component {
   }
 
   componentDidMount() {
-    if (this.props.type === 'phone') {
+    const { type, value } = this.props;
+
+    if (type === 'phone') {
       new IMask(this.ref.current, { mask: '(00) 00000-0000' });
     }
 
-    this.setState({ value: this.props.value });
+    if (type === 'zipcode') {
+      new IMask(this.ref.current, { mask: '00000-000' });
+    }
+
+    this.setState({ value: value });
   }
 
-
-
   getInputType(type) {
-    return type === 'phone' ? 'tel' : type;
+    if (type === 'phone' || type === 'zipcode') {
+      return 'tel';
+    }
+
+    return type;
   }
 
   render() {

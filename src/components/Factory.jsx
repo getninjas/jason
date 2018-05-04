@@ -7,6 +7,8 @@ export default class Factory {
   static getComponent({ item, index, onFieldChange, formName }) {
     const { type, placeholder, id, name, value, values, required } = item;
 
+    const inputTypeAccepted = ['text', 'phone', 'email', 'zipcode'];
+
     if (type === 'select') {
       return (
         <Select
@@ -33,7 +35,7 @@ export default class Factory {
       );
     }
 
-    if (type === 'phone' || type === 'email' || type === 'text') {
+    if (inputTypeAccepted.includes(type)) {
       return (
         <Input
           type={type}
