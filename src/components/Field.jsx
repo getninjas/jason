@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
 const propTypes = {
@@ -22,6 +22,14 @@ export default class Field extends Component {
     this.spanStyle = 'form__message form__message--invalid space-element-small error';
   }
 
+  get style() {
+    if (this.props.errorMessage) {
+      return 'form__input form__input--invalid';
+    }
+
+    return 'form__input';
+  }
+
   render() {
     return (
       <div className={this.wrapperStyle}>
@@ -29,7 +37,9 @@ export default class Field extends Component {
           { this.props.label }
         </label>
 
-        { this.props.children }
+        { cloneElement(this.props.children, { style: this.style }) }
+
+        {/* { this.props.children } */}
 
         <span className={this.spanStyle}>
           { this.props.errorMessage }

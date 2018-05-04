@@ -10,6 +10,7 @@ const propTypes = {
   type: PropTypes.string,
   required: PropTypes.bool,
   value: PropTypes.any,
+  style: PropTypes.string,
 };
 
 const defaultProps = {
@@ -19,6 +20,7 @@ const defaultProps = {
   title: '',
   type: 'text',
   value: '',
+  style: 'form__input',
 };
 
 export default class Input extends Component {
@@ -30,8 +32,6 @@ export default class Input extends Component {
     }
 
     this.onChange = this.onChange.bind(this);
-
-    this.inputStyle = 'form__input';
   }
 
   onChange(evt) {
@@ -54,15 +54,25 @@ export default class Input extends Component {
   }
 
   render() {
+    const {
+      type,
+      id,
+      name,
+      title,
+      style,
+      placeholder,
+      required,
+    } = this.props;
+
     return (
       <input
-        type={this.getInputType(this.props.type)}
-        id={this.props.id}
-        name={this.props.name}
-        title={this.props.title}
-        className={this.inputStyle}
-        placeholder={this.props.placeholder}
-        required={this.props.required ? 'true' : 'false'}
+        type={this.getInputType(type)}
+        id={id}
+        name={name}
+        title={title}
+        className={style}
+        placeholder={placeholder}
+        required={required ? 'true' : 'false'}
         value={this.state.value}
         onChange={this.onChange} />
     );
