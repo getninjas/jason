@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
+import IMask from 'imask';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
@@ -31,6 +32,7 @@ export default class Input extends Component {
       value: '',
     }
 
+    this.ref = createRef();
     this.onChange = this.onChange.bind(this);
   }
 
@@ -45,9 +47,15 @@ export default class Input extends Component {
     this.setState({ value: evt.target.value });
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    if (this.props.type === 'phone') {
+      new IMask(this.ref.current, { mask: '(00) 00000-0000' });
+    }
+
     this.setState({ value: this.props.value });
   }
+
+
 
   getInputType(type) {
     return type === 'phone' ? 'tel' : type;
@@ -74,7 +82,8 @@ export default class Input extends Component {
         placeholder={placeholder}
         required={required ? 'true' : 'false'}
         value={this.state.value}
-        onChange={this.onChange} />
+        onChange={this.onChange}
+        ref={this.ref} />
     );
   }
 }

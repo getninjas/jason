@@ -43,7 +43,7 @@ export default class TextArea extends Component {
     this.setState({ value: evt.target.value });
   }
 
-  componentWillMount() {
+  componentDidlMount() {
     this.setState({ value: this.props.value });
   }
 
