@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import validator from 'validator';
 import Field from './Field';
 import Button from './Button';
 import Factory from './Factory';
@@ -10,6 +9,7 @@ const propTypes = {
   visible: PropTypes.bool.isRequired,
   isLast: PropTypes.bool.isRequired,
   handleButtonClick: PropTypes.func.isRequired,
+  onFieldChange: PropTypes.func.isRequired,
   isValidStep: PropTypes.func,
   formName: PropTypes.string.isRequired,
   button: PropTypes.string.isRequired,
@@ -18,7 +18,6 @@ const propTypes = {
 };
 
 const defaultProps = {
-  step: {},
   visible: false,
   isLast: false,
 };
@@ -33,78 +32,10 @@ export default class Step extends Component {
     };
 
     this.handleStepButtonClick = this.handleStepButtonClick.bind(this);
-    this.onFieldChange = this.onFieldChange.bind(this);
-  }
-
-  onFieldChange({ value, id, required, type }) {
-    const fields = this.props.fields.map((item) => {
-      const itemID = `${this.props.formName}-${item.id}`;
-
-      if (itemID === id) {
-        const errorMessage = this.validateValue({ required, type, value });
-
-        return Object.assign({}, item, { value, errorMessage });
-      }
-
-      return item;
-    });
-
-    this.updateStep(fields);
-  }
-
-  updateStep(fields) {
-    this.setState({
-      step: Object.assign({}, this.state.step, { fields }),
-    });
-  }
-
-  validateValue({ required, type, value }) {
-    if (required && value === null) {
-      return 'This field is required';
-    }
-
-    if (type === 'phone' && validator.isEmpty(value)) {
-      return 'Invalid phone';
-    }
-
-    if (type === 'email' && !validator.isEmail(value)) {
-      return 'Invalid email';
-    }
-
-    if (required && validator.isEmpty(value)) {
-      return 'This field is required';
-    }
-
-    return '';
-  }
-
-  get validate() {
-    let isValid = true;
-
-    const fields = this.props.fields.map((field) => {
-      const modifiedField = Object.assign({}, field);
-
-      const errorMessage = this.validateValue(modifiedField);
-
-      if (errorMessage) {
-        modifiedField.errorMessage = errorMessage;
-        isValid = false;
-      }
-
-      return modifiedField;
-    });
-
-    this.updateStep(fields);
-
-    this.props.isValidStep(isValid);
-
-    return isValid;
   }
 
   handleStepButtonClick(evt) {
-    if (this.validate) {
-      this.props.handleButtonClick(evt);
-    }
+    this.props.handleButtonClick(evt);
   }
 
   componentWillMount() {
@@ -133,7 +64,7 @@ export default class Step extends Component {
                   Factory.getComponent({
                     item,
                     index,
-                    onFieldChange: this.onFieldChange,
+                    onFieldChange: this.props.onFieldChange,
                     formName: this.props.formName,
                   })
                 }

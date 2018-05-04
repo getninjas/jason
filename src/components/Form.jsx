@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import validator from 'validator';
 import Step from './Step';
 import Breadcrumb from './Breadcrumb';
 
@@ -27,10 +28,10 @@ export default class Form extends Component {
     this.sectionStyle = "wall--inverted col-normal-8 col-small-12";
     this.formStyle = "form container sh-form-content space-box-small";
 
-    this.handleButtonClick = this.handleButtonClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
-    this.isValidStep = this.isValidStep.bind(this);
+    this.handleButtonClick = this.handleButtonClick.bind(this);
+    this.onFieldChange = this.onFieldChange.bind(this);
+    // this.isValidStep = this.isValidStep.bind(this);
   }
 
   componentDidMount() {
@@ -49,18 +50,95 @@ export default class Form extends Component {
     }
   }
 
-  isValidStep(valid) {
-    console.log('currentStep', valid);
-  }
-
   handleButtonClick(evt) {
     evt.preventDefault();
 
-    const { activeStep, stepsCount } = this.state;
+    if (this.validateStep()) {
+      const { activeStep, stepsCount } = this.state;
 
-    if (activeStep < stepsCount) {
-      this.setState({ activeStep: activeStep + 1 });
+      if (activeStep < stepsCount) {
+        this.setState({ activeStep: activeStep + 1 });
+      }
     }
+  }
+
+  onFieldChange({ value, id, required, type }) {
+    const { steps, activeStep } = this.state;
+
+    const fields = steps[activeStep].fields.map((item) => {
+      const itemID = `${this.props.name}-${item.id}`;
+
+      if (itemID === id) {
+        const errorMessage = this.validateValue({ required, type, value });
+
+        return Object.assign({}, item, { value, errorMessage });
+      }
+
+      return item;
+    });
+
+    this.updateStep(fields);
+  }
+
+  validateStep() {
+    let isValid = true;
+
+    const { steps, activeStep } = this.state;
+
+    const fields = steps[activeStep].fields.map((field) => {
+      const modifiedField = Object.assign({}, field);
+
+      const errorMessage = this.validateValue(modifiedField);
+
+      if (errorMessage) {
+        modifiedField.errorMessage = errorMessage;
+        isValid = false;
+      }
+
+      return modifiedField;
+    });
+
+
+    this.updateStep(fields);
+
+    return isValid;
+  }
+
+  validateValue({ required, type, value }) {
+    if (required && value === null) {
+      return 'This field is required';
+    }
+
+    if (type === 'phone' && validator.isEmpty(value)) {
+      return 'Invalid phone';
+    }
+
+    if (type === 'email' && !validator.isEmail(value)) {
+      return 'Invalid email';
+    }
+
+    if (required && validator.isEmpty(value)) {
+      return 'This field is required';
+    }
+
+    return '';
+  }
+
+  updateStep(fields) {
+    const { steps, activeStep } = this.state;
+
+    let modifiedSteps = [...steps];
+    let modifiedStep = Object.assign({}, modifiedSteps[activeStep], { fields });
+
+    modifiedSteps[activeStep] = modifiedStep;
+
+    this.setState({
+      steps: modifiedSteps,
+    });
+  }
+
+  isValidStep(valid) {
+    // console.log('currentStep', valid);
   }
 
   isStepVisible(index) {
@@ -89,6 +167,7 @@ export default class Form extends Component {
                   isValidStep={this.isValidStep}
                   isLast={this.isLastStep(index)}
                   handleButtonClick={this.handleButtonClick}
+                  onFieldChange={this.onFieldChange}
                   formName={name}
                   button={button}
                   headerMarkup={headerMarkup}
