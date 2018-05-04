@@ -10,9 +10,9 @@ const propTypes = {
   formName: PropTypes.string.isRequired,
   button: PropTypes.string.isRequired,
   headerMarkup: PropTypes.string.isRequired,
+  fields: PropTypes.array.isRequired,
   visible: PropTypes.bool,
   isLast: PropTypes.bool,
-  fields: PropTypes.array.isRequired,
 };
 
 const defaultProps = {
@@ -31,11 +31,15 @@ export default class Step extends Component {
     this.props.handleButtonClick(evt);
   }
 
+  display({ visible }) {
+    return visible ? 'block' : 'none';
+  }
+
   render() {
     const { button, headerMarkup, fields } = this.props;
 
     return (
-      <fieldset className="form__container inputs" style={{ display: this.props.visible ? 'block' : 'none' }}>
+      <fieldset className="form__container inputs" style={{ display: this.display(this.props) }}>
         { headerMarkup ? <div dangerouslySetInnerHTML={this._createMarkup(headerMarkup)} /> : '' }
 
         {
@@ -46,7 +50,6 @@ export default class Step extends Component {
                 label={item.title}
                 id={item.id}
                 errorMessage={item.errorMessage} >
-
                 {
                   Factory.getComponent({
                     item,
