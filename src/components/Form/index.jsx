@@ -64,7 +64,6 @@ export default class Form extends Component {
 
     this.updateStep(updatedFields);
 
-    console.log('isValid', isValid )
     if (isValid) {
       this.nextStep(this.state);
     }
