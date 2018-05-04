@@ -6,13 +6,12 @@ import Breadcrumb from './Breadcrumb';
 const propTypes = {
   name: PropTypes.string.isRequired,
   data: PropTypes.object.isRequired,
-  action: PropTypes.string,
+  action: PropTypes.string.isRequired,
   method: PropTypes.string,
 };
 
 const defaultProps = {
   method: 'POST',
-  action: 'http://yourendpoint',
 };
 
 export default class Form extends Component {
@@ -22,6 +21,7 @@ export default class Form extends Component {
     this.state =  {
       activeStep: 0,
       stepsCount: 0,
+      steps: [],
     };
 
     this.sectionStyle = "wall--inverted col-normal-8 col-small-12";
@@ -37,6 +37,7 @@ export default class Form extends Component {
     this.setState({
       activeStep: 0,
       stepsCount: this.props.data.steps.length - 1,
+      steps: this.props.data.steps,
     });
   }
 
@@ -71,17 +72,17 @@ export default class Form extends Component {
   }
 
   render() {
-    const { action, method, name, data } = this.props;
+    const { action, method, name } = this.props;
 
     return (
       <section className={this.sectionStyle}>
         <form noValidate onSubmit={this.handleSubmit} action={action} method={method} name={name} className={this.formStyle}>
           {
-            data.steps.map((step, index) => {
+            this.state.steps.map((step, index) => {
               return (
                 <Step
                   visible={this.isStepVisible(index)}
-                  key={`step-${index}`}
+                  key={`${name}-step-${index}`}
                   step={step}
                   isValidStep={this.isValidStep}
                   isLast={this.isLastStep(index)}
@@ -92,7 +93,7 @@ export default class Form extends Component {
           }
         </form>
 
-        <Breadcrumb active={this.state.activeStep} steps={data.steps}  />
+        <Breadcrumb active={this.state.activeStep} steps={this.state.steps}  />
       </section>
     );
   }
