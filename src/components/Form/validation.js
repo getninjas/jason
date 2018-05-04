@@ -13,7 +13,7 @@ export const isValidPhone = (value) => {
   return regex.test(value.replace(/\D+/g, '').trim());
 };
 
-export const validateValue = ({ required, type, value }) => {
+export const validateField = ({ required, type, value }) => {
   if (required && value === null) {
     return 'This field is required';
   }
@@ -38,7 +38,7 @@ export const validateStep = (fields)=> {
 
   const updatedFields = fields.map((field) => {
     const modifiedField = Object.assign({}, field);
-    const errorMessage = validateValue(modifiedField);
+    const errorMessage = validateField(modifiedField);
 
     if (errorMessage) {
       modifiedField.errorMessage = errorMessage;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Step from '../Step';
 import Breadcrumb from '../Breadcrumb';
-import { validateValue, validateStep } from './validation';
+import { validateField, validateStep } from './validation';
 
 const propTypes = {
   name: PropTypes.string.isRequired,
@@ -80,7 +80,7 @@ export default class Form extends Component {
       const itemID = `${this.props.name}-${item.id}`;
 
       if (itemID === id) {
-        const errorMessage = validateValue({ required, type, value });
+        const errorMessage = validateField({ required, type, value });
 
         return Object.assign({}, item, { value, errorMessage });
       }
