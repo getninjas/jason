@@ -1,6 +1,6 @@
 import validator from 'validator';
 
-const validateValue = ({ required, type, value }) => {
+export const validateValue = ({ required, type, value }) => {
   if (required && value === null) {
     return 'This field is required';
   }
@@ -20,7 +20,7 @@ const validateValue = ({ required, type, value }) => {
   return '';
 }
 
-const validateStep = (fields)=> {
+export const validateStep = (fields)=> {
   let isValid = true;
 
   const updatedFields = fields.map((field) => {
@@ -37,5 +37,3 @@ const validateStep = (fields)=> {
 
   return { updatedFields, isValid };
 }
-
-export { validateValue, validateStep };
