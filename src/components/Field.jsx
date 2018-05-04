@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const propTypes = {
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  children: PropTypes.any.isRequired,
+  children: PropTypes.element.isRequired,
   errorMessage: PropTypes.string,
   value: PropTypes.string,
 };

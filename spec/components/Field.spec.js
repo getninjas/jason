@@ -8,7 +8,11 @@ enzymeConfig();
 
 describe('Field', () => {
   it('renders defaultProps', () => {
-    const component = renderer.create(<Field label={'test'} id={'test'}>Bora pra action</Field>);
+    const component = renderer.create(
+      <Field label={'test'} id={'test'}>
+        <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={()=>{}} />
+      </Field>
+    );
 
     const tree = component.toJSON();
 
@@ -18,7 +22,7 @@ describe('Field', () => {
   it('renders custom props', () => {
     const component = renderer.create(
       <Field label={'test'} id={'test'} errorMessage={'Erro!'}>
-        Bora pra action
+        <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={()=>{}} />
       </Field>
     );
 
@@ -30,7 +34,7 @@ describe('Field', () => {
   it('label htmlFor matches id prop', () => {
     const field = shallow(
       <Field label={'test'} id={'bora-pra-action'}>
-        <Input id={'bora-pra-action'} />
+        <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={()=>{}} />
       </Field>
     );
 
