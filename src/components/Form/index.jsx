@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Step from '../Step';
 import Breadcrumb from '../Breadcrumb';
-import { validateValue, validateStep } from './validaton';
+import { validateValue, validateStep } from './validation';
 
 const propTypes = {
   name: PropTypes.string.isRequired,
