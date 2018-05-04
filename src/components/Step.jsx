@@ -12,6 +12,9 @@ const propTypes = {
   handleButtonClick: PropTypes.func.isRequired,
   isValidStep: PropTypes.func,
   formName: PropTypes.string.isRequired,
+  button: PropTypes.string.isRequired,
+  headerMarkup: PropTypes.string.isRequired,
+  fields: PropTypes.array.isRequired,
 };
 
 const defaultProps = {
@@ -34,7 +37,7 @@ export default class Step extends Component {
   }
 
   onFieldChange({ value, id, required, type }) {
-    const fields = this.state.step.fields.map((item) => {
+    const fields = this.props.fields.map((item) => {
       const itemID = `${this.props.formName}-${item.id}`;
 
       if (itemID === id) {
@@ -78,7 +81,7 @@ export default class Step extends Component {
   get validate() {
     let isValid = true;
 
-    const fields = this.state.step.fields.map((field) => {
+    const fields = this.props.fields.map((field) => {
       const modifiedField = Object.assign({}, field);
 
       const errorMessage = this.validateValue(modifiedField);
@@ -111,7 +114,7 @@ export default class Step extends Component {
   }
 
   render() {
-    const { fields, button, headerMarkup } = this.state.step;
+    const { button, headerMarkup, fields } = this.props;
 
     return (
       <fieldset className="form__container inputs" style={{ display: this.props.visible ? 'block' : 'none' }}>

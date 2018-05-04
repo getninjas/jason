@@ -79,6 +79,8 @@ export default class Form extends Component {
         <form noValidate onSubmit={this.handleSubmit} action={action} method={method} name={name} className={this.formStyle}>
           {
             this.state.steps.map((step, index) => {
+              const { button, headerMarkup, fields } = step;
+
               return (
                 <Step
                   visible={this.isStepVisible(index)}
@@ -87,7 +89,10 @@ export default class Form extends Component {
                   isValidStep={this.isValidStep}
                   isLast={this.isLastStep(index)}
                   handleButtonClick={this.handleButtonClick}
-                  formName={name} />
+                  formName={name}
+                  button={button}
+                  headerMarkup={headerMarkup}
+                  fields={fields} />
               )
             })
           }
