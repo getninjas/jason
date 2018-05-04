@@ -5,15 +5,13 @@ import Button from './Button';
 import Factory from './Factory';
 
 const propTypes = {
-  step: PropTypes.object.isRequired,
-  visible: PropTypes.bool.isRequired,
-  isLast: PropTypes.bool.isRequired,
   handleButtonClick: PropTypes.func.isRequired,
   onFieldChange: PropTypes.func.isRequired,
-  isValidStep: PropTypes.func,
   formName: PropTypes.string.isRequired,
   button: PropTypes.string.isRequired,
   headerMarkup: PropTypes.string.isRequired,
+  visible: PropTypes.bool,
+  isLast: PropTypes.bool,
   fields: PropTypes.array.isRequired,
 };
 
@@ -26,22 +24,11 @@ export default class Step extends Component {
   constructor() {
     super();
 
-    this.state = {
-      step: {},
-      valid: true,
-    };
-
     this.handleStepButtonClick = this.handleStepButtonClick.bind(this);
   }
 
   handleStepButtonClick(evt) {
     this.props.handleButtonClick(evt);
-  }
-
-  componentWillMount() {
-    this.setState({
-      step: this.props.step,
-    });
   }
 
   render() {

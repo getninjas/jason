@@ -160,8 +160,6 @@ export default class Form extends Component {
                 <Step
                   visible={this.isStepVisible(index)}
                   key={`${name}-step-${index}`}
-                  step={step}
-                  isValidStep={this.isValidStep}
                   isLast={this.isLastStep(index)}
                   handleButtonClick={this.handleButtonClick}
                   onFieldChange={this.onFieldChange}
