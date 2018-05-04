@@ -39,8 +39,6 @@ export default class Field extends Component {
 
         { cloneElement(this.props.children, { style: this.style }) }
 
-        {/* { this.props.children } */}
-
         <span className={this.spanStyle}>
           { this.props.errorMessage }
         </span>
