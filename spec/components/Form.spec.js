@@ -95,11 +95,11 @@ describe('Form', () => {
 
 
   describe('.isLastStep', () => {
-    it('returns false for firstStep ', () => {
-      const component = shallow(
-        <Form name={'form'} action={'/'} data={form} />,
-      );
+    const component = shallow(
+      <Form name={'form'} action={'/'} data={form} />,
+    );
 
+    it('returns false for firstStep ', () => {
       const stepOne = component.state().activeStepIndex;
       const stepOneIsLast = component.instance().isLastStep(stepOne);
 
@@ -107,10 +107,6 @@ describe('Form', () => {
     });
 
     it('returns true for secondStep ', () => {
-      const component = shallow(
-        <Form name={'form'} action={'/'} data={form} />,
-      );
-
       const stepTwo = component.state().activeStepIndex + 1;
       const stepTwoIsLast = component.instance().isLastStep(stepTwo);
 
@@ -119,11 +115,11 @@ describe('Form', () => {
   });
 
   describe('.nextStep', () => {
-    it('moves to nextStep', () => {
-      const component = shallow(
-        <Form name={'form'} action={'/'} data={form} />,
-      );
+    const component = shallow(
+      <Form name={'form'} action={'/'} data={form} />,
+    );
 
+    it('moves to nextStep', () => {
       const currentStepIndex = component.state().activeStepIndex;
 
       component.instance().nextStep(component.state());
@@ -132,10 +128,6 @@ describe('Form', () => {
     });
 
     it('stays on the currentStep', () => {
-      const component = shallow(
-        <Form name={'form'} action={'/'} data={form} />,
-      );
-
       component.instance().nextStep(component.state());
 
       const currentStepIndex = component.state().activeStepIndex;
