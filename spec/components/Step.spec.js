@@ -12,11 +12,15 @@ describe('Step', () => {
 
     const component = renderer.create(
       <Step
-        visible={true}
         key={'step'}
-        step={step}
+        buttonText={'next step'}
+        fields={step.fields}
+        formName={'formNameTest'}
+        handleButtonClick={() => { }}
         isLast={false}
-        handleButtonClick={()=>{}}
+        step={step}
+        onFieldChange={() => { }}
+        visible={true}
       />,
     );
 
@@ -30,11 +34,16 @@ describe('Step', () => {
 
     const component = shallow(
       <Step
-        visible={true}
         key={'step'}
-        step={step}
+        buttonText={'next step'}
+        fields={step.fields}
+        formName={'formNameTest'}
+        handleButtonClick={() => { }}
+        headerMarkup={step.headerMarkup}
         isLast={false}
-        handleButtonClick={() => {}}
+        step={step}
+        onFieldChange={() => { }}
+        visible={true}
       />,
     );
 
@@ -48,11 +57,15 @@ describe('Step', () => {
 
     const component = shallow(
       <Step
-        visible={true}
         key={'step'}
-        step={step}
-        isLast={false}
+        buttonText={'next step'}
+        fields={step.fields}
+        formName={'formNameTest'}
         handleButtonClick={() => { }}
+        isLast={false}
+        step={step}
+        onFieldChange={() => { }}
+        visible={true}
       />,
     );
 

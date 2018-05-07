@@ -8,9 +8,9 @@ const propTypes = {
   handleButtonClick: PropTypes.func.isRequired,
   onFieldChange: PropTypes.func.isRequired,
   formName: PropTypes.string.isRequired,
-  button: PropTypes.string.isRequired,
-  headerMarkup: PropTypes.string.isRequired,
+  buttonText: PropTypes.string.isRequired,
   fields: PropTypes.array.isRequired,
+  headerMarkup: PropTypes.string,
   visible: PropTypes.bool,
   isLast: PropTypes.bool,
 };
@@ -36,11 +36,11 @@ export default class Step extends Component {
   }
 
   render() {
-    const { button, headerMarkup, fields } = this.props;
+    const { buttonText, headerMarkup, fields } = this.props;
 
     return (
       <fieldset className="form__container inputs" style={{ display: this.display(this.props) }}>
-        { headerMarkup ? <div dangerouslySetInnerHTML={this._createMarkup(headerMarkup)} /> : '' }
+        {headerMarkup ? <div dangerouslySetInnerHTML={this._createMarkup(headerMarkup)} /> : ''}
 
         {
           fields.map((item, index) => {
@@ -63,7 +63,7 @@ export default class Step extends Component {
           })
         }
 
-        <Button isSubmit={this.props.isLast} handleButtonClick={this.handleStepButtonClick}>{ button }</Button>
+        <Button isSubmit={this.props.isLast} handleButtonClick={this.handleStepButtonClick}>{buttonText}</Button>
       </fieldset>
     );
   }
