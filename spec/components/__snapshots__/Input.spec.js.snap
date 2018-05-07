@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input renders defaultProps 1`] = `
+<input
+  className="form__input"
+  id="idTest"
+  name="nameTest"
+  onChange={[Function]}
+  placeholder="placeholderTest"
+  required="false"
+  title=""
+  type="text"
+  value="ola test value"
+/>
+`;
