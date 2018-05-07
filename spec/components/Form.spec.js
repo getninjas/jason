@@ -6,20 +6,35 @@ import { enzymeConfig, shallow } from '../enzymeConfig';
 
 enzymeConfig();
 
-describe('Form', () => {
-  it('renders custom props', () => {
-    const component = renderer.create(
-      <Form name={'form'} data={form} />,
-    );
+function createNodeMock(element) {
+  if (element.type === 'input') {
+    return {
+      addEventListener() { },
+      value: '',
+    };
+  }
 
-    const tree = component.toJSON();
+  return null;
+}
 
-    expect(tree).toMatchSnapshot();
+function fillStepFields(steps) {
+  return steps.map((step) => {
+    step.fields = step.fields.map((field) => {
+      const updatedField = Object.assign({}, field);
+      updatedField.value = '1111111';
+
+      return updatedField;
+    });
+
+    return step;
   });
+}
 
+describe('Form', () => {
   it('renders defaultProps', () => {
+    const options = { createNodeMock };
     const component = renderer.create(
-      <Form name={'form'} data={form} />,
+      <Form name={'form'} action={'/'} data={form} />, options
     );
 
     const tree = component.toJSON();
@@ -28,13 +43,16 @@ describe('Form', () => {
   });
 
   it('.handleButtonClick', () => {
+    form.steps = fillStepFields(form.steps);
+
     const component = shallow(
-      <Form name={'form'} data={form} />,
+      <Form name={'form'} action={'/'} data={form} />,
     );
 
     const initialStep = component.state().activeStep;
 
-    component.instance().handleButtonClick();
+    const evt = { preventDefault() { } };
+    component.instance().handleButtonClick(evt);
 
     const { activeStep } = component.state();
 
@@ -44,7 +62,7 @@ describe('Form', () => {
 
   it('.isStepVisible', () => {
     const component = shallow(
-      <Form name={'form'} data={form} />,
+      <Form name={'form'} action={'/'} data={form} />,
     );
 
     const stepOneIsVisible = component.instance().isStepVisible(0);
@@ -56,12 +74,13 @@ describe('Form', () => {
 
   it('.isLastStep', () => {
     const component = shallow(
-      <Form name={'form'} data={form} />,
+      <Form name={'form'} action={'/'} data={form} />,
     );
 
     const stepOne = component.state().activeStep;
 
-    component.instance().handleButtonClick();
+    const evt = { preventDefault() { } };
+    component.instance().handleButtonClick(evt);
 
     const stepTwo = component.state().activeStep;
 

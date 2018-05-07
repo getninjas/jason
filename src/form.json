@@ -1,12 +1,12 @@
 {
   "form": {
-    "title": "sadasdasd",
+    "title": "Form Title",
     "databaseId": 81,
     "steps": [
       {
         "title": "General data",
         "breadcrumbTitle": "Your request",
-        "button": "Start request",
+        "buttonText": "Start request",
         "headerMarkup": "<h2 class='widget__title section-title--high-contrast'>Lorem Ipsum is simply dummy text <small>It has survived not</small></h2>",
         "fields": [
           {
@@ -65,7 +65,7 @@
       {
         "title": "User Data",
         "breadcrumbTitle": "Your data",
-        "button": "Finish",
+        "buttonText": "Finish",
         "headerMarkup": "<div class='form__alert-message space-element-large'><img src='https://www.getninjas.com.br/assets/request/phone_call.svg' class='form__icon' alt='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'><h2 class='form__info'>Almost there<small>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's<strong>standard dummy text ever since the 1500s</strong></small></h2></div>",
         "fields": [
           {

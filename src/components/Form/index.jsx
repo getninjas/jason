@@ -120,7 +120,7 @@ export default class Form extends Component {
         <form noValidate onSubmit={this.handleSubmit} action={action} method={method} name={name} className={this.formStyle}>
           {
             this.state.steps.map((step, index) => {
-              const { button, headerMarkup, fields } = step;
+              const { buttonText, headerMarkup, fields } = step;
 
               return (
                 <Step
@@ -130,7 +130,7 @@ export default class Form extends Component {
                   handleButtonClick={this.handleButtonClick}
                   onFieldChange={this.onFieldChange}
                   formName={name}
-                  buttonText={button}
+                  buttonText={buttonText}
                   headerMarkup={headerMarkup}
                   fields={fields} />
               )
