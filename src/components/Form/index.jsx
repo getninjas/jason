@@ -50,16 +50,16 @@ export default class Form extends Component {
   handleSubmit(evt) {
     evt.preventDefault();
 
-    this.validateChangeStep();
+    this.validateStepChange();
   }
 
   handleButtonClick(evt) {
     evt.preventDefault();
 
-    this.validateChangeStep();
+    this.validateStepChange();
   }
 
-  validateChangeStep() {
+  validateStepChange() {
     const { updatedFields, isValid } = validateStep(this.actualStep.fields);
 
     this.updateStep(updatedFields);
