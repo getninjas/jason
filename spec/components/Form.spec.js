@@ -17,7 +17,7 @@ function createNodeMock(element) {
   return null;
 }
 
-function fillStepFields(steps) {
+function fillFormFields(steps) {
   return steps.map((step) => {
     step.fields = step.fields.map((field) => {
       const updatedField = Object.assign({}, field);
@@ -42,22 +42,37 @@ describe('Form', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('.handleButtonClick', () => {
-    form.steps = fillStepFields(form.steps);
+  describe('.handleButtonClick', () => {
+    it('does not display next step', () => {
+      const component = shallow(
+        <Form name={'form'} action={'/'} data={form} />,
+      );
 
-    const component = shallow(
-      <Form name={'form'} action={'/'} data={form} />,
-    );
+      const evt = { preventDefault() { } };
+      component.instance().handleButtonClick(evt);
 
-    const initialStep = component.state().activeStepIndex;
+      const { activeStepIndex } = component.state();
 
-    const evt = { preventDefault() { } };
-    component.instance().handleButtonClick(evt);
+      expect(activeStepIndex).toEqual(0);
+    });
 
-    const { activeStepIndex } = component.state();
+    it('goes to next step', () => {
+      form.steps = fillFormFields(form.steps);
 
-    expect(initialStep).toEqual(0);
-    expect(activeStepIndex).toEqual(initialStep + 1);
+      const component = shallow(
+        <Form name={'form'} action={'/'} data={form} />,
+      );
+
+      const initialStep = component.state().activeStepIndex;
+
+      const evt = { preventDefault() { } };
+      component.instance().handleButtonClick(evt);
+
+      const { activeStepIndex } = component.state();
+
+      expect(initialStep).toEqual(0);
+      expect(activeStepIndex).toEqual(initialStep + 1);
+    });
   });
 
   it('.isStepVisible', () => {
