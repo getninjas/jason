@@ -130,7 +130,7 @@ export default class Form extends Component {
                   handleButtonClick={this.handleButtonClick}
                   onFieldChange={this.onFieldChange}
                   formName={name}
-                  button={button}
+                  buttonText={button}
                   headerMarkup={headerMarkup}
                   fields={fields} />
               )
