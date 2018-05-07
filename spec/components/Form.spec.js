@@ -136,4 +136,27 @@ describe('Form', () => {
       expect(currentStepIndex).toBe(component.state().activeStepIndex);
     });
   });
+
+  describe('.handleStepChange', () => {
+    const component = shallow(
+      <Form name={'form'} action={'/'} data={form} />,
+    );
+
+    it('moves to nextStep', () => {
+      const currentStepIndex = component.state().activeStepIndex;
+
+      component.instance().nextStep(component.state());
+
+      expect(component.state().activeStepIndex).toBe(currentStepIndex + 1);
+    });
+
+    it('stays on the currentStep', () => {
+      component.instance().nextStep(component.state());
+
+      const currentStepIndex = component.state().activeStepIndex;
+      component.instance().nextStep(component.state());
+
+      expect(currentStepIndex).toBe(component.state().activeStepIndex);
+    });
+  });
 });
