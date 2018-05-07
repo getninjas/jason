@@ -75,34 +75,46 @@ describe('Form', () => {
     });
   });
 
-  it('.isStepVisible', () => {
+  describe('.isStepVisible', () => {
     const component = shallow(
       <Form name={'form'} action={'/'} data={form} />,
     );
 
-    const stepOneIsVisible = component.instance().isStepVisible(0);
-    const stepTwoIsVisible = component.instance().isStepVisible(1);
+    it('returns true for activeStepIndex', () => {
+      const stepOneIsVisible = component.instance().isStepVisible(component.state().activeStepIndex);
 
-    expect(stepOneIsVisible).toBe(true);
-    expect(stepTwoIsVisible).toBe(false);
+      expect(stepOneIsVisible).toBe(true);
+    });
+
+    it('returns false for secondStep', () => {
+      const stepTwoIsVisible = component.instance().isStepVisible(component.state().activeStepIndex + 1);
+
+      expect(stepTwoIsVisible).toBe(false);
+    });
   });
 
-  it('.isLastStep', () => {
-    const component = shallow(
-      <Form name={'form'} action={'/'} data={form} />,
-    );
 
-    const stepOne = component.state().activeStepIndex;
+  describe('.isLastStep', () => {
+    it('returns false for firstStep ', () => {
+      const component = shallow(
+        <Form name={'form'} action={'/'} data={form} />,
+      );
 
-    const evt = { preventDefault() { } };
-    component.instance().handleButtonClick(evt);
+      const stepOne = component.state().activeStepIndex;
+      const stepOneIsLast = component.instance().isLastStep(stepOne);
 
-    const stepTwo = component.state().activeStepIndex;
+      expect(stepOneIsLast).toBe(false);
+    });
 
-    const stepOneIsLast = component.instance().isLastStep(stepOne);
-    const stepTwoIsLast = component.instance().isLastStep(stepTwo);
+    it('returns true for secondStep ', () => {
+      const component = shallow(
+        <Form name={'form'} action={'/'} data={form} />,
+      );
 
-    expect(stepOneIsLast).toBe(false);
-    expect(stepTwoIsLast).toBe(true);
+      const stepTwo = component.state().activeStepIndex + 1;
+      const stepTwoIsLast = component.instance().isLastStep(stepTwo);
+
+      expect(stepTwoIsLast).toBe(true);
+    });
   });
 });
