@@ -13,7 +13,7 @@ export const isValidZipcode = (value) => {
   return regex.test(value.trim());
 };
 
-export const isValidPhone = (value) => {
+export const isValidCellPhone = (value) => {
   const regex = /^\d{2}[6-9]{1}[0-9]{8}$/g;
   return regex.test(value.replace(/\D+/g, '').trim());
 };
@@ -23,7 +23,7 @@ export const validateField = ({ required, type, value }) => {
     return 'Este campo é requerido';
   }
 
-  if (type === 'phone' && (isEmpty(value) || !isValidPhone(value))) {
+  if (type === 'phone' && (isEmpty(value) || !isValidCellPhone(value))) {
     return 'Celular válido requerido';
   }
 
