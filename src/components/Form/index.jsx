@@ -20,7 +20,7 @@ export default class Form extends Component {
     super();
 
     this.state = {
-      activeStep: 0,
+      activeStepIndex: 0,
       stepsCount: 0,
       steps: [],
     };
@@ -33,15 +33,15 @@ export default class Form extends Component {
     this.onFieldChange = this.onFieldChange.bind(this);
   }
 
-  get actualStep() {
-    const { steps, activeStep } = this.state;
+  get currentStep() {
+    const { steps, activeStepIndex } = this.state;
 
-    return steps[activeStep];
+    return steps[activeStepIndex];
   }
 
   componentDidMount() {
     this.setState({
-      activeStep: 0,
+      activeStepIndex: 0,
       stepsCount: this.props.data.steps.length - 1,
       steps: this.props.data.steps,
     });
@@ -60,7 +60,7 @@ export default class Form extends Component {
   }
 
   validateStepChange() {
-    const { updatedFields, isValid } = validateStep(this.actualStep.fields);
+    const { updatedFields, isValid } = validateStep(this.currentStep.fields);
 
     this.updateStep(updatedFields);
 
@@ -69,14 +69,14 @@ export default class Form extends Component {
     }
   }
 
-  nextStep({ activeStep, stepsCount }) {
-    if (activeStep < stepsCount) {
-      this.setState({ activeStep: activeStep + 1 });
+  nextStep({ activeStepIndex, stepsCount }) {
+    if (activeStepIndex < stepsCount) {
+      this.setState({ activeStepIndex: activeStepIndex + 1 });
     }
   }
 
   onFieldChange({ value, id, required, type }) {
-    const fields = this.actualStep.fields.map((item) => {
+    const fields = this.currentStep.fields.map((item) => {
       const itemID = `${this.props.name}-${item.id}`;
 
       if (itemID === id) {
@@ -92,12 +92,12 @@ export default class Form extends Component {
   }
 
   updateStep(fields) {
-    const { steps, activeStep } = this.state;
+    const { steps, activeStepIndex } = this.state;
 
     let modifiedSteps = [...steps];
-    let modifiedStep = Object.assign({}, modifiedSteps[activeStep], { fields });
+    let modifiedStep = Object.assign({}, modifiedSteps[activeStepIndex], { fields });
 
-    modifiedSteps[activeStep] = modifiedStep;
+    modifiedSteps[activeStepIndex] = modifiedStep;
 
     this.setState({
       steps: modifiedSteps,
@@ -105,7 +105,7 @@ export default class Form extends Component {
   }
 
   isStepVisible(index) {
-    return this.state.activeStep === index;
+    return this.state.activeStepIndex === index;
   }
 
   isLastStep(index) {
@@ -138,7 +138,7 @@ export default class Form extends Component {
           }
         </form>
 
-        <Breadcrumb active={this.state.activeStep} steps={this.state.steps} />
+        <Breadcrumb active={this.state.activeStepIndex} steps={this.state.steps} />
       </section>
     );
   }

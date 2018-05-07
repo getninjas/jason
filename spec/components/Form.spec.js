@@ -49,15 +49,15 @@ describe('Form', () => {
       <Form name={'form'} action={'/'} data={form} />,
     );
 
-    const initialStep = component.state().activeStep;
+    const initialStep = component.state().activeStepIndex;
 
     const evt = { preventDefault() { } };
     component.instance().handleButtonClick(evt);
 
-    const { activeStep } = component.state();
+    const { activeStepIndex } = component.state();
 
     expect(initialStep).toEqual(0);
-    expect(activeStep).toEqual(initialStep + 1);
+    expect(activeStepIndex).toEqual(initialStep + 1);
   });
 
   it('.isStepVisible', () => {
@@ -77,12 +77,12 @@ describe('Form', () => {
       <Form name={'form'} action={'/'} data={form} />,
     );
 
-    const stepOne = component.state().activeStep;
+    const stepOne = component.state().activeStepIndex;
 
     const evt = { preventDefault() { } };
     component.instance().handleButtonClick(evt);
 
-    const stepTwo = component.state().activeStep;
+    const stepTwo = component.state().activeStepIndex;
 
     const stepOneIsLast = component.instance().isLastStep(stepOne);
     const stepTwoIsLast = component.instance().isLastStep(stepTwo);
