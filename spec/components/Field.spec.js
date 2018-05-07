@@ -9,20 +9,8 @@ enzymeConfig();
 describe('Field', () => {
   it('renders defaultProps', () => {
     const component = renderer.create(
-      <Field label={'test'} id={'test'}>
-        <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={()=>{}} />
-      </Field>
-    );
-
-    const tree = component.toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-
-  it('renders custom props', () => {
-    const component = renderer.create(
-      <Field label={'test'} id={'test'} errorMessage={'Erro!'}>
-        <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={()=>{}} />
+      <Field label={'test'} id={'test'} errorMessage={'Erro!'} value={'test value'}>
+        <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={() => { }} />
       </Field>
     );
 
@@ -32,12 +20,38 @@ describe('Field', () => {
   });
 
   it('label htmlFor matches id prop', () => {
-    const field = shallow(
+    const component = shallow(
       <Field label={'test'} id={'bora-pra-action'}>
-        <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={()=>{}} />
+        <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={() => { }} />
       </Field>
     );
 
-    expect(field.find('label').prop('htmlFor')).toEqual('bora-pra-action');
+    expect(component.find('label').prop('htmlFor')).toEqual('bora-pra-action');
   });
+
+  describe('.style', () => {
+    describe('with erroMessage', () => {
+      it('returns string containing --invalid', () => {
+        const component = shallow(
+          <Field label={'test'} id={'bora-pra-action'} errorMessage={'Erro!'}>
+            <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={() => { }} />
+          </Field>
+        );
+
+        expect(component.instance().style).toMatch(/--invalid/);
+      });
+    });
+
+    describe('without erroMessage', () => {
+      it('returns string not containing --invalid', () => {
+        const component = shallow(
+          <Field label={'test'} id={'bora-pra-action'}>
+            <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={() => { }} />
+          </Field>
+        );
+
+        expect(component.instance().style).not.toMatch(/--invalid/);
+      });
+    });
+  })
 });
