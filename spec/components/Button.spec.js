@@ -14,19 +14,6 @@ describe('Button', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('renders custom props', () => {
-    const component = renderer.create(
-      <Button
-        isSubmit={true}
-        handleButtonClick={()=>{}}
-      >Custom</Button>,
-    );
-
-    const tree = component.toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-
   describe('when prop submit is true', () => {
     it('renders button with type=submit', () => {
       const component = shallow(<Button isSubmit={true} handleButtonClick={() => { }}>Test</Button>);

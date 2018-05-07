@@ -6,6 +6,14 @@ import { enzymeConfig, shallow } from '../enzymeConfig';
 enzymeConfig();
 
 describe('TextArea', () => {
+  it('renders defaultProps', () => {
+    const component = renderer.create(<TextArea onFieldChange={()=>{}}/>);
+
+    const tree = component.toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
   it('renders custom props', () => {
     const component = renderer.create(
       <TextArea
@@ -17,14 +25,6 @@ describe('TextArea', () => {
         value={'ola test value'}
       />,
     );
-
-    const tree = component.toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-
-  it('renders defaultProps', () => {
-    const component = renderer.create(<TextArea onFieldChange={()=>{}}/>);
 
     const tree = component.toJSON();
 

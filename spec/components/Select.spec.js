@@ -4,6 +4,14 @@ import Select from '../../src/components/Select';
 import { form } from '../../src/form.json';
 
 describe('Select', () => {
+  it('renders defaultProps', () => {
+    const component = renderer.create(<Select onFieldChange={()=>{}} />);
+
+    const tree = component.toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
   it('renders custom props', () => {
     const values = form.steps[0].fields[0].values.slice(0, 2);
 
@@ -17,14 +25,6 @@ describe('Select', () => {
         values={values}
       />,
     );
-
-    const tree = component.toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-
-  it('renders defaultProps', () => {
-    const component = renderer.create(<Select onFieldChange={()=>{}} />);
 
     const tree = component.toJSON();
 
