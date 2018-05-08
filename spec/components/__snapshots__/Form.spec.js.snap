@@ -93,6 +93,8 @@ exports[`Form renders defaultProps 1`] = `
         <input
           className="form__input"
           id="form-2_id"
+          maxLength={5}
+          minLength={3}
           name="2_name_text"
           onChange={[Function]}
           placeholder="Bora pra action"
@@ -119,6 +121,8 @@ exports[`Form renders defaultProps 1`] = `
         <textarea
           className="form__input"
           id="form-3_id"
+          maxLength={255}
+          minLength={3}
           name="3_name_textarea"
           onChange={[Function]}
           placeholder="Descreva o que você precisa"
@@ -167,6 +171,8 @@ exports[`Form renders defaultProps 1`] = `
         <input
           className="form__input"
           id="form-user_field_1"
+          maxLength={5}
+          minLength={3}
           name="user_field_1"
           onChange={[Function]}
           placeholder=""
@@ -193,6 +199,8 @@ exports[`Form renders defaultProps 1`] = `
         <input
           className="form__input"
           id="form-user_field_2"
+          maxLength={5}
+          minLength={3}
           name="user_field_2"
           onChange={[Function]}
           placeholder=""
@@ -219,6 +227,8 @@ exports[`Form renders defaultProps 1`] = `
         <input
           className="form__input"
           id="form-user_field_3"
+          maxLength={5}
+          minLength={3}
           name="user_field_3"
           onChange={[Function]}
           placeholder="Ex: nome@email.com"
@@ -245,6 +255,8 @@ exports[`Form renders defaultProps 1`] = `
         <input
           className="form__input"
           id="form-user_field_4"
+          maxLength={5}
+          minLength={3}
           name="user_field_4"
           onChange={[Function]}
           placeholder=""

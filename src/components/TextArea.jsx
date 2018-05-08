@@ -10,6 +10,8 @@ const propTypes = {
   required: PropTypes.bool,
   value: PropTypes.any,
   style: PropTypes.string,
+  minLength: PropTypes.number,
+  maxLength: PropTypes.number,
 };
 
 const defaultProps = {
@@ -20,6 +22,8 @@ const defaultProps = {
   required: false,
   value: '',
   style: 'form__input',
+  minLength: 3,
+  maxLength: 255,
 };
 
 export default class TextArea extends Component {
@@ -55,6 +59,8 @@ export default class TextArea extends Component {
       placeholder,
       required,
       style,
+      minLength,
+      maxLength,
     } = this.props;
 
     return (
@@ -66,7 +72,9 @@ export default class TextArea extends Component {
         placeholder={placeholder}
         required={required}
         value={this.state.value}
-        onChange={this.onChange} />
+        onChange={this.onChange}
+        minLength={minLength}
+        maxLength={maxLength} />
     );
   }
 }

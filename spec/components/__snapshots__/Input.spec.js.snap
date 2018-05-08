@@ -4,6 +4,8 @@ exports[`Input renders defaultProps 1`] = `
 <input
   className="form__input"
   id="idTest"
+  maxLength={5}
+  minLength={3}
   name="nameTest"
   onChange={[Function]}
   placeholder="placeholderTest"

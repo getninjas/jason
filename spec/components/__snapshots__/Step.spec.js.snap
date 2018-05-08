@@ -76,6 +76,8 @@ exports[`Step renders with props 1`] = `
     <input
       className="form__input"
       id="formNameTest-2_id"
+      maxLength={5}
+      minLength={3}
       name="2_name_text"
       onChange={[Function]}
       placeholder="Bora pra action"
@@ -102,6 +104,8 @@ exports[`Step renders with props 1`] = `
     <textarea
       className="form__input"
       id="formNameTest-3_id"
+      maxLength={255}
+      minLength={3}
       name="3_name_textarea"
       onChange={[Function]}
       placeholder="Descreva o que você precisa"
