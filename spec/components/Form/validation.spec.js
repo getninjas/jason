@@ -1,4 +1,4 @@
-import { isEmpty, isMinLength, isValidEmail, isValidZipcode, isValidCellPhone } from '../../../src/components/Form/validation';
+import { isEmpty, isMinLength, isValidEmail, isValidZipcode, isValidCellPhone, validateField } from '../../../src/components/Form/validation';
 
 describe('.isEmpty', () => {
   it('returns true for empty string', () => {
@@ -125,3 +125,54 @@ describe('.isValidCellPhone', () => {
     expect(result).toBe(true);
   });
 });
+
+describe('.validateField', () => {
+  it('returns error message: Este campo é requerido', () => {
+    const result = validateField({ required: true, value: null });
+
+    expect(result).toBe('Este campo é requerido');
+  });
+
+  it('returns error message for empty cellphone: Celular válido requerido', () => {
+    const result = validateField({ required: true, type: 'phone', value: '' });
+
+    expect(result).toBe('Celular válido requerido');
+  });
+
+  it('returns error message for invalid cellphone: Celular válido requerido', () => {
+    const result = validateField({ required: true, type: 'phone', value: '(11) 5367-8741' });
+
+    expect(result).toBe('Celular válido requerido');
+  });
+
+  it('returns error message for invalid email: E-mail válido requerido', () => {
+    const result = validateField({ required: true, type: 'email', value: 'xpto@' });
+
+    expect(result).toBe('E-mail válido requerido');
+  });
+
+  it('returns error message for invalid zipcode: CEP válido requerido', () => {
+    const result = validateField({ required: true, type: 'zipcode', value: '1111-111' });
+
+    expect(result).toBe('CEP válido requerido');
+  });
+
+  it('returns error message for empty value: Este campo é requerido', () => {
+    const result = validateField({ required: true, value: '' });
+
+    expect(result).toBe('Este campo é requerido');
+  });
+
+  it('returns error message for value smaller than minlength', () => {
+    const result = validateField({ required: true, value: 'ab', minLength: 3 });
+
+    expect(result).toBe('Este campo requer ao menos 3 caracteres.');
+  });
+
+  it('returns empty error message', () => {
+    const result = validateField({ required: true, type: 'text', value: 'xpto', minLength: 3 });
+
+    expect(result).toBe('');
+  });
+});
+
