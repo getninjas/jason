@@ -7,15 +7,7 @@ enzymeConfig();
 
 describe('TextArea', () => {
   it('renders defaultProps', () => {
-    const component = renderer.create(<TextArea onFieldChange={()=>{}}/>);
-
-    const tree = component.toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-
-  it('renders custom props', () => {
-    const component = renderer.create(
+   const component = renderer.create(
       <TextArea
         id={'idTest'}
         name={'nameTest'}
