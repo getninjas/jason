@@ -1,6 +1,7 @@
 import { isEmpty, isMinLength, isValidEmail, isValidZipcode, isValidCellPhone, validateField, validateStep } from '../../../src/components/Form/validation';
 import { form } from '../../../src/form.json';
 import fillFormFields from '../../helper';
+import errorMessages from '../../../src/helpers/errorMessages';
 
 describe('.isEmpty', () => {
   it('returns true for empty string', () => {
@@ -132,43 +133,43 @@ describe('.validateField', () => {
   it('returns error message: Este campo é requerido', () => {
     const result = validateField({ required: true, value: null });
 
-    expect(result).toBe('Este campo é requerido');
+    expect(result).toBe(errorMessages.REQUIRED_FIELD);
   });
 
   it('returns error message for empty cellphone: Celular válido requerido', () => {
     const result = validateField({ required: true, type: 'phone', value: '' });
 
-    expect(result).toBe('Celular válido requerido');
+    expect(result).toBe(errorMessages.REQUIRED_VALID_CELLPHONE);
   });
 
   it('returns error message for invalid cellphone: Celular válido requerido', () => {
     const result = validateField({ required: true, type: 'phone', value: '(11) 5367-8741' });
 
-    expect(result).toBe('Celular válido requerido');
+    expect(result).toBe(errorMessages.REQUIRED_VALID_CELLPHONE);
   });
 
   it('returns error message for invalid email: E-mail válido requerido', () => {
     const result = validateField({ required: true, type: 'email', value: 'xpto@' });
 
-    expect(result).toBe('E-mail válido requerido');
+    expect(result).toBe(errorMessages.REQUIRED_VALID_EMAIL);
   });
 
   it('returns error message for invalid zipcode: CEP válido requerido', () => {
     const result = validateField({ required: true, type: 'zipcode', value: '1111-111' });
 
-    expect(result).toBe('CEP válido requerido');
+    expect(result).toBe(errorMessages.REQUIRED_VALID_ZIPCODE);
   });
 
   it('returns error message for empty value: Este campo é requerido', () => {
     const result = validateField({ required: true, value: '' });
 
-    expect(result).toBe('Este campo é requerido');
+    expect(result).toBe(errorMessages.REQUIRED_FIELD);
   });
 
   it('returns error message for value smaller than minlength', () => {
     const result = validateField({ required: true, value: 'ab', minLength: 3 });
 
-    expect(result).toBe('Este campo requer ao menos 3 caracteres.');
+    expect(result).toBe(errorMessages.REQUIRED_MINLENGHT(3));
   });
 
   it('returns empty error message', () => {

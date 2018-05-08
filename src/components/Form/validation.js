@@ -1,3 +1,5 @@
+import errorMessage from '../../../src/helpers/errorMessages';
+
 export const isEmpty = (value) => {
   const regex = /^\s*$/;
   return regex.test(value.trim());
@@ -24,27 +26,27 @@ export const isValidCellPhone = (value) => {
 
 export const validateField = ({ required, type, value, minLength }) => {
   if (required && value === null) {
-    return 'Este campo é requerido';
+    return errorMessage.REQUIRED_FIELD;
   }
 
   if (type === 'phone' && (isEmpty(value) || !isValidCellPhone(value))) {
-    return 'Celular válido requerido';
+    return errorMessage.REQUIRED_VALID_CELLPHONE;
   }
 
   if (type === 'email' && !isValidEmail(value)) {
-    return 'E-mail válido requerido';
+    return errorMessage.REQUIRED_VALID_EMAIL;
   }
 
   if (type === 'zipcode' && !isValidZipcode(value)) {
-    return 'CEP válido requerido';
+    return errorMessage.REQUIRED_VALID_ZIPCODE;
   }
 
   if (required && isEmpty(value)) {
-    return 'Este campo é requerido';
+    return errorMessage.REQUIRED_FIELD;
   }
 
   if (required && isMinLength(value, minLength)) {
-    return `Este campo requer ao menos ${minLength} caracteres.`;
+    return errorMessage.REQUIRED_MINLENGHT(minLength);
   }
 
   return '';
