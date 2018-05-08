@@ -1,4 +1,4 @@
-import { isEmpty, isMinLength } from '../../../src/components/Form/validation';
+import { isEmpty, isMinLength, isValidEmail } from '../../../src/components/Form/validation';
 
 describe('.isEmpty', () => {
   it('returns true for empty string', () => {
@@ -27,5 +27,55 @@ describe('.isMinLength', () => {
     const result = isMinLength('xp', minLength);
 
     expect(result).toBe(true);
+  });
+});
+
+describe('.isValidEmail', () => {
+  it('returns true for mitch@nbc.com', () => {
+    const result = isValidEmail('mitch@nbc.com');
+
+    expect(result).toBe(true);
+  });
+
+  it('returns true for ion.drimba@getninjas.com.br', () => {
+    const result = isValidEmail('ion.drimba@getninjas.com.br');
+
+    expect(result).toBe(true);
+  });
+
+  it('returns true for mitch-able@nbc.com', () => {
+    const result = isValidEmail('mitch-able@nbc.com');
+
+    expect(result).toBe(true);
+  });
+
+  it('returns false for \\xpto@ig.com', () => {
+    const result = isValidEmail('\\xpto@ig.com');
+
+    expect(result).toBe(false);
+  });
+
+  it('returns false for a...a@ig,com', () => {
+    const result = isValidEmail('a...a@ig,com');
+
+    expect(result).toBe(false);
+  });
+
+  it('returns false for empty email', () => {
+    const result = isValidEmail('');
+
+    expect(result).toBe(false);
+  });
+
+  it('returns false for xpto@', () => {
+    const result = isValidEmail('xpto@');
+
+    expect(result).toBe(false);
+  });
+
+  it('returns false for xpto@gmail', () => {
+    const result = isValidEmail('xpto@gmail');
+
+    expect(result).toBe(false);
   });
 });
