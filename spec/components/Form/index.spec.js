@@ -196,8 +196,8 @@ describe('Form', () => {
 
       const initialState = component.instance().state;
 
-      const evt = { preventDefault() { } };
-      component.instance().handleButtonClick(evt);
+      const field = { value: '', id: 'form-2_id', required: true, type: 'text', minLength: 3 }
+      component.instance().onFieldChange(field);
 
       const updatedState = component.instance().state;
 
