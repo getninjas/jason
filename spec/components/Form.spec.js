@@ -109,7 +109,6 @@ describe('Form', () => {
     });
   });
 
-
   describe('.isLastStep', () => {
     const component = shallow(
       <Form name={'form'} action={'/'} data={form} />,
@@ -168,4 +167,34 @@ describe('Form', () => {
       expect(component.instance().nextStep).not.toBeCalled();
     });
   });
+
+  describe('.onFieldChange', () => {
+    it('calls .updateStep', () => {
+      const component = shallow(
+        <Form name={'form'} action={'/'} data={form} />,
+      );
+
+      component.instance().updateStep = jest.fn();
+
+      const evt = { preventDefault() { } };
+      component.instance().handleButtonClick(evt);
+
+      expect(component.instance().updateStep).toBeCalled();
+    });
+
+    it('expects initial state to differ from current state', () => {
+      const component = shallow(
+        <Form name={'form'} action={'/'} data={form} />,
+      );
+
+      const initialState = component.instance().state;
+
+      const evt = { preventDefault() { } };
+      component.instance().handleButtonClick(evt);
+
+      const updatedState = component.instance().state;
+
+      expect(initialState).not.toEqual(updatedState);
+    });
+  })
 });
