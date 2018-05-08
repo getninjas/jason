@@ -1,8 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Form from '../../src/components/Form';
-import { form } from '../../src/form.json';
-import { enzymeConfig, shallow } from '../enzymeConfig';
+import Form from '../../../src/components/Form';
+import { form } from '../../../src/form.json';
+import { enzymeConfig, shallow } from '../../enzymeConfig';
 
 enzymeConfig();
 
