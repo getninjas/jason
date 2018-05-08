@@ -52,6 +52,24 @@ describe('Input', () => {
     expect(component.instance().state.value).toEqual('Bora pra action');
   });
 
+  it('retrains input text to maxLenght', () => {
+    const component = mount(
+      <Input
+        id={'idTest'}
+        name={'nameTest'}
+        onFieldChange={()=>{}}
+        placeholder={'placeholderTest'}
+        required={false}
+        value={''}
+        maxLength={5}
+      />
+    );
+
+    component.simulate('change', { target: { value: 'Bora pra action' } });
+
+    expect(component.instance().state.value).toHaveLength(5);
+  });
+
   describe('with type', () => {
     it('renders type text', () => {
       const component = shallow(<Input id={'id_input'} name={'input_name'} onFieldChange={()=>{}}/>);

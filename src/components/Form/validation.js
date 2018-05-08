@@ -3,6 +3,10 @@ export const isEmpty = (value) => {
   return regex.test(value.trim());
 };
 
+export const isMinLength = (text, length) => {
+  return text.length < length;
+}
+
 export const isValidEmail = (value) => {
   const regex = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
   return regex.test(value.trim());
@@ -18,7 +22,7 @@ export const isValidCellPhone = (value) => {
   return regex.test(value.replace(/\D+/g, '').trim());
 };
 
-export const validateField = ({ required, type, value }) => {
+export const validateField = ({ required, type, value, minLength }) => {
   if (required && value === null) {
     return 'Este campo é requerido';
   }
@@ -35,7 +39,7 @@ export const validateField = ({ required, type, value }) => {
     return 'CEP válido requerido';
   }
 
-  if (required && isEmpty(value)) {
+  if (required && isEmpty(value) || isMinLength(value, minLength)) {
     return 'Este campo é requerido';
   }
 

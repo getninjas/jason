@@ -1,6 +1,7 @@
 import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import IMask from 'imask';
+import maxLength from '../helpers/input';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
@@ -40,16 +41,17 @@ export default class Input extends Component {
   }
 
   onChange(evt) {
-    console.log('onChange', evt.target.value);
+    const inputValue = maxLength(evt.target.value, this.props.maxLength);
 
     this.props.onFieldChange({
-      value: evt.target.value,
+      value: inputValue,
       id: this.props.id,
       required: this.props.required,
       type: this.props.type,
+      minLength: this.props.minLength,
     });
 
-    this.setState({ value: evt.target.value });
+    this.setState({ value: inputValue });
   }
 
   componentDidMount() {
