@@ -24,7 +24,7 @@ const defaultProps = {
   value: '',
   style: 'form__input',
   minLength: 3,
-  maxLength: 5,
+  maxLength: 255,
 };
 
 export default class Input extends Component {
@@ -40,6 +40,8 @@ export default class Input extends Component {
   }
 
   onChange(evt) {
+    console.log('onChange', evt.target.value);
+
     this.props.onFieldChange({
       value: evt.target.value,
       id: this.props.id,

@@ -18,15 +18,15 @@ function createNodeMock(element) {
 }
 
 function fillFormFields(steps) {
-  return steps.map((step) => {
-    step.fields = step.fields.map((field) => {
+  return [...steps].map((step) => {
+    const fields = step.fields.map((field) => {
       const updatedField = Object.assign({}, field);
       updatedField.value = '1111111';
 
       return updatedField;
     });
 
-    return step;
+    return Object.assign({}, {...step}, { fields });
   });
 }
 
@@ -43,6 +43,19 @@ describe('Form', () => {
   });
 
   describe('.handleButtonClick', () => {
+    it('calls .handleStepChange', () => {
+      const component = shallow(
+        <Form name={'form'} action={'/'} data={form} />,
+      );
+
+      component.instance().handleStepChange = jest.fn();
+
+      const evt = { preventDefault() { } };
+      component.instance().handleButtonClick(evt);
+
+      expect(component.instance().handleStepChange).toBeCalled();
+    });
+
     it('does not display next step', () => {
       const component = shallow(
         <Form name={'form'} action={'/'} data={form} />,
@@ -57,10 +70,13 @@ describe('Form', () => {
     });
 
     it('goes to next step', () => {
-      form.steps = fillFormFields(form.steps);
+      const steps = [...form.steps];
+      const data = Object.assign({}, { steps });
+
+      data.steps = fillFormFields(data.steps);
 
       const component = shallow(
-        <Form name={'form'} action={'/'} data={form} />,
+        <Form name={'form'} action={'/'} data={data} />,
       );
 
       const initialStep = component.state().activeStepIndex;
@@ -142,21 +158,14 @@ describe('Form', () => {
       <Form name={'form'} action={'/'} data={form} />,
     );
 
-    it('moves to nextStep', () => {
-      const currentStepIndex = component.state().activeStepIndex;
+    it('calls .updateStep', () => {
+      component.instance().updateStep = jest.fn();
+      component.instance().nextStep = jest.fn();
 
-      component.instance().nextStep(component.state());
+      component.instance().handleStepChange();
 
-      expect(component.state().activeStepIndex).toBe(currentStepIndex + 1);
-    });
-
-    it('stays on the currentStep', () => {
-      component.instance().nextStep(component.state());
-
-      const currentStepIndex = component.state().activeStepIndex;
-      component.instance().nextStep(component.state());
-
-      expect(currentStepIndex).toBe(component.state().activeStepIndex);
+      expect(component.instance().updateStep).toBeCalled();
+      expect(component.instance().nextStep).not.toBeCalled();
     });
   });
 });

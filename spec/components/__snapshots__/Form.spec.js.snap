@@ -93,7 +93,7 @@ exports[`Form renders defaultProps 1`] = `
         <input
           className="form__input"
           id="form-2_id"
-          maxLength={5}
+          maxLength={255}
           minLength={3}
           name="2_name_text"
           onChange={[Function]}
@@ -171,7 +171,7 @@ exports[`Form renders defaultProps 1`] = `
         <input
           className="form__input"
           id="form-user_field_1"
-          maxLength={5}
+          maxLength={255}
           minLength={3}
           name="user_field_1"
           onChange={[Function]}
@@ -199,7 +199,7 @@ exports[`Form renders defaultProps 1`] = `
         <input
           className="form__input"
           id="form-user_field_2"
-          maxLength={5}
+          maxLength={255}
           minLength={3}
           name="user_field_2"
           onChange={[Function]}
@@ -227,7 +227,7 @@ exports[`Form renders defaultProps 1`] = `
         <input
           className="form__input"
           id="form-user_field_3"
-          maxLength={5}
+          maxLength={255}
           minLength={3}
           name="user_field_3"
           onChange={[Function]}
@@ -255,7 +255,7 @@ exports[`Form renders defaultProps 1`] = `
         <input
           className="form__input"
           id="form-user_field_4"
-          maxLength={5}
+          maxLength={255}
           minLength={3}
           name="user_field_4"
           onChange={[Function]}

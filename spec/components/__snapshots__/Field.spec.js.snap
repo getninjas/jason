@@ -13,7 +13,7 @@ exports[`Field renders defaultProps 1`] = `
   <input
     className="form__input form__input--invalid"
     id="bora-pra-action"
-    maxLength={5}
+    maxLength={255}
     minLength={3}
     name="nameTest"
     onChange={[Function]}

@@ -76,7 +76,7 @@ exports[`Step renders with props 1`] = `
     <input
       className="form__input"
       id="formNameTest-2_id"
-      maxLength={5}
+      maxLength={255}
       minLength={3}
       name="2_name_text"
       onChange={[Function]}
