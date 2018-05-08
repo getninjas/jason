@@ -1,4 +1,4 @@
-import { isEmpty, isMinLength, isValidEmail, isValidZipcode } from '../../../src/components/Form/validation';
+import { isEmpty, isMinLength, isValidEmail, isValidZipcode, isValidCellPhone } from '../../../src/components/Form/validation';
 
 describe('.isEmpty', () => {
   it('returns true for empty string', () => {
@@ -95,6 +95,32 @@ describe('.isValidZipcode', () => {
 
   it('returns true for zipcode 05402-300', () => {
     const result = isValidZipcode('05402-300');
+
+    expect(result).toBe(true);
+  });
+});
+
+describe('.isValidCellPhone', () => {
+  it('returns false for empty cellphone', () => {
+    const result = isValidCellPhone('');
+
+    expect(result).toBe(false);
+  });
+
+  it('returns false for landline (11) 5181-5683', () => {
+    const result = isValidCellPhone('(11) 5181-5683');
+
+    expect(result).toBe(false);
+  });
+
+  it('returns false for cellphone (11) 9181-3567', () => {
+    const result = isValidCellPhone('(11) 9181-3567');
+
+    expect(result).toBe(false);
+  });
+
+  it('returns true for cellphone (11) 99654-1515', () => {
+    const result = isValidCellPhone('(11) 99654-1515');
 
     expect(result).toBe(true);
   });
