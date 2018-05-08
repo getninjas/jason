@@ -153,11 +153,11 @@ describe('Form', () => {
   });
 
   describe('.handleStepChange', () => {
-    const component = shallow(
-      <Form name={'form'} action={'/'} data={form} />,
-    );
-
     it('calls .updateStep', () => {
+      const component = shallow(
+        <Form name={'form'} action={'/'} data={form} />,
+      );
+
       component.instance().updateStep = jest.fn();
       component.instance().nextStep = jest.fn();
 
@@ -165,6 +165,25 @@ describe('Form', () => {
 
       expect(component.instance().updateStep).toBeCalled();
       expect(component.instance().nextStep).not.toBeCalled();
+    });
+
+    it('calls .nextStep', () => {
+      const steps = [...form.steps];
+      const data = Object.assign({}, { steps });
+
+      data.steps = fillFormFields(data.steps);
+
+      const component = shallow(
+        <Form name={'form'} action={'/'} data={data} />,
+      );
+
+      component.instance().updateStep = jest.fn();
+      component.instance().nextStep = jest.fn();
+
+      component.instance().handleStepChange();
+
+      expect(component.instance().updateStep).toBeCalled();
+      expect(component.instance().nextStep).toBeCalled();
     });
   });
 
