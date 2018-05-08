@@ -130,37 +130,37 @@ describe('.isValidCellPhone', () => {
 });
 
 describe('.validateField', () => {
-  it('returns error message: Este campo é requerido', () => {
+  it('returns required field error message', () => {
     const result = validateField({ required: true, value: null });
 
     expect(result).toBe(errorMessages.REQUIRED_FIELD);
   });
 
-  it('returns error message for empty cellphone: Celular válido requerido', () => {
+  it('returns error message for empty cellphone', () => {
     const result = validateField({ required: true, type: 'phone', value: '' });
 
     expect(result).toBe(errorMessages.REQUIRED_VALID_CELLPHONE);
   });
 
-  it('returns error message for invalid cellphone: Celular válido requerido', () => {
+  it('returns error message for invalid cellphone', () => {
     const result = validateField({ required: true, type: 'phone', value: '(11) 5367-8741' });
 
     expect(result).toBe(errorMessages.REQUIRED_VALID_CELLPHONE);
   });
 
-  it('returns error message for invalid email: E-mail válido requerido', () => {
+  it('returns error message for invalid email', () => {
     const result = validateField({ required: true, type: 'email', value: 'xpto@' });
 
     expect(result).toBe(errorMessages.REQUIRED_VALID_EMAIL);
   });
 
-  it('returns error message for invalid zipcode: CEP válido requerido', () => {
+  it('returns error message for invalid zipcode', () => {
     const result = validateField({ required: true, type: 'zipcode', value: '1111-111' });
 
     expect(result).toBe(errorMessages.REQUIRED_VALID_ZIPCODE);
   });
 
-  it('returns error message for empty value: Este campo é requerido', () => {
+  it('returns error message for empty value', () => {
     const result = validateField({ required: true, value: '' });
 
     expect(result).toBe(errorMessages.REQUIRED_FIELD);
