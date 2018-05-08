@@ -83,8 +83,16 @@ describe('Input', () => {
       expect(component.prop('type')).toBe('email');
     });
 
-    it('renders type tel', () => {
+    it('renders type tel when type equal phone', () => {
       const component = mount(<Input id={'id_input'} name={'input_name'} onFieldChange={()=>{}} type={'phone'}/>);
+
+      const inputType = component.getDOMNode().attributes.type.value;
+
+      expect(inputType).toBe('tel');
+    });
+
+    it('renders type tel when type equal zipcode ', () => {
+      const component = mount(<Input id={'id_input'} name={'input_name'} onFieldChange={()=>{}} type={'zipcode'}/>);
 
       const inputType = component.getDOMNode().attributes.type.value;
 
