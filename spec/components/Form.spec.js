@@ -196,5 +196,50 @@ describe('Form', () => {
 
       expect(initialState).not.toEqual(updatedState);
     });
-  })
+  });
+
+  describe('.handleSubmit', () => {
+    const component = shallow(
+      <Form name={'form'} action={'/'} data={form} />,
+    );
+
+    it('calls .handleStepChange', () => {
+      component.instance().handleStepChange = jest.fn();
+
+      const evt = { preventDefault() { } };
+      component.instance().handleSubmit(evt);
+
+      expect(component.instance().handleStepChange).toBeCalled();
+    });
+
+    it('does not display next step', () => {
+      const evt = { preventDefault() { } };
+      component.instance().handleSubmit(evt);
+
+      const { activeStepIndex } = component.state();
+
+      expect(activeStepIndex).toEqual(0);
+    });
+
+    it('goes to next step', () => {
+      const steps = [...form.steps];
+      const data = Object.assign({}, { steps });
+
+      data.steps = fillFormFields(data.steps);
+
+      const formComponent = shallow(
+        <Form name={'form'} action={'/'} data={data} />,
+      );
+
+      const initialStep = formComponent.state().activeStepIndex;
+
+      const evt = { preventDefault() { } };
+      formComponent.instance().handleSubmit(evt);
+
+      const { activeStepIndex } = formComponent.state();
+
+      expect(initialStep).toEqual(0);
+      expect(activeStepIndex).toEqual(initialStep + 1);
+    });
+  });
 });
