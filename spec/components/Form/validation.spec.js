@@ -1,4 +1,4 @@
-import { isEmpty, isMinLength, isValidEmail } from '../../../src/components/Form/validation';
+import { isEmpty, isMinLength, isValidEmail, isValidZipcode } from '../../../src/components/Form/validation';
 
 describe('.isEmpty', () => {
   it('returns true for empty string', () => {
@@ -77,5 +77,25 @@ describe('.isValidEmail', () => {
     const result = isValidEmail('xpto@gmail');
 
     expect(result).toBe(false);
+  });
+});
+
+describe('.isValidZipcode', () => {
+  it('returns false for empty zipcode', () => {
+    const result = isValidZipcode('');
+
+    expect(result).toBe(false);
+  });
+
+  it('returns false for zipcode 1111-111', () => {
+    const result = isValidZipcode('1111-111');
+
+    expect(result).toBe(false);
+  });
+
+  it('returns true for zipcode 05402-300', () => {
+    const result = isValidZipcode('05402-300');
+
+    expect(result).toBe(true);
   });
 });
