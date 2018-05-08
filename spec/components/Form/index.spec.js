@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer';
 import Form from '../../../src/components/Form';
 import { form } from '../../../src/form.json';
 import { enzymeConfig, shallow } from '../../enzymeConfig';
+import fillFormFields from '../../helper';
 
 enzymeConfig();
 
@@ -15,19 +16,6 @@ function createNodeMock(element) {
   }
 
   return null;
-}
-
-function fillFormFields(steps) {
-  return [...steps].map((step) => {
-    const fields = step.fields.map((field) => {
-      const updatedField = Object.assign({}, field);
-      updatedField.value = '1111111';
-
-      return updatedField;
-    });
-
-    return Object.assign({}, {...step}, { fields });
-  });
 }
 
 describe('Form', () => {

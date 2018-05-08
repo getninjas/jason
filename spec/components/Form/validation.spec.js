@@ -1,4 +1,6 @@
-import { isEmpty, isMinLength, isValidEmail, isValidZipcode, isValidCellPhone, validateField } from '../../../src/components/Form/validation';
+import { isEmpty, isMinLength, isValidEmail, isValidZipcode, isValidCellPhone, validateField, validateStep } from '../../../src/components/Form/validation';
+import { form } from '../../../src/form.json';
+import fillFormFields from '../../helper';
 
 describe('.isEmpty', () => {
   it('returns true for empty string', () => {
@@ -176,3 +178,22 @@ describe('.validateField', () => {
   });
 });
 
+describe('.validateStep', () => {
+  it('expects output to be invalid', () => {
+    const steps = [...form.steps];
+    const result = validateStep(steps[0].fields);
+
+    expect(result.isValid).toBe(false);
+  });
+
+  it('expects output to be valid', () => {
+    const steps = [...form.steps];
+    const data = Object.assign({}, { steps });
+
+    data.steps = fillFormFields(data.steps);
+
+    const result = validateStep(data.steps[0].fields);
+
+    expect(result.isValid).toBe(true);
+  });
+});
