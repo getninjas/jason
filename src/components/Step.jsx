@@ -21,18 +21,12 @@ const defaultProps = {
 };
 
 export default class Step extends Component {
-  constructor() {
-    super();
-
-    this.handleStepButtonClick = this.handleStepButtonClick.bind(this);
-  }
-
-  handleStepButtonClick(evt) {
-    this.props.handleButtonClick(evt);
-  }
-
   display({ visible }) {
     return visible ? 'block' : 'none';
+  }
+
+  addHeaderMarkup(headerMarkup) {
+    return headerMarkup ? <div className="__headerMarkup__" dangerouslySetInnerHTML={this._createMarkup(headerMarkup)} /> : '';
   }
 
   render() {
@@ -40,7 +34,7 @@ export default class Step extends Component {
 
     return (
       <fieldset className="form__container inputs" style={{ display: this.display(this.props) }}>
-        {headerMarkup ? <div dangerouslySetInnerHTML={this._createMarkup(headerMarkup)} /> : ''}
+        { this.addHeaderMarkup(headerMarkup) }
 
         {
           fields.map((item, index) => {
@@ -63,7 +57,7 @@ export default class Step extends Component {
           })
         }
 
-        <Button isSubmit={this.props.isLast} handleButtonClick={this.handleStepButtonClick}>{buttonText}</Button>
+        <Button isSubmit={this.props.isLast} handleButtonClick={this.props.handleButtonClick}>{buttonText}</Button>
       </fieldset>
     );
   }
