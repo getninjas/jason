@@ -39,8 +39,12 @@ export const validateField = ({ required, type, value, minLength }) => {
     return 'CEP válido requerido';
   }
 
-  if (required && isEmpty(value) || isMinLength(value, minLength)) {
+  if (required && isEmpty(value)) {
     return 'Este campo é requerido';
+  }
+
+  if (required && isMinLength(value, minLength)) {
+    return `Este campo requer ao menos ${minLength} caracteres.`;
   }
 
   return '';
