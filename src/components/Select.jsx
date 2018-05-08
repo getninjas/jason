@@ -25,6 +25,7 @@ const defaultProps = {
   placeholder: '',
   style: 'form__input',
 };
+
 export default class Select extends Component {
   constructor(props) {
     super(props);

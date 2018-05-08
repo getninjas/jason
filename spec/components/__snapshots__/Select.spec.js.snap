@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Select renders custom props 1`] = `
+exports[`Select renders defaultProps 1`] = `
 <select
   className="form__input"
   defaultValue=""
@@ -25,15 +25,4 @@ exports[`Select renders custom props 1`] = `
     Reformas
   </option>
 </select>
-`;
-
-exports[`Select renders defaultProps 1`] = `
-<select
-  className="form__input"
-  defaultValue=""
-  id=""
-  name=""
-  onChange={[Function]}
-  required="false"
-/>
 `;
