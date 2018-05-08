@@ -32,7 +32,7 @@ export default class TextArea extends Component {
 
     this.state = {
       value: '',
-    }
+    };
 
     this.onChange = this.onChange.bind(this);
   }
@@ -45,10 +45,6 @@ export default class TextArea extends Component {
     });
 
     this.setState({ value: evt.target.value });
-  }
-
-  componentDidlMount() {
-    this.setState({ value: this.props.value });
   }
 
   render() {
