@@ -14,6 +14,7 @@ describe('Zipcode', () => {
         id={'zipcodeTest'}
         name={'zipcodeTest'}
         placeholder={'00000-000'}
+        onFieldChange={()=>{}}
       />,
     );
 

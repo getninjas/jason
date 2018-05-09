@@ -179,8 +179,8 @@ exports[`Form renders defaultProps 1`] = `
           Não lembra seu CEP?
         </a>
         <input
-          className="form__input form__input--filled"
-          id="4_id"
+          className="form__input"
+          id="form-4_id"
           name="4_zipcode"
           onKeyUp={[Function]}
           placeholder="00000-000"

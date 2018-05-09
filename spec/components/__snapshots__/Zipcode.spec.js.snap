@@ -11,7 +11,7 @@ Array [
     Não lembra seu CEP?
 </a>,
   <input
-    className="form__input form__input--filled"
+    className="form__input"
     id="zipcodeTest"
     name="zipcodeTest"
     onKeyUp={[Function]}
