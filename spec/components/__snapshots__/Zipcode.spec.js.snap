@@ -14,36 +14,35 @@ Array [
     className="form__input form__input--filled"
     id="zipcodeTest"
     name="zipcodeTest"
+    onKeyUp={[Function]}
     placeholder="00000-000"
     required={true}
     type="zipcode"
 />,
-  <div
+  <span
     className="full-address"
-/>,
+>
+    
+</span>,
   <input
-    className="form__input--filled"
-    id="city"
-    name="city"
-    type="hidden"
-    value=""
-/>,
-  <input
-    className="form__input--filled"
-    id="neighborhood"
-    name="neighborhood"
-    type="hidden"
-    value=""
-/>,
-  <input
-    className="form__input--filled"
     id="street"
     name="street"
     type="hidden"
     value=""
 />,
   <input
-    className="form__input--filled"
+    id="neighborhood"
+    name="neighborhood"
+    type="hidden"
+    value=""
+/>,
+  <input
+    id="city"
+    name="city"
+    type="hidden"
+    value=""
+/>,
+  <input
     id="uf"
     name="uf"
     type="hidden"

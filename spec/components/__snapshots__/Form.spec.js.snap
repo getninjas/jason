@@ -151,36 +151,35 @@ exports[`Form renders custom props 1`] = `
           className="form__input form__input--filled"
           id="4_id"
           name="4_zipcode"
+          onKeyUp={[Function]}
           placeholder="00000-000"
           required={true}
-          type="zipcode"
+          type="tel"
         />
-        <div
+        <span
           className="full-address"
-        />
+        >
+          
+        </span>
         <input
-          className="form__input--filled"
-          id="city"
-          name="city"
-          type="hidden"
-          value=""
-        />
-        <input
-          className="form__input--filled"
-          id="neighborhood"
-          name="neighborhood"
-          type="hidden"
-          value=""
-        />
-        <input
-          className="form__input--filled"
           id="street"
           name="street"
           type="hidden"
           value=""
         />
         <input
-          className="form__input--filled"
+          id="neighborhood"
+          name="neighborhood"
+          type="hidden"
+          value=""
+        />
+        <input
+          id="city"
+          name="city"
+          type="hidden"
+          value=""
+        />
+        <input
           id="uf"
           name="uf"
           type="hidden"
@@ -496,36 +495,35 @@ exports[`Form renders defaultProps 1`] = `
           className="form__input form__input--filled"
           id="4_id"
           name="4_zipcode"
+          onKeyUp={[Function]}
           placeholder="00000-000"
           required={true}
-          type="zipcode"
+          type="tel"
         />
-        <div
+        <span
           className="full-address"
-        />
+        >
+          
+        </span>
         <input
-          className="form__input--filled"
-          id="city"
-          name="city"
-          type="hidden"
-          value=""
-        />
-        <input
-          className="form__input--filled"
-          id="neighborhood"
-          name="neighborhood"
-          type="hidden"
-          value=""
-        />
-        <input
-          className="form__input--filled"
           id="street"
           name="street"
           type="hidden"
           value=""
         />
         <input
-          className="form__input--filled"
+          id="neighborhood"
+          name="neighborhood"
+          type="hidden"
+          value=""
+        />
+        <input
+          id="city"
+          name="city"
+          type="hidden"
+          value=""
+        />
+        <input
           id="uf"
           name="uf"
           type="hidden"
