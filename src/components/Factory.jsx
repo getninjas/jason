@@ -33,7 +33,7 @@ export default class Factory {
     if (type === 'zipcode') {
       return (
         <Zipcode
-          type={type}
+          type={'tel'}
           key={`zipcode-${key}`}
           id={id}
           name={name}
