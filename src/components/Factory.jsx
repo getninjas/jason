@@ -34,7 +34,7 @@ export default class Factory {
       return (
         <Zipcode
           type={type}
-          key={`input-${key}`}
+          key={`zipcode-${key}`}
           id={id}
           name={name}
           placeholder={placeholder}
