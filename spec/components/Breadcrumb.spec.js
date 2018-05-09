@@ -59,7 +59,7 @@ describe('Breadcrumb', () => {
         expect(result).toEqual('form__steps-item--active');
       })
 
-      it('returns empty string', ()=> {
+      it('does not return any class', ()=> {
         const result = component.instance().handleActiveStyle(1);
 
         expect(result).toEqual('');
