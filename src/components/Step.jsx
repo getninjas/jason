@@ -43,7 +43,7 @@ export default class Step extends Component {
                 key={`field-${index}`}
                 label={item.title}
                 id={item.id}
-                errorMessage={item.errorMessage} >
+                errorMessage={item.errorMessage}>
                 {
                   Factory.getComponent({
                     item,
