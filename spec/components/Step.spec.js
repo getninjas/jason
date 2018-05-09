@@ -16,10 +16,10 @@ describe('Step', () => {
         buttonText={'next step'}
         fields={step.fields}
         formName={'formNameTest'}
-        handleButtonClick={() => { }}
+        handleButtonClick={() => {}}
         isLast={false}
         step={step}
-        onFieldChange={() => { }}
+        onFieldChange={() => {}}
         visible={true}
       />,
     );
@@ -38,11 +38,11 @@ describe('Step', () => {
         buttonText={'next step'}
         fields={step.fields}
         formName={'formNameTest'}
-        handleButtonClick={() => { }}
+        handleButtonClick={() => {}}
         headerMarkup={step.headerMarkup}
         isLast={false}
         step={step}
-        onFieldChange={() => { }}
+        onFieldChange={() => {}}
         visible={true}
       />,
     );
@@ -61,10 +61,10 @@ describe('Step', () => {
         buttonText={'next step'}
         fields={step.fields}
         formName={'formNameTest'}
-        handleButtonClick={() => { }}
+        handleButtonClick={() => {}}
         isLast={false}
         step={step}
-        onFieldChange={() => { }}
+        onFieldChange={() => {}}
         visible={true}
       />,
     );
@@ -87,10 +87,10 @@ describe('Step', () => {
           buttonText={'next step'}
           fields={step.fields}
           formName={'formNameTest'}
-          handleButtonClick={() => { }}
+          handleButtonClick={() => {}}
           isLast={false}
           step={step}
-          onFieldChange={() => { }}
+          onFieldChange={() => {}}
           visible={true}
         />,
       );
@@ -109,11 +109,11 @@ describe('Step', () => {
           buttonText={'next step'}
           fields={step.fields}
           formName={'formNameTest'}
-          handleButtonClick={() => { }}
+          handleButtonClick={() => {}}
           headerMarkup={step.headerMarkup}
           isLast={false}
           step={step}
-          onFieldChange={() => { }}
+          onFieldChange={() => {}}
           visible={true}
         />,
       );

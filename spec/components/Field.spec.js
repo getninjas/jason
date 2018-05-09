@@ -10,7 +10,7 @@ describe('Field', () => {
   it('renders defaultProps', () => {
     const component = renderer.create(
       <Field label={'test'} id={'test'} errorMessage={'Erro!'} value={'test value'}>
-        <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={() => { }} />
+        <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={() => {}} />
       </Field>
     );
 
@@ -22,7 +22,7 @@ describe('Field', () => {
   it('label htmlFor matches id prop', () => {
     const component = shallow(
       <Field label={'test'} id={'bora-pra-action'}>
-        <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={() => { }} />
+        <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={() => {}} />
       </Field>
     );
 
@@ -34,7 +34,7 @@ describe('Field', () => {
       it('returns string containing --invalid', () => {
         const component = shallow(
           <Field label={'test'} id={'bora-pra-action'} errorMessage={'Erro!'}>
-            <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={() => { }} />
+            <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={() => {}} />
           </Field>
         );
 
@@ -46,7 +46,7 @@ describe('Field', () => {
       it('returns string not containing --invalid', () => {
         const component = shallow(
           <Field label={'test'} id={'bora-pra-action'}>
-            <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={() => { }} />
+            <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={() => {}} />
           </Field>
         );
 
