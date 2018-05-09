@@ -59,6 +59,16 @@
             "placeholder": "Descreva o que você precisa",
             "value": null,
             "values": []
+          },
+          {
+            "title": "Zipcode",
+            "required": true,
+            "type": "zipcode",
+            "id": "4_id",
+            "name": "4_zipcode",
+            "placeholder": "00000-000",
+            "value": null,
+            "values": []
           }
         ]
       },

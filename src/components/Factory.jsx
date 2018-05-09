@@ -2,6 +2,7 @@ import React from 'react';
 import Select from './Select';
 import Input from './Input';
 import TextArea from './TextArea';
+import Zipcode from './Zipcode';
 
 export default class Factory {
   static getComponent(field, key) {
@@ -27,6 +28,18 @@ export default class Factory {
           name={name}
           placeholder={placeholder} />
       );
+    }
+
+    if (type === 'zipcode') {
+      return (
+        <Zipcode
+          type={type}
+          key={`input-${key}`}
+          id={id}
+          name={name}
+          placeholder={placeholder}
+        />
+      )
     }
 
     if (type === 'phone' || type === 'email' || type === 'text') {
