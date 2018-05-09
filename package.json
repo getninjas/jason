@@ -17,9 +17,10 @@
     "url": "git+https://github.com/getninjas/jason.git"
   },
   "dependencies": {
+    "imask": "^3.3.0",
+    "prop-types": "^15.6.1",
     "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "prop-types": "^15.6.1"
+    "react-dom": "^16.3.2"
   },
   "devDependencies": {
     "babel-core": "6.26.0",
@@ -52,6 +53,7 @@
     "gaiden": "^17.1.2",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
+    "jsdom": "11.10.0",
     "object-assign": "4.1.1",
     "promise": "8.0.1",
     "raf": "3.4.0",

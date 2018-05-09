@@ -1,20 +1,35 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Input from '../../src/components/Input';
-import { enzymeConfig, shallow } from '../enzymeConfig';
+import jsdomConfig from '../jsdomConfig';
+import { enzymeConfig, shallow, mount } from '../enzymeConfig';
 
+jsdomConfig();
 enzymeConfig();
 
+function createNodeMock(element) {
+  if (element.type === 'input') {
+    return {
+      addEventListener() {},
+      value: '',
+    };
+  }
+
+  return null;
+}
+
 describe('Input', () => {
-  it('renders custom props', () => {
+  it('renders defaultProps', () => {
+    const options = { createNodeMock };
     const component = renderer.create(
       <Input
         id={'idTest'}
         name={'nameTest'}
         placeholder={'placeholderTest'}
+        onFieldChange={()=>{}}
         required={false}
         value={'ola test value'}
-      />,
+      />, options
     );
 
     const tree = component.toJSON();
@@ -22,19 +37,12 @@ describe('Input', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('renders defaultProps', () => {
-    const component = renderer.create(<Input id={'id_input'} />);
-
-    const tree = component.toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-
-  it('.onChange', () => {
+  it('changes input value .onChage event', () => {
     const component = shallow(
       <Input
         id={'idTest'}
         name={'nameTest'}
+        onFieldChange={()=>{}}
         placeholder={'placeholderTest'}
         required={false}
         value={'ola test value'}
@@ -46,23 +54,51 @@ describe('Input', () => {
     expect(component.instance().state.value).toEqual('Bora pra action');
   });
 
+  it('retrains input text to maxLenght', () => {
+    const component = mount(
+      <Input
+        id={'idTest'}
+        name={'nameTest'}
+        onFieldChange={()=>{}}
+        placeholder={'placeholderTest'}
+        required={false}
+        value={''}
+        maxLength={5}
+      />
+    );
+
+    component.simulate('change', { target: { value: 'Bora pra action' } });
+
+    expect(component.instance().state.value).toHaveLength(5);
+  });
+
   describe('with type', () => {
     it('renders type text', () => {
-      const component = shallow(<Input id={'id_input'}/>);
+      const component = shallow(<Input id={'id_input'} name={'input_name'} onFieldChange={()=>{}}/>);
 
       expect(component.prop('type')).toBe('text');
     });
 
     it('renders type email', () => {
-      const component = shallow(<Input id={'id_input'} type={'email'}/>);
+      const component = shallow(<Input id={'id_input'} name={'input_name'} onFieldChange={()=>{}} type={'email'}/>);
 
       expect(component.prop('type')).toBe('email');
     });
 
-    it('renders type tel', () => {
-      const component = shallow(<Input id={'id_input'} type={'phone'}/>);
+    it('renders type tel when type equal phone', () => {
+      const component = mount(<Input id={'id_input'} name={'input_name'} onFieldChange={()=>{}} type={'phone'}/>);
 
-      expect(component.prop('type')).toBe('tel');
+      const inputType = component.getDOMNode().attributes.type.value;
+
+      expect(inputType).toBe('tel');
+    });
+
+    it('renders type tel when type equal zipcode ', () => {
+      const component = mount(<Input id={'id_input'} name={'input_name'} onFieldChange={()=>{}} type={'zipcode'}/>);
+
+      const inputType = component.getDOMNode().attributes.type.value;
+
+      expect(inputType).toBe('tel');
     });
   });
 });

@@ -9,13 +9,7 @@ exports[`Step renders with props 1`] = `
     }
   }
 >
-  <div
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": "<h2 class='widget__title section-title--high-contrast'>Lorem Ipsum is simply dummy text <small>It has survived not</small></h2>",
-      }
-    }
-  />
+  
   <div
     className="form__field form__field--fluid input"
   >
@@ -27,10 +21,11 @@ exports[`Step renders with props 1`] = `
     </label>
     <select
       className="form__input"
-      defaultValue={7120}
-      id="1_id"
+      defaultValue={null}
+      id="formNameTest-1_id"
       name="1_name_select"
-      required="false"
+      onChange={[Function]}
+      required="true"
     >
       <option
         value=""
@@ -66,7 +61,7 @@ exports[`Step renders with props 1`] = `
     <span
       className="form__message form__message--invalid space-element-small error"
     >
-      Required field
+      
     </span>
   </div>
   <div
@@ -80,11 +75,13 @@ exports[`Step renders with props 1`] = `
     </label>
     <input
       className="form__input"
-      id="2_id"
+      id="formNameTest-2_id"
+      maxLength={255}
+      minLength={3}
       name="2_name_text"
       onChange={[Function]}
       placeholder="Bora pra action"
-      required="false"
+      required="true"
       title=""
       type="text"
       value=""
@@ -92,7 +89,7 @@ exports[`Step renders with props 1`] = `
     <span
       className="form__message form__message--invalid space-element-small error"
     >
-      Required field
+      
     </span>
   </div>
   <div
@@ -106,18 +103,20 @@ exports[`Step renders with props 1`] = `
     </label>
     <textarea
       className="form__input"
-      id="3_id"
+      id="formNameTest-3_id"
+      maxLength={255}
+      minLength={3}
       name="3_name_textarea"
       onChange={[Function]}
       placeholder="Descreva o que você precisa"
-      required={false}
+      required={true}
       title=""
       value=""
     />
     <span
       className="form__message form__message--invalid space-element-small error"
     >
-      Required field
+      
     </span>
   </div>
   <button
@@ -125,7 +124,7 @@ exports[`Step renders with props 1`] = `
     onClick={[Function]}
     type="button"
   >
-    Start request
+    next step
   </button>
 </fieldset>
 `;

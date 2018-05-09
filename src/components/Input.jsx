@@ -1,23 +1,31 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
+import IMask from 'imask';
+import maxLength from '../helpers/input';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  onFieldChange: PropTypes.func.isRequired,
   title: PropTypes.string,
   placeholder: PropTypes.string,
   type: PropTypes.string,
   required: PropTypes.bool,
   value: PropTypes.any,
+  style: PropTypes.string,
+  minLength: PropTypes.number,
+  maxLength: PropTypes.number,
 };
 
 const defaultProps = {
   placeholder: '',
   required: false,
-  name: '',
   title: '',
   type: 'text',
   value: '',
+  style: 'form__input',
+  minLength: 3,
+  maxLength: 255,
 };
 
 export default class Input extends Component {
@@ -28,35 +36,73 @@ export default class Input extends Component {
       value: '',
     }
 
+    this.ref = createRef();
     this.onChange = this.onChange.bind(this);
-
-    this.inputStyle = 'form__input';
   }
 
   onChange(evt) {
-    this.setState({ value: evt.target.value });
+    const inputValue = maxLength(evt.target.value, this.props.maxLength);
+
+    this.props.onFieldChange({
+      value: inputValue,
+      id: this.props.id,
+      required: this.props.required,
+      type: this.props.type,
+      minLength: this.props.minLength,
+    });
+
+    this.setState({ value: inputValue });
   }
 
-  componentWillMount() {
-    this.setState({ value: this.props.value });
+  componentDidMount() {
+    const { type, value } = this.props;
+
+    if (type === 'phone') {
+      new IMask(this.ref.current, { mask: '(00) 00000-0000' });
+    }
+
+    if (type === 'zipcode') {
+      new IMask(this.ref.current, { mask: '00000-000' });
+    }
+
+    this.setState({ value: value });
   }
 
   getInputType(type) {
-    return type === 'phone' ? 'tel' : type;
+    if (type === 'phone' || type === 'zipcode') {
+      return 'tel';
+    }
+
+    return type;
   }
 
   render() {
+    const {
+      type,
+      id,
+      name,
+      title,
+      style,
+      placeholder,
+      required,
+      minLength,
+      maxLength,
+    } = this.props;
+
     return (
       <input
-        type={this.getInputType(this.props.type)}
-        id={this.props.id}
-        name={this.props.name}
-        title={this.props.title}
-        className={this.inputStyle}
-        placeholder={this.props.placeholder}
-        required={this.props.required ? 'true' : 'false'}
+        type={this.getInputType(type)}
+        id={id}
+        name={name}
+        title={title}
+        className={style}
+        placeholder={placeholder}
+        required={required ? 'true' : 'false'}
         value={this.state.value}
-        onChange={this.onChange} />
+        onChange={this.onChange}
+        minLength={minLength}
+        maxLength={maxLength}
+        ref={this.ref} />
     );
   }
 }

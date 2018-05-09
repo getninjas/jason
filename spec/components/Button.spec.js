@@ -7,20 +7,7 @@ enzymeConfig();
 
 describe('Button', () => {
   it('renders defaultProps', () => {
-    const component = renderer.create(<Button handleButtonClick={() => { }}>Test</Button>);
-
-    const tree = component.toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-
-  it('renders custom props', () => {
-    const component = renderer.create(
-      <Button
-        isSubmit={true}
-        handleButtonClick={()=>{}}
-      >Custom</Button>,
-    );
+    const component = renderer.create(<Button handleButtonClick={() => {}}>Test</Button>);
 
     const tree = component.toJSON();
 
@@ -29,7 +16,7 @@ describe('Button', () => {
 
   describe('when prop submit is true', () => {
     it('renders button with type=submit', () => {
-      const component = shallow(<Button isSubmit={true} handleButtonClick={() => { }}>Test</Button>);
+      const component = shallow(<Button isSubmit={true} handleButtonClick={() => {}}>Test</Button>);
 
       expect(component.prop('type')).toBe('submit');
     });

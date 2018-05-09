@@ -6,24 +6,17 @@ import { enzymeConfig, shallow } from '../enzymeConfig';
 enzymeConfig();
 
 describe('TextArea', () => {
-  it('renders custom props', () => {
-    const component = renderer.create(
+  it('renders defaultProps', () => {
+   const component = renderer.create(
       <TextArea
         id={'idTest'}
         name={'nameTest'}
         placeholder={'placeholderTest'}
+        onFieldChange={()=>{}}
         required={false}
         value={'ola test value'}
       />,
     );
-
-    const tree = component.toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-
-  it('renders defaultProps', () => {
-    const component = renderer.create(<TextArea />);
 
     const tree = component.toJSON();
 
@@ -36,6 +29,7 @@ describe('TextArea', () => {
         id={'idTest'}
         name={'nameTest'}
         placeholder={'placeholderTest'}
+        onFieldChange={()=>{}}
         required={false}
         value={'ola test value'}
       />

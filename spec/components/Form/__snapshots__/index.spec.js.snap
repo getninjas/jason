@@ -1,0 +1,300 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form renders defaultProps 1`] = `
+<section
+  className="wall--inverted col-normal-8 col-small-12"
+>
+  <form
+    action="/"
+    className="form container sh-form-content space-box-small"
+    method="POST"
+    name="form"
+    noValidate={true}
+    onSubmit={[Function]}
+  >
+    <fieldset
+      className="form__container inputs"
+      style={
+        Object {
+          "display": "block",
+        }
+      }
+    >
+      <div
+        className="__headerMarkup__"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<h2 class='widget__title section-title--high-contrast'>Lorem Ipsum is simply dummy text <small>It has survived not</small></h2>",
+          }
+        }
+      />
+      <div
+        className="form__field form__field--fluid input"
+      >
+        <label
+          className="form__label"
+          htmlFor="1_id"
+        >
+          Qual é o tipo de serviço que você precisa?
+        </label>
+        <select
+          className="form__input"
+          defaultValue={null}
+          id="form-1_id"
+          name="1_name_select"
+          onChange={[Function]}
+          required="true"
+        >
+          <option
+            value=""
+          >
+            Placeholder
+          </option>
+          <option
+            value={7117}
+          >
+            Construção
+          </option>
+          <option
+            value={7118}
+          >
+            Reformas
+          </option>
+          <option
+            value={7119}
+          >
+            Instalações
+          </option>
+          <option
+            value={7120}
+          >
+            Troca
+          </option>
+          <option
+            value={7121}
+          >
+            Outros
+          </option>
+        </select>
+        <span
+          className="form__message form__message--invalid space-element-small error"
+        >
+          
+        </span>
+      </div>
+      <div
+        className="form__field form__field--fluid input"
+      >
+        <label
+          className="form__label"
+          htmlFor="2_id"
+        >
+          Especifique melhor a metragem do serviço
+        </label>
+        <input
+          className="form__input"
+          id="form-2_id"
+          maxLength={255}
+          minLength={3}
+          name="2_name_text"
+          onChange={[Function]}
+          placeholder="Bora pra action"
+          required="true"
+          title=""
+          type="text"
+          value=""
+        />
+        <span
+          className="form__message form__message--invalid space-element-small error"
+        >
+          
+        </span>
+      </div>
+      <div
+        className="form__field form__field--fluid input"
+      >
+        <label
+          className="form__label"
+          htmlFor="3_id"
+        >
+          Informações adicionais
+        </label>
+        <textarea
+          className="form__input"
+          id="form-3_id"
+          maxLength={255}
+          minLength={3}
+          name="3_name_textarea"
+          onChange={[Function]}
+          placeholder="Descreva o que você precisa"
+          required={true}
+          title=""
+          value=""
+        />
+        <span
+          className="form__message form__message--invalid space-element-small error"
+        >
+          
+        </span>
+      </div>
+      <button
+        className="btn btn--regular btn--high-contrast btn--fluid space-box-medium"
+        onClick={[Function]}
+        type="button"
+      >
+        Start request
+      </button>
+    </fieldset>
+    <fieldset
+      className="form__container inputs"
+      style={
+        Object {
+          "display": "none",
+        }
+      }
+    >
+      <div
+        className="__headerMarkup__"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<div class='form__alert-message space-element-large'><img src='https://www.getninjas.com.br/assets/request/phone_call.svg' class='form__icon' alt='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'><h2 class='form__info'>Almost there<small>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's<strong>standard dummy text ever since the 1500s</strong></small></h2></div>",
+          }
+        }
+      />
+      <div
+        className="form__field form__field--fluid input"
+      >
+        <label
+          className="form__label"
+          htmlFor="user_field_1"
+        >
+          Em que bairro será o serviço?
+        </label>
+        <input
+          className="form__input"
+          id="form-user_field_1"
+          maxLength={255}
+          minLength={3}
+          name="user_field_1"
+          onChange={[Function]}
+          placeholder=""
+          required="true"
+          title=""
+          type="text"
+          value=""
+        />
+        <span
+          className="form__message form__message--invalid space-element-small error"
+        >
+          
+        </span>
+      </div>
+      <div
+        className="form__field form__field--fluid input"
+      >
+        <label
+          className="form__label"
+          htmlFor="user_field_2"
+        >
+          Nome
+        </label>
+        <input
+          className="form__input"
+          id="form-user_field_2"
+          maxLength={255}
+          minLength={3}
+          name="user_field_2"
+          onChange={[Function]}
+          placeholder=""
+          required="true"
+          title=""
+          type="text"
+          value=""
+        />
+        <span
+          className="form__message form__message--invalid space-element-small error"
+        >
+          
+        </span>
+      </div>
+      <div
+        className="form__field form__field--fluid input"
+      >
+        <label
+          className="form__label"
+          htmlFor="user_field_3"
+        >
+          E-mail
+        </label>
+        <input
+          className="form__input"
+          id="form-user_field_3"
+          maxLength={255}
+          minLength={3}
+          name="user_field_3"
+          onChange={[Function]}
+          placeholder="Ex: nome@email.com"
+          required="true"
+          title=""
+          type="email"
+          value=""
+        />
+        <span
+          className="form__message form__message--invalid space-element-small error"
+        >
+          
+        </span>
+      </div>
+      <div
+        className="form__field form__field--fluid input"
+      >
+        <label
+          className="form__label"
+          htmlFor="user_field_4"
+        >
+          DDD + Celular
+        </label>
+        <input
+          className="form__input"
+          id="form-user_field_4"
+          maxLength={255}
+          minLength={3}
+          name="user_field_4"
+          onChange={[Function]}
+          placeholder=""
+          required="true"
+          title=""
+          type="tel"
+          value=""
+        />
+        <span
+          className="form__message form__message--invalid space-element-small error"
+        >
+          
+        </span>
+      </div>
+      <button
+        className="btn btn--regular btn--high-contrast btn--fluid space-box-medium"
+        onClick={[Function]}
+        type="submit"
+      >
+        Finish
+      </button>
+    </fieldset>
+  </form>
+  <ol
+    className="form__steps space-box-medium"
+  >
+    <li
+      className="form__steps-item form__steps-item--active"
+    >
+      Your request
+    </li>
+    <li
+      className="form__steps-item "
+    >
+      Your data
+    </li>
+  </ol>
+</section>
+`;
