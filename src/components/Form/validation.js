@@ -6,7 +6,7 @@ export const isEmpty = (value) => {
 };
 
 export const isMinLength = (text, length) => {
-  return text.length < length;
+  return text.trim().length < length;
 }
 
 export const isValidEmail = (value) => {

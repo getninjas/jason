@@ -25,9 +25,16 @@ describe('.isMinLength', () => {
     expect(result).toBe(false);
   });
 
+  it('returns false for string with empty spaces greather than minLength', () => {
+    const minLength = 3;
+    const result = isMinLength(' x   x', minLength);
+
+    expect(result).toBe(false);
+  });
+
   it('returns true for string smaller than minLength', () => {
     const minLength = 3;
-    const result = isMinLength('xp', minLength);
+    const result = isMinLength('xp ', minLength);
 
     expect(result).toBe(true);
   });
