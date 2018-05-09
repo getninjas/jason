@@ -1,8 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Input from '../../src/components/Input';
+import jsdomConfig from '../jsdomConfig';
 import { enzymeConfig, shallow, mount } from '../enzymeConfig';
 
+jsdomConfig();
 enzymeConfig();
 
 function createNodeMock(element) {

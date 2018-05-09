@@ -2,8 +2,10 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Select from '../../src/components/Select';
 import { form } from '../../src/form.json';
+import jsdomConfig from '../jsdomConfig';
 import { enzymeConfig, shallow, mount } from '../enzymeConfig';
 
+jsdomConfig();
 enzymeConfig();
 
 describe('Select', () => {
