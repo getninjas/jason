@@ -40,10 +40,11 @@ export default class Factory {
       return (
         <Zipcode
           type={'tel'}
-          key={`zipcode-${index}`}
-          id={id}
+          key={`${formName}-${index}`}
+          id={`${formName}-${id}`}
           name={name}
           placeholder={placeholder}
+          onFieldChange={onFieldChange}
         />
       )
     }
