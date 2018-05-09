@@ -22,4 +22,32 @@ describe('Zipcode', () => {
 
     expect(tree).toMatchSnapshot();
   });
+
+  describe('.getFullAddress', () => {
+    it('returns formatted full address', () => {
+      const component = shallow(
+        <Zipcode
+          type={'zipcode'}
+          key={`zipcode-1`}
+          id={'zipcodeTest'}
+          name={'zipcodeTest'}
+          placeholder={'00000-000'}
+          onFieldChange={()=>{}}
+        />,
+      );
+
+      const responseAddress = {
+        street: 'Avenida Rebouças',
+        neighborhood: 'Pinheiros',
+        city: 'São Paulo',
+        uf: 'SP',
+      }
+
+      const result = component.instance().getFullAddress(responseAddress);
+
+      const fullAddressFormatted = 'Avenida Rebouças, Pinheiros \nSão Paulo - SP';
+
+      expect(result).toEqual(fullAddressFormatted);
+    });
+  });
 });
