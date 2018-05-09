@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Zipcode renders defaultProps 1`] = `
+Array [
+  <a
+    className="form__label-link"
+    href="http://www.buscacep.correios.com.br"
+    rel="noopener noreferrer"
+    target="_blank"
+>
+    Não lembra seu CEP?
+</a>,
+  <input
+    className="form__input form__input--filled"
+    id="zipcodeTest"
+    name="zipcodeTest"
+    placeholder="00000-000"
+    required={true}
+    type="zipcode"
+/>,
+  <div
+    className="full-address"
+/>,
+  <input
+    className="form__input--filled"
+    id="city"
+    name="city"
+    type="hidden"
+    value=""
+/>,
+  <input
+    className="form__input--filled"
+    id="neighborhood"
+    name="neighborhood"
+    type="hidden"
+    value=""
+/>,
+  <input
+    className="form__input--filled"
+    id="street"
+    name="street"
+    type="hidden"
+    value=""
+/>,
+  <input
+    className="form__input--filled"
+    id="uf"
+    name="uf"
+    type="hidden"
+    value=""
+/>,
+]
+`;
