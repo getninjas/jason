@@ -12,11 +12,15 @@ describe('Step', () => {
 
     const component = renderer.create(
       <Step
-        visible={true}
         key={'step'}
-        step={step}
+        buttonText={'next step'}
+        fields={step.fields}
+        formName={'formNameTest'}
+        handleButtonClick={() => {}}
         isLast={false}
-        handleButtonClick={()=>{}}
+        step={step}
+        onFieldChange={() => {}}
+        visible={true}
       />,
     );
 
@@ -30,11 +34,16 @@ describe('Step', () => {
 
     const component = shallow(
       <Step
-        visible={true}
         key={'step'}
-        step={step}
-        isLast={false}
+        buttonText={'next step'}
+        fields={step.fields}
+        formName={'formNameTest'}
         handleButtonClick={() => {}}
+        headerMarkup={step.headerMarkup}
+        isLast={false}
+        step={step}
+        onFieldChange={() => {}}
+        visible={true}
       />,
     );
 
@@ -48,11 +57,15 @@ describe('Step', () => {
 
     const component = shallow(
       <Step
-        visible={true}
         key={'step'}
-        step={step}
+        buttonText={'next step'}
+        fields={step.fields}
+        formName={'formNameTest'}
+        handleButtonClick={() => {}}
         isLast={false}
-        handleButtonClick={() => { }}
+        step={step}
+        onFieldChange={() => {}}
+        visible={true}
       />,
     );
 
@@ -62,5 +75,53 @@ describe('Step', () => {
     expect(result.includes('2_name_text')).toBe(true);
     expect(result.includes('3_name_textarea')).toBe(true);
     expect(result.includes('breadcrumb')).toBe(false);
+  });
+
+  describe('.addHeaderMarkup', () => {
+    it('does not add header markup', () => {
+      const step = formData.form.steps[0];
+
+      const component = shallow(
+        <Step
+          key={'step'}
+          buttonText={'next step'}
+          fields={step.fields}
+          formName={'formNameTest'}
+          handleButtonClick={() => {}}
+          isLast={false}
+          step={step}
+          onFieldChange={() => {}}
+          visible={true}
+        />,
+      );
+
+      const result = component.html();
+
+      expect(result.includes('__headerMarkup__')).toBe(false);
+    });
+
+    it('adds header markup', () => {
+      const step = formData.form.steps[0];
+
+      const component = shallow(
+        <Step
+          key={'step'}
+          buttonText={'next step'}
+          fields={step.fields}
+          formName={'formNameTest'}
+          handleButtonClick={() => {}}
+          headerMarkup={step.headerMarkup}
+          isLast={false}
+          step={step}
+          onFieldChange={() => {}}
+          visible={true}
+        />,
+      );
+
+      const result = component.html();
+
+      expect(result.includes('__headerMarkup__')).toBe(true);
+      expect(result.includes('widget__title')).toBe(true);
+    });
   });
 });

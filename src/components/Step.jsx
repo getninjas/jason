@@ -5,29 +5,36 @@ import Button from './Button';
 import Factory from './Factory';
 
 const propTypes = {
-  step: PropTypes.object.isRequired,
-  visible: PropTypes.bool.isRequired,
-  isLast: PropTypes.bool.isRequired,
   handleButtonClick: PropTypes.func.isRequired,
+  onFieldChange: PropTypes.func.isRequired,
+  formName: PropTypes.string.isRequired,
+  buttonText: PropTypes.string.isRequired,
+  fields: PropTypes.array.isRequired,
+  headerMarkup: PropTypes.string,
+  visible: PropTypes.bool,
+  isLast: PropTypes.bool,
 };
 
 const defaultProps = {
-  step: [],
   visible: false,
   isLast: false,
 };
 
 export default class Step extends Component {
-  _createMarkup(html) {
-    return { __html: html };
+  display({ visible }) {
+    return visible ? 'block' : 'none';
+  }
+
+  addHeaderMarkup(headerMarkup) {
+    return headerMarkup ? <div className="__headerMarkup__" dangerouslySetInnerHTML={this._createMarkup(headerMarkup)} /> : '';
   }
 
   render() {
-    const { fields, button, headerMarkup } = this.props.step;
+    const { buttonText, headerMarkup, fields } = this.props;
 
     return (
-      <fieldset className="form__container inputs" style={{ display: this.props.visible ? 'block' : 'none' }}>
-        { headerMarkup ? <div dangerouslySetInnerHTML={this._createMarkup(headerMarkup)} /> : '' }
+      <fieldset className="form__container inputs" style={{ display: this.display(this.props) }}>
+        { this.addHeaderMarkup(headerMarkup) }
 
         {
           fields.map((item, index) => {
@@ -36,17 +43,27 @@ export default class Step extends Component {
                 key={`field-${index}`}
                 label={item.title}
                 id={item.id}
-                errorMessage='Required field'>
-
-                { Factory.getComponent(item, index) }
+                errorMessage={item.errorMessage}>
+                {
+                  Factory.getComponent({
+                    item,
+                    index,
+                    onFieldChange: this.props.onFieldChange,
+                    formName: this.props.formName,
+                  })
+                }
               </Field>
             )
           })
         }
 
-        <Button isSubmit={this.props.isLast} handleButtonClick={this.props.handleButtonClick}>{ button }</Button>
+        <Button isSubmit={this.props.isLast} handleButtonClick={this.props.handleButtonClick}>{buttonText}</Button>
       </fieldset>
     );
+  }
+
+  _createMarkup(html) {
+    return { __html: html };
   }
 }
 

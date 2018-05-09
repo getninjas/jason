@@ -5,28 +5,34 @@ import TextArea from './TextArea';
 import Zipcode from './Zipcode';
 
 export default class Factory {
-  static getComponent(field, key) {
-    const { type, placeholder, id, name, value, values } = field;
+  static getComponent({ item, index, onFieldChange, formName }) {
+    const { type, placeholder, id, name, value, values, required } = item;
+
+    const inputTypeAccepted = ['text', 'phone', 'email'];
 
     if (type === 'select') {
       return (
         <Select
           placeholder={placeholder}
-          key={`select-${key}`}
-          id={id}
+          key={`${formName}-${index}`}
+          id={`${formName}-${id}`}
           name={name}
           selected={value}
-          values={values} />
+          values={values}
+          onFieldChange={onFieldChange}
+          required={required} />
       )
     }
 
     if (type === 'textarea') {
       return (
         <TextArea
-          key={`textarea-${key}`}
-          id={id}
+          key={`${formName}-${index}`}
+          id={`${formName}-${id}`}
           name={name}
-          placeholder={placeholder} />
+          placeholder={placeholder}
+          onFieldChange={onFieldChange}
+          required={required} />
       );
     }
 
@@ -42,14 +48,16 @@ export default class Factory {
       )
     }
 
-    if (type === 'phone' || type === 'email' || type === 'text') {
+    if (inputTypeAccepted.includes(type)) {
       return (
         <Input
           type={type}
-          key={`input-${key}`}
-          id={id}
+          key={`${formName}-${index}`}
+          id={`${formName}-${id}`}
           name={name}
-          placeholder={placeholder} />
+          placeholder={placeholder}
+          onFieldChange={onFieldChange}
+          required={required} />
       );
     }
 

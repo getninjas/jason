@@ -16,36 +16,67 @@ describe('Breadcrumb', () => {
   });
 
   describe('.isActive', () => {
-    const component = shallow(<Breadcrumb active={0} steps={form.steps} />);
+    describe('when first step is active', () => {
+      const component = shallow(<Breadcrumb active={0} steps={form.steps} />);
 
-    const result = component.instance().isActive(0);
-    const secondResult = component.instance().isActive(1);
+      it('returns true for first step', ()=> {
+        const result = component.instance().isActive(0);
 
-    expect(result).toBe(true);
-    expect(secondResult).toBe(false);
+        expect(result).toBe(true);
+      })
+
+      it('returns false for second step', ()=> {
+        const secondResult = component.instance().isActive(1);
+
+        expect(secondResult).toBe(false);
+      })
+    });
+
+    describe('when second step is active', () => {
+      const component = shallow(<Breadcrumb active={1} steps={form.steps} />);
+
+      it('returns false for first step', ()=> {
+        const result = component.instance().isActive(0);
+
+        expect(result).toBe(false);
+      })
+
+      it('returns true for second step', ()=> {
+        const secondResult = component.instance().isActive(1);
+
+        expect(secondResult).toBe(true);
+      })
+    });
   });
 
   describe('.handleActiveStyle', () => {
-    const component = shallow(<Breadcrumb active={0} steps={form.steps} />);
+    describe('when first step is active', () => {
+      const component = shallow(<Breadcrumb active={0} steps={form.steps} />);
 
-    const result = component.instance().handleActiveStyle(0);
-    const secondResult = component.instance().handleActiveStyle(1);
+      it('returns active class .form__steps-item--active', ()=> {
+        const result = component.instance().handleActiveStyle(0);
 
-    expect(result).toEqual('form__steps-item--active');
-    expect(secondResult).toEqual('');
+        expect(result).toEqual('form__steps-item--active');
+      })
+
+      it('does not return any class', ()=> {
+        const result = component.instance().handleActiveStyle(1);
+
+        expect(result).toEqual('');
+      })
+    });
+
   });
 
   describe('when second step is active', () => {
-    it('expects the second breadcrumb to be active', () => {
-      const component = shallow(<Breadcrumb active={1} steps={form.steps} />);
-
-      expect(component.find('li').last().hasClass('form__steps-item--active')).toBe(true);
-    });
+    const component = shallow(<Breadcrumb active={1} steps={form.steps} />);
 
     it('expects the first breadcrumb to be inactive', () => {
-      const component = shallow(<Breadcrumb active={1} steps={form.steps} />);
-
       expect(component.find('li').first().hasClass('form__steps-item--active')).toBe(false);
+    });
+
+    it('expects the second breadcrumb to be active', () => {
+      expect(component.find('li').last().hasClass('form__steps-item--active')).toBe(true);
     });
   });
 });

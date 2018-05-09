@@ -1,25 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TextArea renders custom props 1`] = `
-<textarea
-  className="form__input"
-  id="idTest"
-  name="nameTest"
-  onChange={[Function]}
-  placeholder="placeholderTest"
-  required={false}
-  title=""
-  value="ola test value"
-/>
-`;
-
 exports[`TextArea renders defaultProps 1`] = `
 <textarea
   className="form__input"
-  id=""
-  name=""
+  id="idTest"
+  maxLength={255}
+  minLength={3}
+  name="nameTest"
   onChange={[Function]}
-  placeholder=""
+  placeholder="placeholderTest"
   required={false}
   title=""
   value=""
