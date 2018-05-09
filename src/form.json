@@ -59,7 +59,15 @@
             "placeholder": "Descreva o que você precisa",
             "value": null,
             "values": []
-          },
+          }
+        ]
+      },
+      {
+        "title": "User uData",
+        "breadcrumbTitle": "Your data",
+        "buttonText": "Finish",
+        "headerMarkup": "<div class='form__alert-message space-element-large'><img src='https://www.getninjas.com.br/assets/request/phone_call.svg' class='form__icon' alt='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'><h2 class='form__info'>Almost there<small>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's<strong>standard dummy text ever since the 1500s</strong></small></h2></div>",
+        "fields": [
           {
             "title": "Zipcode",
             "required": true,
@@ -69,15 +77,7 @@
             "placeholder": "00000-000",
             "value": null,
             "values": []
-          }
-        ]
-      },
-      {
-        "title": "User Data",
-        "breadcrumbTitle": "Your data",
-        "buttonText": "Finish",
-        "headerMarkup": "<div class='form__alert-message space-element-large'><img src='https://www.getninjas.com.br/assets/request/phone_call.svg' class='form__icon' alt='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'><h2 class='form__info'>Almost there<small>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's<strong>standard dummy text ever since the 1500s</strong></small></h2></div>",
-        "fields": [
+          },
           {
             "title": "Em que bairro será o serviço?",
             "id": "user_field_1",

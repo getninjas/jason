@@ -40,7 +40,7 @@ export default class Factory {
       return (
         <Zipcode
           type={'tel'}
-          key={`zipcode-${key}`}
+          key={`zipcode-${index}`}
           id={id}
           name={name}
           placeholder={placeholder}
