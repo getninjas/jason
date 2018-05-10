@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-const AppContext = React.createContext();
+export const AppContext = React.createContext();
 
-class AppProvider extends Component {
+export class AppProvider extends Component {
   state = {
     greeting : 'hello',
     sayHi: (greeting) => {
@@ -20,5 +20,3 @@ class AppProvider extends Component {
 AppProvider.propTypes = {
   children: PropTypes.any,
 }
-
-export default AppProvider;

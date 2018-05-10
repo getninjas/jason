@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Step from '../Step';
 import Breadcrumb from '../Breadcrumb';
 import { validateField, validateStep } from './validation';
+import { AppContext, AppProvider } from './AppProvider';
 
 const propTypes = {
   name: PropTypes.string.isRequired,
@@ -117,6 +118,11 @@ export default class Form extends Component {
 
     return (
       <section className={this.sectionStyle}>
+      <AppProvider>
+        <AppContext.Consumer>
+          {(state) => <div>{ console.log(state) }</div>}
+        </AppContext.Consumer>
+      </AppProvider>
         <form noValidate onSubmit={this.handleSubmit} action={action} method={method} name={name} className={this.formStyle}>
           {
             this.state.steps.map((step, index) => {
