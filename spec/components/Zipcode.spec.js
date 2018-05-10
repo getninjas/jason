@@ -107,6 +107,68 @@ describe('Zipcode', () => {
     });
   });
 
+  describe('.isUserTyping', () => {
+    const component = mount(
+      <Zipcode
+        type={'zipcode'}
+        key={`zipcode-1`}
+        id={'zipcodeTest'}
+        name={'zipcodeTest'}
+        placeholder={'00000-000'}
+        onFieldChange={()=>{}}
+      />,
+    );
+
+    it('returns true', () => {
+      const zipcodeLength = 7;
+      const keyboardKey = 'a';
+
+      const result = component.instance().isUserTyping(zipcodeLength, keyboardKey);
+
+      expect(result).toEqual(true);
+    });
+
+    it('returns false', () => {
+      const zipcodeLength = 8;
+      const keyboardKey = 0;
+
+      const result = component.instance().isUserTyping(zipcodeLength, keyboardKey);
+
+      expect(result).toEqual(false);
+    });
+  });
+
+  describe('.isValidZipCodeInput', () => {
+    const component = mount(
+      <Zipcode
+        type={'zipcode'}
+        key={`zipcode-1`}
+        id={'zipcodeTest'}
+        name={'zipcodeTest'}
+        placeholder={'00000-000'}
+        onFieldChange={()=>{}}
+      />,
+    );
+
+    it('returns true', () => {
+      const zipcodeLength = 8;
+      const keyboardKey = 0;
+
+      const result = component.instance().isValidZipCodeInput(zipcodeLength, keyboardKey);
+
+      expect(result).toEqual(true);
+    });
+
+    it('returns false', () => {
+      const zipcodeLength = 7;
+      const keyboardKey = 'a';
+
+      const result = component.instance().isValidZipCodeInput(zipcodeLength, keyboardKey);
+
+      expect(result).toEqual(false);
+    });
+  });
+
   describe('.getEmptyState', () => {
     it('sets all key values to empty string', () => {
       const component = mount(
