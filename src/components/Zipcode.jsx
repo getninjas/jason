@@ -26,6 +26,9 @@ const defaultProps = {
   minLength: 9,
 };
 
+const ZIPCODE_VALID_LENGTH = 8;
+const ZIPCODE_MASK = '00000-000';
+
 export default class Zipcode extends Component {
   constructor() {
     super();
@@ -40,7 +43,8 @@ export default class Zipcode extends Component {
       fullAddress: '',
     }
 
-    this.ref = createRef();
+    this.inputRef = createRef();
+
     this.onKeyUp = this.onKeyUp.bind(this);
   }
 
@@ -50,11 +54,20 @@ export default class Zipcode extends Component {
 
     this.props.onFieldChange({ ...this.props, value: evt.target.value });
 
-    if (!isNaN(key)) {
-      if (zipcode.length === 8) {
-        this.getZipCode(zipcode);
-      }
+    if (this.isUserTyping(zipcode.length, key)) {
+      this.setState({ value: evt.target.value, fullAddress: '' });
+
+    } else if (this.isValidZipCodeInput(zipcode.length, key)) {
+      this.getZipCode(zipcode);
     }
+  }
+
+  isUserTyping(zipcodeLength, keyboardKey) {
+    return zipcodeLength < ZIPCODE_VALID_LENGTH && isNaN(keyboardKey);
+  }
+
+  isValidZipCodeInput(zipcodeLength, keyboardKey) {
+    return !isNaN(keyboardKey) && zipcodeLength === ZIPCODE_VALID_LENGTH;
   }
 
   getZipCode(zipcode) {
@@ -64,12 +77,12 @@ export default class Zipcode extends Component {
       .then((response) => {
         result = this.fillAddressState(response.data, zipcode);
 
-        this.setState(result)
+        this.setState(result);
       })
       .catch(() => {
         result.value = zipcode;
 
-        this.props.onFieldChange({ value: '', ...this.props});
+        this.props.onFieldChange({ value: '', ...this.props });
 
         this.setState(result);
       });
@@ -77,7 +90,7 @@ export default class Zipcode extends Component {
 
   getEmptyState(state) {
     const result = Object.keys(state).reduce((output, key) => {
-      return Object.assign({}, output, { [key]: ''});
+      return Object.assign({}, output, { [key]: '' });
     }, {});
 
     return result;
@@ -94,14 +107,12 @@ export default class Zipcode extends Component {
     return result;
   }
 
-  getFullAddress({street, neighborhood, city, uf}) {
+  getFullAddress({ street, neighborhood, city, uf }) {
     return `${street}, ${neighborhood} \n${city} - ${uf}`;
   }
 
   componentDidMount() {
-    new IMask(this.ref.current, { mask: '00000-000' });
-
-    this.setState({ value: this.props.value });
+    new IMask(this.inputRef.current, { mask: ZIPCODE_MASK });
   }
 
   render() {
@@ -110,13 +121,13 @@ export default class Zipcode extends Component {
 
     return (
       <Fragment>
-        <a href={'http://www.buscacep.correios.com.br'} target={'_blank'} className={'form__label-link'}  rel={'noopener noreferrer'}>Não lembra seu CEP?</a>
-        <input id={id} name={name} className={style} type={'tel'} placeholder={placeholder} required={required} onKeyUp={this.onKeyUp} ref={this.ref}/>
+        <a href={'http://www.buscacep.correios.com.br'} target={'_blank'} className={'form__label-link'} rel={'noopener noreferrer'}>Não lembra seu CEP?</a>
+        <input id={id} name={name} className={style} type={'tel'} placeholder={placeholder} required={required} onKeyUp={this.onKeyUp} ref={this.inputRef} />
         <span className={'full-address'}>{fullAddress}</span>
-        <input id={'street'} name={'street'} type={'hidden'} value={street}/>
-        <input id={'neighborhood'} name={'neighborhood'} type={'hidden'} value={neighborhood}/>
-        <input id={'city'} name={'city'} type={'hidden'} value={city}/>
-        <input id={'uf'} name={'uf'} type={'hidden'} value={uf}/>
+        <input id={'street'} name={'street'} type={'hidden'} value={street} />
+        <input id={'neighborhood'} name={'neighborhood'} type={'hidden'} value={neighborhood} />
+        <input id={'city'} name={'city'} type={'hidden'} value={city} />
+        <input id={'uf'} name={'uf'} type={'hidden'} value={uf} />
       </Fragment>
     );
   }
