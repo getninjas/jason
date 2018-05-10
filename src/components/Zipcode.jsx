@@ -43,7 +43,7 @@ export default class Zipcode extends Component {
       fullAddress: '',
     }
 
-    this.ref = createRef();
+    this.inputRef = createRef();
 
     this.onKeyUp = this.onKeyUp.bind(this);
   }
@@ -112,7 +112,7 @@ export default class Zipcode extends Component {
   }
 
   componentDidMount() {
-    new IMask(this.ref.current, { mask: ZIPCODE_MASK });
+    new IMask(this.inputRef.current, { mask: ZIPCODE_MASK });
   }
 
   render() {
@@ -122,7 +122,7 @@ export default class Zipcode extends Component {
     return (
       <Fragment>
         <a href={'http://www.buscacep.correios.com.br'} target={'_blank'} className={'form__label-link'} rel={'noopener noreferrer'}>Não lembra seu CEP?</a>
-        <input id={id} name={name} className={style} type={'tel'} placeholder={placeholder} required={required} onKeyUp={this.onKeyUp} ref={this.ref} />
+        <input id={id} name={name} className={style} type={'tel'} placeholder={placeholder} required={required} onKeyUp={this.onKeyUp} ref={this.inputRef} />
         <span className={'full-address'}>{fullAddress}</span>
         <input id={'street'} name={'street'} type={'hidden'} value={street} />
         <input id={'neighborhood'} name={'neighborhood'} type={'hidden'} value={neighborhood} />
