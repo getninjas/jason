@@ -26,7 +26,7 @@ const defaultProps = {
   minLength: 9,
 };
 
-const ZIPCODE_VALID_LENGTH = 8;
+const ZIPCODE_VALID_LENGTH = defaultProps.minLength - 1;
 const ZIPCODE_MASK = '00000-000';
 
 export default class Zipcode extends Component {
