@@ -127,11 +127,7 @@ describe('Zipcode', () => {
 
       const filledState = {
         value: '05402300',
-        type_street: '',
-        street: 'Avenida Rebouças',
-        city: 'São Paulo',
-        neighborhood: 'Pinheiros',
-        uf: 'SP',
+        ...responseAddress,
         fullAddress: 'Avenida Rebouças, Pinheiros \nSão Paulo - SP',
       }
 
