@@ -63,6 +63,50 @@ describe('Zipcode', () => {
     });
   });
 
+  describe('.onKeyUp', () => {
+    it('calls valid zipcode methods', () => {
+      const component = mount(
+        <Zipcode
+          type={'zipcode'}
+          key={`zipcode-1`}
+          id={'zipcodeTest'}
+          name={'zipcodeTest'}
+          placeholder={'00000-000'}
+          onFieldChange={()=>{}}
+        />,
+      );
+
+      component.instance().isUserTyping = jest.fn();
+      component.instance().isValidZipCodeInput = jest.fn();
+
+      const evt = { target: { value: '05402-300' }, key: 0 }
+      component.instance().onKeyUp(evt);
+
+      expect(component.instance().isUserTyping).toHaveBeenCalled();
+      expect(component.instance().isValidZipCodeInput).toHaveBeenCalled();
+    });
+
+    it('starts zipcode fetch', () => {
+      const component = mount(
+        <Zipcode
+          type={'zipcode'}
+          key={`zipcode-1`}
+          id={'zipcodeTest'}
+          name={'zipcodeTest'}
+          placeholder={'00000-000'}
+          onFieldChange={()=>{}}
+        />,
+      );
+
+      component.instance().getZipCode = jest.fn();
+
+      const evt = { target: { value: '04707-060' }, key: 0 }
+      component.instance().onKeyUp(evt);
+
+      expect(component.instance().getZipCode).toHaveBeenCalled();
+    });
+  });
+
   describe('.getEmptyState', () => {
     it('sets all key values to empty string', () => {
       const component = mount(
