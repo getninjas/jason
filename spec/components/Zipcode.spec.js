@@ -119,7 +119,7 @@ describe('Zipcode', () => {
       />,
     );
 
-    it('returns true', () => {
+    it('returns true for incomplete zipcode format', () => {
       const zipcodeLength = 7;
       const keyboardKey = 'a';
 
@@ -128,7 +128,7 @@ describe('Zipcode', () => {
       expect(result).toEqual(true);
     });
 
-    it('returns false', () => {
+    it('returns false when last zipcode caracter is entered', () => {
       const zipcodeLength = 8;
       const keyboardKey = 0;
 
@@ -150,7 +150,7 @@ describe('Zipcode', () => {
       />,
     );
 
-    it('returns true', () => {
+    it('returns true for a valid zipcode user input', () => {
       const zipcodeLength = 8;
       const keyboardKey = 0;
 
@@ -159,7 +159,7 @@ describe('Zipcode', () => {
       expect(result).toEqual(true);
     });
 
-    it('returns false', () => {
+    it('returns false for invalid zipcode user input', () => {
       const zipcodeLength = 7;
       const keyboardKey = 'a';
 
