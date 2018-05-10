@@ -37,7 +37,7 @@ export const validateField = ({ required, type, value, minLength }) => {
     return errorMessage.REQUIRED_VALID_EMAIL;
   }
 
-  if (type === 'zipcode' && !isValidZipcode(value)) {
+  if (type === 'zipcode' && (isEmpty(value) || !isValidZipcode(value))) {
     return errorMessage.REQUIRED_VALID_ZIPCODE;
   }
 
