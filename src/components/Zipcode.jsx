@@ -67,7 +67,7 @@ export default class Zipcode extends Component {
   }
 
   isValidZipCodeInput(zipcodeLength, keyboardKey) {
-    return !isNaN(keyboardKey) && zipcodeLength === ZIPCODE_VALID_LENGTH;
+    return !isNaN(keyboardKey) || zipcodeLength === ZIPCODE_VALID_LENGTH;
   }
 
   getZipCode(zipcode) {
