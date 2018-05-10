@@ -1,8 +1,11 @@
 import React from 'react';
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
 import renderer from 'react-test-renderer';
 import Zipcode from '../../src/components/Zipcode';
 import { enzymeConfig, shallow, mount } from '../enzymeConfig';
 
+var mock = new MockAdapter(axios);
 enzymeConfig();
 
 function createNodeMock(element) {
@@ -208,6 +211,45 @@ describe('Zipcode', () => {
     });
   });
 
+  describe('.getZipCode', () => {
+    mock.onGet('/api/correios', { params: { q: '05402300' } } ).reply(200, {
+      data: {
+        type_street: "",
+        street: "Avenida Rebouças",
+        city: "São Paulo",
+        neighborhood: "Pinheiros",
+        uf: "SP"
+      },
+    });
+
+    const component = mount(
+      <Zipcode
+        type={'zipcode'}
+        key={`zipcode-1`}
+        id={'zipcodeTest'}
+        name={'zipcodeTest'}
+        placeholder={'00000-000'}
+        onFieldChange={()=>{}}
+      />,
+    );
+
+    it('should behave...', () => {
+      const initialState = component.state();
+
+      component.instance().getZipCode('05402300');
+
+      axios.get('/api/correios', { params: { q: '05402300' } } )
+        .then(function(response) {
+          console.log(response.data);
+        });
+
+      const currentState = component.state();
+
+      console.log('initial state: ', initialState);
+      console.log('current state: ', currentState);
+    });
+  });
+
   describe('.fillAddressState', () => {
     it('sets response data and value zipcode to key values', () => {
       const component = mount(
@@ -240,7 +282,6 @@ describe('Zipcode', () => {
       const result = component.instance().fillAddressState(responseAddress, zipcodeValue);
 
       expect(result).toEqual(filledState);
-
     });
   });
 });
