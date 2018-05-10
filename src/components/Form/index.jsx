@@ -120,7 +120,7 @@ export default class Form extends Component {
       <section className={this.sectionStyle}>
       <AppProvider>
         <AppContext.Consumer>
-          {(state) => <div>{ console.log(state) }</div>}
+          {(state) => <div>{ state.greeting }</div>}
         </AppContext.Consumer>
       </AppProvider>
         <form noValidate onSubmit={this.handleSubmit} action={action} method={method} name={name} className={this.formStyle}>

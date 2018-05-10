@@ -240,13 +240,9 @@ describe('Zipcode', () => {
 
       axios.get('/api/correios', { params: { q: '05402300' } } )
         .then(function(response) {
-          console.log(response.data);
         });
 
       const currentState = component.state();
-
-      console.log('initial state: ', initialState);
-      console.log('current state: ', currentState);
     });
   });
 

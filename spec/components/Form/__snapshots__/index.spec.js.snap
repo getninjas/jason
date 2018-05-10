@@ -4,7 +4,9 @@ exports[`Form renders defaultProps 1`] = `
 <section
   className="wall--inverted col-normal-8 col-small-12"
 >
-  <div />
+  <div>
+    hello
+  </div>
   <form
     action="/"
     className="form container sh-form-content space-box-small"
