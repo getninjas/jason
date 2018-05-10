@@ -101,4 +101,44 @@ describe('Zipcode', () => {
       expect(result).toEqual(emptyState);
     });
   });
+
+  describe('.fillAddressState', () => {
+    it('sets response data and value zipcode to key values', () => {
+      const component = mount(
+        <Zipcode
+          type={'zipcode'}
+          key={`zipcode-1`}
+          id={'zipcodeTest'}
+          name={'zipcodeTest'}
+          placeholder={'00000-000'}
+          onFieldChange={()=>{}}
+        />,
+      );
+
+      const zipcodeValue = '05402300';
+
+      const responseAddress = {
+        type_street: '',
+        street: 'Avenida Rebouças',
+        city: 'São Paulo',
+        neighborhood: 'Pinheiros',
+        uf: 'SP',
+      }
+
+      const filledState = {
+        value: '05402300',
+        type_street: '',
+        street: 'Avenida Rebouças',
+        city: 'São Paulo',
+        neighborhood: 'Pinheiros',
+        uf: 'SP',
+        fullAddress: 'Avenida Rebouças, Pinheiros \nSão Paulo - SP',
+      }
+
+      const result = component.instance().fillAddressState(responseAddress, zipcodeValue);
+
+      expect(result).toEqual(filledState);
+
+    });
+  });
 });
