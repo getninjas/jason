@@ -20,7 +20,7 @@ const defaultProps = {
   placeholder: '99999-999',
   required: true,
   title: 'Zipcode',
-  type: 'tel',
+  type: 'zipcode',
   style: 'form__input',
   value: '',
   minLength: 9,
@@ -32,6 +32,7 @@ export default class Zipcode extends Component {
 
     this.state = {
       value: '',
+      type_street: '',
       street: '',
       city: '',
       neighborhood: '',
@@ -47,13 +48,7 @@ export default class Zipcode extends Component {
     const zipcode = evt.target.value.replace(/[^0-9]/g, '');
     const key = Number(evt.key);
 
-    this.props.onFieldChange({
-      value: evt.target.value,
-      id: this.props.id,
-      required: this.props.required,
-      type: this.props.type,
-      minLength: this.props.minLength,
-    });
+    this.props.onFieldChange({ ...this.props, value: evt.target.value });
 
     if (!isNaN(key)) {
       if (zipcode.length === 8) {
@@ -63,20 +58,40 @@ export default class Zipcode extends Component {
   }
 
   getZipCode(zipcode) {
+    let result = this.getEmptyState(this.state);
+
     axios.get(`http://www.getninjas-homolog.com.br/api/correios?q=${zipcode}`)
       .then((response) => {
-        this.setState({
-          value: zipcode,
-          street: response.data.street,
-          city: response.data.city,
-          neighborhood: response.data.neighborhood,
-          uf: response.data.uf,
-          fullAddress: this.getFullAddress(response.data),
-        })
+        result = this.fillAddressState(response.data, zipcode);
+
+        this.setState(result)
       })
-      .catch((error) => {
-        throw new Error(error);
+      .catch(() => {
+        result.value = zipcode;
+
+        this.props.onFieldChange({ value: '', ...this.props});
+
+        this.setState(result);
       });
+  }
+
+  getEmptyState(state) {
+    const result = Object.keys(state).reduce((output, key) => {
+      return Object.assign({}, output, { [key]: ''});
+    }, {});
+
+    return result;
+  }
+
+  fillAddressState(responseAddress, zipcode) {
+    let result = Object.keys(responseAddress).reduce((output, key) => {
+      return Object.assign({}, output, { [key]: responseAddress[key] });
+    }, {});
+
+    result.value = zipcode;
+    result.fullAddress = this.getFullAddress(responseAddress);
+
+    return result;
   }
 
   getFullAddress({street, neighborhood, city, uf}) {
@@ -90,13 +105,13 @@ export default class Zipcode extends Component {
   }
 
   render() {
-    const { id, name, required, placeholder, type, style } = this.props;
+    const { id, name, required, placeholder, style } = this.props;
     const { street, city, neighborhood, uf, fullAddress } = this.state;
 
     return (
       <Fragment>
         <a href={'http://www.buscacep.correios.com.br'} target={'_blank'} className={'form__label-link'}  rel={'noopener noreferrer'}>Não lembra seu CEP?</a>
-        <input id={id} name={name} className={style} type={type} placeholder={placeholder} required={required} onKeyUp={this.onKeyUp} ref={this.ref}/>
+        <input id={id} name={name} className={style} type={'tel'} placeholder={placeholder} required={required} onKeyUp={this.onKeyUp} ref={this.ref}/>
         <span className={'full-address'}>{fullAddress}</span>
         <input id={'street'} name={'street'} type={'hidden'} value={street}/>
         <input id={'neighborhood'} name={'neighborhood'} type={'hidden'} value={neighborhood}/>
