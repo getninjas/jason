@@ -89,7 +89,7 @@ describe('Zipcode', () => {
       expect(component.instance().isValidZipCodeInput).toHaveBeenCalled();
     });
 
-    it('starts zipcode fetch', () => {
+    it('starts zipcode fetch when fetchCompleted false', () => {
       const component = mount(
         <Zipcode
           type={'zipcode'}
@@ -107,6 +107,28 @@ describe('Zipcode', () => {
       component.instance().onKeyUp(evt);
 
       expect(component.instance().getZipCode).toHaveBeenCalled();
+    });
+
+    it('does not fetch zipcode if fetchCompleted true', () => {
+      const component = mount(
+        <Zipcode
+          type={'zipcode'}
+          key={`zipcode-1`}
+          id={'zipcodeTest'}
+          name={'zipcodeTest'}
+          placeholder={'00000-000'}
+          onFieldChange={()=>{}}
+        />,
+      );
+
+
+      component.state().fetchCompleted = true;
+      component.instance().getZipCode = jest.fn();
+
+      const evt = { target: { value: '04707-060' }, key: 0 }
+      component.instance().onKeyUp(evt);
+
+      expect(component.instance().getZipCode).not.toHaveBeenCalled();
     });
   });
 
