@@ -6,7 +6,7 @@ import jsdomConfig from './jsdomConfig';
 
 jsdomConfig();
 
-it('renders without crashing', () => {
+xit('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<App data={form}/>, div);
   ReactDOM.unmountComponentAtNode(div);
