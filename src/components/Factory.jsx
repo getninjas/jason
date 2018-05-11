@@ -10,41 +10,35 @@ export default class Factory {
 
     const inputTypeAccepted = ['text', 'phone', 'email'];
 
+    const commonProps = {
+      id: `${formName}-${id}`,
+      key: `${formName}-${index}`,
+      name,
+      onFieldChange,
+      placeholder,
+      required
+    }
+
     if (type === 'select') {
       return (
         <Select
-          placeholder={placeholder}
-          key={`${formName}-${index}`}
-          id={`${formName}-${id}`}
-          name={name}
+          {...commonProps}
           selected={value}
-          values={values}
-          onFieldChange={onFieldChange}
-          required={required} />
+          values={values} />
       )
     }
 
     if (type === 'textarea') {
       return (
-        <TextArea
-          key={`${formName}-${index}`}
-          id={`${formName}-${id}`}
-          name={name}
-          placeholder={placeholder}
-          onFieldChange={onFieldChange}
-          required={required} />
+        <TextArea {...commonProps} />
       );
     }
 
     if (type === 'zipcode') {
       return (
         <Zipcode
+          {...commonProps}
           type={type}
-          key={`${formName}-${index}`}
-          id={`${formName}-${id}`}
-          name={name}
-          placeholder={placeholder}
-          onFieldChange={onFieldChange}
         />
       )
     }
@@ -52,13 +46,9 @@ export default class Factory {
     if (inputTypeAccepted.includes(type)) {
       return (
         <Input
+          {...commonProps}
           type={type}
-          key={`${formName}-${index}`}
-          id={`${formName}-${id}`}
-          name={name}
-          placeholder={placeholder}
-          onFieldChange={onFieldChange}
-          required={required} />
+        />
       );
     }
 
