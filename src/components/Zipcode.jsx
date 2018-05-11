@@ -43,6 +43,7 @@ export default class Zipcode extends Component {
       uf: '',
       fullAddress: '',
       fetchCompleted: false,
+      fetching: false,
     }
 
     this.inputRef = createRef();
@@ -58,6 +59,7 @@ export default class Zipcode extends Component {
       this.setState({ value: evt.target.value, fullAddress: '', fetchCompleted: false });
 
     } else if (this.isValidZipCodeInput(zipcode.length, this.state.fetchCompleted)) {
+      this.setState({ fetching: true });
       this.getZipCode(zipcode, successCallback);
     }
   }
@@ -83,6 +85,7 @@ export default class Zipcode extends Component {
     let result = this.getEmptyState(this.state);
 
     result = this.fillAddressState(response.data, zipcode);
+    result.fetching = false;
 
     this.setState(result);
   }
@@ -91,6 +94,7 @@ export default class Zipcode extends Component {
     let result = this.getEmptyState(this.state);
 
     result.value = zipcode;
+    result.fetching = false;
 
     this.props.onFieldChange({ value: '', fetchCompleted: false, ...this.props });
 
@@ -133,7 +137,7 @@ export default class Zipcode extends Component {
 
   render() {
     const { id, name, required, placeholder, style } = this.props;
-    const { street, city, neighborhood, uf, fullAddress } = this.state;
+    const { street, city, neighborhood, uf, fullAddress, fetching } = this.state;
 
     return (
       <AppContext.Consumer>
@@ -146,6 +150,7 @@ export default class Zipcode extends Component {
                 <input id={'neighborhood'} name={'neighborhood'} type={'hidden'} value={neighborhood} />
                 <input id={'city'} name={'city'} type={'hidden'} value={city} />
                 <input id={'uf'} name={'uf'} type={'hidden'} value={uf} />
+                { fetching ? <span className={'zipcode__loader'} >Buscando CEP...</span> : null }
               </Fragment>
           }
         }
