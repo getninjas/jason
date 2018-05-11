@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { AppContext } from '../../appContext';
+import { AppContext } from '../../AppContext';
 import Step from '../Step';
 import Breadcrumb from '../Breadcrumb';
 import { validateField, validateStep } from './validation';
