@@ -2,7 +2,7 @@ import React, { Component, Fragment, createRef } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import IMask from 'imask';
-import { AppContext } from '../AppContext';
+import { AppContext } from '../AppContextReact';
 
 const propTypes = {
   id: PropTypes.string.isRequired,

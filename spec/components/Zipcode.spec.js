@@ -3,13 +3,13 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import renderer from 'react-test-renderer';
 import { enzymeConfig, mount } from '../enzymeConfig';
-import { AppContext } from '../../src/AppContext';
+import { AppContext } from '../../src/AppContextReact';
 import Zipcode from '../../src/components/Zipcode';
 
 enzymeConfig();
 
 const getLanguageSelectorWithContext = (context = { onZipcodeFetchSuccess: zipcode => zipcode }) => {
-  jest.doMock('../../src/AppContext', () => {
+  jest.doMock('../../src/AppContextReact', () => {
     return {
       AppContext: {
         Consumer: (props) => {
