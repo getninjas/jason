@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import AppContext from '../../appContext';
 import Step from '../Step';
 import Breadcrumb from '../Breadcrumb';
 import { validateField, validateStep } from './validation';
-import { AppContext, AppProvider } from './AppProvider';
 
 const propTypes = {
   name: PropTypes.string.isRequired,
@@ -22,6 +22,7 @@ export default class Form extends Component {
 
     this.state = {
       activeStepIndex: 0,
+      onZipcodeFetchSuccess: zipcode => zipcode,
       stepsCount: 0,
       steps: [],
     };
@@ -117,35 +118,32 @@ export default class Form extends Component {
     const { action, method, name } = this.props;
 
     return (
-      <section className={this.sectionStyle}>
-      <AppProvider>
-        <AppContext.Consumer>
-          {(state) => <div>{ state.greeting }</div>}
-        </AppContext.Consumer>
-      </AppProvider>
-        <form noValidate onSubmit={this.handleSubmit} action={action} method={method} name={name} className={this.formStyle}>
-          {
-            this.state.steps.map((step, index) => {
-              const { buttonText, headerMarkup, fields } = step;
+      <AppContext.Provider value={this.state}>
+        <section className={this.sectionStyle}>
+          <form noValidate onSubmit={this.handleSubmit} action={action} method={method} name={name} className={this.formStyle}>
+            {
+              this.state.steps.map((step, index) => {
+                const { buttonText, headerMarkup, fields } = step;
 
-              return (
-                <Step
-                  visible={this.isStepVisible(index)}
-                  key={`${name}-step-${index}`}
-                  isLast={this.isLastStep(index)}
-                  handleButtonClick={this.handleButtonClick}
-                  onFieldChange={this.onFieldChange}
-                  formName={name}
-                  buttonText={buttonText}
-                  headerMarkup={headerMarkup}
-                  fields={fields} />
-              )
-            })
-          }
-        </form>
+                return (
+                  <Step
+                    visible={this.isStepVisible(index)}
+                    key={`${name}-step-${index}`}
+                    isLast={this.isLastStep(index)}
+                    handleButtonClick={this.handleButtonClick}
+                    onFieldChange={this.onFieldChange}
+                    formName={name}
+                    buttonText={buttonText}
+                    headerMarkup={headerMarkup}
+                    fields={fields} />
+                )
+              })
+            }
+          </form>
 
-        <Breadcrumb active={this.state.activeStepIndex} steps={this.state.steps} />
-      </section>
+          <Breadcrumb active={this.state.activeStepIndex} steps={this.state.steps} />
+        </section>
+      </AppContext.Provider>
     );
   }
 }

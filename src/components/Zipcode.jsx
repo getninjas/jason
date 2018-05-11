@@ -2,6 +2,7 @@ import React, { Component, Fragment, createRef } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import IMask from 'imask';
+import AppContext from '../appContext';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
@@ -45,11 +46,9 @@ export default class Zipcode extends Component {
     }
 
     this.inputRef = createRef();
-
-    this.onKeyUp = this.onKeyUp.bind(this);
   }
 
-  onKeyUp(evt) {
+  onKeyUp(successCallback, evt) {
     const zipcode = evt.target.value.replace(/[^0-9]/g, '');
     const key = Number(evt.key);
 
@@ -59,7 +58,7 @@ export default class Zipcode extends Component {
       this.setState({ value: evt.target.value, fullAddress: '', fetchCompleted: false });
 
     } else if (this.isValidZipCodeInput(zipcode.length, this.state.fetchCompleted)) {
-      this.getZipCode(zipcode);
+      this.getZipCode(zipcode, successCallback);
     }
   }
 
@@ -71,9 +70,12 @@ export default class Zipcode extends Component {
     return zipcodeLength === ZIPCODE_VALID_LENGTH && !fetchCompleted;
   }
 
-  getZipCode(zipcode) {
+  getZipCode(zipcode, successCallback) {
     axios.get(`http://www.getninjas-homolog.com.br/api/correios?q=${zipcode}`)
-      .then(this.onZipcodeSuccess.bind(this, zipcode))
+      .then((response) => {
+        successCallback(zipcode);
+        this.onZipcodeSuccess(zipcode, response);
+      })
       .catch(this.onZipcodeError.bind(this, zipcode));
   }
 
@@ -134,15 +136,20 @@ export default class Zipcode extends Component {
     const { street, city, neighborhood, uf, fullAddress } = this.state;
 
     return (
-      <Fragment>
-        <a href={'http://www.buscacep.correios.com.br'} target={'_blank'} className={'form__label-link'} rel={'noopener noreferrer'}>Não lembra seu CEP?</a>
-        <input id={id} name={name} className={style} type={'tel'} placeholder={placeholder} required={required} onKeyUp={this.onKeyUp} ref={this.inputRef} />
-        <span className={'full-address'}>{fullAddress}</span>
-        <input id={'street'} name={'street'} type={'hidden'} value={street} />
-        <input id={'neighborhood'} name={'neighborhood'} type={'hidden'} value={neighborhood} />
-        <input id={'city'} name={'city'} type={'hidden'} value={city} />
-        <input id={'uf'} name={'uf'} type={'hidden'} value={uf} />
-      </Fragment>
+      <AppContext.Consumer>
+        { context => {
+            return <Fragment>
+                <a href={'http://www.buscacep.correios.com.br'} target={'_blank'} className={'form__label-link'} rel={'noopener noreferrer'}>Não lembra seu CEP?</a>
+                <input id={id} name={name} className={style} type={'tel'} placeholder={placeholder} required={required} onKeyUp={this.onKeyUp.bind(this, context.onZipcodeFetchSuccess)} ref={this.inputRef} />
+                <span className={'full-address'}>{fullAddress}</span>
+                <input id={'street'} name={'street'} type={'hidden'} value={street} />
+                <input id={'neighborhood'} name={'neighborhood'} type={'hidden'} value={neighborhood} />
+                <input id={'city'} name={'city'} type={'hidden'} value={city} />
+                <input id={'uf'} name={'uf'} type={'hidden'} value={uf} />
+              </Fragment>
+          }
+        }
+      </AppContext.Consumer>
     );
   }
 }
