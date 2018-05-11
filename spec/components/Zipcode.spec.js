@@ -155,18 +155,18 @@ describe('Zipcode', () => {
 
     it('returns true for a valid zipcode user input', () => {
       const zipcodeLength = 8;
-      const keyboardKey = 0;
+      const fetchedCompleted = false;
 
-      const result = component.instance().isValidZipCodeInput(zipcodeLength, keyboardKey);
+      const result = component.instance().isValidZipCodeInput(zipcodeLength, fetchedCompleted);
 
       expect(result).toEqual(true);
     });
 
     it('returns false for invalid zipcode user input', () => {
       const zipcodeLength = 7;
-      const keyboardKey = 'a';
+      const fetchedCompleted = true;
 
-      const result = component.instance().isValidZipCodeInput(zipcodeLength, keyboardKey);
+      const result = component.instance().isValidZipCodeInput(zipcodeLength, fetchedCompleted);
 
       expect(result).toEqual(false);
     });
@@ -193,6 +193,7 @@ describe('Zipcode', () => {
         neighborhood: 'Pinheiros',
         uf: 'SP',
         fullAddress: 'Avenida Rebouças, Pinheiros \nSão Paulo - SP',
+        fetchCompleted: true,
       }
 
       const emptyState = {
@@ -203,6 +204,7 @@ describe('Zipcode', () => {
         neighborhood: '',
         uf: '',
         fullAddress: '',
+        fetchCompleted: false,
       }
 
       const result = component.instance().getEmptyState(currentState);
@@ -273,6 +275,7 @@ describe('Zipcode', () => {
         value: '05402300',
         ...responseAddress,
         fullAddress: 'Avenida Rebouças, Pinheiros \nSão Paulo - SP',
+        fetchCompleted: true,
       }
 
       const result = component.instance().fillAddressState(responseAddress, zipcodeValue);

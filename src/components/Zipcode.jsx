@@ -41,6 +41,7 @@ export default class Zipcode extends Component {
       neighborhood: '',
       uf: '',
       fullAddress: '',
+      fetchCompleted: false,
     }
 
     this.inputRef = createRef();
@@ -55,9 +56,9 @@ export default class Zipcode extends Component {
     this.props.onFieldChange({ ...this.props, value: evt.target.value });
 
     if (this.isUserTyping(zipcode.length, key)) {
-      this.setState({ value: evt.target.value, fullAddress: '' });
+      this.setState({ value: evt.target.value, fullAddress: '', fetchCompleted: false });
 
-    } else if (this.isValidZipCodeInput(zipcode.length, key)) {
+    } else if (this.isValidZipCodeInput(zipcode.length, this.state.fetchCompleted)) {
       this.getZipCode(zipcode);
     }
   }
@@ -66,8 +67,8 @@ export default class Zipcode extends Component {
     return zipcodeLength < ZIPCODE_VALID_LENGTH && isNaN(keyboardKey);
   }
 
-  isValidZipCodeInput(zipcodeLength, keyboardKey) {
-    return !isNaN(keyboardKey) || zipcodeLength === ZIPCODE_VALID_LENGTH;
+  isValidZipCodeInput(zipcodeLength, fetchCompleted) {
+    return zipcodeLength === ZIPCODE_VALID_LENGTH && !fetchCompleted;
   }
 
   getZipCode(zipcode) {
@@ -90,7 +91,13 @@ export default class Zipcode extends Component {
 
   getEmptyState(state) {
     const result = Object.keys(state).reduce((output, key) => {
-      return Object.assign({}, output, { [key]: '' });
+      let defaultValue = '';
+
+      if (typeof state[key] === 'boolean') {
+        defaultValue = false;
+      }
+
+      return Object.assign({}, output, { [key]: defaultValue });
     }, {});
 
     return result;
@@ -102,6 +109,7 @@ export default class Zipcode extends Component {
     }, {});
 
     result.value = zipcode;
+    result.fetchCompleted = true;
     result.fullAddress = this.getFullAddress(responseAddress);
 
     return result;
