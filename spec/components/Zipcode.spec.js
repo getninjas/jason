@@ -3,7 +3,7 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import renderer from 'react-test-renderer';
 import Zipcode from '../../src/components/Zipcode';
-import { enzymeConfig, shallow, mount } from '../enzymeConfig';
+import { enzymeConfig, mount } from '../enzymeConfig';
 
 var mock = new MockAdapter(axios);
 enzymeConfig();
@@ -235,16 +235,9 @@ describe('Zipcode', () => {
       />,
     );
 
-    it('should behave...', () => {
-      const initialState = component.state();
-
-      component.instance().getZipCode('05402300');
-
-      axios.get('/api/correios', { params: { q: '05402300' } } )
-        .then(function(response) {
-        });
-
-      const currentState = component.state();
+    it('axios mock', () => {
+      const result = component.instance().getZipCode('05402300').then((data) => { console.log(data) });
+      console.log(result);
     });
   });
 

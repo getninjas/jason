@@ -72,21 +72,37 @@ export default class Zipcode extends Component {
   }
 
   getZipCode(zipcode) {
+    return new Promise((resolve, reject) => {
+      axios.get(`http://www.getninjas-homolog.com.br/api/correios?q=${zipcode}`)
+        .then((data) => {
+          resolve(data);
+          this.onZipcodeSuccess.bind(this, zipcode)
+        })
+        .catch((data) => {
+          reject(data);
+          this.onZipcodeError.bind(this, zipcode)
+        });
+    });
+  }
+
+  onZipcodeSuccess(zipcode, response) {
+    console.log(response);
+
     let result = this.getEmptyState(this.state);
 
-    axios.get(`http://www.getninjas-homolog.com.br/api/correios?q=${zipcode}`)
-      .then((response) => {
-        result = this.fillAddressState(response.data, zipcode);
+    result = this.fillAddressState(response.data, zipcode);
 
-        this.setState(result);
-      })
-      .catch(() => {
-        result.value = zipcode;
+    this.setState(result);
+  }
 
-        this.props.onFieldChange({ value: '', ...this.props });
+  onZipcodeError(zipcode) {
+    let result = this.getEmptyState(this.state);
 
-        this.setState(result);
-      });
+    result.value = zipcode;
+
+    this.props.onFieldChange({ value: '', fetchCompleted: false, ...this.props });
+
+    this.setState(result);
   }
 
   getEmptyState(state) {
