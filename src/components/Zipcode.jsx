@@ -2,7 +2,7 @@ import React, { Component, Fragment, createRef } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import IMask from 'imask';
-import AppContext from '../appContext';
+import { AppContext } from '../AppContext';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
@@ -31,8 +31,8 @@ const ZIPCODE_VALID_LENGTH = defaultProps.minLength - 1;
 const ZIPCODE_MASK = '00000-000';
 
 export default class Zipcode extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       value: '',
@@ -139,16 +139,15 @@ export default class Zipcode extends Component {
       <AppContext.Consumer>
         { context => {
             return <Fragment>
-                <a href={'http://www.buscacep.correios.com.br'} target={'_blank'} className={'form__label-link'} rel={'noopener noreferrer'}>Não lembra seu CEP?</a>
-                <input id={id} name={name} className={style} type={'tel'} placeholder={placeholder} required={required} onKeyUp={this.onKeyUp.bind(this, context.onZipcodeFetchSuccess)} ref={this.inputRef} />
-                <span className={'full-address'}>{fullAddress}</span>
-                <input id={'street'} name={'street'} type={'hidden'} value={street} />
-                <input id={'neighborhood'} name={'neighborhood'} type={'hidden'} value={neighborhood} />
-                <input id={'city'} name={'city'} type={'hidden'} value={city} />
-                <input id={'uf'} name={'uf'} type={'hidden'} value={uf} />
-              </Fragment>
-          }
-        }
+              <a href={'http://www.buscacep.correios.com.br'} target={'_blank'} className={'form__label-link'} rel={'noopener noreferrer'}>Não lembra seu CEP?</a>
+              <input id={id} name={name} className={style} type={'tel'} placeholder={placeholder} required={required} onKeyUp={this.onKeyUp.bind(this, context.onZipcodeFetchSuccess)} ref={this.inputRef} />
+              <span className={'full-address'}>{fullAddress}</span>
+              <input id={'street'} name={'street'} type={'hidden'} value={street} />
+              <input id={'neighborhood'} name={'neighborhood'} type={'hidden'} value={neighborhood} />
+              <input id={'city'} name={'city'} type={'hidden'} value={city} />
+              <input id={'uf'} name={'uf'} type={'hidden'} value={uf} />
+            </Fragment>
+          } }
       </AppContext.Consumer>
     );
   }

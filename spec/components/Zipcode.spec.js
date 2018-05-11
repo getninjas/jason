@@ -3,12 +3,24 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import renderer from 'react-test-renderer';
 import { enzymeConfig, mount } from '../enzymeConfig';
-
-import AppContext from '../../src/appContext';
+import { AppContext } from '../../src/AppContext';
 import Zipcode from '../../src/components/Zipcode';
 
-var mock = new MockAdapter(axios);
 enzymeConfig();
+
+const getLanguageSelectorWithContext = (context = { onZipcodeFetchSuccess: zipcode => zipcode }) => {
+  jest.doMock('../../src/AppContext', () => {
+    return {
+      AppContext: {
+        Consumer: (props) => {
+          return (props.children(context))
+        }
+      }
+    }
+  });
+
+  return require('../../src/components/Zipcode').default;
+};
 
 function createNodeMock(element) {
   if (element.type === 'input') {
@@ -34,26 +46,21 @@ const zipcodeElement = () => {
   </AppContext.Provider>
 };
 
+const getZipCodeMock = ()=> {
+  const ZipcodeMock = getLanguageSelectorWithContext();
+  return (<ZipcodeMock type={'zipcode'}
+    key={`zipcode-1`}
+    id={'zipcodeTest'}
+    name={'zipcodeTest'}
+    placeholder={'00000-000'}
+    onFieldChange={()=>{}}
+  />);
+}
+
 describe('Zipcode', () => {
   beforeEach(() => {
     jest.resetModules();
   });
-
-  const getComponentWithContext = (context = { onZipcodeFetchSuccess: zipcode => zipcode } ) => {
-    console.log(context);
-
-    jest.doMock('../../src/appContext', () => {
-      return {
-        AppContext: {
-          Consumer: (props) => props.children(context)
-        }
-      }
-    });
-
-    console.log('Possou do mock.');
-
-    return Zipcode;
-  };
 
   it('renders defaultProps', () => {
     const options = { createNodeMock };
@@ -66,16 +73,7 @@ describe('Zipcode', () => {
 
   describe('.getFullAddress', () => {
     it('returns formatted full address', () => {
-      const Zipcode2 = getComponentWithContext();
-      console.log(Zipcode2);
-      const component = mount(<Zipcode2
-        type={'zipcode'}
-        key={`zipcode-1`}
-        id={'zipcodeTest'}
-        name={'zipcodeTest'}
-        placeholder={'00000-000'}
-        onFieldChange={()=>{}}
-      />);
+      const component = mount(getZipCodeMock());
 
       const responseAddress = {
         street: 'Avenida Rebouças',
@@ -88,93 +86,53 @@ describe('Zipcode', () => {
 
       const fullAddressFormatted = 'Avenida Rebouças, Pinheiros \nSão Paulo - SP';
 
-      console.log(result);
-
       expect(result).toEqual(fullAddressFormatted);
     });
   });
 
-  xdescribe('.onKeyUp', () => {
+  describe('.onKeyUp', () => {
     it('calls valid zipcode methods', () => {
-      const component = mount(
-        <Zipcode
-          type={'zipcode'}
-          key={`zipcode-1`}
-          id={'zipcodeTest'}
-          name={'zipcodeTest'}
-          placeholder={'00000-000'}
-          onFieldChange={()=>{}}
-        />,
-      );
+      const component = mount(getZipCodeMock());
 
       component.instance().isUserTyping = jest.fn();
       component.instance().isValidZipCodeInput = jest.fn();
 
       const evt = { target: { value: '05402-300' }, key: 0 }
-      component.instance().onKeyUp(evt);
+      component.instance().onKeyUp(()=>{}, evt);
 
       expect(component.instance().isUserTyping).toHaveBeenCalled();
       expect(component.instance().isValidZipCodeInput).toHaveBeenCalled();
     });
 
     it('starts zipcode fetch when fetchCompleted false', () => {
-      const component = mount(
-        <Zipcode
-          type={'zipcode'}
-          key={`zipcode-1`}
-          id={'zipcodeTest'}
-          name={'zipcodeTest'}
-          placeholder={'00000-000'}
-          onFieldChange={()=>{}}
-        />,
-      );
+      const component = mount(getZipCodeMock());
 
       component.instance().getZipCode = jest.fn();
 
       const evt = { target: { value: '04707-060' }, key: 0 }
-      component.instance().onKeyUp(evt);
+      component.instance().onKeyUp(()=>{}, evt);
 
       expect(component.instance().getZipCode).toHaveBeenCalled();
     });
 
     it('does not fetch zipcode if fetchCompleted true', () => {
-      const component = mount(
-        <Zipcode
-          type={'zipcode'}
-          key={`zipcode-1`}
-          id={'zipcodeTest'}
-          name={'zipcodeTest'}
-          placeholder={'00000-000'}
-          onFieldChange={()=>{}}
-        />,
-      );
-
+      const component = mount(getZipCodeMock());
 
       component.state().fetchCompleted = true;
       component.instance().getZipCode = jest.fn();
 
       const evt = { target: { value: '04707-060' }, key: 0 }
-      component.instance().onKeyUp(evt);
+      component.instance().onKeyUp(()=>{}, evt);
 
       expect(component.instance().getZipCode).not.toHaveBeenCalled();
     });
   });
 
-  xdescribe('.isUserTyping', () => {
-    const component = mount(
-      <Zipcode
-        type={'zipcode'}
-        key={`zipcode-1`}
-        id={'zipcodeTest'}
-        name={'zipcodeTest'}
-        placeholder={'00000-000'}
-        onFieldChange={()=>{}}
-      />,
-    );
-
+  describe('.isUserTyping', () => {
     it('returns true for incomplete zipcode format', () => {
       const zipcodeLength = 7;
       const keyboardKey = 'a';
+      const component = mount(getZipCodeMock());
 
       const result = component.instance().isUserTyping(zipcodeLength, keyboardKey);
 
@@ -184,6 +142,7 @@ describe('Zipcode', () => {
     it('returns false when last zipcode caracter is entered', () => {
       const zipcodeLength = 8;
       const keyboardKey = 0;
+      const component = mount(getZipCodeMock());
 
       const result = component.instance().isUserTyping(zipcodeLength, keyboardKey);
 
@@ -191,21 +150,11 @@ describe('Zipcode', () => {
     });
   });
 
-  xdescribe('.isValidZipCodeInput', () => {
-    const component = mount(
-      <Zipcode
-        type={'zipcode'}
-        key={`zipcode-1`}
-        id={'zipcodeTest'}
-        name={'zipcodeTest'}
-        placeholder={'00000-000'}
-        onFieldChange={()=>{}}
-      />,
-    );
-
+  describe('.isValidZipCodeInput', () => {
     it('returns true for a valid zipcode user input', () => {
       const zipcodeLength = 8;
       const fetchedCompleted = false;
+      const component = mount(getZipCodeMock());
 
       const result = component.instance().isValidZipCodeInput(zipcodeLength, fetchedCompleted);
 
@@ -215,6 +164,7 @@ describe('Zipcode', () => {
     it('returns false for invalid zipcode user input', () => {
       const zipcodeLength = 7;
       const fetchedCompleted = true;
+      const component = mount(getZipCodeMock());
 
       const result = component.instance().isValidZipCodeInput(zipcodeLength, fetchedCompleted);
 
@@ -222,18 +172,9 @@ describe('Zipcode', () => {
     });
   });
 
-  xdescribe('.getEmptyState', () => {
+  describe('.getEmptyState', () => {
     it('sets all key values to empty string', () => {
-      const component = mount(
-        <Zipcode
-          type={'zipcode'}
-          key={`zipcode-1`}
-          id={'zipcodeTest'}
-          name={'zipcodeTest'}
-          placeholder={'00000-000'}
-          onFieldChange={()=>{}}
-        />,
-      );
+      const component = mount(getZipCodeMock());
 
       const currentState = {
         value: '05402300',
@@ -263,48 +204,9 @@ describe('Zipcode', () => {
     });
   });
 
-  xdescribe('.getZipCode', () => {
-    mock.onGet('http://www.getninjas-homolog.com.br/api/correios?q=05402300').reply(200, {
-      data: {
-        type_street: "",
-        street: "Avenida Rebouças",
-        city: "São Paulo",
-        neighborhood: "Pinheiros",
-        uf: "SP"
-      },
-    });
-
-    const component = mount(
-      <Zipcode
-        type={'zipcode'}
-        key={`zipcode-1`}
-        id={'zipcodeTest'}
-        name={'zipcodeTest'}
-        placeholder={'00000-000'}
-        onFieldChange={()=>{}}
-      />,
-    );
-
-    it('axios mock', () => {
-      component.instance().getZipCode('05402300');
-
-      expect(true).toEqual(true);
-    });
-  });
-
-  xdescribe('.fillAddressState', () => {
+  describe('.fillAddressState', () => {
     it('sets response data and value zipcode to key values', () => {
-      const component = mount(
-        <Zipcode
-          type={'zipcode'}
-          key={`zipcode-1`}
-          id={'zipcodeTest'}
-          name={'zipcodeTest'}
-          placeholder={'00000-000'}
-          onFieldChange={()=>{}}
-        />,
-      );
-
+      const component = mount(getZipCodeMock());
       const zipcodeValue = '05402300';
 
       const responseAddress = {
