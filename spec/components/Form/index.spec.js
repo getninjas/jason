@@ -19,7 +19,7 @@ function createNodeMock(element) {
 }
 
 describe('Form', () => {
-  xit('renders defaultProps', () => {
+  it('renders defaultProps', () => {
     const options = { createNodeMock };
     const component = renderer.create(
       <Form name={'form'} action={'/'} data={form} />, options
