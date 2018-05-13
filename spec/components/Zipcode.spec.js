@@ -109,10 +109,11 @@ describe('Zipcode', () => {
 
       component.instance().getZipCode = jest.fn();
 
-      const evt = { target: { value: '04707-060' }, key: 0 }
-      component.instance().onKeyUp(()=>{}, evt);
+      const evt = { target: { value: '04707-060' }, key: 0 };
+      const successCallback = ()=>{};
+      component.instance().onKeyUp(successCallback, evt);
 
-      expect(component.instance().getZipCode).toHaveBeenCalled();
+      expect(component.instance().getZipCode).toHaveBeenCalledWith('04707060', successCallback);
     });
 
     it('does not fetch zipcode if fetchCompleted true', () => {
@@ -121,10 +122,11 @@ describe('Zipcode', () => {
       component.state().fetchCompleted = true;
       component.instance().getZipCode = jest.fn();
 
-      const evt = { target: { value: '04707-060' }, key: 0 }
-      component.instance().onKeyUp(()=>{}, evt);
+      const evt = { target: { value: '04707-060' }, key: 0 };
+      const successCallback = ()=>{};
+      component.instance().onKeyUp(successCallback, evt);
 
-      expect(component.instance().getZipCode).not.toHaveBeenCalled();
+      expect(component.instance().getZipCode).not.toHaveBeenCalledWith('04707060', successCallback);
     });
   });
 
