@@ -18,25 +18,25 @@ describe('.isEmpty', () => {
 });
 
 describe('.isMinLength', () => {
-  it('returns false for string greather than minLength', () => {
+  it('returns true for string greather than minLength', () => {
     const minLength = 3;
     const result = isMinLength('xpto', minLength);
 
-    expect(result).toBe(false);
+    expect(result).toBe(true);
   });
 
-  it('returns false for string with empty spaces greather than minLength', () => {
+  it('returns false for string with empty spaces smaller than minLength', () => {
     const minLength = 3;
     const result = isMinLength(' x   x', minLength);
 
     expect(result).toBe(false);
   });
 
-  it('returns true for string smaller than minLength', () => {
+  it('returns false for string smaller than minLength', () => {
     const minLength = 3;
-    const result = isMinLength('xp ', minLength);
+    const result = isMinLength('xp', minLength);
 
-    expect(result).toBe(true);
+    expect(result).toBe(false);
   });
 });
 

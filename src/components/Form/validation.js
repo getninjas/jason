@@ -6,7 +6,7 @@ export const isEmpty = (value) => {
 };
 
 export const isMinLength = (text, length) => {
-  return text.trim().length < length;
+  return length? text.replace(/\s/gm, '').length >= length : true;
 }
 
 export const isValidEmail = (value) => {
@@ -45,7 +45,7 @@ export const validateField = ({ required, type, value, minLength }) => {
     return errorMessage.REQUIRED_FIELD;
   }
 
-  if (required && isMinLength(value, minLength)) {
+  if (required && !isMinLength(value, minLength)) {
     return errorMessage.REQUIRED_MINLENGHT(minLength);
   }
 
