@@ -14,6 +14,7 @@ const propTypes = {
   required: PropTypes.bool,
   style: PropTypes.string,
   value: PropTypes.any,
+  zipcodeUrlService: PropTypes.string.isRequired,
   minLength: PropTypes.number,
 };
 
@@ -43,6 +44,7 @@ export default class Zipcode extends Component {
       uf: '',
       fullAddress: '',
       fetchCompleted: false,
+      zipcodeUrlService: this.props.zipcodeUrlService,
       fetching: false,
     }
 
@@ -72,16 +74,21 @@ export default class Zipcode extends Component {
     return zipcodeLength === ZIPCODE_VALID_LENGTH && !fetchCompleted;
   }
 
-  getZipCode(zipcode, successCallback) {
-    axios.get(`http://www.getninjas-homolog.com.br/api/correios?q=${zipcode}`)
-      .then((response) => {
-        successCallback(zipcode);
-        this.onZipcodeSuccess(zipcode, response);
-      })
-      .catch(this.onZipcodeError.bind(this, zipcode));
+  async getZipCode(zipcode, successCallback) {
+    try {
+      const url = this.state.zipcodeUrlService.replace(/@@zipcode@@/, `${zipcode}/json`);
+      const response = await axios.get(url);
+
+      this.onZipcodeSuccess(zipcode, response);
+
+      successCallback(zipcode);
+    } catch (error) {
+      this.onZipcodeError(zipcode);
+    }
   }
 
   onZipcodeSuccess(zipcode, response) {
+
     let result = this.getEmptyState(this.state);
 
     result = this.fillAddressState(response.data, zipcode);
