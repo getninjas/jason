@@ -7,6 +7,7 @@ import Factory from './Factory';
 const propTypes = {
   handleButtonClick: PropTypes.func.isRequired,
   onFieldChange: PropTypes.func.isRequired,
+  zipcodeUrlService: PropTypes.string.isRequired,
   formName: PropTypes.string.isRequired,
   buttonText: PropTypes.string.isRequired,
   fields: PropTypes.array.isRequired,
@@ -50,6 +51,7 @@ export default class Step extends Component {
                     index,
                     onFieldChange: this.props.onFieldChange,
                     formName: this.props.formName,
+                    zipcodeUrlService: this.props.zipcodeUrlService
                   })
                 }
               </Field>
