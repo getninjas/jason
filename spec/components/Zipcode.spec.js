@@ -130,6 +130,7 @@ describe('Zipcode', () => {
       const responseData = {
         data: { type_street: '', street: 'Rua Mock', city: 'Cidade Mock', neighborhood: 'Bairro Mock', uf: 'SP' }
       };
+
       const successCallback = jest.fn();
       component.instance().onZipcodeSuccess = jest.fn();
 
@@ -143,7 +144,7 @@ describe('Zipcode', () => {
       const component = mount(getZipCodeMock());
       const successCallback = jest.fn();
       component.instance().onZipcodeError = jest.fn();
-      component.state().zipcodeUrlService = 'http://unknowervice/@@zipcode@@';
+      component.state().zipcodeUrlService = 'http://unknowservice/@@zipcode@@';
 
       await component.instance().getZipCode('04707060', (zipcode) => { zipcode });
 
