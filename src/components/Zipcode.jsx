@@ -51,7 +51,7 @@ export default class Zipcode extends Component {
     this.inputRef = createRef();
   }
 
-  onKeyUp(successCallback, evt) {
+  onKeyUp(successCallback, errorCallback, evt) {
     const zipcode = evt.target.value.replace(/[^0-9]/g, '');
     const key = Number(evt.key);
 
@@ -62,7 +62,7 @@ export default class Zipcode extends Component {
 
     } else if (this.isValidZipCodeInput(zipcode.length, this.state.fetchCompleted)) {
       this.setState({ fetching: true });
-      this.getZipCode(zipcode, successCallback);
+      this.getZipCode(zipcode, successCallback, errorCallback);
     }
   }
 
@@ -74,7 +74,7 @@ export default class Zipcode extends Component {
     return zipcodeLength === ZIPCODE_VALID_LENGTH && !fetchCompleted;
   }
 
-  async getZipCode(zipcode, successCallback) {
+  async getZipCode(zipcode, successCallback, errorCallback) {
     try {
       const url = this.state.zipcodeUrlService.replace(/@@zipcode@@/, zipcode);
       const response = await axios.get(url);
@@ -84,6 +84,8 @@ export default class Zipcode extends Component {
       successCallback(zipcode);
     } catch (error) {
       this.onZipcodeError(zipcode);
+
+      errorCallback(zipcode);
     }
   }
 
@@ -153,7 +155,7 @@ export default class Zipcode extends Component {
         { context => {
             return <Fragment>
               <a href={'http://www.buscacep.correios.com.br'} target={'_blank'} className={'form__label-link'} rel={'noopener noreferrer'}>Não lembra seu CEP?</a>
-              <input id={id} name={name} className={style} type={'tel'} placeholder={placeholder} required={required} onKeyUp={this.onKeyUp.bind(this, context.onZipcodeFetchSuccess)} ref={this.inputRef} />
+              <input id={id} name={name} className={style} type={'tel'} placeholder={placeholder} required={required} onKeyUp={this.onKeyUp.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)} ref={this.inputRef} />
               <span className={'full-address'}>{fullAddress}</span>
               <input id={'street'} name={'street'} type={'hidden'} value={street} />
               <input id={'neighborhood'} name={'neighborhood'} type={'hidden'} value={neighborhood} />

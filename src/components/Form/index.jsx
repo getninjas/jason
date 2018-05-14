@@ -23,6 +23,7 @@ export default class Form extends Component {
     this.state = {
       activeStepIndex: 0,
       onZipcodeFetchSuccess: zipcode => window.alert(`zipcode fectch success hook ${zipcode}`),
+      onZipcodeFetchError: zipcode => window.alert(`zipcode fectch error hook ${zipcode}`),
       stepsCount: 0,
       steps: [],
     };
@@ -127,16 +128,17 @@ export default class Form extends Component {
 
                 return (
                   <Step
-                    visible={this.isStepVisible(index)}
-                    key={`${name}-step-${index}`}
-                    isLast={this.isLastStep(index)}
-                    handleButtonClick={this.handleButtonClick}
-                    onFieldChange={this.onFieldChange}
-                    formName={name}
-                    zipcodeUrlService={this.props.data.zipcodeUrlService}
                     buttonText={buttonText}
+                    fields={fields}
+                    formName={name}
+                    handleButtonClick={this.handleButtonClick}
                     headerMarkup={headerMarkup}
-                    fields={fields} />
+                    isLast={this.isLastStep(index)}
+                    key={`${name}-step-${index}`}
+                    onFieldChange={this.onFieldChange}
+                    visible={this.isStepVisible(index)}
+                    zipcodeUrlService={this.props.data.zipcodeUrlService}
+                  />
                 )
               })
             }
