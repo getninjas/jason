@@ -5,8 +5,8 @@ import TextArea from './TextArea';
 import Zipcode from './Zipcode';
 
 export default class Factory {
-  static getComponent({ item, index, onFieldChange, formName }) {
-    const { type, placeholder, id, name, value, values, required } = item;
+  static getComponent({ item, index, onFieldChange, formName, zipcodeUrlService }) {
+    const { type, placeholder, id, name, value, values, required} = item;
 
     const inputTypeAccepted = ['text', 'phone', 'email'];
 
@@ -39,6 +39,7 @@ export default class Factory {
         <Zipcode
           {...commonProps}
           type={type}
+          zipcodeUrlService={zipcodeUrlService}
         />
       )
     }
