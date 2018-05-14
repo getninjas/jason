@@ -92,13 +92,5 @@ describe('Input', () => {
 
       expect(inputType).toBe('tel');
     });
-
-    it('renders type tel when type equal zipcode ', () => {
-      const component = mount(<Input id={'id_input'} name={'input_name'} onFieldChange={()=>{}} type={'zipcode'}/>);
-
-      const inputType = component.getDOMNode().attributes.type.value;
-
-      expect(inputType).toBe('tel');
-    });
   });
 });
