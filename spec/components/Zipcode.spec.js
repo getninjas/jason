@@ -6,8 +6,8 @@ import Zipcode from '../../src/components/Zipcode';
 
 enzymeConfig();
 
-const getLanguageSelectorWithContext = (context = { onZipcodeFetchSuccess: zipcode => zipcode }) => {
-  jest.doMock('../../src/AppContextReact', () => {
+const getComponentWithContext = (context = { onZipcodeFetchSuccess: zipcode => zipcode }) => {
+  jest.doMock('../../src/AppContext', () => {
     return {
       AppContext: {
         Consumer: (props) => {
@@ -48,7 +48,7 @@ const zipcodeElement = () => {
 };
 
 const getZipCodeMock = () => {
-  const ZipcodeMock = getLanguageSelectorWithContext();
+  const ZipcodeMock = getComponentWithContext();
   return (<ZipcodeMock {...commonProps}/>);
 }
 
