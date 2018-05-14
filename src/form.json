@@ -2,7 +2,7 @@
   "form": {
     "title": "Form Title",
     "databaseId": 81,
-    "zipcodeUrlService": "http://viacep.com.br/ws/@@zipcode@@/json/",
+    "zipcodeUrlService": "https://www.getninjas-homolog.com.br/api/correios?q=@@zipcode@@",
     "steps": [
       {
         "title": "General data",
