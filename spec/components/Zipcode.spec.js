@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { enzymeConfig, mount } from '../enzymeConfig';
-import { AppContext } from '../../src/AppContextReact';
+import { AppContext } from '../../src/AppContext';
 import Zipcode from '../../src/components/Zipcode';
 
 enzymeConfig();
