@@ -2,7 +2,7 @@
   "form": {
     "title": "Form Title",
     "databaseId": 81,
-    "zipcodeUrlService": "https://www.getninjas-homolog.com.br/api/correios?q=@@zipcode@@",
+    "zipcodeUrlService": "https://www.dummy.com/zipcode?q=@@zipcode@@",
     "steps": [
       {
         "title": "General data",
