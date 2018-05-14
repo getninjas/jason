@@ -1,4 +1,4 @@
-const maxLength = (text, length) => {
+const maxLengthTrim = (text, length) => {
   let result = text;
 
   if (text.length > length) {
@@ -6,6 +6,6 @@ const maxLength = (text, length) => {
   }
 
   return result;
-}
+};
 
-export default maxLength;
+export default maxLengthTrim;

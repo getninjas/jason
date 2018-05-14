@@ -6,7 +6,7 @@ import Zipcode from './Zipcode';
 
 export default class Factory {
   static getComponent({ item, index, onFieldChange, formName, zipcodeUrlService }) {
-    const { type, placeholder, id, name, value, values, required} = item;
+    const { type, placeholder, id, name, value, values, required } = item;
 
     const inputTypeAccepted = ['text', 'phone', 'email'];
 
@@ -16,8 +16,8 @@ export default class Factory {
       name,
       onFieldChange,
       placeholder,
-      required
-    }
+      required,
+    };
 
     if (type === 'select') {
       return (
@@ -25,7 +25,7 @@ export default class Factory {
           {...commonProps}
           selected={value}
           values={values} />
-      )
+      );
     }
 
     if (type === 'textarea') {
@@ -41,7 +41,7 @@ export default class Factory {
           type={type}
           zipcodeUrlService={zipcodeUrlService}
         />
-      )
+      );
     }
 
     if (inputTypeAccepted.includes(type)) {

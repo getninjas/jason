@@ -1,7 +1,7 @@
 import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import IMask from 'imask';
-import maxLength from '../helpers/input';
+import maxLengthTrim from '../helpers/input';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
@@ -34,14 +34,14 @@ export default class Input extends Component {
 
     this.state = {
       value: '',
-    }
+    };
 
     this.ref = createRef();
     this.onChange = this.onChange.bind(this);
   }
 
   onChange(evt) {
-    const inputValue = maxLength(evt.target.value, this.props.maxLength);
+    const inputValue = maxLengthTrim(evt.target.value, this.props.maxLength);
 
     this.props.onFieldChange({
       value: inputValue,
@@ -61,7 +61,7 @@ export default class Input extends Component {
       new IMask(this.ref.current, { mask: '(00) 00000-0000' });
     }
 
-    this.setState({ value: value });
+    this.setState({ value });
   }
 
   getInputType(type) {

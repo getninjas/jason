@@ -33,7 +33,7 @@ export default class Select extends Component {
     this.state = {
       values: [],
       selected: '',
-    }
+    };
 
     this.onChange = this.onChange.bind(this);
   }
@@ -41,7 +41,7 @@ export default class Select extends Component {
   componentDidMount() {
     const values = this.addPlaceholder(this.props);
 
-    this.setState({values});
+    this.setState({ values });
   }
 
   onChange(evt) {
@@ -58,7 +58,9 @@ export default class Select extends Component {
   addPlaceholder({ values, placeholder }) {
     const localValues = [...values];
 
-    placeholder.length ? localValues.unshift({ databaseId: '', value: placeholder }) : '';
+    if (placeholder.length) {
+      localValues.unshift({ databaseId: '', value: placeholder });
+    }
 
     return localValues;
   }
@@ -75,13 +77,13 @@ export default class Select extends Component {
         onChange={this.onChange}
         required={required ? 'true' : 'false'}>
         {
-          this.state.values.map((item, index) => {
-            return (
+          this.state.values.map((item, index) =>
+            (
               <option key={`option-${index}`} value={item.databaseId}>
                 {item.value}
               </option>
-            );
-          })
+            ),
+          )
         }
       </select>
     );

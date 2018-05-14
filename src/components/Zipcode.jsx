@@ -46,7 +46,7 @@ export default class Zipcode extends Component {
       fetchCompleted: false,
       zipcodeUrlService: this.props.zipcodeUrlService,
       fetching: false,
-    }
+    };
 
     this.inputRef = createRef();
   }
@@ -58,7 +58,6 @@ export default class Zipcode extends Component {
 
     if (this.isUserTyping(zipcode.length)) {
       this.setState({ value: evt.target.value, fullAddress: '', fetchCompleted: false });
-
     } else if (this.isValidZipCodeInput(zipcode.length, this.state.fetchCompleted)) {
       this.setState({ fetching: true });
       this.getZipCode(zipcode, successCallback, errorCallback);
@@ -99,7 +98,7 @@ export default class Zipcode extends Component {
   }
 
   onZipcodeError(zipcode) {
-    let result = this.getEmptyState(this.state);
+    const result = this.getEmptyState(this.state);
 
     result.value = zipcode;
     result.fetching = false;
@@ -123,9 +122,7 @@ export default class Zipcode extends Component {
   }
 
   fillAddressState(responseAddress, zipcode) {
-    let result = Object.keys(responseAddress).reduce((output, key) => {
-      return { ...output, [key]: responseAddress[key] };
-    }, {});
+    const result = Object.keys(responseAddress).reduce((output, key) => ({ ...output, [key]: responseAddress[key] }), {});
 
     result.value = zipcode;
     result.fetchCompleted = true;
@@ -148,17 +145,16 @@ export default class Zipcode extends Component {
 
     return (
       <AppContext.Consumer>
-        { context => {
-            return <Fragment>
-              <a href={'http://www.buscacep.correios.com.br'} target={'_blank'} className={'form__label-link'} rel={'noopener noreferrer'}>Não lembra seu CEP?</a>
-              <input id={id} name={name} className={style} type={'tel'} placeholder={placeholder} required={required} onChange={this.onChange.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)} ref={this.inputRef} />
-              { fetching ? <span className={'zipcode__loader'} >Buscando CEP...</span> : <span className={'full-address'}>{fullAddress}</span> }
-              <input id={'street'} name={'street'} type={'hidden'} value={street} />
-              <input id={'neighborhood'} name={'neighborhood'} type={'hidden'} value={neighborhood} />
-              <input id={'city'} name={'city'} type={'hidden'} value={city} />
-              <input id={'uf'} name={'uf'} type={'hidden'} value={uf} />
-            </Fragment>
-          } }
+        { context => <Fragment>
+          <a href={'http://www.buscacep.correios.com.br'} target={'_blank'} className={'form__label-link'} rel={'noopener noreferrer'}>Não lembra seu CEP?</a>
+          <input id={id} name={name} className={style} type={'tel'} placeholder={placeholder} required={required} onChange={this.onChange.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)} ref={this.inputRef} />
+          { fetching ? <span className={'zipcode__loader'} >Buscando CEP...</span> : <span className={'full-address'}>{fullAddress}</span> }
+          <input id={'street'} name={'street'} type={'hidden'} value={street} />
+          <input id={'neighborhood'} name={'neighborhood'} type={'hidden'} value={neighborhood} />
+          <input id={'city'} name={'city'} type={'hidden'} value={city} />
+          <input id={'uf'} name={'uf'} type={'hidden'} value={uf} />
+        </Fragment>
+        }
       </AppContext.Consumer>
     );
   }

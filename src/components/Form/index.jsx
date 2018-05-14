@@ -28,8 +28,8 @@ export default class Form extends Component {
       steps: [],
     };
 
-    this.sectionStyle = "wall--inverted col-normal-8 col-small-12";
-    this.formStyle = "form container sh-form-content space-box-small";
+    this.sectionStyle = 'wall--inverted col-normal-8 col-small-12';
+    this.formStyle = 'form container sh-form-content space-box-small';
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
@@ -97,8 +97,8 @@ export default class Form extends Component {
   updateStep(fields) {
     const { steps, activeStepIndex } = this.state;
 
-    let modifiedSteps = [...steps];
-    let modifiedStep = Object.assign({}, modifiedSteps[activeStepIndex], { fields });
+    const modifiedSteps = [...steps];
+    const modifiedStep = Object.assign({}, modifiedSteps[activeStepIndex], { fields });
 
     modifiedSteps[activeStepIndex] = modifiedStep;
 
@@ -116,12 +116,10 @@ export default class Form extends Component {
   }
 
   render() {
-    const { action, method, name } = this.props;
-
     return (
       <AppContext.Provider value={this.state}>
         <section className={this.sectionStyle}>
-          <form noValidate onSubmit={this.handleSubmit} action={action} method={method} name={name} className={this.formStyle}>
+          <form noValidate onSubmit={this.handleSubmit} {...this.props} className={this.formStyle}>
             {
               this.state.steps.map((step, index) => {
                 const { buttonText, headerMarkup, fields } = step;
@@ -130,16 +128,16 @@ export default class Form extends Component {
                   <Step
                     buttonText={buttonText}
                     fields={fields}
-                    formName={name}
+                    formName={this.props.name}
                     handleButtonClick={this.handleButtonClick}
                     headerMarkup={headerMarkup}
                     isLast={this.isLastStep(index)}
-                    key={`${name}-step-${index}`}
+                    key={`${this.props.name}-step-${index}`}
                     onFieldChange={this.onFieldChange}
                     visible={this.isStepVisible(index)}
                     zipcodeUrlService={this.props.data.zipcodeUrlService}
                   />
-                )
+                );
               })
             }
           </form>

@@ -27,7 +27,7 @@ export default class Step extends Component {
   }
 
   addHeaderMarkup(headerMarkup) {
-    return headerMarkup ? <div className="__headerMarkup__" dangerouslySetInnerHTML={this._createMarkup(headerMarkup)} /> : '';
+    return headerMarkup ? <div className="__headerMarkup__" dangerouslySetInnerHTML={this.createMarkup(headerMarkup)} /> : '';
   }
 
   render() {
@@ -38,33 +38,33 @@ export default class Step extends Component {
         { this.addHeaderMarkup(headerMarkup) }
 
         {
-          fields.map((item, index) => {
-            return (
-              <Field
-                key={`field-${index}`}
-                label={item.title}
-                id={item.id}
-                errorMessage={item.errorMessage}>
-                {
-                  Factory.getComponent({
-                    item,
-                    index,
-                    onFieldChange: this.props.onFieldChange,
-                    formName: this.props.formName,
-                    zipcodeUrlService: this.props.zipcodeUrlService
-                  })
-                }
-              </Field>
-            )
-          })
+          fields.map((item, index) =>
+            <Field
+              key={`field-${index}`}
+              label={item.title}
+              id={item.id}
+              errorMessage={item.errorMessage}>
+              {
+                Factory.getComponent({
+                  item,
+                  index,
+                  onFieldChange: this.props.onFieldChange,
+                  formName: this.props.formName,
+                  zipcodeUrlService: this.props.zipcodeUrlService,
+                })
+              }
+            </Field>,
+          )
         }
 
-        <Button isSubmit={this.props.isLast} handleButtonClick={this.props.handleButtonClick}>{buttonText}</Button>
+        <Button isSubmit={this.props.isLast} handleButtonClick={this.props.handleButtonClick}>
+          {buttonText}
+        </Button>
       </fieldset>
     );
   }
 
-  _createMarkup(html) {
+  createMarkup(html) {
     return { __html: html };
   }
 }
