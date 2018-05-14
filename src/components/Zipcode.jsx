@@ -51,13 +51,12 @@ export default class Zipcode extends Component {
     this.inputRef = createRef();
   }
 
-  onKeyUp(successCallback, errorCallback, evt) {
+  onChange(successCallback, errorCallback, evt) {
     const zipcode = evt.target.value.replace(/[^0-9]/g, '');
-    const key = Number(evt.key);
 
     this.props.onFieldChange({ ...this.props, value: evt.target.value });
 
-    if (this.isUserTyping(zipcode.length, key)) {
+    if (this.isUserTyping(zipcode.length)) {
       this.setState({ value: evt.target.value, fullAddress: '', fetchCompleted: false });
 
     } else if (this.isValidZipCodeInput(zipcode.length, this.state.fetchCompleted)) {
@@ -67,7 +66,7 @@ export default class Zipcode extends Component {
   }
 
   isUserTyping(zipcodeLength, keyboardKey) {
-    return zipcodeLength < ZIPCODE_VALID_LENGTH && isNaN(keyboardKey);
+    return zipcodeLength < ZIPCODE_VALID_LENGTH;
   }
 
   isValidZipCodeInput(zipcodeLength, fetchCompleted) {
@@ -152,7 +151,7 @@ export default class Zipcode extends Component {
         { context => {
             return <Fragment>
               <a href={'http://www.buscacep.correios.com.br'} target={'_blank'} className={'form__label-link'} rel={'noopener noreferrer'}>Não lembra seu CEP?</a>
-              <input id={id} name={name} className={style} type={'tel'} placeholder={placeholder} required={required} onKeyUp={this.onKeyUp.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)} ref={this.inputRef} />
+              <input id={id} name={name} className={style} type={'tel'} placeholder={placeholder} required={required} onChange={this.onChange.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)} ref={this.inputRef} />
               { fetching ? <span className={'zipcode__loader'} >Buscando CEP...</span> : <span className={'full-address'}>{fullAddress}</span> }
               <input id={'street'} name={'street'} type={'hidden'} value={street} />
               <input id={'neighborhood'} name={'neighborhood'} type={'hidden'} value={neighborhood} />
