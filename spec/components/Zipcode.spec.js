@@ -93,7 +93,7 @@ describe('Zipcode', () => {
       component.instance().isValidZipCodeInput = jest.fn();
 
       const evt = { target: { value: '05402-300' }, key: 0 }
-      component.instance().onKeyUp(() => {}, evt);
+      component.instance().onKeyUp(() => {}, () => {}, evt);
 
       expect(component.instance().isUserTyping).toHaveBeenCalled();
       expect(component.instance().isValidZipCodeInput).toHaveBeenCalled();
@@ -106,9 +106,11 @@ describe('Zipcode', () => {
 
       const evt = { target: { value: '04707-060' }, key: 0 };
       const successCallback = () => {};
-      component.instance().onKeyUp(successCallback, evt);
+      const errorCallback = () => {};
 
-      expect(component.instance().getZipCode).toHaveBeenCalledWith('04707060', successCallback);
+      component.instance().onKeyUp(successCallback, errorCallback, evt);
+
+      expect(component.instance().getZipCode).toHaveBeenCalledWith('04707060', successCallback, errorCallback);
     });
 
     it('does not fetch zipcode if fetchCompleted true', () => {
@@ -119,9 +121,11 @@ describe('Zipcode', () => {
 
       const evt = { target: { value: '04707-060' }, key: 0 };
       const successCallback = () => {};
-      component.instance().onKeyUp(successCallback, evt);
+      const errorCallback = () => {};
 
-      expect(component.instance().getZipCode).not.toHaveBeenCalledWith('04707060', successCallback);
+      component.instance().onKeyUp(successCallback, errorCallback, evt);
+
+      expect(component.instance().getZipCode).not.toHaveBeenCalledWith('04707060', successCallback, errorCallback);
     });
 
     it('calls onZipcodeSuccess and successCallback on fetch success', async () => {
@@ -132,23 +136,28 @@ describe('Zipcode', () => {
       };
 
       const successCallback = jest.fn();
+      const errorCallback = jest.fn();
       component.instance().onZipcodeSuccess = jest.fn();
 
-      await component.instance().getZipCode('04707060', successCallback);
+      await component.instance().getZipCode('04707060', successCallback, errorCallback);
 
       expect(successCallback).toHaveBeenCalledWith('04707060');
+      expect(errorCallback).not.toHaveBeenCalledWith('04707060');
       expect(component.instance().onZipcodeSuccess).toHaveBeenCalledWith('04707060', responseData);
     });
 
     it('calls onZipcodeError on fetch error', async () => {
       const component = mount(getZipCodeMock());
       const successCallback = jest.fn();
+      const errorCallback = jest.fn();
+
       component.instance().onZipcodeError = jest.fn();
       component.state().zipcodeUrlService = 'http://unknowservice/@@zipcode@@';
 
-      await component.instance().getZipCode('04707060', (zipcode) => { zipcode });
+      await component.instance().getZipCode('04707060', successCallback, errorCallback);
 
       expect(successCallback).not.toHaveBeenCalledWith('04707060');
+      expect(errorCallback).toHaveBeenCalledWith('04707060');
       expect(component.instance().onZipcodeError).toHaveBeenCalledWith('04707060');
     });
   });
