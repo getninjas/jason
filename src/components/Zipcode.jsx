@@ -93,6 +93,7 @@ export default class Zipcode extends Component {
 
     result = this.fillAddressState(response.data, zipcode);
     result.fetching = false;
+    result.zipcodeUrlService = this.props.zipcodeUrlService;
 
     this.setState(result);
   }
@@ -102,6 +103,7 @@ export default class Zipcode extends Component {
 
     result.value = zipcode;
     result.fetching = false;
+    result.zipcodeUrlService = this.props.zipcodeUrlService;
 
     this.props.onFieldChange({ value: '', fetchCompleted: false, ...this.props });
 
