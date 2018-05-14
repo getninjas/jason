@@ -90,7 +90,6 @@ export default class Zipcode extends Component {
   }
 
   onZipcodeSuccess(zipcode, response) {
-
     let result = this.getEmptyState(this.state);
 
     result = this.fillAddressState(response.data, zipcode);
@@ -113,7 +112,7 @@ export default class Zipcode extends Component {
   }
 
   getEmptyState(state) {
-    const result = Object.keys(state).reduce((output, key) => {
+    return Object.keys(state).reduce((output, key) => {
       let defaultValue = '';
 
       if (typeof state[key] === 'boolean') {
@@ -122,8 +121,6 @@ export default class Zipcode extends Component {
 
       return { ...output, [key]: defaultValue };
     }, {});
-
-    return result;
   }
 
   fillAddressState(responseAddress, zipcode) {
