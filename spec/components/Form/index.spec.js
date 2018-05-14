@@ -59,7 +59,7 @@ describe('Form', () => {
 
     it('goes to next step', () => {
       const steps = [...form.steps];
-      const data = Object.assign({}, { steps });
+      const data = { steps , zipcodeUrlService: form.zipcodeUrlService };
 
       data.steps = fillFormFields(data.steps);
 
@@ -157,7 +157,7 @@ describe('Form', () => {
 
     it('calls .nextStep', () => {
       const steps = [...form.steps];
-      const data = Object.assign({}, { steps });
+      const data = { steps , zipcodeUrlService: form.zipcodeUrlService };
 
       data.steps = fillFormFields(data.steps);
 
@@ -230,7 +230,7 @@ describe('Form', () => {
 
     it('goes to next step', () => {
       const steps = [...form.steps];
-      const data = Object.assign({}, { steps });
+      const data = { steps , zipcodeUrlService: form.zipcodeUrlService };
 
       data.steps = fillFormFields(data.steps);
 
