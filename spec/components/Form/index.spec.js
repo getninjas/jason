@@ -18,6 +18,10 @@ function createNodeMock(element) {
   return null;
 }
 
+const copyState = ({steps, zipcodeUrlService}) => {
+  return { steps: [...steps], zipcodeUrlService };
+}
+
 describe('Form', () => {
   it('renders defaultProps', () => {
     const options = { createNodeMock };
@@ -58,8 +62,7 @@ describe('Form', () => {
     });
 
     it('goes to next step', () => {
-      const steps = [...form.steps];
-      const data = { steps , zipcodeUrlService: form.zipcodeUrlService };
+      const data = copyState(form);
 
       data.steps = fillFormFields(data.steps);
 
@@ -156,8 +159,7 @@ describe('Form', () => {
     });
 
     it('calls .nextStep', () => {
-      const steps = [...form.steps];
-      const data = { steps , zipcodeUrlService: form.zipcodeUrlService };
+      const data = copyState(form);
 
       data.steps = fillFormFields(data.steps);
 
@@ -229,8 +231,7 @@ describe('Form', () => {
     });
 
     it('goes to next step', () => {
-      const steps = [...form.steps];
-      const data = { steps , zipcodeUrlService: form.zipcodeUrlService };
+      const data = copyState(form);
 
       data.steps = fillFormFields(data.steps);
 
