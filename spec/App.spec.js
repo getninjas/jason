@@ -2,9 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from '../src/App';
 import { form } from '../src/form.json';
-import jsdomConfig from './jsdomConfig';
-
-jsdomConfig();
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
