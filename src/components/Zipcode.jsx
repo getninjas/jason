@@ -116,7 +116,7 @@ export default class Zipcode extends Component {
         defaultValue = false;
       }
 
-      return Object.assign({}, output, { [key]: defaultValue });
+      return { ...output, [key]: defaultValue };
     }, {});
 
     return result;
@@ -124,7 +124,7 @@ export default class Zipcode extends Component {
 
   fillAddressState(responseAddress, zipcode) {
     let result = Object.keys(responseAddress).reduce((output, key) => {
-      return Object.assign({}, output, { [key]: responseAddress[key] });
+      return { ...output, [key]: responseAddress[key] };
     }, {});
 
     result.value = zipcode;
