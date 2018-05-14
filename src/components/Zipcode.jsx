@@ -76,7 +76,7 @@ export default class Zipcode extends Component {
 
   async getZipCode(zipcode, successCallback) {
     try {
-      const url = this.state.zipcodeUrlService.replace(/@@zipcode@@/, `${zipcode}/json`);
+      const url = this.state.zipcodeUrlService.replace(/@@zipcode@@/, zipcode);
       const response = await axios.get(url);
 
       this.onZipcodeSuccess(zipcode, response);
