@@ -61,15 +61,11 @@ export default class Input extends Component {
       new IMask(this.ref.current, { mask: '(00) 00000-0000' });
     }
 
-    if (type === 'zipcode') {
-      new IMask(this.ref.current, { mask: '00000-000' });
-    }
-
     this.setState({ value: value });
   }
 
   getInputType(type) {
-    if (type === 'phone' || type === 'zipcode') {
+    if (type === 'phone') {
       return 'tel';
     }
 
