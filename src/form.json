@@ -2,6 +2,7 @@
   "form": {
     "title": "Form Title",
     "databaseId": 81,
+    "zipcodeUrlService": "http://viacep.com.br/ws/@@zipcode@@/json/",
     "steps": [
       {
         "title": "General data",
