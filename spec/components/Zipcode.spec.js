@@ -42,9 +42,11 @@ const commonProps = {
 }
 
 const zipcodeElement = () => {
-  return <AppContext.Provider value={{ onZipcodeFetchSuccess: zipcode => zipcode }} >
-    <Zipcode {...commonProps} />
-  </AppContext.Provider>
+  return (
+    <AppContext.Provider value={{ onZipcodeFetchSuccess: zipcode => zipcode }} >
+      <Zipcode {...commonProps} />
+    </AppContext.Provider>
+  )
 };
 
 const getZipCodeMock = () => {
