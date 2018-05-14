@@ -14,7 +14,7 @@ Array [
     className="form__input"
     id="zipcodeTest"
     name="zipcodeTest"
-    onKeyUp={[Function]}
+    onChange={[Function]}
     placeholder="00000-000"
     required={true}
     type="tel"

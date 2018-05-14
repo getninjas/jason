@@ -87,15 +87,15 @@ describe('Zipcode', () => {
     });
   });
 
-  describe('.onKeyUp', () => {
+  describe('.onChange', () => {
     it('calls valid zipcode methods', () => {
       const component = mount(getZipCodeMock());
 
       component.instance().isUserTyping = jest.fn();
       component.instance().isValidZipCodeInput = jest.fn();
 
-      const evt = { target: { value: '05402-300' }, key: 0 }
-      component.instance().onKeyUp(() => {}, () => {}, evt);
+      const evt = { target: { value: '05402-300' }}
+      component.instance().onChange(() => {}, () => {}, evt);
 
       expect(component.instance().isUserTyping).toHaveBeenCalled();
       expect(component.instance().isValidZipCodeInput).toHaveBeenCalled();
@@ -106,11 +106,11 @@ describe('Zipcode', () => {
 
       component.instance().getZipCode = jest.fn();
 
-      const evt = { target: { value: '04707-060' }, key: 0 };
+      const evt = { target: { value: '04707-060' }};
       const successCallback = () => {};
       const errorCallback = () => {};
 
-      component.instance().onKeyUp(successCallback, errorCallback, evt);
+      component.instance().onChange(successCallback, errorCallback, evt);
 
       expect(component.instance().getZipCode).toHaveBeenCalledWith('04707060', successCallback, errorCallback);
     });
@@ -121,11 +121,11 @@ describe('Zipcode', () => {
       component.state().fetchCompleted = true;
       component.instance().getZipCode = jest.fn();
 
-      const evt = { target: { value: '04707-060' }, key: 0 };
+      const evt = { target: { value: '04707-060' }};
       const successCallback = () => {};
       const errorCallback = () => {};
 
-      component.instance().onKeyUp(successCallback, errorCallback, evt);
+      component.instance().onChange(successCallback, errorCallback, evt);
 
       expect(component.instance().getZipCode).not.toHaveBeenCalledWith('04707060', successCallback, errorCallback);
     });
@@ -167,20 +167,18 @@ describe('Zipcode', () => {
   describe('.isUserTyping', () => {
     it('returns true for incomplete zipcode format', () => {
       const zipcodeLength = 7;
-      const keyboardKey = 'a';
       const component = mount(getZipCodeMock());
 
-      const result = component.instance().isUserTyping(zipcodeLength, keyboardKey);
+      const result = component.instance().isUserTyping(zipcodeLength);
 
       expect(result).toEqual(true);
     });
 
     it('returns false when last zipcode caracter is entered', () => {
       const zipcodeLength = 8;
-      const keyboardKey = 0;
       const component = mount(getZipCodeMock());
 
-      const result = component.instance().isUserTyping(zipcodeLength, keyboardKey);
+      const result = component.instance().isUserTyping(zipcodeLength);
 
       expect(result).toEqual(false);
     });
