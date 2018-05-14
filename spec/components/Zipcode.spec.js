@@ -1,6 +1,4 @@
 import React from 'react';
-import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
 import renderer from 'react-test-renderer';
 import { enzymeConfig, mount } from '../enzymeConfig';
 import { AppContext } from '../../src/AppContextReact';
@@ -33,28 +31,25 @@ function createNodeMock(element) {
   return null;
 }
 
+const commonProps = {
+  type:'zipcode',
+  key:'zipcode-1',
+  id:'zipcodeTest',
+  name:'zipcodeTest',
+  placeholder:'00000-000',
+  zipcodeUrlService:'http://viacep.com.br/ws/@@zipcode@@/json/',
+  onFieldChange:() => {},
+}
+
 const zipcodeElement = () => {
-  return <AppContext.Provider value={ { onZipcodeFetchSuccess: zipcode => zipcode } } >
-    <Zipcode
-      type={'zipcode'}
-      key={`zipcode-1`}
-      id={'zipcodeTest'}
-      name={'zipcodeTest'}
-      placeholder={'00000-000'}
-      onFieldChange={()=>{}}
-  />
+  return <AppContext.Provider value={{ onZipcodeFetchSuccess: zipcode => zipcode }} >
+    <Zipcode {...commonProps} />
   </AppContext.Provider>
 };
 
-const getZipCodeMock = ()=> {
+const getZipCodeMock = () => {
   const ZipcodeMock = getLanguageSelectorWithContext();
-  return (<ZipcodeMock type={'zipcode'}
-    key={`zipcode-1`}
-    id={'zipcodeTest'}
-    name={'zipcodeTest'}
-    placeholder={'00000-000'}
-    onFieldChange={()=>{}}
-  />);
+  return (<ZipcodeMock {...commonProps}/>);
 }
 
 describe('Zipcode', () => {
@@ -98,7 +93,7 @@ describe('Zipcode', () => {
       component.instance().isValidZipCodeInput = jest.fn();
 
       const evt = { target: { value: '05402-300' }, key: 0 }
-      component.instance().onKeyUp(()=>{}, evt);
+      component.instance().onKeyUp(() => {}, evt);
 
       expect(component.instance().isUserTyping).toHaveBeenCalled();
       expect(component.instance().isValidZipCodeInput).toHaveBeenCalled();
@@ -110,7 +105,7 @@ describe('Zipcode', () => {
       component.instance().getZipCode = jest.fn();
 
       const evt = { target: { value: '04707-060' }, key: 0 };
-      const successCallback = ()=>{};
+      const successCallback = () => {};
       component.instance().onKeyUp(successCallback, evt);
 
       expect(component.instance().getZipCode).toHaveBeenCalledWith('04707060', successCallback);
@@ -123,10 +118,37 @@ describe('Zipcode', () => {
       component.instance().getZipCode = jest.fn();
 
       const evt = { target: { value: '04707-060' }, key: 0 };
-      const successCallback = ()=>{};
+      const successCallback = () => {};
       component.instance().onKeyUp(successCallback, evt);
 
       expect(component.instance().getZipCode).not.toHaveBeenCalledWith('04707060', successCallback);
+    });
+
+    it('calls onZipcodeSuccess and successCallback on fetch success', async () => {
+      const component = mount(getZipCodeMock());
+
+      const responseData = {
+        data: { type_street: '', street: 'Rua Mock', city: 'Cidade Mock', neighborhood: 'Bairro Mock', uf: 'SP' }
+      };
+      const successCallback = jest.fn();
+      component.instance().onZipcodeSuccess = jest.fn();
+
+      await component.instance().getZipCode('04707060', successCallback);
+
+      expect(successCallback).toHaveBeenCalledWith('04707060');
+      expect(component.instance().onZipcodeSuccess).toHaveBeenCalledWith('04707060', responseData);
+    });
+
+    it('calls onZipcodeError on fetch error', async () => {
+      const component = mount(getZipCodeMock());
+      const successCallback = jest.fn();
+      component.instance().onZipcodeError = jest.fn();
+      component.state().zipcodeUrlService = 'http://unknowervice/@@zipcode@@';
+
+      await component.instance().getZipCode('04707060', (zipcode) => { zipcode });
+
+      expect(successCallback).not.toHaveBeenCalledWith('04707060');
+      expect(component.instance().onZipcodeError).toHaveBeenCalledWith('04707060');
     });
   });
 
