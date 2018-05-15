@@ -120,7 +120,7 @@ exports[`Form renders defaultProps 1`] = `
           },
         ],
         "title": "Form Title",
-        "zipcodeUrlService": "https://www.getninjas-homolog.com.br/api/correios?q=@@zipcode@@",
+        "zipcodeUrlService": "http://www.mocky.io/v2/5afaebc92f00000e00f7c654",
       }
     }
     method="POST"
