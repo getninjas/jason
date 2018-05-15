@@ -64,17 +64,6 @@ export default class Zipcode extends Component {
     }
   }
 
-<<<<<<< HEAD
-  isUserTyping(zipcodeLength) {
-    return zipcodeLength < ZIPCODE_VALID_LENGTH;
-  }
-
-  isValidZipCodeInput(zipcodeLength, fetchCompleted) {
-    return zipcodeLength === ZIPCODE_VALID_LENGTH && !fetchCompleted;
-  }
-
-=======
->>>>>>> 00bce5480ec3da73c7793ec0ef105373bf857dda
   async getZipCode(zipcode, successCallback, errorCallback) {
     try {
       const url = this.state.zipcodeUrlService.replace(/@@zipcode@@/, zipcode);
@@ -112,37 +101,6 @@ export default class Zipcode extends Component {
     this.setState(result);
   }
 
-<<<<<<< HEAD
-  getEmptyState(state) {
-    return Object.keys(state).reduce((output, key) => {
-      let defaultValue = '';
-
-      if (typeof state[key] === 'boolean') {
-        defaultValue = false;
-      }
-
-      return { ...output, [key]: defaultValue };
-    }, {});
-  }
-
-  fillAddressState(responseAddress, zipcode) {
-    const result = Object
-      .keys(responseAddress)
-      .reduce((output, key) => ({ ...output, [key]: responseAddress[key] }), {});
-
-    result.value = zipcode;
-    result.fetchCompleted = true;
-    result.fullAddress = this.getFullAddress(responseAddress);
-
-    return result;
-  }
-
-  getFullAddress({ street, neighborhood, city, uf }) {
-    return `${street}, ${neighborhood} \n${city} - ${uf}`;
-  }
-
-=======
->>>>>>> 00bce5480ec3da73c7793ec0ef105373bf857dda
   componentDidMount() {
     this.mask = new IMask(this.inputRef.current, { mask: ZIPCODE_MASK });
   }
