@@ -10,11 +10,9 @@ const getComponentWithContext = (context = { onZipcodeFetchSuccess: zipcode => z
   jest.doMock('../../src/AppContext', () => {
     return {
       AppContext: {
-        Consumer: (props) => {
-          return (props.children(context))
-        }
-      }
-    }
+        Consumer: props => (props.children(context)),
+      },
+    };
   });
 
   return require('../../src/components/Zipcode').default;
@@ -32,27 +30,25 @@ function createNodeMock(element) {
 }
 
 const commonProps = {
-  type:'zipcode',
-  key:'zipcode-1',
-  id:'zipcodeTest',
-  name:'zipcodeTest',
-  placeholder:'00000-000',
-  zipcodeUrlService:'http://viacep.com.br/ws/@@zipcode@@/json/',
-  onFieldChange:() => {},
-}
-
-const zipcodeElement = () => {
-  return (
-    <AppContext.Provider value={{ onZipcodeFetchSuccess: zipcode => zipcode }} >
-      <Zipcode {...commonProps} />
-    </AppContext.Provider>
-  )
+  type: 'zipcode',
+  key: 'zipcode-1',
+  id: 'zipcodeTest',
+  name: 'zipcodeTest',
+  placeholder: '00000-000',
+  zipcodeUrlService: 'http://viacep.com.br/ws/@@zipcode@@/json/',
+  onFieldChange: () => {},
 };
+
+const zipcodeElement = () => (
+  <AppContext.Provider value={{ onZipcodeFetchSuccess: zipcode => zipcode }} >
+    <Zipcode {...commonProps} />
+  </AppContext.Provider>
+);
 
 const getZipCodeMock = () => {
   const ZipcodeMock = getComponentWithContext();
   return (<ZipcodeMock {...commonProps}/>);
-}
+};
 
 describe('Zipcode', () => {
   beforeEach(() => {
@@ -61,7 +57,7 @@ describe('Zipcode', () => {
 
   it('renders defaultProps', () => {
     const options = { createNodeMock };
-    const component = renderer.create(zipcodeElement(), options)
+    const component = renderer.create(zipcodeElement(), options);
 
     const tree = component.toJSON();
 
@@ -77,7 +73,7 @@ describe('Zipcode', () => {
         neighborhood: 'Pinheiros',
         city: 'São Paulo',
         uf: 'SP',
-      }
+      };
 
       const result = component.instance().getFullAddress(responseAddress);
 
@@ -94,7 +90,7 @@ describe('Zipcode', () => {
       component.instance().isUserTyping = jest.fn();
       component.instance().isValidZipCodeInput = jest.fn();
 
-      const evt = { target: { value: '05402-300' }}
+      const evt = { target: { value: '05402-300' } };
       component.instance().onChange(() => {}, () => {}, evt);
 
       expect(component.instance().isUserTyping).toHaveBeenCalled();
@@ -106,7 +102,7 @@ describe('Zipcode', () => {
 
       component.instance().getZipCode = jest.fn();
 
-      const evt = { target: { value: '04707-060' }};
+      const evt = { target: { value: '04707-060' } };
       const successCallback = () => {};
       const errorCallback = () => {};
 
@@ -121,7 +117,7 @@ describe('Zipcode', () => {
       component.state().fetchCompleted = true;
       component.instance().getZipCode = jest.fn();
 
-      const evt = { target: { value: '04707-060' }};
+      const evt = { target: { value: '04707-060' } };
       const successCallback = () => {};
       const errorCallback = () => {};
 
@@ -134,7 +130,7 @@ describe('Zipcode', () => {
       const component = mount(getZipCodeMock());
 
       const responseData = {
-        data: { type_street: '', street: 'Rua Mock', city: 'Cidade Mock', neighborhood: 'Bairro Mock', uf: 'SP' }
+        data: { type_street: '', street: 'Rua Mock', city: 'Cidade Mock', neighborhood: 'Bairro Mock', uf: 'SP' },
       };
 
       const successCallback = jest.fn();
@@ -219,7 +215,7 @@ describe('Zipcode', () => {
         uf: 'SP',
         fullAddress: 'Avenida Rebouças, Pinheiros \nSão Paulo - SP',
         fetchCompleted: true,
-      }
+      };
 
       const emptyState = {
         value: '',
@@ -230,7 +226,7 @@ describe('Zipcode', () => {
         uf: '',
         fullAddress: '',
         fetchCompleted: false,
-      }
+      };
 
       const result = component.instance().getEmptyState(currentState);
 
@@ -249,14 +245,14 @@ describe('Zipcode', () => {
         city: 'São Paulo',
         neighborhood: 'Pinheiros',
         uf: 'SP',
-      }
+      };
 
       const filledState = {
         value: '05402300',
         ...responseAddress,
         fullAddress: 'Avenida Rebouças, Pinheiros \nSão Paulo - SP',
         fetchCompleted: true,
-      }
+      };
 
       const result = component.instance().fillAddressState(responseAddress, zipcodeValue);
 

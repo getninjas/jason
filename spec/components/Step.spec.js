@@ -51,7 +51,7 @@ describe('Step', () => {
 
     const result = component.html();
 
-    expect(result).toContain('widget__title')
+    expect(result).toContain('widget__title');
   });
 
   it('shows inputs, select and textarea inner component', () => {

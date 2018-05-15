@@ -120,7 +120,7 @@ exports[`Form renders defaultProps 1`] = `
           },
         ],
         "title": "Form Title",
-        "zipcodeUrlService": "https://www.dummy.com/zipcode?q=@@zipcode@@",
+        "zipcodeUrlService": "https://www.getninjas-homolog.com.br/api/correios?q=@@zipcode@@",
       }
     }
     method="POST"

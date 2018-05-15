@@ -6,7 +6,7 @@ const textArea = form.steps[0].fields[2];
 const input = form.steps[0].fields[1];
 
 const commonProps = {
-  onFieldChange: ()=> {},
+  onFieldChange: () => {},
   formName: 'formNameTest',
   index: 1,
 };
@@ -49,7 +49,7 @@ describe('Factory', () => {
     const invalidArg = Object.assign({}, input, { type: 'xpto' });
 
     expect(() => {
-      Factory.getComponent({ item: invalidArg, ...commonProps })
+      Factory.getComponent({ item: invalidArg, ...commonProps });
     }).toThrow('Invalid argument type');
   });
 });

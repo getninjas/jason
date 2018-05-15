@@ -7,12 +7,12 @@ enzymeConfig();
 
 describe('TextArea', () => {
   it('renders defaultProps', () => {
-   const component = renderer.create(
+    const component = renderer.create(
       <TextArea
         id={'idTest'}
         name={'nameTest'}
         placeholder={'placeholderTest'}
-        onFieldChange={()=>{}}
+        onFieldChange={() => {}}
         required={false}
         value={'ola test value'}
       />,
@@ -29,10 +29,10 @@ describe('TextArea', () => {
         id={'idTest'}
         name={'nameTest'}
         placeholder={'placeholderTest'}
-        onFieldChange={()=>{}}
+        onFieldChange={() => {}}
         required={false}
         value={'ola test value'}
-      />
+      />,
     );
 
     component.simulate('change', { target: { value: 'Bora pra action' } });
