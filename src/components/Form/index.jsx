@@ -124,7 +124,7 @@ export default class Form extends Component {
       if (itemID === id) {
         const errorMessage = validateField({ required, type, value, minLength });
 
-        return Object.assign({}, item, { value, errorMessage });
+        return { ...item, value, errorMessage };
       }
 
       return item;
