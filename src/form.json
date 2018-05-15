@@ -2,7 +2,7 @@
   "form": {
     "title": "Form Title",
     "databaseId": 81,
-    "zipcodeUrlService": "https://www.dummy.com/zipcode?q=@@zipcode@@",
+    "zipcodeUrlService": "http://www.mocky.io/v2/5afaebc92f00000e00f7c654",
     "steps": [
       {
         "title": "General data",
