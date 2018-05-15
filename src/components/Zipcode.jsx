@@ -49,12 +49,11 @@ export default class Zipcode extends Component {
     };
 
     this.inputRef = createRef();
+    this.onBlur = this.onBlur.bind(this);
   }
 
   onChange(successCallback, errorCallback, evt) {
     const zipcode = evt.target.value.replace(/[^0-9]/g, '');
-
-    this.props.onFieldChange({ ...this.props, value: evt.target.value });
 
     if (isUserTyping(zipcode.length)) {
       this.setState({ value: evt.target.value, fullAddress: '', fetchCompleted: false });
@@ -62,6 +61,13 @@ export default class Zipcode extends Component {
       this.setState({ fetching: true });
       this.getZipCode(zipcode, successCallback, errorCallback);
     }
+  }
+
+  onBlur() {
+    this.props.onFieldChange({
+      ...this.props,
+      value: this.state.value,
+    });
   }
 
   async getZipCode(zipcode, successCallback, errorCallback) {
@@ -113,7 +119,7 @@ export default class Zipcode extends Component {
       <AppContext.Consumer>
         { context => <Fragment>
           <a href='http://www.buscacep.correios.com.br' target='_blank' className='form__label-link' rel='noopener noreferrer'>Não lembra seu CEP?</a>
-          <input id={id} name={name} className={style} type='tel' placeholder={placeholder} required={required} onChange={this.onChange.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)} ref={this.inputRef} />
+          <input id={id} name={name} className={style} type='tel' placeholder={placeholder} required={required} onChange={this.onChange.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)} onBlur={this.onBlur} ref={this.inputRef} />
           { fetching ? <span className='zipcode__loader' >Buscando CEP...</span> : <span className='full-address'>{fullAddress}</span> }
           <input id='street' name='street' type='hidden' value={street} />
           <input id='neighborhood' name='neighborhood' type='hidden' value={neighborhood} />
