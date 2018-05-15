@@ -38,10 +38,17 @@ export default class Input extends Component {
 
     this.ref = createRef();
     this.onChange = this.onChange.bind(this);
+    this.onBlur = this.onBlur.bind(this);
     this.mask = null;
   }
 
   onChange(evt) {
+    const inputValue = maxLengthTrim(evt.target.value, this.props.maxLength);
+
+    this.setState({ value: inputValue });
+  }
+
+  onBlur(evt) {
     const inputValue = maxLengthTrim(evt.target.value, this.props.maxLength);
 
     this.props.onFieldChange({
@@ -51,8 +58,6 @@ export default class Input extends Component {
       type: this.props.type,
       minLength: this.props.minLength,
     });
-
-    this.setState({ value: inputValue });
   }
 
   componentDidMount() {
@@ -89,6 +94,7 @@ export default class Input extends Component {
         required={required ? 'true' : 'false'}
         value={this.state.value}
         onChange={this.onChange}
+        onBlur={this.onBlur}
         minLength={minLength}
         maxLength={maxLength}
         ref={this.ref} />
