@@ -122,7 +122,9 @@ export default class Zipcode extends Component {
   }
 
   fillAddressState(responseAddress, zipcode) {
-    const result = Object.keys(responseAddress).reduce((output, key) => ({ ...output, [key]: responseAddress[key] }), {});
+    const result = Object
+      .keys(responseAddress)
+      .reduce((output, key) => ({ ...output, [key]: responseAddress[key] }), {});
 
     result.value = zipcode;
     result.fetchCompleted = true;
