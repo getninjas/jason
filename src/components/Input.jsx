@@ -48,11 +48,9 @@ export default class Input extends Component {
     this.setState({ value: inputValue });
   }
 
-  onBlur(evt) {
-    const inputValue = maxLengthTrim(evt.target.value, this.props.maxLength);
-
+  onBlur() {
     this.props.onFieldChange({
-      value: inputValue,
+      value: this.state.value,
       id: this.props.id,
       required: this.props.required,
       type: this.props.type,
