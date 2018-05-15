@@ -35,16 +35,19 @@ export default class TextArea extends Component {
     };
 
     this.onChange = this.onChange.bind(this);
+    this.onBlur = this.onBlur.bind(this);
   }
 
   onChange(evt) {
+    this.setState({ value: evt.target.value });
+  }
+
+  onBlur() {
     this.props.onFieldChange({
-      value: evt.target.value,
+      value: this.state.value,
       id: this.props.id,
       required: this.props.required,
     });
-
-    this.setState({ value: evt.target.value });
   }
 
   render() {
@@ -69,6 +72,7 @@ export default class TextArea extends Component {
         required={required}
         value={this.state.value}
         onChange={this.onChange}
+        onBlur={this.onBlur}
         minLength={minLength}
         maxLength={maxLength} />
     );

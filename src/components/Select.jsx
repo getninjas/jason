@@ -37,6 +37,7 @@ export default class Select extends Component {
     };
 
     this.onChange = this.onChange.bind(this);
+    this.onBlur = this.onBlur.bind(this);
   }
 
   componentDidMount() {
@@ -46,14 +47,16 @@ export default class Select extends Component {
   }
 
   onChange(evt) {
+    this.setState({ value: evt.target.value });
+  }
+
+  onBlur() {
     this.props.onFieldChange({
-      value: evt.target.value,
+      value: this.state.value,
       id: this.props.id,
       required: this.props.required,
       type: this.props.type,
     });
-
-    this.setState({ value: evt.target.value });
   }
 
   render() {
@@ -66,6 +69,7 @@ export default class Select extends Component {
         defaultValue={selected}
         className={style}
         onChange={this.onChange}
+        onBlur={this.onBlur}
         required={required ? 'true' : 'false'}>
         {
           this.state.values.map((item, index) =>
