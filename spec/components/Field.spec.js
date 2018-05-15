@@ -11,7 +11,7 @@ describe('Field', () => {
     const component = renderer.create(
       <Field label={'test'} id={'test'} errorMessage={'Erro!'} value={'test value'}>
         <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={() => {}} />
-      </Field>
+      </Field>,
     );
 
     const tree = component.toJSON();
@@ -23,7 +23,7 @@ describe('Field', () => {
     const component = shallow(
       <Field label={'test'} id={'bora-pra-action'}>
         <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={() => {}} />
-      </Field>
+      </Field>,
     );
 
     expect(component.find('label').prop('htmlFor')).toEqual('bora-pra-action');
@@ -35,7 +35,7 @@ describe('Field', () => {
         const component = shallow(
           <Field label={'test'} id={'bora-pra-action'} errorMessage={'Erro!'}>
             <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={() => {}} />
-          </Field>
+          </Field>,
         );
 
         expect(component.instance().style).toMatch(/--invalid/);
@@ -47,11 +47,11 @@ describe('Field', () => {
         const component = shallow(
           <Field label={'test'} id={'bora-pra-action'}>
             <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={() => {}} />
-          </Field>
+          </Field>,
         );
 
         expect(component.instance().style).not.toMatch(/--invalid/);
       });
     });
-  })
+  });
 });

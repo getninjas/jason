@@ -18,13 +18,11 @@ export default class Breadcrumb extends Component {
     return (
       <ol className="form__steps space-box-medium">
         {
-          this.props.steps.map((step, index) => {
-            return (
-              <li key={`breadcrumb-${index}`} className={`form__steps-item ${this.handleActiveStyle(index)}`}>
-                {step.breadcrumbTitle}
-              </li>
-            );
-          })
+          this.props.steps.map((step, index) =>
+            <li key={`breadcrumb-${index}`} className={`form__steps-item ${this.handleActiveStyle(index)}`}>
+              {step.breadcrumbTitle}
+            </li>,
+          )
         }
       </ol>
     );

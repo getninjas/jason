@@ -9,5 +9,5 @@ export default class App extends Component {
 }
 
 App.propTypes = {
-  data: PropTypes.object.isRequired
-}
+  data: PropTypes.object.isRequired,
+};

@@ -1,10 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Input from '../../src/components/Input';
-import jsdomConfig from '../jsdomConfig';
 import { enzymeConfig, shallow, mount } from '../enzymeConfig';
 
-jsdomConfig();
 enzymeConfig();
 
 function createNodeMock(element) {
@@ -26,10 +24,10 @@ describe('Input', () => {
         id={'idTest'}
         name={'nameTest'}
         placeholder={'placeholderTest'}
-        onFieldChange={()=>{}}
+        onFieldChange={() => {}}
         required={false}
         value={'ola test value'}
-      />, options
+      />, options,
     );
 
     const tree = component.toJSON();
@@ -42,11 +40,11 @@ describe('Input', () => {
       <Input
         id={'idTest'}
         name={'nameTest'}
-        onFieldChange={()=>{}}
+        onFieldChange={() => {}}
         placeholder={'placeholderTest'}
         required={false}
         value={'ola test value'}
-      />
+      />,
     );
 
     component.simulate('change', { target: { value: 'Bora pra action' } });
@@ -59,12 +57,12 @@ describe('Input', () => {
       <Input
         id={'idTest'}
         name={'nameTest'}
-        onFieldChange={()=>{}}
+        onFieldChange={() => {}}
         placeholder={'placeholderTest'}
         required={false}
         value={''}
         maxLength={5}
-      />
+      />,
     );
 
     component.simulate('change', { target: { value: 'Bora pra action' } });
@@ -74,27 +72,19 @@ describe('Input', () => {
 
   describe('with type', () => {
     it('renders type text', () => {
-      const component = shallow(<Input id={'id_input'} name={'input_name'} onFieldChange={()=>{}}/>);
+      const component = shallow(<Input id={'id_input'} name={'input_name'} onFieldChange={() => {}}/>);
 
       expect(component.prop('type')).toBe('text');
     });
 
     it('renders type email', () => {
-      const component = shallow(<Input id={'id_input'} name={'input_name'} onFieldChange={()=>{}} type={'email'}/>);
+      const component = shallow(<Input id={'id_input'} name={'input_name'} onFieldChange={() => {}} type={'email'}/>);
 
       expect(component.prop('type')).toBe('email');
     });
 
     it('renders type tel when type equal phone', () => {
-      const component = mount(<Input id={'id_input'} name={'input_name'} onFieldChange={()=>{}} type={'phone'}/>);
-
-      const inputType = component.getDOMNode().attributes.type.value;
-
-      expect(inputType).toBe('tel');
-    });
-
-    it('renders type tel when type equal zipcode ', () => {
-      const component = mount(<Input id={'id_input'} name={'input_name'} onFieldChange={()=>{}} type={'zipcode'}/>);
+      const component = mount(<Input id={'id_input'} name={'input_name'} onFieldChange={() => {}} type={'phone'}/>);
 
       const inputType = component.getDOMNode().attributes.type.value;
 

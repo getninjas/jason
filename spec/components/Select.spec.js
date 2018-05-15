@@ -2,10 +2,8 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Select from '../../src/components/Select';
 import { form } from '../../src/form.json';
-import jsdomConfig from '../jsdomConfig';
 import { enzymeConfig, shallow, mount } from '../enzymeConfig';
 
-jsdomConfig();
 enzymeConfig();
 
 describe('Select', () => {
@@ -18,7 +16,7 @@ describe('Select', () => {
         name={'nameTest'}
         placeholder={'placeholderTest'}
         required={false}
-        onFieldChange={()=>{}}
+        onFieldChange={() => {}}
         values={values}
       />,
     );
@@ -38,9 +36,9 @@ describe('Select', () => {
           name={'nameTest'}
           placeholder={'placeholderTest'}
           required={false}
-          onFieldChange={()=>{}}
+          onFieldChange={() => {}}
           values={values}
-        />
+        />,
       );
 
       component.simulate('change', { target: { value: 'Reformas' } });
@@ -59,9 +57,9 @@ describe('Select', () => {
           name={'nameTest'}
           placeholder={'placeholderTest'}
           required={false}
-          onFieldChange={()=>{}}
+          onFieldChange={() => {}}
           values={values}
-        />
+        />,
       );
 
       expect(component.instance().state.values[0].value).toEqual('placeholderTest');
@@ -74,9 +72,9 @@ describe('Select', () => {
           name={'nameTest'}
           placeholder={''}
           required={false}
-          onFieldChange={()=>{}}
+          onFieldChange={() => {}}
           values={values}
-        />
+        />,
       );
 
       expect(component.instance().state.values[0].value).not.toEqual('');

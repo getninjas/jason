@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import addPlaceholder from '../helpers/select';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
@@ -33,34 +34,29 @@ export default class Select extends Component {
     this.state = {
       values: [],
       selected: '',
-    }
+    };
 
     this.onChange = this.onChange.bind(this);
+    this.onBlur = this.onBlur.bind(this);
   }
 
   componentDidMount() {
-    const values = this.addPlaceholder(this.props);
+    const values = addPlaceholder(this.props);
 
-    this.setState({values});
+    this.setState({ values });
   }
 
   onChange(evt) {
+    this.setState({ value: evt.target.value });
+  }
+
+  onBlur() {
     this.props.onFieldChange({
-      value: evt.target.value,
+      value: this.state.value,
       id: this.props.id,
       required: this.props.required,
       type: this.props.type,
     });
-
-    this.setState({ value: evt.target.value });
-  }
-
-  addPlaceholder({ values, placeholder }) {
-    const localValues = [...values];
-
-    placeholder.length ? localValues.unshift({ databaseId: '', value: placeholder }) : '';
-
-    return localValues;
   }
 
   render() {
@@ -73,15 +69,16 @@ export default class Select extends Component {
         defaultValue={selected}
         className={style}
         onChange={this.onChange}
+        onBlur={this.onBlur}
         required={required ? 'true' : 'false'}>
         {
-          this.state.values.map((item, index) => {
-            return (
+          this.state.values.map((item, index) =>
+            (
               <option key={`option-${index}`} value={item.databaseId}>
                 {item.value}
               </option>
-            );
-          })
+            ),
+          )
         }
       </select>
     );

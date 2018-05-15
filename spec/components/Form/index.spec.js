@@ -18,11 +18,13 @@ function createNodeMock(element) {
   return null;
 }
 
+const copyState = ({ steps, zipcodeUrlService }) => ({ steps: [...steps], zipcodeUrlService });
+
 describe('Form', () => {
   it('renders defaultProps', () => {
     const options = { createNodeMock };
     const component = renderer.create(
-      <Form name={'form'} action={'/'} data={form} />, options
+      <Form name={'form'} action={'/'} data={form} />, options,
     );
 
     const tree = component.toJSON();
@@ -58,8 +60,7 @@ describe('Form', () => {
     });
 
     it('goes to next step', () => {
-      const steps = [...form.steps];
-      const data = Object.assign({}, { steps });
+      const data = copyState(form);
 
       data.steps = fillFormFields(data.steps);
 
@@ -85,13 +86,17 @@ describe('Form', () => {
     );
 
     it('returns true for activeStepIndex', () => {
-      const stepOneIsVisible = component.instance().isStepVisible(component.state().activeStepIndex);
+      const stepOneIsVisible = component
+        .instance()
+        .isStepVisible(component.state().activeStepIndex);
 
       expect(stepOneIsVisible).toBe(true);
     });
 
     it('returns false for secondStep', () => {
-      const stepTwoIsVisible = component.instance().isStepVisible(component.state().activeStepIndex + 1);
+      const stepTwoIsVisible = component
+        .instance()
+        .isStepVisible(component.state().activeStepIndex + 1);
 
       expect(stepTwoIsVisible).toBe(false);
     });
@@ -156,8 +161,7 @@ describe('Form', () => {
     });
 
     it('calls .nextStep', () => {
-      const steps = [...form.steps];
-      const data = Object.assign({}, { steps });
+      const data = copyState(form);
 
       data.steps = fillFormFields(data.steps);
 
@@ -196,7 +200,7 @@ describe('Form', () => {
 
       const initialState = component.instance().state;
 
-      const field = { value: '', id: 'form-2_id', required: true, type: 'text', minLength: 3 }
+      const field = { value: '', id: 'form-2_id', required: true, type: 'text', minLength: 3 };
       component.instance().onFieldChange(field);
 
       const updatedState = component.instance().state;
@@ -229,8 +233,7 @@ describe('Form', () => {
     });
 
     it('goes to next step', () => {
-      const steps = [...form.steps];
-      const data = Object.assign({}, { steps });
+      const data = copyState(form);
 
       data.steps = fillFormFields(data.steps);
 

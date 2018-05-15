@@ -16,6 +16,7 @@ exports[`Field renders defaultProps 1`] = `
     maxLength={255}
     minLength={3}
     name="nameTest"
+    onBlur={[Function]}
     onChange={[Function]}
     placeholder=""
     required="false"

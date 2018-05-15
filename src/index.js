@@ -8,6 +8,6 @@ export default class Jason {
   }
 
   init() {
-    ReactDOM.render(<App form={this.data.form} />, this.element);
+    ReactDOM.render(<App data={this.data.form} />, this.element);
   }
 }

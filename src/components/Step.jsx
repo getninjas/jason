@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import Field from './Field';
 import Button from './Button';
 import Factory from './Factory';
+import { display, addHeaderMarkup } from '../helpers/step';
 
 const propTypes = {
   handleButtonClick: PropTypes.func.isRequired,
   onFieldChange: PropTypes.func.isRequired,
+  zipcodeUrlService: PropTypes.string.isRequired,
   formName: PropTypes.string.isRequired,
   buttonText: PropTypes.string.isRequired,
   fields: PropTypes.array.isRequired,
@@ -21,49 +23,38 @@ const defaultProps = {
 };
 
 export default class Step extends Component {
-  display({ visible }) {
-    return visible ? 'block' : 'none';
-  }
-
-  addHeaderMarkup(headerMarkup) {
-    return headerMarkup ? <div className="__headerMarkup__" dangerouslySetInnerHTML={this._createMarkup(headerMarkup)} /> : '';
-  }
-
   render() {
     const { buttonText, headerMarkup, fields } = this.props;
 
     return (
-      <fieldset className="form__container inputs" style={{ display: this.display(this.props) }}>
-        { this.addHeaderMarkup(headerMarkup) }
+      <fieldset className="form__container inputs" style={{ display: display(this.props.visible) }}>
+        { addHeaderMarkup(headerMarkup) }
 
         {
-          fields.map((item, index) => {
-            return (
-              <Field
-                key={`field-${index}`}
-                label={item.title}
-                id={item.id}
-                errorMessage={item.errorMessage}>
-                {
-                  Factory.getComponent({
-                    item,
-                    index,
-                    onFieldChange: this.props.onFieldChange,
-                    formName: this.props.formName,
-                  })
-                }
-              </Field>
-            )
-          })
+          fields.map((item, index) =>
+            <Field
+              key={`field-${index}`}
+              label={item.title}
+              id={item.id}
+              errorMessage={item.errorMessage}>
+              {
+                Factory.getComponent({
+                  item,
+                  index,
+                  onFieldChange: this.props.onFieldChange,
+                  formName: this.props.formName,
+                  zipcodeUrlService: this.props.zipcodeUrlService,
+                })
+              }
+            </Field>,
+          )
         }
 
-        <Button isSubmit={this.props.isLast} handleButtonClick={this.props.handleButtonClick}>{buttonText}</Button>
+        <Button isSubmit={this.props.isLast} handleButtonClick={this.props.handleButtonClick}>
+          {buttonText}
+        </Button>
       </fieldset>
     );
-  }
-
-  _createMarkup(html) {
-    return { __html: html };
   }
 }
 

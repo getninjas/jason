@@ -19,6 +19,7 @@ describe('Step', () => {
         handleButtonClick={() => {}}
         isLast={false}
         step={step}
+        zipcodeUrlService={formData.form.zipcodeUrlService}
         onFieldChange={() => {}}
         visible={true}
       />,
@@ -42,6 +43,7 @@ describe('Step', () => {
         headerMarkup={step.headerMarkup}
         isLast={false}
         step={step}
+        zipcodeUrlService={formData.form.zipcodeUrlService}
         onFieldChange={() => {}}
         visible={true}
       />,
@@ -49,7 +51,7 @@ describe('Step', () => {
 
     const result = component.html();
 
-    expect(result).toContain('widget__title')
+    expect(result).toContain('widget__title');
   });
 
   it('shows inputs, select and textarea inner component', () => {
@@ -65,6 +67,7 @@ describe('Step', () => {
         isLast={false}
         step={step}
         onFieldChange={() => {}}
+        zipcodeUrlService={formData.form.zipcodeUrlService}
         visible={true}
       />,
     );
@@ -91,6 +94,7 @@ describe('Step', () => {
           isLast={false}
           step={step}
           onFieldChange={() => {}}
+          zipcodeUrlService={formData.form.zipcodeUrlService}
           visible={true}
         />,
       );
@@ -114,6 +118,7 @@ describe('Step', () => {
           isLast={false}
           step={step}
           onFieldChange={() => {}}
+          zipcodeUrlService={formData.form.zipcodeUrlService}
           visible={true}
         />,
       );

@@ -1,7 +1,7 @@
 import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import IMask from 'imask';
-import maxLength from '../helpers/input';
+import { maxLengthTrim, getInputType } from '../helpers/input';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
@@ -34,46 +34,38 @@ export default class Input extends Component {
 
     this.state = {
       value: '',
-    }
+    };
 
     this.ref = createRef();
     this.onChange = this.onChange.bind(this);
+    this.onBlur = this.onBlur.bind(this);
+    this.mask = null;
   }
 
   onChange(evt) {
-    const inputValue = maxLength(evt.target.value, this.props.maxLength);
+    const inputValue = maxLengthTrim(evt.target.value, this.props.maxLength);
 
+    this.setState({ value: inputValue });
+  }
+
+  onBlur() {
     this.props.onFieldChange({
-      value: inputValue,
+      value: this.state.value,
       id: this.props.id,
       required: this.props.required,
       type: this.props.type,
       minLength: this.props.minLength,
     });
-
-    this.setState({ value: inputValue });
   }
 
   componentDidMount() {
     const { type, value } = this.props;
 
     if (type === 'phone') {
-      new IMask(this.ref.current, { mask: '(00) 00000-0000' });
+      this.mask = new IMask(this.ref.current, { mask: '(00) 00000-0000' });
     }
 
-    if (type === 'zipcode') {
-      new IMask(this.ref.current, { mask: '00000-000' });
-    }
-
-    this.setState({ value: value });
-  }
-
-  getInputType(type) {
-    if (type === 'phone' || type === 'zipcode') {
-      return 'tel';
-    }
-
-    return type;
+    this.setState({ value });
   }
 
   render() {
@@ -91,7 +83,7 @@ export default class Input extends Component {
 
     return (
       <input
-        type={this.getInputType(type)}
+        type={getInputType(type)}
         id={id}
         name={name}
         title={title}
@@ -100,6 +92,7 @@ export default class Input extends Component {
         required={required ? 'true' : 'false'}
         value={this.state.value}
         onChange={this.onChange}
+        onBlur={this.onBlur}
         minLength={minLength}
         maxLength={maxLength}
         ref={this.ref} />

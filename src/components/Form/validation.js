@@ -1,4 +1,4 @@
-import errorMessage from '../../../src/helpers/errorMessages';
+import errorMessages from '../../../src/helpers/errorMessages';
 
 export const isEmpty = (value) => {
   const regex = /^\s*$/;
@@ -6,8 +6,14 @@ export const isEmpty = (value) => {
 };
 
 export const isMinLength = (text, length) => {
-  return text.trim().length < length;
-}
+  let result = true;
+
+  if (length) {
+    result = text.replace(/\s/gm, '').length >= length;
+  }
+
+  return result;
+};
 
 export const isValidEmail = (value) => {
   const regex = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
@@ -26,33 +32,33 @@ export const isValidCellPhone = (value) => {
 
 export const validateField = ({ required, type, value, minLength }) => {
   if (required && value === null) {
-    return errorMessage.REQUIRED_FIELD;
+    return errorMessages.REQUIRED_FIELD;
   }
 
   if (type === 'phone' && (isEmpty(value) || !isValidCellPhone(value))) {
-    return errorMessage.REQUIRED_VALID_CELLPHONE;
+    return errorMessages.REQUIRED_VALID_CELLPHONE;
   }
 
   if (type === 'email' && !isValidEmail(value)) {
-    return errorMessage.REQUIRED_VALID_EMAIL;
+    return errorMessages.REQUIRED_VALID_EMAIL;
   }
 
-  if (type === 'zipcode' && !isValidZipcode(value)) {
-    return errorMessage.REQUIRED_VALID_ZIPCODE;
+  if (type === 'zipcode' && (isEmpty(value) || !isValidZipcode(value))) {
+    return errorMessages.REQUIRED_VALID_ZIPCODE;
   }
 
   if (required && isEmpty(value)) {
-    return errorMessage.REQUIRED_FIELD;
+    return errorMessages.REQUIRED_FIELD;
   }
 
-  if (required && isMinLength(value, minLength)) {
-    return errorMessage.REQUIRED_MINLENGHT(minLength);
+  if (required && !isMinLength(value, minLength)) {
+    return errorMessages.REQUIRED_MINLENGHT(minLength);
   }
 
   return '';
 };
 
-export const validateStep = (fields)=> {
+export const validateStep = (fields) => {
   let isValid = true;
 
   const updatedFields = fields.map((field) => {
