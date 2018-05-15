@@ -86,15 +86,19 @@ export default class Form extends Component {
     try {
       console.log('submitRequest', this.state);
 
-      const body = {
-        name: 'ion',
-      };
+      const body = this.getFields();
 
       const response = await axios.post(this.props.action, body);
-      console.log('callback', response);
+      console.log('callback', body, response);
     } catch (error) {
       console.log('error', error);
     }
+  }
+
+  getFields() {
+    return this.state.steps.reduce((output, step) => {
+      return { ...output, ...step.fields };
+    }, {});
   }
 
   handleStepChange() {
