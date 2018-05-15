@@ -64,39 +64,7 @@ describe('Zipcode', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  describe('.getFullAddress', () => {
-    it('returns formatted full address', () => {
-      const component = mount(getZipCodeMock());
-
-      const responseAddress = {
-        street: 'Avenida Rebouças',
-        neighborhood: 'Pinheiros',
-        city: 'São Paulo',
-        uf: 'SP',
-      };
-
-      const result = component.instance().getFullAddress(responseAddress);
-
-      const fullAddressFormatted = 'Avenida Rebouças, Pinheiros \nSão Paulo - SP';
-
-      expect(result).toEqual(fullAddressFormatted);
-    });
-  });
-
   describe('.onChange', () => {
-    it('calls valid zipcode methods', () => {
-      const component = mount(getZipCodeMock());
-
-      component.instance().isUserTyping = jest.fn();
-      component.instance().isValidZipCodeInput = jest.fn();
-
-      const evt = { target: { value: '05402-300' } };
-      component.instance().onChange(() => {}, () => {}, evt);
-
-      expect(component.instance().isUserTyping).toHaveBeenCalled();
-      expect(component.instance().isValidZipCodeInput).toHaveBeenCalled();
-    });
-
     it('starts zipcode fetch when fetchCompleted false', () => {
       const component = mount(getZipCodeMock());
 
@@ -157,106 +125,6 @@ describe('Zipcode', () => {
       expect(successCallback).not.toHaveBeenCalledWith('04707060');
       expect(errorCallback).toHaveBeenCalledWith('04707060');
       expect(component.instance().onZipcodeError).toHaveBeenCalledWith('04707060');
-    });
-  });
-
-  describe('.isUserTyping', () => {
-    it('returns true for incomplete zipcode format', () => {
-      const zipcodeLength = 7;
-      const component = mount(getZipCodeMock());
-
-      const result = component.instance().isUserTyping(zipcodeLength);
-
-      expect(result).toEqual(true);
-    });
-
-    it('returns false when last zipcode caracter is entered', () => {
-      const zipcodeLength = 8;
-      const component = mount(getZipCodeMock());
-
-      const result = component.instance().isUserTyping(zipcodeLength);
-
-      expect(result).toEqual(false);
-    });
-  });
-
-  describe('.isValidZipCodeInput', () => {
-    it('returns true for a valid zipcode user input', () => {
-      const zipcodeLength = 8;
-      const fetchedCompleted = false;
-      const component = mount(getZipCodeMock());
-
-      const result = component.instance().isValidZipCodeInput(zipcodeLength, fetchedCompleted);
-
-      expect(result).toEqual(true);
-    });
-
-    it('returns false for invalid zipcode user input', () => {
-      const zipcodeLength = 7;
-      const fetchedCompleted = true;
-      const component = mount(getZipCodeMock());
-
-      const result = component.instance().isValidZipCodeInput(zipcodeLength, fetchedCompleted);
-
-      expect(result).toEqual(false);
-    });
-  });
-
-  describe('.getEmptyState', () => {
-    it('sets all key values to empty string', () => {
-      const component = mount(getZipCodeMock());
-
-      const currentState = {
-        value: '05402300',
-        type_street: '',
-        street: 'Aveninda Rebouças',
-        city: 'São Paulo',
-        neighborhood: 'Pinheiros',
-        uf: 'SP',
-        fullAddress: 'Avenida Rebouças, Pinheiros \nSão Paulo - SP',
-        fetchCompleted: true,
-      };
-
-      const emptyState = {
-        value: '',
-        type_street: '',
-        street: '',
-        city: '',
-        neighborhood: '',
-        uf: '',
-        fullAddress: '',
-        fetchCompleted: false,
-      };
-
-      const result = component.instance().getEmptyState(currentState);
-
-      expect(result).toEqual(emptyState);
-    });
-  });
-
-  describe('.fillAddressState', () => {
-    it('sets response data and value zipcode to key values', () => {
-      const component = mount(getZipCodeMock());
-      const zipcodeValue = '05402300';
-
-      const responseAddress = {
-        type_street: '',
-        street: 'Avenida Rebouças',
-        city: 'São Paulo',
-        neighborhood: 'Pinheiros',
-        uf: 'SP',
-      };
-
-      const filledState = {
-        value: '05402300',
-        ...responseAddress,
-        fullAddress: 'Avenida Rebouças, Pinheiros \nSão Paulo - SP',
-        fetchCompleted: true,
-      };
-
-      const result = component.instance().fillAddressState(responseAddress, zipcodeValue);
-
-      expect(result).toEqual(filledState);
     });
   });
 });

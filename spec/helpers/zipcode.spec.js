@@ -1,4 +1,4 @@
-import { isUserTyping, isValidZipCodeInput, fillAddressState } from '../../src/helpers/zipcode';
+import { isUserTyping, isValidZipCodeInput, fillAddressState, getEmptyState } from '../../src/helpers/zipcode';
 
 describe('isUserTyping', () => {
   it('returns true if zipcode length less than ZIPCODE_VALID_LENGTH', () => {
@@ -53,5 +53,36 @@ describe('fillAddressState', () => {
     const result = fillAddressState(responseAddress, zipcode);
 
     expect(result).toEqual(newState);
+  });
+});
+
+
+describe('.getEmptyState', () => {
+  it('sets all key values to empty string', () => {
+    const currentState = {
+      value: '05402300',
+      type_street: '',
+      street: 'Aveninda Rebouças',
+      city: 'São Paulo',
+      neighborhood: 'Pinheiros',
+      uf: 'SP',
+      fullAddress: 'Avenida Rebouças, Pinheiros \nSão Paulo - SP',
+      fetchCompleted: true,
+    };
+
+    const emptyState = {
+      value: '',
+      type_street: '',
+      street: '',
+      city: '',
+      neighborhood: '',
+      uf: '',
+      fullAddress: '',
+      fetchCompleted: false,
+    };
+
+    const result = getEmptyState(currentState);
+
+    expect(result).toEqual(emptyState);
   });
 });
