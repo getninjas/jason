@@ -2,7 +2,6 @@ const ZIPCODE_VALID_LENGTH = 8;
 
 export const isUserTyping = zipcodeLength => zipcodeLength < ZIPCODE_VALID_LENGTH;
 
-
 export const isValidZipCodeInput = (zipcodeLength, fetchCompleted) =>
   zipcodeLength === ZIPCODE_VALID_LENGTH && !fetchCompleted;
 
