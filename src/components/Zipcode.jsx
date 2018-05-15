@@ -64,7 +64,7 @@ export default class Zipcode extends Component {
     }
   }
 
-  isUserTyping(zipcodeLength, keyboardKey) {
+  isUserTyping(zipcodeLength) {
     return zipcodeLength < ZIPCODE_VALID_LENGTH;
   }
 
