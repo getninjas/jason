@@ -22,8 +22,8 @@ export default class Form extends Component {
 
     this.state = {
       activeStepIndex: 0,
-      onZipcodeFetchSuccess: zipcode => window.alert(`zipcode fectch success hook ${zipcode}`),
-      onZipcodeFetchError: zipcode => window.alert(`zipcode fectch error hook ${zipcode}`),
+      onZipcodeFetchSuccess: zipcode => console.log(`zipcode fectch success hook ${zipcode}`),
+      onZipcodeFetchError: zipcode => console.log(`zipcode fectch error hook ${zipcode}`),
       stepsCount: 0,
       steps: [],
     };
