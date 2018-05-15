@@ -107,8 +107,8 @@ describe('Zipcode', () => {
 
       await component.instance().getZipCode('04707060', successCallback, errorCallback);
 
-      expect(successCallback).toHaveBeenCalledWith('04707060');
-      expect(errorCallback).not.toHaveBeenCalledWith('04707060');
+      expect(successCallback).toHaveBeenCalledWith(component.instance().state);
+      expect(errorCallback).not.toHaveBeenCalledWith(component.instance().state);
       expect(component.instance().onZipcodeSuccess).toHaveBeenCalledWith('04707060', responseData);
     });
 
@@ -122,8 +122,8 @@ describe('Zipcode', () => {
 
       await component.instance().getZipCode('04707060', successCallback, errorCallback);
 
-      expect(successCallback).not.toHaveBeenCalledWith('04707060');
-      expect(errorCallback).toHaveBeenCalledWith('04707060');
+      expect(successCallback).not.toHaveBeenCalledWith(component.instance().state);
+      expect(errorCallback).toHaveBeenCalledWith({ ...component.instance().state, error: { data: {} } });
       expect(component.instance().onZipcodeError).toHaveBeenCalledWith('04707060');
     });
   });
