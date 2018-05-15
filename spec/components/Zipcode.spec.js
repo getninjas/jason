@@ -40,7 +40,7 @@ const commonProps = {
 };
 
 const zipcodeElement = () => (
-  <AppContext.Provider value={{ onZipcodeFetchSuccess: zipcode => zipcode }} >
+  <AppContext.Provider value={{ onZipcodeFetchSuccess: data => data, onZipcodeFetchError: data => data }} >
     <Zipcode {...commonProps} />
   </AppContext.Provider>
 );

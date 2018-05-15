@@ -71,11 +71,11 @@ export default class Zipcode extends Component {
 
       this.onZipcodeSuccess(zipcode, response);
 
-      successCallback(zipcode);
+      successCallback(this.state);
     } catch (error) {
       this.onZipcodeError(zipcode);
 
-      errorCallback(zipcode);
+      errorCallback({ ...this.state, error });
     }
   }
 
