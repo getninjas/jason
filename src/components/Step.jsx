@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Field from './Field';
 import Button from './Button';
 import Factory from './Factory';
+import { display, addHeaderMarkup } from '../helpers/step';
 
 const propTypes = {
   handleButtonClick: PropTypes.func.isRequired,
@@ -22,20 +23,12 @@ const defaultProps = {
 };
 
 export default class Step extends Component {
-  display({ visible }) {
-    return visible ? 'block' : 'none';
-  }
-
-  addHeaderMarkup(headerMarkup) {
-    return headerMarkup ? <div className="__headerMarkup__" dangerouslySetInnerHTML={this.createMarkup(headerMarkup)} /> : '';
-  }
-
   render() {
     const { buttonText, headerMarkup, fields } = this.props;
 
     return (
-      <fieldset className="form__container inputs" style={{ display: this.display(this.props) }}>
-        { this.addHeaderMarkup(headerMarkup) }
+      <fieldset className="form__container inputs" style={{ display: display(this.props.visible) }}>
+        { addHeaderMarkup(headerMarkup) }
 
         {
           fields.map((item, index) =>
@@ -62,10 +55,6 @@ export default class Step extends Component {
         </Button>
       </fieldset>
     );
-  }
-
-  createMarkup(html) {
-    return { __html: html };
   }
 }
 

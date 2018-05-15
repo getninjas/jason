@@ -1,4 +1,12 @@
-const maxLengthTrim = (text, length) => {
+export const getInputType = (type) => {
+  if (type === 'phone') {
+    return 'tel';
+  }
+
+  return type;
+};
+
+export const maxLengthTrim = (text, length) => {
   let result = text;
 
   if (text.length > length) {
@@ -7,5 +15,3 @@ const maxLengthTrim = (text, length) => {
 
   return result;
 };
-
-export default maxLengthTrim;

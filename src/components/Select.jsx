@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import addPlaceholder from '../helpers/select';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
@@ -39,7 +40,7 @@ export default class Select extends Component {
   }
 
   componentDidMount() {
-    const values = this.addPlaceholder(this.props);
+    const values = addPlaceholder(this.props);
 
     this.setState({ values });
   }
@@ -53,16 +54,6 @@ export default class Select extends Component {
     });
 
     this.setState({ value: evt.target.value });
-  }
-
-  addPlaceholder({ values, placeholder }) {
-    const localValues = [...values];
-
-    if (placeholder.length) {
-      localValues.unshift({ databaseId: '', value: placeholder });
-    }
-
-    return localValues;
   }
 
   render() {

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import IMask from 'imask';
 import { AppContext } from '../AppContext';
+import { isUserTyping, isValidZipCodeInput, getEmptyState, fillAddressState } from '../helpers/zipcode';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
@@ -28,7 +29,6 @@ const defaultProps = {
   minLength: 9,
 };
 
-const ZIPCODE_VALID_LENGTH = defaultProps.minLength - 1;
 const ZIPCODE_MASK = '00000-000';
 
 export default class Zipcode extends Component {
@@ -56,20 +56,12 @@ export default class Zipcode extends Component {
 
     this.props.onFieldChange({ ...this.props, value: evt.target.value });
 
-    if (this.isUserTyping(zipcode.length)) {
+    if (isUserTyping(zipcode.length)) {
       this.setState({ value: evt.target.value, fullAddress: '', fetchCompleted: false });
-    } else if (this.isValidZipCodeInput(zipcode.length, this.state.fetchCompleted)) {
+    } else if (isValidZipCodeInput(zipcode.length, this.state.fetchCompleted)) {
       this.setState({ fetching: true });
       this.getZipCode(zipcode, successCallback, errorCallback);
     }
-  }
-
-  isUserTyping(zipcodeLength, keyboardKey) {
-    return zipcodeLength < ZIPCODE_VALID_LENGTH;
-  }
-
-  isValidZipCodeInput(zipcodeLength, fetchCompleted) {
-    return zipcodeLength === ZIPCODE_VALID_LENGTH && !fetchCompleted;
   }
 
   async getZipCode(zipcode, successCallback, errorCallback) {
@@ -88,9 +80,9 @@ export default class Zipcode extends Component {
   }
 
   onZipcodeSuccess(zipcode, response) {
-    let result = this.getEmptyState(this.state);
+    let result = getEmptyState(this.state);
 
-    result = this.fillAddressState(response.data, zipcode);
+    result = fillAddressState(response.data, zipcode);
     result.fetching = false;
     result.zipcodeUrlService = this.props.zipcodeUrlService;
 
@@ -98,7 +90,7 @@ export default class Zipcode extends Component {
   }
 
   onZipcodeError(zipcode) {
-    const result = this.getEmptyState(this.state);
+    const result = getEmptyState(this.state);
 
     result.value = zipcode;
     result.fetching = false;
@@ -109,34 +101,8 @@ export default class Zipcode extends Component {
     this.setState(result);
   }
 
-  getEmptyState(state) {
-    return Object.keys(state).reduce((output, key) => {
-      let defaultValue = '';
-
-      if (typeof state[key] === 'boolean') {
-        defaultValue = false;
-      }
-
-      return { ...output, [key]: defaultValue };
-    }, {});
-  }
-
-  fillAddressState(responseAddress, zipcode) {
-    const result = Object.keys(responseAddress).reduce((output, key) => ({ ...output, [key]: responseAddress[key] }), {});
-
-    result.value = zipcode;
-    result.fetchCompleted = true;
-    result.fullAddress = this.getFullAddress(responseAddress);
-
-    return result;
-  }
-
-  getFullAddress({ street, neighborhood, city, uf }) {
-    return `${street}, ${neighborhood} \n${city} - ${uf}`;
-  }
-
   componentDidMount() {
-    new IMask(this.inputRef.current, { mask: ZIPCODE_MASK });
+    this.mask = new IMask(this.inputRef.current, { mask: ZIPCODE_MASK });
   }
 
   render() {
@@ -146,13 +112,13 @@ export default class Zipcode extends Component {
     return (
       <AppContext.Consumer>
         { context => <Fragment>
-          <a href={'http://www.buscacep.correios.com.br'} target={'_blank'} className={'form__label-link'} rel={'noopener noreferrer'}>Não lembra seu CEP?</a>
-          <input id={id} name={name} className={style} type={'tel'} placeholder={placeholder} required={required} onChange={this.onChange.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)} ref={this.inputRef} />
-          { fetching ? <span className={'zipcode__loader'} >Buscando CEP...</span> : <span className={'full-address'}>{fullAddress}</span> }
-          <input id={'street'} name={'street'} type={'hidden'} value={street} />
-          <input id={'neighborhood'} name={'neighborhood'} type={'hidden'} value={neighborhood} />
-          <input id={'city'} name={'city'} type={'hidden'} value={city} />
-          <input id={'uf'} name={'uf'} type={'hidden'} value={uf} />
+          <a href='http://www.buscacep.correios.com.br' target='_blank' className='form__label-link' rel='noopener noreferrer'>Não lembra seu CEP?</a>
+          <input id={id} name={name} className={style} type='tel' placeholder={placeholder} required={required} onChange={this.onChange.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)} ref={this.inputRef} />
+          { fetching ? <span className='zipcode__loader' >Buscando CEP...</span> : <span className='full-address'>{fullAddress}</span> }
+          <input id='street' name='street' type='hidden' value={street} />
+          <input id='neighborhood' name='neighborhood' type='hidden' value={neighborhood} />
+          <input id='city' name={'city'} type={'hidden'} value={city} />
+          <input id='uf' name='uf' type='hidden' value={uf} />
         </Fragment>
         }
       </AppContext.Consumer>
