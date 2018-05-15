@@ -7,8 +7,8 @@ const fillFormFields = (steps) => {
       return updatedField;
     });
 
-    return Object.assign({}, {...step}, { fields });
+    return Object.assign({}, { ...step }, { fields });
   });
-}
+};
 
 export default fillFormFields;
