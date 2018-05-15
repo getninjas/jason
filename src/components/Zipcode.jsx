@@ -4,6 +4,7 @@ import axios from 'axios';
 import IMask from 'imask';
 import { AppContext } from '../AppContext';
 import { isUserTyping, isValidZipCodeInput, getEmptyState, fillAddressState } from '../helpers/zipcode';
+import { isValidZipcode } from './Form/validation';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
@@ -58,16 +59,14 @@ export default class Zipcode extends Component {
     if (isUserTyping(zipcode.length)) {
       this.setState({ value: evt.target.value, fullAddress: '', fetchCompleted: false });
     } else if (isValidZipCodeInput(zipcode.length, this.state.fetchCompleted)) {
-      this.setState({ fetching: true });
+      this.setState({ fetching: true, value: evt.target.value });
+      this.onBlur(evt);
       this.getZipCode(zipcode, successCallback, errorCallback);
     }
   }
 
-  onBlur() {
-    this.props.onFieldChange({
-      ...this.props,
-      value: this.state.value,
-    });
+  onBlur(evt) {
+    this.props.onFieldChange({ ...this.props, value: evt.target.value });
   }
 
   async getZipCode(zipcode, successCallback, errorCallback) {
@@ -91,6 +90,8 @@ export default class Zipcode extends Component {
     result = fillAddressState(response.data, zipcode);
     result.fetching = false;
     result.zipcodeUrlService = this.props.zipcodeUrlService;
+
+    this.props.onFieldChange({ ...this.props, value: this.state.value });
 
     this.setState(result);
   }
