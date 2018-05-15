@@ -6,6 +6,7 @@ exports[`Select renders defaultProps 1`] = `
   defaultValue=""
   id="idTest"
   name="nameTest"
+  onBlur={[Function]}
   onChange={[Function]}
   required="false"
 >
