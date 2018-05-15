@@ -1,7 +1,7 @@
 import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import IMask from 'imask';
-import maxLengthTrim from '../helpers/input';
+import { maxLengthTrim, getInputType } from '../helpers/input';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
@@ -38,6 +38,7 @@ export default class Input extends Component {
 
     this.ref = createRef();
     this.onChange = this.onChange.bind(this);
+    this.mask = null;
   }
 
   onChange(evt) {
@@ -58,18 +59,10 @@ export default class Input extends Component {
     const { type, value } = this.props;
 
     if (type === 'phone') {
-      new IMask(this.ref.current, { mask: '(00) 00000-0000' });
+      this.mask = new IMask(this.ref.current, { mask: '(00) 00000-0000' });
     }
 
     this.setState({ value });
-  }
-
-  getInputType(type) {
-    if (type === 'phone') {
-      return 'tel';
-    }
-
-    return type;
   }
 
   render() {
@@ -87,7 +80,7 @@ export default class Input extends Component {
 
     return (
       <input
-        type={this.getInputType(type)}
+        type={getInputType(type)}
         id={id}
         name={name}
         title={title}
