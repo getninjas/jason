@@ -1,6 +1,6 @@
 {
   "extends": [
-    "airbnb-base",
+    "getninjas",
     "plugin:react/recommended"
   ],
 
