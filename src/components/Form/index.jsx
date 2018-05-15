@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { AppContext } from '../../AppContext';
 import Step from '../Step';
 import Breadcrumb from '../Breadcrumb';
@@ -31,7 +32,7 @@ export default class Form extends Component {
     this.sectionStyle = 'wall--inverted col-normal-8 col-small-12';
     this.formStyle = 'form container sh-form-content space-box-small';
 
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
     this.onFieldChange = this.onFieldChange.bind(this);
   }
@@ -50,16 +51,50 @@ export default class Form extends Component {
     });
   }
 
-  handleSubmit(evt) {
+  onSubmit(evt) {
     evt.preventDefault();
 
     this.handleStepChange();
+
+    this.handleSubmit();
   }
 
   handleButtonClick(evt) {
     evt.preventDefault();
 
     this.handleStepChange();
+
+    this.handleSubmit();
+  }
+
+  handleSubmit() {
+    if (this.isStepsValid()) {
+      this.submitRequest();
+    }
+  }
+
+  isStepsValid() {
+    const validSteps = this.state.steps.filter((step) => {
+      const { isValid } = validateStep(step.fields);
+      return isValid;
+    });
+
+    return validSteps.length === this.props.data.steps.length;
+  }
+
+  async submitRequest() {
+    try {
+      console.log('submitRequest', this.state);
+
+      const body = {
+        name: 'ion',
+      };
+
+      const response = await axios.post(this.props.action, body);
+      console.log('callback', response);
+    } catch (error) {
+      console.log('error', error);
+    }
   }
 
   handleStepChange() {
@@ -119,7 +154,7 @@ export default class Form extends Component {
     return (
       <AppContext.Provider value={this.state}>
         <section className={this.sectionStyle}>
-          <form noValidate onSubmit={this.handleSubmit} {...this.props} className={this.formStyle}>
+          <form noValidate onSubmit={this.onSubmit} {...this.props} className={this.formStyle}>
             {
               this.state.steps.map((step, index) => {
                 const { buttonText, headerMarkup, fields } = step;
