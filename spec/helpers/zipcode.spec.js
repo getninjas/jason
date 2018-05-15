@@ -30,7 +30,6 @@ describe('isValidZipCodeInput', () => {
 
 describe('fillAddressState', () => {
   it('returns new state object with filled address', () => {
-
     const responseAddress = {
       street: 'xpto street',
       neighborhood: 'xpto neighborhood',
