@@ -33,6 +33,8 @@ export default class Form extends Component {
   constructor(props) {
     super(props);
 
+    console.log('Form Constructor', this);
+
     this.state = {
       activeStepIndex: 0,
       onZipcodeFetchSuccess: (data) => {
