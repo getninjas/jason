@@ -14,6 +14,7 @@ const propTypes = {
   onSubmitSuccess: PropTypes.func.isRequired,
   onSubmitError: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  formSubmit: PropTypes.func,
 };
 
 const defaultProps = {
@@ -44,6 +45,7 @@ export default class Form extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
     this.onFieldChange = this.onFieldChange.bind(this);
+    // this.props.formSubmit() => { this.handleSubmit(); };
   }
 
   get currentStep() {
@@ -74,23 +76,27 @@ export default class Form extends Component {
     };
   }
 
-  onSubmit(evt) {
-    evt.preventDefault();
-
+  formSubmit() {
     this.handleStepChange();
 
     this.handleSubmit();
+  }
+
+  onSubmit(evt) {
+    console.log(this.state);
+    evt.preventDefault();
+
+    this.formSubmit();
   }
 
   handleButtonClick(evt) {
     evt.preventDefault();
 
-    this.handleStepChange();
-
-    this.handleSubmit();
+    this.formSubmit();
   }
 
   handleSubmit() {
+    console.log('');
     if (this.isStepsValid()) {
       this.submitRequest();
     }
