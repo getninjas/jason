@@ -39,7 +39,7 @@ export default class Form extends Component {
         this.props.onZipcodeFetchSuccess(data);
         this.onZipcodeFetchSuccess(data);
       },
-      onZipcodeFetchError: data => this.props.data.onZipcodeFetchError(data),
+      onZipcodeFetchError: data => this.props.onZipcodeFetchError(data),
       stepsCount: 0,
       steps: [],
     };
