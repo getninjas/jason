@@ -23,12 +23,16 @@ export default class Form extends Component {
 
     this.state = {
       activeStepIndex: 0,
-      onZipcodeFetchSuccess: data => this.props.data.onZipcodeFetchSuccess(data),
+      onZipcodeFetchSuccess: (data) => {
+        this.props.data.onZipcodeFetchSuccess(data);
+        this.onZipcodeFetchSuccess(data);
+      },
       onZipcodeFetchError: data => this.props.data.onZipcodeFetchError(data),
       stepsCount: 0,
       steps: [],
     };
 
+    this.requestAddress = {};
     this.sectionStyle = 'wall--inverted col-normal-8 col-small-12';
     this.formStyle = 'form container sh-form-content space-box-small';
 
@@ -49,6 +53,20 @@ export default class Form extends Component {
       stepsCount: this.props.data.steps.length - 1,
       steps: this.props.data.steps,
     });
+  }
+
+  onZipcodeFetchSuccess(data) {
+    this.props.data.onZipcodeFetchSuccess(data);
+
+    const { type_street, street, neighborhood, city, uf } = data;
+
+    this.requestAddress = {
+      type_street,
+      street,
+      neighborhood,
+      city,
+      uf,
+    };
   }
 
   onSubmit(evt) {
@@ -84,12 +102,10 @@ export default class Form extends Component {
 
   async submitRequest() {
     try {
-      console.log('submitRequest', this.state);
-
       const body = this.getFields();
 
       const response = await axios.post(this.props.action, body);
-      console.log('sucesso', body);
+      console.log('sucesso', body, response);
     } catch (error) {
       console.log('error', error);
     }
@@ -100,7 +116,7 @@ export default class Form extends Component {
       return [...acc, ...step.fields];
     }, []);
 
-    return { data: { ...fields } };
+    return { data: { ...fields, address: { ...this.requestAddress } } };
   }
 
   handleStepChange() {
