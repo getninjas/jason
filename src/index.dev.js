@@ -16,5 +16,6 @@ ReactDOM.render(
   data={devData}
   onSubmit={ () => console.log('App onSubmit') }
   onSubmitSuccess={ () => console.log('App onSubmitSuccess') }
-  onSubmitError={ () => console.log('App onSubmitError') } />,
+  onSubmitError={ () => console.log('App onSubmitError') }
+  onStepChange={ () => console.log('App onStepChange') } />,
   document.getElementById('root'));

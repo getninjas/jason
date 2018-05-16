@@ -14,6 +14,9 @@ export default class Jason {
   }
 
   init() {
-    ReactDOM.render(<App data={this.data.form} ref={(jason) => { this.jason = jason; }} />, this.element);
+    ReactDOM.render(
+      <App data={this.data.form} {...this} ref={(jason) => { this.jason = jason; }} />,
+      this.element,
+    );
   }
 }

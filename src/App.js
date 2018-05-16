@@ -25,4 +25,5 @@ App.propTypes = {
   onSubmit: PropTypes.func,
   onSubmitSuccess: PropTypes.func,
   onSubmitError: PropTypes.func,
+  onStepChange: PropTypes.func,
 };

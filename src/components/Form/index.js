@@ -14,17 +14,17 @@ const propTypes = {
   onSubmitSuccess: PropTypes.func.isRequired,
   onSubmitError: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  onStepChange: PropTypes.func,
 };
 
 const defaultProps = {
   method: 'POST',
+  onStepChange: () => {},
 };
 
 export default class Form extends Component {
   constructor(props) {
     super(props);
-
-    console.log('form', this.props);
 
     this.state = {
       activeStepIndex: 0,
@@ -138,6 +138,7 @@ export default class Form extends Component {
 
   nextStep({ activeStepIndex, stepsCount }) {
     if (activeStepIndex < stepsCount) {
+      this.props.onStepChange();
       this.setState({ activeStepIndex: activeStepIndex + 1 });
     }
   }
