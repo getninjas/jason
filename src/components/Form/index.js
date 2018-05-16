@@ -11,6 +11,9 @@ const propTypes = {
   data: PropTypes.object.isRequired,
   action: PropTypes.string.isRequired,
   method: PropTypes.string,
+  onSubmitSuccess: PropTypes.func.isRequired,
+  onSubmitError: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
@@ -18,8 +21,10 @@ const defaultProps = {
 };
 
 export default class Form extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    console.log('form', this.props);
 
     this.state = {
       activeStepIndex: 0,
@@ -102,12 +107,12 @@ export default class Form extends Component {
 
   async submitRequest() {
     try {
+      this.props.onSubmit();
       const body = this.getFields();
-
       const response = await axios.post(this.props.action, body);
-      console.log('sucesso', body, response);
+      this.props.onSubmitSuccess(response);
     } catch (error) {
-      console.log('error', error);
+      this.props.onSubmitError(error);
     }
   }
 
@@ -176,7 +181,7 @@ export default class Form extends Component {
     return (
       <AppContext.Provider value={this.state}>
         <section className={this.sectionStyle}>
-          <form noValidate onSubmit={this.onSubmit} {...this.props} className={this.formStyle}>
+          <form noValidate onSubmit={this.onSubmit} name={this.props.name} action={this.props.action} className={this.formStyle}>
             {
               this.state.steps.map((step, index) => {
                 const { buttonText, headerMarkup, fields } = step;
