@@ -10,7 +10,7 @@ export default class Jason {
   }
 
   post() {
-    this.jason.formSubmit();
+    this.jason.post();
   }
 
   init() {
