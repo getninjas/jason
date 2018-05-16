@@ -4,7 +4,6 @@ import axios from 'axios';
 import IMask from 'imask';
 import { AppContext } from '../AppContext';
 import { isUserTyping, isValidZipCodeInput, getEmptyState, fillAddressState } from '../helpers/zipcode';
-import { isValidZipcode } from './Form/validation';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
