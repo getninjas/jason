@@ -15,8 +15,15 @@ export default class Jason {
 
   init() {
     ReactDOM.render(
-      <App data={this.data.form} {...this} ref={(jason) => { this.jason = jason; }} />,
-      this.element,
+      <App data={this.data.form}
+        name={this.name}
+        action={this.action}
+        onSubmit={ () => this.onSubmit }
+        onSubmitSuccess={ () => this.onSubmitSuccess }
+        onSubmitError={ () => this.onSubmitError }
+        onStepChange={ () => this.onStepChange }
+        ref={(jason) => { this.jason = jason; }} />,
+        this.element,
     );
   }
 }
