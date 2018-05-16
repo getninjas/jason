@@ -11,14 +11,21 @@ const propTypes = {
   data: PropTypes.object.isRequired,
   action: PropTypes.string.isRequired,
   method: PropTypes.string,
-  onSubmitSuccess: PropTypes.func.isRequired,
-  onSubmitError: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
+  onZipcodeFetchSuccess: PropTypes.func,
+  onZipcodeFetchError: PropTypes.func,
+  onSubmitSuccess: PropTypes.func,
+  onSubmitError: PropTypes.func,
+  onSubmit: PropTypes.func,
   onStepChange: PropTypes.func,
 };
 
 const defaultProps = {
   method: 'POST',
+  onZipcodeFetchSuccess: () => {},
+  onZipcodeFetchError: () => {},
+  onSubmit: () => {},
+  onSubmitSuccess: () => {},
+  onSubmitError: () => {},
   onStepChange: () => {},
 };
 
@@ -29,7 +36,7 @@ export default class Form extends Component {
     this.state = {
       activeStepIndex: 0,
       onZipcodeFetchSuccess: (data) => {
-        this.props.data.onZipcodeFetchSuccess(data);
+        this.props.onZipcodeFetchSuccess(data);
         this.onZipcodeFetchSuccess(data);
       },
       onZipcodeFetchError: data => this.props.data.onZipcodeFetchError(data),
@@ -61,7 +68,7 @@ export default class Form extends Component {
   }
 
   onZipcodeFetchSuccess(data) {
-    this.props.data.onZipcodeFetchSuccess(data);
+    this.props.onZipcodeFetchSuccess(data);
 
     const { type_street, street, neighborhood, city, uf } = data;
 
