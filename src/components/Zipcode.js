@@ -79,6 +79,8 @@ export default class Zipcode extends Component {
     } catch (error) {
       this.onZipcodeError(zipcode);
 
+      console.log('zipcode error', errorCallback);
+
       errorCallback({ ...this.state, error });
     }
   }

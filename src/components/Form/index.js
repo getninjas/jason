@@ -38,6 +38,7 @@ export default class Form extends Component {
     this.state = {
       activeStepIndex: 0,
       onZipcodeFetchSuccess: (data) => {
+        console.log('Context onZipcodeFetchSuccess', this.props);
         this.props.onZipcodeFetchSuccess(data);
         this.onZipcodeFetchSuccess(data);
       },
