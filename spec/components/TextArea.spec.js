@@ -39,4 +39,23 @@ describe('TextArea', () => {
 
     expect(component.instance().state.value).toEqual('Bora pra action');
   });
+
+  it('.onBlur', () => {
+    const onFieldChange = jest.fn();
+
+    const component = shallow(
+      <TextArea
+        id={'idTest'}
+        name={'nameTest'}
+        placeholder={'placeholderTest'}
+        onFieldChange={onFieldChange}
+        required={false}
+        value={'ola test value'}
+      />,
+    );
+
+    component.simulate('blur');
+
+    expect(component.instance().props.onFieldChange).toBeCalled();
+  });
 });
