@@ -15,12 +15,13 @@ const propTypes = {
 };
 
 const defaultProps = {
-  onZipcodeFetchSuccess: () => {},
-  onZipcodeFetchError: () => {},
-  onSubmit: () => {},
-  onSubmitSuccess: () => {},
-  onSubmitError: () => {},
-  onStepChange: () => {},
+  onReady() {},
+  onZipcodeFetchSuccess() {},
+  onZipcodeFetchError() {},
+  onSubmit() {},
+  onSubmitSuccess() {},
+  onSubmitError() {},
+  onStepChange() {},
 };
 
 export default class App extends Component {

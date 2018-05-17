@@ -11,6 +11,7 @@ const propTypes = {
   data: PropTypes.object.isRequired,
   action: PropTypes.string.isRequired,
   method: PropTypes.string,
+  onReady: PropTypes.func,
   onZipcodeFetchSuccess: PropTypes.func,
   onZipcodeFetchError: PropTypes.func,
   onSubmitSuccess: PropTypes.func,
@@ -21,12 +22,13 @@ const propTypes = {
 
 const defaultProps = {
   method: 'POST',
-  onZipcodeFetchSuccess: () => {},
-  onZipcodeFetchError: () => {},
-  onSubmit: () => {},
-  onSubmitSuccess: () => {},
-  onSubmitError: () => {},
-  onStepChange: () => {},
+  onReady() {},
+  onZipcodeFetchSuccess() {},
+  onZipcodeFetchError() {},
+  onSubmit() {},
+  onSubmitSuccess() {},
+  onSubmitError() {},
+  onStepChange() {},
 };
 
 export default class Form extends Component {
@@ -62,6 +64,8 @@ export default class Form extends Component {
       stepsCount: this.props.data.steps.length - 1,
       steps: this.props.data.steps,
     });
+
+    this.props.onReady();
   }
 
   onZipcodeFetchSuccess(data) {
@@ -105,6 +109,7 @@ export default class Form extends Component {
   isStepsValid() {
     const validSteps = this.state.steps.filter((step) => {
       const { isValid } = validateStep(step.fields);
+
       return isValid;
     });
 
@@ -114,8 +119,10 @@ export default class Form extends Component {
   async submitRequest() {
     try {
       this.props.onSubmit();
+
       const body = this.getFields();
       const response = await axios.post(this.props.action, body);
+
       this.props.onSubmitSuccess(response);
     } catch (error) {
       this.props.onSubmitError(error);
@@ -123,9 +130,7 @@ export default class Form extends Component {
   }
 
   getFields() {
-    const fields = this.state.steps.reduce((acc, step) => {
-      return [...acc, ...step.fields];
-    }, []);
+    const fields = this.state.steps.reduce((acc, step) => [...acc, ...step.fields], []);
 
     return { data: { ...fields, address: { ...this.requestAddress } } };
   }
@@ -167,13 +172,11 @@ export default class Form extends Component {
     const { steps, activeStepIndex } = this.state;
 
     const modifiedSteps = [...steps];
-    const modifiedStep = Object.assign({}, modifiedSteps[activeStepIndex], { fields });
+    const modifiedStep = { ...modifiedSteps[activeStepIndex], fields };
 
     modifiedSteps[activeStepIndex] = modifiedStep;
 
-    this.setState({
-      steps: modifiedSteps,
-    });
+    this.setState({ steps: modifiedSteps });
   }
 
   isStepVisible(index) {
@@ -185,10 +188,12 @@ export default class Form extends Component {
   }
 
   render() {
+    const { name, action } = this.props;
+
     return (
       <AppContext.Provider value={this.state}>
         <section className={this.sectionStyle}>
-          <form noValidate onSubmit={this.onSubmit} name={this.props.name} action={this.props.action} className={this.formStyle}>
+          <form noValidate onSubmit={this.onSubmit} name={name} action={action} className={this.formStyle}>
             {
               this.state.steps.map((step, index) => {
                 const { buttonText, headerMarkup, fields } = step;
