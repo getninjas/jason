@@ -96,7 +96,6 @@ describe('Zipcode', () => {
 
     it('calls onZipcodeSuccess and successCallback on fetch success', async () => {
       const component = mount(getZipCodeMock());
-
       const responseData = {
         data: { type_street: '', street: 'Rua Mock', city: 'Cidade Mock', neighborhood: 'Bairro Mock', uf: 'SP' },
       };
@@ -125,6 +124,23 @@ describe('Zipcode', () => {
       expect(successCallback).not.toHaveBeenCalledWith(component.instance().state);
       expect(errorCallback).toHaveBeenCalledWith({ ...component.instance().state, error: { data: {} } });
       expect(component.instance().onZipcodeError).toHaveBeenCalledWith('04707060');
+    });
+  });
+
+  describe('.onZipcodeSuccess', () => {
+    it('calls setState, this.props.onFieldChange', async () => {
+      const onFieldChange = jest.fn();
+      const ZipcodeMock = getComponentWithContext();
+      const component = mount(<ZipcodeMock id='zip_id' name='zip_name' zipcodeUrlService='' onFieldChange={ onFieldChange }/>);
+      const responseData = {
+        data: { type_street: '', street: 'Rua Mock', city: 'Cidade Mock', neighborhood: 'Bairro Mock', uf: 'SP' },
+      };
+      component.instance().setState = jest.fn();
+
+      await component.instance().onZipcodeSuccess('04707060', responseData);
+
+      expect(component.instance().setState).toHaveBeenCalled();
+      expect(component.instance().props.onFieldChange).toHaveBeenCalled();
     });
   });
 
