@@ -35,8 +35,6 @@ export default class App extends Component {
   }
 
   render() {
-    console.log('Jason App Render', this);
-
     return <Form {...this.props} ref={this.ref} data={this.props.data} />;
   }
 }
