@@ -18,6 +18,7 @@ export default class Jason {
       <App data={this.data.form}
         name={this.name}
         action={this.action}
+        onReady={ this.onReady }
         onZipcodeFetchSuccess={ (data) => { this.onZipcodeFetchSuccess(data); } }
         onZipcodeFetchError={ (data) => { this.onZipcodeFetchError(data); } }
         onSubmit={ this.onSubmit }
