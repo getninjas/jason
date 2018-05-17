@@ -48,6 +48,34 @@ describe('Form', () => {
     });
   });
 
+  describe('.getFields', () => {
+    it('returns all form fields plus address object', () => {
+      const data = copyState(form);
+      const address = {
+        type_street: 'type_street',
+        street: 'street',
+        neighborhood: 'neighborhood',
+        city: 'city',
+        uf: 'uf',
+      };
+
+      data.steps = fillFormFields(data.steps);
+
+      const component = shallow(
+        <Form name={'form'} action={'/'} data={data} />,
+      );
+
+      const fields = component.state().steps.reduce((acc, step) => [...acc, ...step.fields], []);
+      const mockFields = { data: { ...fields, address: { ...address } } };
+
+      component.instance().requestAddress = { ...address };
+
+      const result = component.instance().getFields();
+
+      expect(result).toEqual(mockFields);
+    });
+  });
+
   describe('.submitRequest', () => {
     it('calls .props.onSubmitSuccess, getFields', async () => {
       const onSubmit = jest.fn();
