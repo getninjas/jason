@@ -14,18 +14,16 @@ export default class Jason {
   }
 
   init() {
-    console.log('Jason Index Init', this);
-
     ReactDOM.render(
       <App data={this.data.form}
         name={this.name}
         action={this.action}
         onZipcodeFetchSuccess={ data => this.onZipcodeFetchSuccess.bind(null, data) }
         onZipcodeFetchError={ data => this.onZipcodeFetchError.bind(null, data) }
-        onSubmit={ () => this.onSubmit }
-        onSubmitSuccess={ () => this.onSubmitSuccess }
-        onSubmitError={ () => this.onSubmitError }
-        onStepChange={ () => this.onStepChange }
+        onSubmit={ this.onSubmit }
+        onSubmitSuccess={ this.onSubmitSuccess }
+        onSubmitError={ this.onSubmitError }
+        onStepChange={ this.onStepChange }
         ref={(jason) => { this.jason = jason; }} />,
         this.element,
     );
