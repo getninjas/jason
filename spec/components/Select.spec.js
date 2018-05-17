@@ -80,4 +80,26 @@ describe('Select', () => {
       expect(component.instance().state.values[0].value).not.toEqual('');
     });
   });
+
+  describe('.onBlur', () => {
+    it('calls onFieldChange', () => {
+      const values = form.steps[0].fields[0].values.slice(0, 2);
+      const onFieldChange = jest.fn();
+
+      const component = shallow(
+        <Select
+          id={'idTest'}
+          name={'nameTest'}
+          placeholder={''}
+          required={false}
+          onFieldChange={onFieldChange}
+          values={values}
+        />,
+      );
+
+      component.simulate('blur');
+
+      expect(component.instance().props.onFieldChange).toBeCalled();
+    });
+  });
 });
