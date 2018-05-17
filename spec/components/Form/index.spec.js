@@ -32,18 +32,52 @@ describe('Form', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  describe('.handleButtonClick', () => {
-    it('calls .handleStepChange', () => {
+  describe('.formSubmit', () => {
+    it('calls .handleStepChange and handleSubmit', () => {
       const component = shallow(
         <Form name={'form'} action={'/'} data={form} />,
       );
 
       component.instance().handleStepChange = jest.fn();
+      component.instance().handleSubmit = jest.fn();
+
+      component.instance().formSubmit();
+
+      expect(component.instance().handleStepChange).toBeCalled();
+      expect(component.instance().handleSubmit).toBeCalled();
+    });
+  });
+
+  describe('.submitRequest', () => {
+    it('calls .props.onSubmitSuccess, getFields', async () => {
+      const onSubmit = jest.fn();
+      const onSubmitSuccess = jest.fn();
+      const component = shallow(
+        <Form name={'form'} onSubmit={ onSubmit } onSubmitSuccess={ onSubmitSuccess } action={'/'} data={form} />,
+      );
+
+      component.instance().getFields = jest.fn();
+
+      await component.instance().submitRequest();
+
+      expect(component.instance().props.onSubmit).toBeCalled();
+      expect(component.instance().getFields).toBeCalled();
+      expect(component.instance().props.onSubmitSuccess).toBeCalled();
+    });
+  });
+
+  describe('.handleButtonClick', () => {
+    it('calls .formSubmit', () => {
+      const component = shallow(
+        <Form name={'form'} action={'/'} data={form} />,
+      );
+
+      component.instance().formSubmit = jest.fn();
 
       const evt = { preventDefault() { } };
       component.instance().handleButtonClick(evt);
 
-      expect(component.instance().handleStepChange).toBeCalled();
+      expect(component.instance().formSubmit).toBeCalled();
     });
 
     it('does not display next step', () => {
@@ -214,13 +248,13 @@ describe('Form', () => {
       <Form name={'form'} action={'/'} data={form} />,
     );
 
-    it('calls .handleStepChange', () => {
-      component.instance().handleStepChange = jest.fn();
+    it('calls .isStepsValid', () => {
+      component.instance().isStepsValid = jest.fn();
 
       const evt = { preventDefault() { } };
       component.instance().handleSubmit(evt);
 
-      expect(component.instance().handleStepChange).toBeCalled();
+      expect(component.instance().isStepsValid).toBeCalled();
     });
 
     it('does not display next step', () => {
@@ -244,7 +278,7 @@ describe('Form', () => {
       const initialStep = formComponent.state().activeStepIndex;
 
       const evt = { preventDefault() { } };
-      formComponent.instance().handleSubmit(evt);
+      formComponent.instance().formSubmit();
 
       const { activeStepIndex } = formComponent.state();
 
