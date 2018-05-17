@@ -277,12 +277,30 @@ describe('Form', () => {
     );
 
     it('calls .isStepsValid', () => {
-      component.instance().isStepsValid = jest.fn();
+      const wrapper = shallow(
+        <Form name={'form'} action={'/'} data={form} />,
+      );
+      wrapper.instance().isStepsValid = jest.fn();
 
       const evt = { preventDefault() { } };
-      component.instance().handleSubmit(evt);
+      wrapper.instance().handleSubmit(evt);
 
-      expect(component.instance().isStepsValid).toBeCalled();
+      expect(wrapper.instance().isStepsValid).toBeCalled();
+    });
+
+    it('calls .submitRequest when step is valid', () => {
+      const data = copyState(form);
+      data.steps = fillFormFields(data.steps);
+
+      const componentForm = shallow(
+        <Form name={'form'} action={'/'} data={data} />,
+      );
+
+      componentForm.instance().submitRequest = jest.fn();
+
+      componentForm.instance().handleSubmit();
+
+      expect(componentForm.instance().submitRequest).toBeCalled();
     });
 
     it('does not display next step', () => {
