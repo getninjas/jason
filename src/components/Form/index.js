@@ -101,7 +101,10 @@ export default class Form extends Component {
   }
 
   handleSubmit() {
+    console.log('handleSubmit');
+    console.log('isStepsValid', this.isStepsValid());
     if (this.isStepsValid()) {
+      console.log('pre submitRequest');
       this.submitRequest();
     }
   }

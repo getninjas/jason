@@ -27,12 +27,11 @@ const defaultProps = {
 export default class App extends Component {
   constructor() {
     super();
-
-    // this.ref = createRef();
+    this.ref = createRef();
   }
 
   post() {
-    // this.ref.current.formSubmit();
+    this.ref.current.formSubmit();
   }
 
   render() {
@@ -42,4 +41,3 @@ export default class App extends Component {
 
 App.propTypes = propTypes;
 App.defaultProps = defaultProps;
-
