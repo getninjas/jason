@@ -272,11 +272,10 @@ describe('Form', () => {
   });
 
   describe('.handleSubmit', () => {
-    const component = shallow(
-      <Form name={'form'} action={'/'} data={form} />,
-    );
-
     it('calls .isStepsValid', () => {
+      const component = shallow(
+        <Form name={'form'} action={'/'} data={form} />,
+      );
       component.instance().isStepsValid = jest.fn();
 
       const evt = { preventDefault() { } };
@@ -285,7 +284,27 @@ describe('Form', () => {
       expect(component.instance().isStepsValid).toBeCalled();
     });
 
+    it('calls .submitRequest when step is valid', () => {
+      const data = copyState(form);
+      data.steps = fillFormFields(data.steps);
+      data.steps[1].fields[0].value = '11111-111';
+      data.steps[1].fields[2].value = 'iondr@ig.com';
+      data.steps[1].fields[3].value = '(11) 98888-9999';
+
+      const component = shallow(
+        <Form name={'form'} action={'/'} data={data} />,
+      );
+
+      component.instance().submitRequest = jest.fn();
+      component.instance().handleSubmit();
+
+      expect(component.instance().submitRequest).toHaveBeenCalled();
+    });
+
     it('does not display next step', () => {
+      const component = shallow(
+        <Form name={'form'} action={'/'} data={form} />,
+      );
       const evt = { preventDefault() { } };
       component.instance().handleSubmit(evt);
 
@@ -296,19 +315,18 @@ describe('Form', () => {
 
     it('goes to next step', () => {
       const data = copyState(form);
-
       data.steps = fillFormFields(data.steps);
 
-      const formComponent = shallow(
+      const component = shallow(
         <Form name={'form'} action={'/'} data={data} />,
       );
 
-      const initialStep = formComponent.state().activeStepIndex;
+      const initialStep = component.state().activeStepIndex;
 
       const evt = { preventDefault() { } };
-      formComponent.instance().formSubmit();
+      component.instance().formSubmit();
 
-      const { activeStepIndex } = formComponent.state();
+      const { activeStepIndex } = component.state();
 
       expect(initialStep).toEqual(0);
       expect(activeStepIndex).toEqual(initialStep + 1);
