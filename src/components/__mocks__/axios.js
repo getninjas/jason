@@ -5,4 +5,7 @@ export default {
     }
     return Promise.resolve({ data: { type_street: '', street: 'Rua Mock', city: 'Cidade Mock', neighborhood: 'Bairro Mock', uf: 'SP' } });
   }),
+  post: jest.fn((url, body) => {
+    return Promise.resolve({ data: { link: 'https://testdomain.com' } });
+  }),
 };
