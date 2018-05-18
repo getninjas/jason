@@ -8,7 +8,7 @@ const propTypes = {
   onFieldChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
-  value: PropTypes.any,
+  initialValue: PropTypes.any,
   style: PropTypes.string,
   minLength: PropTypes.number,
   maxLength: PropTypes.number,
@@ -20,18 +20,18 @@ const defaultProps = {
   name: '',
   title: '',
   required: false,
-  value: '',
+  initialValue: '',
   style: 'form__input',
   minLength: 3,
   maxLength: 255,
 };
 
 export default class TextArea extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      value: '',
+      value: this.props.initialValue ? this.props.initialValue : '',
     };
 
     this.onChange = this.onChange.bind(this);
@@ -74,7 +74,9 @@ export default class TextArea extends Component {
         onChange={this.onChange}
         onBlur={this.onBlur}
         minLength={minLength}
-        maxLength={maxLength} />
+        maxLength={maxLength}>
+        {this.state.value}
+      </textarea>
     );
   }
 }

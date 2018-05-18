@@ -16,8 +16,11 @@ export default class Factory {
       name,
       onFieldChange,
       placeholder,
+      initialValue: value,
       required,
     };
+
+    console.log(value);
 
     if (type === 'select') {
       return (
