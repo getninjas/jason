@@ -11,8 +11,6 @@ describe('Jason', () => {
   const doc = (new JSDOM(documentHTML)).window.document;
 
   const onReady = jest.fn();
-  const onStepChange = jest.fn();
-  const onSubmit = jest.fn();
   const formElementContainer = doc.querySelector('#root');
 
   const jasonForm = new Jason({
@@ -22,7 +20,6 @@ describe('Jason', () => {
     scope: this,
     action: 'http://www.mocky.io/v2/5afb459c2f00005b00f7c7ab',
     onReady,
-    onStepChange
   });
 
   jasonForm.init();
@@ -36,10 +33,10 @@ describe('Jason', () => {
   });
 
   it('calls post method', () => {
-    jasonForm.jason.post = jest.fn();
+    jasonForm.form.formSubmit = jest.fn();
 
     jasonForm.post();
 
-    expect(jasonForm.jason.post).toHaveBeenCalled();
+    expect(jasonForm.form.formSubmit).toHaveBeenCalled();
   });
 });
