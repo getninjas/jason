@@ -31,7 +31,6 @@ export const isValidCellPhone = (value) => {
 };
 
 export const validateField = ({ required, type, value, minLength }) => {
-  console.log('validateField', value);
   if (required && value === null) {
     return errorMessages.REQUIRED_FIELD;
   }
