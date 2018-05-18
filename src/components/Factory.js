@@ -20,8 +20,6 @@ export default class Factory {
       required,
     };
 
-    console.log(value);
-
     if (type === 'select') {
       return (
         <Select
