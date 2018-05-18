@@ -3,12 +3,12 @@
 exports[`Select renders defaultProps 1`] = `
 <select
   className="form__input"
-  defaultValue=""
   id="idTest"
   name="nameTest"
   onBlur={[Function]}
   onChange={[Function]}
   required="false"
+  value=""
 >
   <option
     value=""

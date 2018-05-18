@@ -13,6 +13,6 @@ exports[`Input renders defaultProps 1`] = `
   required="false"
   title=""
   type="text"
-  value="ola test value"
+  value=""
 />
 `;
