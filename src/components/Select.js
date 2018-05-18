@@ -9,7 +9,7 @@ const propTypes = {
   title: PropTypes.string.isRequired,
   required: PropTypes.bool.isRequired,
   selected: PropTypes.any,
-  value: PropTypes.string,
+  initialValue: PropTypes.any,
   values: PropTypes.array,
   type: PropTypes.string,
   placeholder: PropTypes.string,
@@ -18,10 +18,10 @@ const propTypes = {
 
 const defaultProps = {
   id: '',
-  selected: '',
   name: '',
   title: '',
   required: false,
+  initialValue: '',
   values: [],
   placeholder: '',
   style: 'form__input',
@@ -33,7 +33,7 @@ export default class Select extends Component {
 
     this.state = {
       values: [],
-      selected: '',
+      value: this.props.initialValue ? this.props.initialValue : '',
     };
 
     this.onChange = this.onChange.bind(this);
@@ -60,13 +60,13 @@ export default class Select extends Component {
   }
 
   render() {
-    const { id, name, selected, required, style } = this.props;
+    const { id, name, initialValue, required, style } = this.props;
 
     return (
       <select
         id={id}
         name={name}
-        defaultValue={selected}
+        value={String(initialValue)}
         className={style}
         onChange={this.onChange}
         onBlur={this.onBlur}
