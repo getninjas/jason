@@ -290,13 +290,13 @@ exports[`Form renders defaultProps 1`] = `
       >
         <label
           className="form__label"
-          htmlFor="user_field_4"
+          htmlFor="user_field_u4"
         >
           DDD + Celular
         </label>
         <input
           className="form__input"
-          id="form-user_field_4"
+          id="form-user_field_u4"
           maxLength={255}
           minLength={3}
           name="user_field_4"
