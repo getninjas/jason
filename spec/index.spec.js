@@ -7,15 +7,16 @@ import { enzymeConfig, shallow } from './enzymeConfig';
 enzymeConfig();
 
 describe('Jason', () => {
-  const documentHTML = '<!doctype html><div class="form-jason">Jason</div>';
-  let doc = (new JSDOM(documentHTML)).window.document;
+  const documentHTML = '<!doctype html><div id="root"></div>';
+  const doc = (new JSDOM(documentHTML)).window.document;
 
   const onReady = jest.fn();
   const onStepChange = jest.fn();
   const onSubmit = jest.fn();
+  const formElementContainer = doc.querySelector('#root');
 
   const jasonForm = new Jason({
-    element: doc.querySelector('.form-jason'),
+    element: formElementContainer,
     data: { form },
     name: 'form-name',
     scope: this,
@@ -27,9 +28,7 @@ describe('Jason', () => {
   jasonForm.init();
 
   it('renders jason form to the DOM', () => {
-    const formELement = doc.querySelector('.form-jason');
-
-    expect(formELement.length).toEqual(1);
+    expect(formElementContainer.children.length).toEqual(1);
   });
 
   it('calls onReady callback', () => {
@@ -42,32 +41,5 @@ describe('Jason', () => {
     jasonForm.post();
 
     expect(jasonForm.jason.post).toHaveBeenCalled();
-  });
-
-  it('calls onStepChange', () => {
-    doc = (new JSDOM(documentHTML)).window.document;
-
-    const data = Object.assign({}, form);
-
-    data.steps[0].fields[0] = '7117';
-    data.steps[0].fields[1] = 'Freddy Krugger';
-    data.steps[0].fields[2] = 'Testando o Jason Form.';
-
-    const jasonForm = new Jason({
-      element: doc.querySelector('.form-jason'),
-      data: { form: data },
-      name: 'form-name',
-      scope: this,
-      action: 'http://www.mocky.io/v2/5afb459c2f00005b00f7c7ab',
-      onStepChange
-    });
-
-    const buttonStartRequest = doc.getElementsByTagName('button')[0];
-
-    //buttonStartRequest.click();
-
-    //console.log('>>>>>', doc.querySelector('.form-jason').querySelector(''));
-
-    //expect(jasonForm.onStepChange).toHaveBeenCalled();
   });
 });
