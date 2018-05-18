@@ -65,7 +65,7 @@ describe('Form', () => {
         <Form name={'form'} action={'/'} data={data} />,
       );
 
-      const fields = component.state().steps.reduce((acc, step) => [...acc, ...step.fields], []);
+      const fields = component.state().steps.reduce((acc, step) => [...acc, step.fields], []);
       const mockFields = { data: { ...fields, address: { ...address } } };
 
       component.instance().requestAddress = { ...address };
