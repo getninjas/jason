@@ -43,6 +43,7 @@ export default class Zipcode extends Component {
       neighborhood: '',
       uf: '',
       fullAddress: '',
+      zipcodeInvalid: false,
       fetchCompleted: false,
       zipcodeUrlService: this.props.zipcodeUrlService,
       fetching: false,
@@ -58,14 +59,14 @@ export default class Zipcode extends Component {
     if (isUserTyping(zipcode.length)) {
       this.setState({ value: evt.target.value, fullAddress: '', fetchCompleted: false });
     } else if (isValidZipCodeInput(zipcode.length, this.state.fetchCompleted)) {
+      this.props.onFieldChange({ ...this.props, value: evt.target.value });
       this.setState({ fetching: true, value: evt.target.value });
-      this.onBlur(evt);
       this.getZipCode(zipcode, successCallback, errorCallback);
     }
   }
 
   onBlur(evt) {
-    this.props.onFieldChange({ ...this.props, value: evt.target.value });
+    this.props.onFieldChange({ ...this.props, value: this.state.zipcodeInvalid ? '' : evt.target.value });
   }
 
   async getZipCode(zipcode, successCallback, errorCallback) {
@@ -89,6 +90,7 @@ export default class Zipcode extends Component {
     result = fillAddressState(response.data, zipcode);
     result.fetching = false;
     result.zipcodeUrlService = this.props.zipcodeUrlService;
+    result.zipcodeInvalid = false;
 
     this.props.onFieldChange({ ...this.props, value: this.state.value });
 
@@ -96,15 +98,9 @@ export default class Zipcode extends Component {
   }
 
   onZipcodeError(zipcode) {
-    const result = getEmptyState(this.state);
-
-    result.value = zipcode;
-    result.fetching = false;
-    result.zipcodeUrlService = this.props.zipcodeUrlService;
+    this.setState({ fullAddress: '', fetching: false, zipcodeInvalid: true });
 
     this.props.onFieldChange({ value: '', fetchCompleted: false, ...this.props });
-
-    this.setState(result);
   }
 
   componentDidMount() {
