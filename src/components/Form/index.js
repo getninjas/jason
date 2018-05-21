@@ -48,7 +48,6 @@ export default class Form extends Component {
     this.formStyle = 'form container sh-form-content space-box-small';
 
     this.onSubmit = this.onSubmit.bind(this);
-    this.handleButtonClick = this.handleButtonClick.bind(this);
     this.onFieldChange = this.onFieldChange.bind(this);
   }
 
@@ -89,12 +88,6 @@ export default class Form extends Component {
   }
 
   onSubmit(evt) {
-    evt.preventDefault();
-
-    this.formSubmit();
-  }
-
-  handleButtonClick(evt) {
     evt.preventDefault();
 
     this.formSubmit();
@@ -203,7 +196,7 @@ export default class Form extends Component {
                     buttonText={buttonText}
                     fields={fields}
                     formName={this.props.name}
-                    handleButtonClick={this.handleButtonClick}
+                    onSubmit={this.onSubmit}
                     headerMarkup={headerMarkup}
                     isLast={this.isLastStep(index)}
                     key={`${this.props.name}-step-${index}`}

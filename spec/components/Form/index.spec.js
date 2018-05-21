@@ -94,54 +94,6 @@ describe('Form', () => {
     });
   });
 
-  describe('.handleButtonClick', () => {
-    it('calls .formSubmit', () => {
-      const component = shallow(
-        <Form name={'form'} action={'/'} data={form} />,
-      );
-
-      component.instance().formSubmit = jest.fn();
-
-      const evt = { preventDefault() { } };
-      component.instance().handleButtonClick(evt);
-
-      expect(component.instance().formSubmit).toBeCalled();
-    });
-
-    it('does not display next step', () => {
-      const component = shallow(
-        <Form name={'form'} action={'/'} data={form} />,
-      );
-
-      const evt = { preventDefault() { } };
-      component.instance().handleButtonClick(evt);
-
-      const { activeStepIndex } = component.state();
-
-      expect(activeStepIndex).toEqual(0);
-    });
-
-    it('goes to next step', () => {
-      const data = copyState(form);
-
-      data.steps = fillFormFields(data.steps);
-
-      const component = shallow(
-        <Form name={'form'} action={'/'} data={data} />,
-      );
-
-      const initialStep = component.state().activeStepIndex;
-
-      const evt = { preventDefault() { } };
-      component.instance().handleButtonClick(evt);
-
-      const { activeStepIndex } = component.state();
-
-      expect(initialStep).toEqual(0);
-      expect(activeStepIndex).toEqual(initialStep + 1);
-    });
-  });
-
   describe('.isStepVisible', () => {
     const component = shallow(
       <Form name={'form'} action={'/'} data={form} />,
@@ -250,7 +202,7 @@ describe('Form', () => {
       component.instance().updateStep = jest.fn();
 
       const evt = { preventDefault() { } };
-      component.instance().handleButtonClick(evt);
+      component.instance().onSubmit(evt);
 
       expect(component.instance().updateStep).toBeCalled();
     });
