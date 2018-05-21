@@ -130,7 +130,7 @@ export default class Form extends Component {
   }
 
   getFields() {
-    const fields = this.state.steps.reduce((acc, step) => [...acc, step.fields], []);
+    const fields = this.state.steps.map(step => step.fields);
 
     return { data: { ...fields, address: { ...this.requestAddress } } };
   }
