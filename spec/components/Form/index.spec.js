@@ -323,7 +323,6 @@ describe('Form', () => {
 
       const initialStep = component.state().activeStepIndex;
 
-      const evt = { preventDefault() { } };
       component.instance().formSubmit();
 
       const { activeStepIndex } = component.state();
