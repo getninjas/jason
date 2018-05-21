@@ -21,12 +21,12 @@ exports[`Step renders with props 1`] = `
     </label>
     <select
       className="form__input"
-      defaultValue={null}
       id="formNameTest-1_id"
       name="1_name_select"
       onBlur={[Function]}
       onChange={[Function]}
       required="true"
+      value="null"
     >
       <option
         value=""
@@ -115,7 +115,9 @@ exports[`Step renders with props 1`] = `
       required={true}
       title=""
       value=""
-    />
+    >
+      
+    </textarea>
     <span
       className="form__message form__message--invalid space-element-small error"
     >

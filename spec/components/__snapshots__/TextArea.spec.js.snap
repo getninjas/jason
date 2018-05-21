@@ -13,5 +13,7 @@ exports[`TextArea renders defaultProps 1`] = `
   required={false}
   title=""
   value=""
-/>
+>
+  
+</textarea>
 `;

@@ -16,6 +16,7 @@ export default class Factory {
       name,
       onFieldChange,
       placeholder,
+      initialValue: value,
       required,
     };
 

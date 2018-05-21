@@ -2,7 +2,7 @@ import errorMessages from '../../../src/helpers/errorMessages';
 
 export const isEmpty = (value) => {
   const regex = /^\s*$/;
-  return regex.test(value.trim());
+  return regex.test(value.toString().trim());
 };
 
 export const isMinLength = (text, length) => {

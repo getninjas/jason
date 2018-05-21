@@ -91,4 +91,26 @@ describe('Input', () => {
       expect(inputType).toBe('tel');
     });
   });
+
+  describe('.onBlur', () => {
+    it('calls onFieldChange', () => {
+      const onFieldChange = jest.fn();
+
+      const component = shallow(
+        <Input
+          id={'idTest'}
+          name={'nameTest'}
+          onFieldChange={onFieldChange}
+          placeholder={'placeholderTest'}
+          required={false}
+          value={''}
+          maxLength={5}
+        />,
+      );
+
+      component.simulate('blur');
+
+      expect(component.instance().props.onFieldChange).toBeCalled();
+    });
+  });
 });

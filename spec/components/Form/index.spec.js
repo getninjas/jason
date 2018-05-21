@@ -32,35 +32,32 @@ describe('Form', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  describe('.handleButtonClick', () => {
-    it('calls .handleStepChange', () => {
+  describe('.formSubmit', () => {
+    it('calls .handleStepChange and handleSubmit', () => {
       const component = shallow(
         <Form name={'form'} action={'/'} data={form} />,
       );
 
       component.instance().handleStepChange = jest.fn();
+      component.instance().handleSubmit = jest.fn();
 
-      const evt = { preventDefault() { } };
-      component.instance().handleButtonClick(evt);
+      component.instance().formSubmit();
 
       expect(component.instance().handleStepChange).toBeCalled();
+      expect(component.instance().handleSubmit).toBeCalled();
     });
+  });
 
-    it('does not display next step', () => {
-      const component = shallow(
-        <Form name={'form'} action={'/'} data={form} />,
-      );
-
-      const evt = { preventDefault() { } };
-      component.instance().handleButtonClick(evt);
-
-      const { activeStepIndex } = component.state();
-
-      expect(activeStepIndex).toEqual(0);
-    });
-
-    it('goes to next step', () => {
+  describe('.getFields', () => {
+    it('returns all form fields plus address object', () => {
       const data = copyState(form);
+      const address = {
+        type_street: 'type_street',
+        street: 'street',
+        neighborhood: 'neighborhood',
+        city: 'city',
+        uf: 'uf',
+      };
 
       data.steps = fillFormFields(data.steps);
 
@@ -68,15 +65,32 @@ describe('Form', () => {
         <Form name={'form'} action={'/'} data={data} />,
       );
 
-      const initialStep = component.state().activeStepIndex;
+      const fields = component.state().steps.map(step => step.fields);
+      const mockFields = { data: { ...fields, address: { ...address } } };
 
-      const evt = { preventDefault() { } };
-      component.instance().handleButtonClick(evt);
+      component.instance().requestAddress = { ...address };
 
-      const { activeStepIndex } = component.state();
+      const result = component.instance().getFields();
 
-      expect(initialStep).toEqual(0);
-      expect(activeStepIndex).toEqual(initialStep + 1);
+      expect(result).toEqual(mockFields);
+    });
+  });
+
+  describe('.submitRequest', () => {
+    it('calls .props.onSubmitSuccess, getFields', async () => {
+      const onSubmit = jest.fn();
+      const onSubmitSuccess = jest.fn();
+      const component = shallow(
+        <Form name={'form'} onSubmit={ onSubmit } onSubmitSuccess={ onSubmitSuccess } action={'/'} data={form} />,
+      );
+
+      component.instance().getFields = jest.fn();
+
+      await component.instance().submitRequest();
+
+      expect(component.instance().props.onSubmit).toBeCalled();
+      expect(component.instance().getFields).toBeCalled();
+      expect(component.instance().props.onSubmitSuccess).toBeCalled();
     });
   });
 
@@ -188,7 +202,7 @@ describe('Form', () => {
       component.instance().updateStep = jest.fn();
 
       const evt = { preventDefault() { } };
-      component.instance().handleButtonClick(evt);
+      component.instance().onSubmit(evt);
 
       expect(component.instance().updateStep).toBeCalled();
     });
@@ -210,20 +224,39 @@ describe('Form', () => {
   });
 
   describe('.handleSubmit', () => {
-    const component = shallow(
-      <Form name={'form'} action={'/'} data={form} />,
-    );
-
-    it('calls .handleStepChange', () => {
-      component.instance().handleStepChange = jest.fn();
+    it('calls .isStepsValid', () => {
+      const component = shallow(
+        <Form name={'form'} action={'/'} data={form} />,
+      );
+      component.instance().isStepsValid = jest.fn();
 
       const evt = { preventDefault() { } };
       component.instance().handleSubmit(evt);
 
-      expect(component.instance().handleStepChange).toBeCalled();
+      expect(component.instance().isStepsValid).toBeCalled();
+    });
+
+    it('calls .submitRequest when step is valid', () => {
+      const data = copyState(form);
+      data.steps = fillFormFields(data.steps);
+      data.steps[1].fields[0].value = '11111-111';
+      data.steps[1].fields[2].value = 'iondr@ig.com';
+      data.steps[1].fields[3].value = '(11) 98888-9999';
+
+      const component = shallow(
+        <Form name={'form'} action={'/'} data={data} />,
+      );
+
+      component.instance().submitRequest = jest.fn();
+      component.instance().handleSubmit();
+
+      expect(component.instance().submitRequest).toHaveBeenCalled();
     });
 
     it('does not display next step', () => {
+      const component = shallow(
+        <Form name={'form'} action={'/'} data={form} />,
+      );
       const evt = { preventDefault() { } };
       component.instance().handleSubmit(evt);
 
@@ -234,19 +267,17 @@ describe('Form', () => {
 
     it('goes to next step', () => {
       const data = copyState(form);
-
       data.steps = fillFormFields(data.steps);
 
-      const formComponent = shallow(
+      const component = shallow(
         <Form name={'form'} action={'/'} data={data} />,
       );
 
-      const initialStep = formComponent.state().activeStepIndex;
+      const initialStep = component.state().activeStepIndex;
 
-      const evt = { preventDefault() { } };
-      formComponent.instance().handleSubmit(evt);
+      component.instance().formSubmit();
 
-      const { activeStepIndex } = formComponent.state();
+      const { activeStepIndex } = component.state();
 
       expect(initialStep).toEqual(0);
       expect(activeStepIndex).toEqual(initialStep + 1);

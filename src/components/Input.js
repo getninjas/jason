@@ -11,7 +11,7 @@ const propTypes = {
   placeholder: PropTypes.string,
   type: PropTypes.string,
   required: PropTypes.bool,
-  value: PropTypes.any,
+  initialValue: PropTypes.any,
   style: PropTypes.string,
   minLength: PropTypes.number,
   maxLength: PropTypes.number,
@@ -22,18 +22,18 @@ const defaultProps = {
   required: false,
   title: '',
   type: 'text',
-  value: '',
+  initialValue: '',
   style: 'form__input',
   minLength: 3,
   maxLength: 255,
 };
 
 export default class Input extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      value: '',
+      value: this.props.initialValue ? this.props.initialValue : '',
     };
 
     this.ref = createRef();
@@ -59,13 +59,13 @@ export default class Input extends Component {
   }
 
   componentDidMount() {
-    const { type, value } = this.props;
+    const { type, initialValue } = this.props;
 
     if (type === 'phone') {
       this.mask = new IMask(this.ref.current, { mask: '(00) 00000-0000' });
     }
 
-    this.setState({ value });
+    this.setState({ initialValue });
   }
 
   render() {

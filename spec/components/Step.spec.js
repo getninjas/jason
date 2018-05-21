@@ -16,7 +16,7 @@ describe('Step', () => {
         buttonText={'next step'}
         fields={step.fields}
         formName={'formNameTest'}
-        handleButtonClick={() => {}}
+        onSubmit={() => {}}
         isLast={false}
         step={step}
         zipcodeUrlService={formData.form.zipcodeUrlService}
@@ -39,7 +39,7 @@ describe('Step', () => {
         buttonText={'next step'}
         fields={step.fields}
         formName={'formNameTest'}
-        handleButtonClick={() => {}}
+        onSubmit={() => {}}
         headerMarkup={step.headerMarkup}
         isLast={false}
         step={step}
@@ -63,7 +63,7 @@ describe('Step', () => {
         buttonText={'next step'}
         fields={step.fields}
         formName={'formNameTest'}
-        handleButtonClick={() => {}}
+        onSubmit={() => {}}
         isLast={false}
         step={step}
         onFieldChange={() => {}}
@@ -90,7 +90,7 @@ describe('Step', () => {
           buttonText={'next step'}
           fields={step.fields}
           formName={'formNameTest'}
-          handleButtonClick={() => {}}
+          onSubmit={() => {}}
           isLast={false}
           step={step}
           onFieldChange={() => {}}
@@ -113,7 +113,7 @@ describe('Step', () => {
           buttonText={'next step'}
           fields={step.fields}
           formName={'formNameTest'}
-          handleButtonClick={() => {}}
+          onSubmit={() => {}}
           headerMarkup={step.headerMarkup}
           isLast={false}
           step={step}

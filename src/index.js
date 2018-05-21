@@ -1,13 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Form from './components/Form';
 
 export default class Jason {
   constructor(options) {
     Object.assign(this, options);
+
+    this.form = null;
+  }
+
+  post() {
+    this.form.formSubmit();
   }
 
   init() {
-    ReactDOM.render(<App data={this.data.form} />, this.element);
+    ReactDOM.render(
+      <Form data={this.data.form}
+        name={this.name}
+        action={this.action}
+        onReady={ this.onReady }
+        onZipcodeFetchSuccess={ (data) => { this.onZipcodeFetchSuccess(data); } }
+        onZipcodeFetchError={ (data) => { this.onZipcodeFetchError(data); } }
+        onSubmit={ this.onSubmit }
+        onSubmitSuccess={ this.onSubmitSuccess }
+        onSubmitError={ this.onSubmitError }
+        onStepChange={ this.onStepChange }
+        ref={(component) => { this.form = component; }} />,
+        this.element,
+    );
   }
 }

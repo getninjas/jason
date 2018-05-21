@@ -6,7 +6,7 @@ import Factory from './Factory';
 import { display, addHeaderMarkup } from '../helpers/step';
 
 const propTypes = {
-  handleButtonClick: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
   onFieldChange: PropTypes.func.isRequired,
   zipcodeUrlService: PropTypes.string.isRequired,
   formName: PropTypes.string.isRequired,
@@ -50,7 +50,7 @@ export default class Step extends Component {
           )
         }
 
-        <Button isSubmit={this.props.isLast} handleButtonClick={this.props.handleButtonClick}>
+        <Button isSubmit={this.props.isLast} handleButtonClick={this.props.onSubmit}>
           {buttonText}
         </Button>
       </fieldset>
