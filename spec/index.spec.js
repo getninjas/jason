@@ -1,8 +1,7 @@
-import React from 'react';
 import { JSDOM } from 'jsdom';
 import Jason from '../src/index';
 import { form } from '../src/form.json';
-import { enzymeConfig, shallow } from './enzymeConfig';
+import { enzymeConfig } from './enzymeConfig';
 
 enzymeConfig();
 
