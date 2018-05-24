@@ -44,7 +44,6 @@ export default class Form extends Component {
     };
 
     this.requestAddress = {};
-    this.sectionStyle = 'wall--inverted col-normal-8 col-small-12';
     this.formStyle = 'form container sh-form-content space-box-small';
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -185,7 +184,6 @@ export default class Form extends Component {
 
     return (
       <AppContext.Provider value={this.state}>
-        <section className={this.sectionStyle}>
           <form noValidate onSubmit={this.onSubmit} name={name} action={action} className={this.formStyle}>
             {
               this.state.steps.map((step, index) => {
@@ -210,7 +208,6 @@ export default class Form extends Component {
           </form>
 
           <Breadcrumb active={this.state.activeStepIndex} steps={this.state.steps} />
-        </section>
       </AppContext.Provider>
     );
   }
