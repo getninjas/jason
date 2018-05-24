@@ -24,7 +24,7 @@ describe('Jason', () => {
   jasonForm.init();
 
   it('renders jason form to the DOM', () => {
-    expect(formElementContainer.children.length).toEqual(1);
+    expect(formElementContainer.children.length).toEqual(2);
   });
 
   it('calls onReady callback', () => {

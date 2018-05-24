@@ -97,7 +97,7 @@ export default class Zipcode extends Component {
     this.setState(result);
   }
 
-  onZipcodeError(zipcode) {
+  onZipcodeError() {
     this.setState({ fullAddress: '', fetching: false, zipcodeInvalid: true });
 
     this.props.onFieldChange({ value: '', fetchCompleted: false, ...this.props });
