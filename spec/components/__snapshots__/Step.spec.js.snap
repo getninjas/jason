@@ -21,7 +21,7 @@ exports[`Step renders with props 1`] = `
     </label>
     <select
       className="form__input"
-      id="formNameTest-1_id"
+      id="1_id"
       name="1_name_select"
       onBlur={[Function]}
       onChange={[Function]}
@@ -76,7 +76,7 @@ exports[`Step renders with props 1`] = `
     </label>
     <input
       className="form__input"
-      id="formNameTest-2_id"
+      id="2_id"
       maxLength={255}
       minLength={3}
       name="2_name_text"
@@ -105,7 +105,7 @@ exports[`Step renders with props 1`] = `
     </label>
     <textarea
       className="form__input"
-      id="formNameTest-3_id"
+      id="3_id"
       maxLength={255}
       minLength={3}
       name="3_name_textarea"

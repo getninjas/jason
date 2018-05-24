@@ -146,9 +146,7 @@ export default class Form extends Component {
 
   onFieldChange({ value, id, required, type, minLength }) {
     const fields = this.currentStep.fields.map((item) => {
-      const itemID = `${this.props.name}-${item.id}`;
-
-      if (itemID === id) {
+      if (item.id === id) {
         const errorMessage = validateField({ required, type, value, minLength });
 
         return { ...item, value, errorMessage };

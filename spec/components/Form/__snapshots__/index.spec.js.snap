@@ -36,7 +36,7 @@ Array [
             </label>
             <select
                 className="form__input"
-                id="form-1_id"
+                id="1_id"
                 name="1_name_select"
                 onBlur={[Function]}
                 onChange={[Function]}
@@ -91,7 +91,7 @@ Array [
             </label>
             <input
                 className="form__input"
-                id="form-2_id"
+                id="2_id"
                 maxLength={255}
                 minLength={3}
                 name="2_name_text"
@@ -120,7 +120,7 @@ Array [
             </label>
             <textarea
                 className="form__input"
-                id="form-3_id"
+                id="3_id"
                 maxLength={255}
                 minLength={3}
                 name="3_name_textarea"
@@ -182,7 +182,7 @@ Array [
             </a>
             <input
                 className="form__input"
-                id="form-4_id"
+                id="4_id"
                 name="4_zipcode"
                 onBlur={[Function]}
                 onChange={[Function]}
@@ -236,7 +236,7 @@ Array [
             </label>
             <input
                 className="form__input"
-                id="form-user_field_2"
+                id="user_field_2"
                 maxLength={255}
                 minLength={3}
                 name="user_field_2"
@@ -265,7 +265,7 @@ Array [
             </label>
             <input
                 className="form__input"
-                id="form-user_field_3"
+                id="user_field_3"
                 maxLength={255}
                 minLength={3}
                 name="user_field_3"
@@ -294,7 +294,7 @@ Array [
             </label>
             <input
                 className="form__input"
-                id="form-user_field_4"
+                id="user_field_4"
                 maxLength={255}
                 minLength={3}
                 name="user_field_4"
