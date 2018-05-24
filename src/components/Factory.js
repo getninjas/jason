@@ -11,7 +11,7 @@ export default class Factory {
     const inputTypeAccepted = ['text', 'phone', 'email'];
 
     const commonProps = {
-      id: `${formName}-${id}`,
+      id,
       key: `${formName}-${index}`,
       name,
       onFieldChange,
