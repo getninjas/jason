@@ -61,9 +61,7 @@ export default class Form extends Component {
       activeStepIndex: 0,
       stepsCount: this.props.data.steps.length - 1,
       steps: this.props.data.steps,
-    });
-
-    this.props.onReady();
+    }, this.props.onReady);
   }
 
   onZipcodeFetchSuccess(data) {
