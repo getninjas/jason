@@ -164,7 +164,7 @@ Array [
             }
         />
         <div
-            className="form__field form__field--fluid input"
+            className="form__field input"
         >
             <label
                 className="form__label"
