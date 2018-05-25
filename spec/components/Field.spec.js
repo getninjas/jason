@@ -9,8 +9,8 @@ enzymeConfig();
 describe('Field', () => {
   it('renders defaultProps', () => {
     const component = renderer.create(
-      <Field label={'test'} id={'test'} errorMessage={'Erro!'} value={'test value'} isFluid={true}>
-        <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={() => {}} />
+      <Field label='test' id='test' errorMessage='Erro!' value='test value' isFluid={true}>
+        <Input id='bora-pra-action' name='nameTest' onFieldChange={() => {}} />
       </Field>,
     );
 
@@ -21,8 +21,8 @@ describe('Field', () => {
 
   it('label htmlFor matches id prop', () => {
     const component = shallow(
-      <Field label={'test'} id={'bora-pra-action'}>
-        <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={() => {}} />
+      <Field label='test' id='bora-pra-action'>
+        <Input id='bora-pra-action' name='nameTest' onFieldChange={() => {}} />
       </Field>,
     );
 
@@ -33,8 +33,8 @@ describe('Field', () => {
     describe('with erroMessage', () => {
       it('returns string containing --invalid', () => {
         const component = shallow(
-          <Field label={'test'} id={'bora-pra-action'} errorMessage={'Erro!'}>
-            <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={() => {}} />
+          <Field label='test' id='bora-pra-action' errorMessage='Erro!'>
+            <Input id='bora-pra-action' name='nameTest' onFieldChange={() => {}} />
           </Field>,
         );
 
@@ -45,8 +45,8 @@ describe('Field', () => {
     describe('without erroMessage', () => {
       it('returns string not containing --invalid', () => {
         const component = shallow(
-          <Field label={'test'} id={'bora-pra-action'}>
-            <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={() => {}} />
+          <Field label='test' id='bora-pra-action'>
+            <Input id='bora-pra-action' name='nameTest' onFieldChange={() => {}} />
           </Field>,
         );
 
@@ -57,8 +57,8 @@ describe('Field', () => {
     describe('with isFluid', () => {
       it('returns className contains form__field--fluid', () => {
         const component = shallow(
-          <Field label={'test'} id={'bora-pra-action'} isFluid={true}>
-            <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={() => { }} />
+          <Field label='test' id='bora-pra-action' isFluid={true}>
+            <Input id='bora-pra-action' name='nameTest' onFieldChange={() => { }} />
           </Field>,
         );
 
@@ -69,8 +69,8 @@ describe('Field', () => {
     describe('without isFluid', () => {
       it('returns className not contains form__field--fluid', () => {
         const component = shallow(
-          <Field label={'test'} id={'bora-pra-action'} isFluid={false}>
-            <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={() => { }} />
+          <Field label='test' id='bora-pra-action' isFluid={false}>
+            <Input id='bora-pra-action' name='nameTest' onFieldChange={() => { }} />
           </Field>,
         );
 
