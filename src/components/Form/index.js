@@ -187,7 +187,7 @@ export default class Form extends Component {
     return (
       <AppContext.Provider value={this.state}>
         <form noValidate onSubmit={this.onSubmit} name={name} action={action}
-        className={this.formStyle}>
+          className={this.formStyle}>
           {
             this.state.steps.map((step, index) => {
               const { buttonText, headerMarkup, fields } = step;
