@@ -7,7 +7,7 @@ const propTypes = {
   children: PropTypes.element.isRequired,
   errorMessage: PropTypes.string,
   value: PropTypes.string,
-  isFluid: PropTypes.Boolean,
+  isFluid: PropTypes.bool,
 };
 
 const defaultProps = {
