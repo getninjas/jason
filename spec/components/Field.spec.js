@@ -9,7 +9,7 @@ enzymeConfig();
 describe('Field', () => {
   it('renders defaultProps', () => {
     const component = renderer.create(
-      <Field label='test' id='test' errorMessage='Erro!' value='test value' isFluid={true}>
+      <Field label='test' id='test' errorMessage='Erro!' value='test value' wrapperStyle='form__field'>
         <Input id='bora-pra-action' name='nameTest' onFieldChange={() => {}} />
       </Field>,
     );
@@ -53,28 +53,30 @@ describe('Field', () => {
         expect(component.instance().style).not.toMatch(/--invalid/);
       });
     });
+  });
 
-    describe('with isFluid', () => {
-      it('returns className contains form__field--fluid', () => {
+  describe('.props', () => {
+    describe('wrapperStyle is not defined ', () => {
+      it('returns default value className', () => {
         const component = shallow(
-          <Field label='test' id='bora-pra-action' isFluid={true}>
+          <Field label='test' id='bora-pra-action' >
             <Input id='bora-pra-action' name='nameTest' onFieldChange={() => { }} />
           </Field>,
         );
 
-        expect(component.instance().wrapperStyle).toMatch(/form__field--fluid/);
+        expect(component.instance().props.wrapperStyle).toEqual('form__field form__field--fluid input');
       });
     });
 
-    describe('without isFluid', () => {
-      it('returns className not contains form__field--fluid', () => {
+    describe('wrapperStyle is defined ', () => {
+      it('returns custom className', () => {
         const component = shallow(
-          <Field label='test' id='bora-pra-action' isFluid={false}>
+          <Field label='test' id='bora-pra-action' wrapperStyle='custom__field'>
             <Input id='bora-pra-action' name='nameTest' onFieldChange={() => { }} />
           </Field>,
         );
 
-        expect(component.instance().wrapperStyle).not.toMatch(/form__field--fluid/);
+        expect(component.instance().props.wrapperStyle).toEqual('custom__field');
       });
     });
   });
