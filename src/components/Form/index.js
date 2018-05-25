@@ -180,30 +180,31 @@ export default class Form extends Component {
 
     return (
       <AppContext.Provider value={this.state}>
-          <form noValidate onSubmit={this.onSubmit} name={name} action={action} className={this.formStyle}>
-            {
-              this.state.steps.map((step, index) => {
-                const { buttonText, headerMarkup, fields } = step;
+        <form noValidate onSubmit={this.onSubmit} name={name} action={action}
+        className={this.formStyle}>
+          {
+            this.state.steps.map((step, index) => {
+              const { buttonText, headerMarkup, fields } = step;
 
-                return (
-                  <Step
-                    buttonText={buttonText}
-                    fields={fields}
-                    formName={this.props.name}
-                    onSubmit={this.onSubmit}
-                    headerMarkup={headerMarkup}
-                    isLast={this.isLastStep(index)}
-                    key={`${this.props.name}-step-${index}`}
-                    onFieldChange={this.onFieldChange}
-                    visible={this.isStepVisible(index)}
-                    zipcodeUrlService={this.props.data.zipcodeUrlService}
-                  />
-                );
-              })
-            }
-          </form>
+              return (
+                <Step
+                  buttonText={buttonText}
+                  fields={fields}
+                  formName={this.props.name}
+                  onSubmit={this.onSubmit}
+                  headerMarkup={headerMarkup}
+                  isLast={this.isLastStep(index)}
+                  key={`${this.props.name}-step-${index}`}
+                  onFieldChange={this.onFieldChange}
+                  visible={this.isStepVisible(index)}
+                  zipcodeUrlService={this.props.data.zipcodeUrlService}
+                />
+              );
+            })
+          }
+        </form>
 
-          <Breadcrumb active={this.state.activeStepIndex} steps={this.state.steps} />
+        <Breadcrumb active={this.state.activeStepIndex} steps={this.state.steps} />
       </AppContext.Provider>
     );
   }
