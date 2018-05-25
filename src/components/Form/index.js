@@ -15,6 +15,7 @@ const propTypes = {
   onZipcodeFetchSuccess: PropTypes.func,
   onZipcodeFetchError: PropTypes.func,
   onSubmitSuccess: PropTypes.func,
+  onSubmitFieldError: PropTypes.func,
   onSubmitError: PropTypes.func,
   onSubmit: PropTypes.func,
   onStepChange: PropTypes.func,
@@ -27,6 +28,7 @@ const defaultProps = {
   onZipcodeFetchError() {},
   onSubmit() {},
   onSubmitSuccess() {},
+  onSubmitFieldError() {},
   onSubmitError() {},
   onStepChange() {},
 };
@@ -132,7 +134,11 @@ export default class Form extends Component {
 
     if (isValid) {
       this.nextStep(this.state);
+      return;
     }
+
+    const step = this.state.activeStepIndex < this.state.stepsCount ? 'current' : 'last';
+    this.props.onSubmitFieldError(step);
   }
 
   nextStep({ activeStepIndex, stepsCount }) {
