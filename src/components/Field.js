@@ -7,13 +7,13 @@ const propTypes = {
   children: PropTypes.element.isRequired,
   errorMessage: PropTypes.string,
   value: PropTypes.string,
-  wrapperStyle: PropTypes.string,
+  wrapperClassName: PropTypes.string,
 };
 
 const defaultProps = {
   errorMessage: '',
   value: '',
-  wrapperStyle: 'form__field form__field--fluid input',
+  wrapperClassName: 'form__field form__field--fluid input',
 };
 
 export default class Field extends Component {
@@ -33,7 +33,7 @@ export default class Field extends Component {
 
   render() {
     return (
-      <div className={this.props.wrapperStyle}>
+      <div className={this.props.wrapperClassName}>
         <label htmlFor={this.props.id} className="form__label">
           { this.props.label }
         </label>

@@ -37,7 +37,7 @@ export default class Step extends Component {
               label={item.title}
               id={item.id}
               errorMessage={item.errorMessage}
-              wrapperStyle={item.wrapperStyle} >
+              wrapperClassName={item.wrapperClassName} >
               {
                 Factory.getComponent({
                   item,

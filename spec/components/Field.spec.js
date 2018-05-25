@@ -9,7 +9,7 @@ enzymeConfig();
 describe('Field', () => {
   it('renders defaultProps', () => {
     const component = renderer.create(
-      <Field label='test' id='test' errorMessage='Erro!' value='test value' wrapperStyle='form__field'>
+      <Field label='test' id='test' errorMessage='Erro!' value='test value' wrapperClassName='form__field'>
         <Input id='bora-pra-action' name='nameTest' onFieldChange={() => {}} />
       </Field>,
     );
@@ -56,7 +56,7 @@ describe('Field', () => {
   });
 
   describe('.props', () => {
-    describe('wrapperStyle is not defined ', () => {
+    describe('wrapperClassName is not defined ', () => {
       it('returns default value className', () => {
         const component = shallow(
           <Field label='test' id='bora-pra-action' >
@@ -64,19 +64,19 @@ describe('Field', () => {
           </Field>,
         );
 
-        expect(component.instance().props.wrapperStyle).toEqual('form__field form__field--fluid input');
+        expect(component.instance().props.wrapperClassName).toEqual('form__field form__field--fluid input');
       });
     });
 
-    describe('wrapperStyle is defined ', () => {
+    describe('wrapperClassName is defined ', () => {
       it('returns custom className', () => {
         const component = shallow(
-          <Field label='test' id='bora-pra-action' wrapperStyle='custom__field'>
+          <Field label='test' id='bora-pra-action' wrapperClassName='custom__field'>
             <Input id='bora-pra-action' name='nameTest' onFieldChange={() => { }} />
           </Field>,
         );
 
-        expect(component.instance().props.wrapperStyle).toEqual('custom__field');
+        expect(component.instance().props.wrapperClassName).toEqual('custom__field');
       });
     });
   });

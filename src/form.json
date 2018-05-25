@@ -77,7 +77,7 @@
             "name": "4_zipcode",
             "placeholder": "00000-000",
             "value": null,
-            "wrapperStyle": "form__field input",
+            "wrapperClassName": "form__field input",
             "values": []
           },
           {
