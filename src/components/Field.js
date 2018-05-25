@@ -7,20 +7,19 @@ const propTypes = {
   children: PropTypes.element.isRequired,
   errorMessage: PropTypes.string,
   value: PropTypes.string,
-  isFluid: PropTypes.bool,
+  wrapperStyle: PropTypes.string,
 };
 
 const defaultProps = {
   errorMessage: '',
   value: '',
-  isFluid: true,
+  wrapperStyle: 'form__field form__field--fluid input',
 };
 
 export default class Field extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
-    this.wrapperStyle = this.props.isFluid ? 'form__field form__field--fluid input' : 'form__field input';
     this.spanStyle = 'form__message form__message--invalid space-element-small error';
   }
 
@@ -34,7 +33,7 @@ export default class Field extends Component {
 
   render() {
     return (
-      <div className={this.wrapperStyle}>
+      <div className={this.props.wrapperStyle}>
         <label htmlFor={this.props.id} className="form__label">
           { this.props.label }
         </label>

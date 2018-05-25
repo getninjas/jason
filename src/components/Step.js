@@ -37,7 +37,7 @@ export default class Step extends Component {
               label={item.title}
               id={item.id}
               errorMessage={item.errorMessage}
-              isFluid={item.isFluid}>
+              wrapperStyle={item.wrapperStyle} >
               {
                 Factory.getComponent({
                   item,
