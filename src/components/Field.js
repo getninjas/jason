@@ -7,18 +7,20 @@ const propTypes = {
   children: PropTypes.element.isRequired,
   errorMessage: PropTypes.string,
   value: PropTypes.string,
+  isFluid: PropTypes.Boolean,
 };
 
 const defaultProps = {
   errorMessage: '',
   value: '',
+  isFluid: true,
 };
 
 export default class Field extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
-    this.wrapperStyle = 'form__field form__field--fluid input';
+    this.wrapperStyle = this.props.isFluid ? 'form__field form__field--fluid input' : 'form__field input';
     this.spanStyle = 'form__message form__message--invalid space-element-small error';
   }
 
