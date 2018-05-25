@@ -161,8 +161,9 @@ describe('Form', () => {
 
   describe('.handleStepChange', () => {
     it('calls .updateStep', () => {
+      const onSubmitFieldError = jest.fn();
       const component = shallow(
-        <Form name={'form'} action={'/'} data={form} />,
+        <Form name={'form'} action={'/'} data={form} onSubmitFieldError={ onSubmitFieldError } />,
       );
 
       component.instance().updateStep = jest.fn();
@@ -172,15 +173,17 @@ describe('Form', () => {
 
       expect(component.instance().updateStep).toBeCalled();
       expect(component.instance().nextStep).not.toBeCalled();
+      expect(component.instance().props.onSubmitFieldError).toBeCalled();
     });
 
     it('calls .nextStep', () => {
       const data = copyState(form);
+      const onSubmitFieldError = jest.fn();
 
       data.steps = fillFormFields(data.steps);
 
       const component = shallow(
-        <Form name={'form'} action={'/'} data={data} />,
+        <Form name={'form'} action={'/'} data={data} onSubmitFieldError={ onSubmitFieldError } />,
       );
 
       component.instance().updateStep = jest.fn();
@@ -190,6 +193,7 @@ describe('Form', () => {
 
       expect(component.instance().updateStep).toBeCalled();
       expect(component.instance().nextStep).toBeCalled();
+      expect(component.instance().props.onSubmitFieldError).not.toBeCalled();
     });
   });
 

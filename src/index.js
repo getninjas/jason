@@ -23,6 +23,7 @@ export default class Jason {
         onZipcodeFetchError={ (data) => { this.onZipcodeFetchError(data); } }
         onSubmit={ this.onSubmit }
         onSubmitSuccess={ this.onSubmitSuccess }
+        onSubmitFieldError={ this.onSubmitFieldError }
         onSubmitError={ this.onSubmitError }
         onStepChange={ this.onStepChange }
         ref={(component) => { this.form = component; }} />,

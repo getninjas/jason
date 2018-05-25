@@ -13,6 +13,7 @@ ReactDOM.render(
   onZipcodeFetchError={ data => console.log('App Index Dev onZipcodeFetchError', data) }
   onSubmit={ () => console.log('App Index Dev onSubmit') }
   onSubmitSuccess={ data => console.log('App Index Dev onSubmitSuccess') }
+  onSubmitFieldError={ data => console.log('App Index Dev onSubmitFieldError', data) }
   onSubmitError={ data => console.log('App Index Dev onSubmitError') }
   onStepChange={ () => console.log('App Index Dev onStepChange') } />,
   document.getElementById('root'));
