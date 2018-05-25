@@ -66,7 +66,7 @@ describe('Field', () => {
       });
     });
 
-    xdescribe('without isFluid', () => {
+    describe('without isFluid', () => {
       it('returns className not contains form__field--fluid', () => {
         const component = shallow(
           <Field label={'test'} id={'bora-pra-action'} isFluid={false}>
