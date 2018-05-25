@@ -7,18 +7,19 @@ const propTypes = {
   children: PropTypes.element.isRequired,
   errorMessage: PropTypes.string,
   value: PropTypes.string,
+  wrapperClassName: PropTypes.string,
 };
 
 const defaultProps = {
   errorMessage: '',
   value: '',
+  wrapperClassName: 'form__field form__field--fluid input',
 };
 
 export default class Field extends Component {
   constructor() {
     super();
 
-    this.wrapperStyle = 'form__field form__field--fluid input';
     this.spanStyle = 'form__message form__message--invalid space-element-small error';
   }
 
@@ -32,7 +33,7 @@ export default class Field extends Component {
 
   render() {
     return (
-      <div className={this.wrapperStyle}>
+      <div className={this.props.wrapperClassName}>
         <label htmlFor={this.props.id} className="form__label">
           { this.props.label }
         </label>
