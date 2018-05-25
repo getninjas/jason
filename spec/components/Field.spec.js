@@ -9,7 +9,7 @@ enzymeConfig();
 describe('Field', () => {
   it('renders defaultProps', () => {
     const component = renderer.create(
-      <Field label={'test'} id={'test'} errorMessage={'Erro!'} value={'test value'}>
+      <Field label={'test'} id={'test'} errorMessage={'Erro!'} value={'test value'} isFluid={true}>
         <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={() => {}} />
       </Field>,
     );
@@ -51,6 +51,30 @@ describe('Field', () => {
         );
 
         expect(component.instance().style).not.toMatch(/--invalid/);
+      });
+    });
+
+    describe('with isFluid', () => {
+      it('returns className contains form__field--fluid', () => {
+        const component = shallow(
+          <Field label={'test'} id={'bora-pra-action'} isFluid={true}>
+            <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={() => { }} />
+          </Field>,
+        );
+
+        expect(component.instance().wrapperStyle).toMatch(/form__field--fluid/);
+      });
+    });
+
+    xdescribe('without isFluid', () => {
+      it('returns className not contains form__field--fluid', () => {
+        const component = shallow(
+          <Field label={'test'} id={'bora-pra-action'} isFluid={false}>
+            <Input id={'bora-pra-action'} name={'nameTest'} onFieldChange={() => { }} />
+          </Field>,
+        );
+
+        expect(component.instance().wrapperStyle).not.toMatch(/form__field--fluid/);
       });
     });
   });
