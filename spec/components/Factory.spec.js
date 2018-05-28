@@ -50,6 +50,6 @@ describe('Factory', () => {
 
     expect(() => {
       Factory.getComponent({ item: invalidArg, ...commonProps });
-    }).toThrow('Invalid argument type');
+    }).toThrow(`JasonForm: Invalid component type: ${invalidArg.type}`);
   });
 });
