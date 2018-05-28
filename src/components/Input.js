@@ -63,6 +63,7 @@ export default class Input extends Component {
 
     if (type === 'phone') {
       this.mask = new IMask(this.ref.current, { mask: '(00) 00000-0000' });
+      this.mask.on('complete', () => { this.setState({ value: this.mask.value }); });
     }
 
     this.setState({ initialValue });
