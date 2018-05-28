@@ -12,9 +12,9 @@ describe('Select', () => {
 
     const component = renderer.create(
       <Select
-        id={'idTest'}
-        name={'nameTest'}
-        placeholder={'placeholderTest'}
+        id='idTest'
+        name='nameTest'
+        placeholder='placeholderTest'
         required={false}
         onFieldChange={() => {}}
         values={values}
@@ -32,9 +32,9 @@ describe('Select', () => {
 
       const component = shallow(
         <Select
-          id={'idTest'}
-          name={'nameTest'}
-          placeholder={'placeholderTest'}
+          id='idTest'
+          name='nameTest'
+          placeholder='placeholderTest'
           required={false}
           onFieldChange={() => {}}
           values={values}
@@ -51,9 +51,9 @@ describe('Select', () => {
 
       const component = shallow(
         <Select
-          id={'idTest'}
-          name={'nameTest'}
-          placeholder={'placeholderTest'}
+          id='idTest'
+          name='nameTest'
+          placeholder='placeholderTest'
           required={false}
           initialValue='this is the initialValue'
           onFieldChange={() => {}}
@@ -73,9 +73,9 @@ describe('Select', () => {
     it('sets placeholder as first option', () => {
       const component = mount(
         <Select
-          id={'idTest'}
-          name={'nameTest'}
-          placeholder={'placeholderTest'}
+          id='idTest'
+          name='nameTest'
+          placeholder='placeholderTest'
           required={false}
           onFieldChange={() => {}}
           values={values}
@@ -88,9 +88,9 @@ describe('Select', () => {
     it('does not set placeholder', () => {
       const component = mount(
         <Select
-          id={'idTest'}
-          name={'nameTest'}
-          placeholder={''}
+          id='idTest'
+          name='nameTest'
+          placeholder=''
           required={false}
           onFieldChange={() => {}}
           values={values}
@@ -108,9 +108,9 @@ describe('Select', () => {
 
       const component = shallow(
         <Select
-          id={'idTest'}
-          name={'nameTest'}
-          placeholder={''}
+          id='idTest'
+          name='nameTest'
+          placeholder=''
           required={false}
           onFieldChange={onFieldChange}
           values={values}
