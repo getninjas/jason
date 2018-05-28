@@ -45,6 +45,26 @@ describe('Select', () => {
 
       expect(component.instance().state.value).toEqual('Reformas');
     });
+
+    it('onverrides initialValue', () => {
+      const values = form.steps[0].fields[0].values.slice(0, 2);
+
+      const component = shallow(
+        <Select
+          id={'idTest'}
+          name={'nameTest'}
+          placeholder={'placeholderTest'}
+          required={false}
+          initialValue='this is the initialValue'
+          onFieldChange={() => {}}
+          values={values}
+        />,
+      );
+
+      component.simulate('change', { target: { value: 'Reformas' } });
+
+      expect(component.instance().state.value).toEqual('Reformas');
+    });
   });
 
   describe('.addPlaceholder', () => {
