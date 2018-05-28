@@ -102,8 +102,8 @@
           },
           {
             "title": "DDD + Celular",
-            "id": "user_field_4",
-            "name": "user_field_4",
+            "id": "phone",
+            "name": "phone",
             "type": "phone",
             "placeholder": "",
             "required": true,
