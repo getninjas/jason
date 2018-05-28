@@ -46,7 +46,7 @@ describe('Select', () => {
       expect(component.instance().state.value).toEqual('Reformas');
     });
 
-    it('onverrides initialValue', () => {
+    it('onverrides initialValue on change event', () => {
       const values = form.steps[0].fields[0].values.slice(0, 2);
 
       const component = shallow(
