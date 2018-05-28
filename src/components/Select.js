@@ -60,13 +60,13 @@ export default class Select extends Component {
   }
 
   render() {
-    const { id, name, initialValue, required, style } = this.props;
+    const { id, name, required, style } = this.props;
 
     return (
       <select
         id={id}
         name={name}
-        value={String(initialValue)}
+        value={this.state.value}
         className={style}
         onChange={this.onChange}
         onBlur={this.onBlur}
