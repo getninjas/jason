@@ -54,6 +54,6 @@ export default class Factory {
       );
     }
 
-    throw new Error('Invalid argument type');
+    throw new Error(`JasonForm: Invalid component type: ${type}`);
   }
 }

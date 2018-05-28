@@ -12,9 +12,9 @@ describe('Select', () => {
 
     const component = renderer.create(
       <Select
-        id={'idTest'}
-        name={'nameTest'}
-        placeholder={'placeholderTest'}
+        id='idTest'
+        name='nameTest'
+        placeholder='placeholderTest'
         required={false}
         onFieldChange={() => {}}
         values={values}
@@ -32,10 +32,30 @@ describe('Select', () => {
 
       const component = shallow(
         <Select
-          id={'idTest'}
-          name={'nameTest'}
-          placeholder={'placeholderTest'}
+          id='idTest'
+          name='nameTest'
+          placeholder='placeholderTest'
           required={false}
+          onFieldChange={() => {}}
+          values={values}
+        />,
+      );
+
+      component.simulate('change', { target: { value: 'Reformas' } });
+
+      expect(component.instance().state.value).toEqual('Reformas');
+    });
+
+    it('onverrides initialValue on change event', () => {
+      const values = form.steps[0].fields[0].values.slice(0, 2);
+
+      const component = shallow(
+        <Select
+          id='idTest'
+          name='nameTest'
+          placeholder='placeholderTest'
+          required={false}
+          initialValue='this is the initialValue'
           onFieldChange={() => {}}
           values={values}
         />,
@@ -53,9 +73,9 @@ describe('Select', () => {
     it('sets placeholder as first option', () => {
       const component = mount(
         <Select
-          id={'idTest'}
-          name={'nameTest'}
-          placeholder={'placeholderTest'}
+          id='idTest'
+          name='nameTest'
+          placeholder='placeholderTest'
           required={false}
           onFieldChange={() => {}}
           values={values}
@@ -68,9 +88,9 @@ describe('Select', () => {
     it('does not set placeholder', () => {
       const component = mount(
         <Select
-          id={'idTest'}
-          name={'nameTest'}
-          placeholder={''}
+          id='idTest'
+          name='nameTest'
+          placeholder=''
           required={false}
           onFieldChange={() => {}}
           values={values}
@@ -88,9 +108,9 @@ describe('Select', () => {
 
       const component = shallow(
         <Select
-          id={'idTest'}
-          name={'nameTest'}
-          placeholder={''}
+          id='idTest'
+          name='nameTest'
+          placeholder=''
           required={false}
           onFieldChange={onFieldChange}
           values={values}

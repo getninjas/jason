@@ -26,7 +26,7 @@ exports[`Step renders with props 1`] = `
       onBlur={[Function]}
       onChange={[Function]}
       required="true"
-      value="null"
+      value=""
     >
       <option
         value=""

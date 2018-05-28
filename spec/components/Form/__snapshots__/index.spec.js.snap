@@ -41,7 +41,7 @@ Array [
                 onBlur={[Function]}
                 onChange={[Function]}
                 required="true"
-                value="null"
+                value=""
             >
                 <option
                     value=""
