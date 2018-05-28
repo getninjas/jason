@@ -112,5 +112,28 @@ describe('Input', () => {
 
       expect(component.instance().props.onFieldChange).toBeCalled();
     });
+
+    describe('when input is type phone', () => {
+      it('keeps state updated on blur event', () => {
+        const onFieldChange = jest.fn();
+
+        const component = mount(
+          <Input
+            id='phone'
+            name='phone'
+            type='phone'
+            onFieldChange={onFieldChange}
+            placeholder='(__) _____-____'
+            required={false}
+            value=''
+          />,
+        );
+
+        component.simulate('change', { target: { value: '(11) 99999-8888' } });
+        component.simulate('blur');
+
+        expect(component.state().value).toBe('(11) 99999-8888');
+      });
+    });
   });
 });
