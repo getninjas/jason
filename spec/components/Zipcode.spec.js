@@ -37,6 +37,7 @@ const commonProps = {
   placeholder: '00000-000',
   zipcodeUrlService: 'http://www.mocky.io/v2/5afd94c63200007f00f1ad38',
   onFieldChange: () => {},
+  onFieldBlur: () => {},
 };
 
 const zipcodeElement = () => (
@@ -131,7 +132,7 @@ describe('Zipcode', () => {
     it('calls setState, this.props.onFieldChange', async () => {
       const onFieldChange = jest.fn();
       const ZipcodeMock = getComponentWithContext();
-      const component = mount(<ZipcodeMock id='zip_id' name='zip_name' zipcodeUrlService='' onFieldChange={ onFieldChange }/>);
+      const component = mount(<ZipcodeMock id='zip_id' name='zip_name' zipcodeUrlService='' onFieldBlur={() => {}} onFieldChange={ onFieldChange }/>);
       const responseData = {
         data: { type_street: '', street: 'Rua Mock', city: 'Cidade Mock', neighborhood: 'Bairro Mock', uf: 'SP' },
       };
@@ -148,7 +149,7 @@ describe('Zipcode', () => {
     it('calls setState, this.props.onFieldChange', async () => {
       const onFieldChange = jest.fn();
       const ZipcodeMock = getComponentWithContext();
-      const component = mount(<ZipcodeMock id='zip_id' name='zip_name' zipcodeUrlService='' onFieldChange={ onFieldChange }/>);
+      const component = mount(<ZipcodeMock id='zip_id' name='zip_name' zipcodeUrlService='' onFieldBlur={() => {}} onFieldChange={ onFieldChange }/>);
 
       component.instance().setState = jest.fn();
 
