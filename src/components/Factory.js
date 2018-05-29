@@ -46,7 +46,7 @@ export default class Factory {
       );
     }
 
-    if (inputTypeAccepted.includes(type)) {
+    if (inputTypeAccepted.toString().indexOf(type) > -1) {
       return (
         <Input
           {...commonProps}
