@@ -8,6 +8,7 @@ import { display, addHeaderMarkup } from '../helpers/step';
 const propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onFieldChange: PropTypes.func.isRequired,
+  onFieldBlur: PropTypes.func.isRequired,
   zipcodeUrlService: PropTypes.string.isRequired,
   formName: PropTypes.string.isRequired,
   buttonText: PropTypes.string.isRequired,
@@ -43,6 +44,7 @@ export default class Step extends Component {
                   item,
                   index,
                   onFieldChange: this.props.onFieldChange,
+                  onFieldBlur: this.props.onFieldBlur,
                   formName: this.props.formName,
                   zipcodeUrlService: this.props.zipcodeUrlService,
                 })
