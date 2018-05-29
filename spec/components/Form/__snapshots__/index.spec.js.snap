@@ -168,7 +168,7 @@ Array [
         >
             <label
                 className="form__label"
-                htmlFor="4_id"
+                htmlFor="zipcode"
             >
                 Zipcode
             </label>
@@ -182,8 +182,8 @@ Array [
             </a>
             <input
                 className="form__input"
-                id="4_id"
-                name="4_zipcode"
+                id="zipcode"
+                name="zipcode"
                 onBlur={[Function]}
                 onChange={[Function]}
                 placeholder="00000-000"
