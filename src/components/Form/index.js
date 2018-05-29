@@ -102,7 +102,6 @@ export default class Form extends Component {
   isStepsValid() {
     const validSteps = this.state.steps.filter((step) => {
       const { isValid } = validateStep(step.fields);
-
       return isValid;
     });
 
