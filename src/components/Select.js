@@ -6,6 +6,7 @@ const propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onFieldChange: PropTypes.func.isRequired,
+  onFieldBlur: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   required: PropTypes.bool.isRequired,
   selected: PropTypes.any,
@@ -48,10 +49,15 @@ export default class Select extends Component {
 
   onChange(evt) {
     this.setState({ value: evt.target.value });
+
+    this.props.onFieldChange({
+      value: evt.target.value,
+      id: this.props.id,
+    });
   }
 
   onBlur() {
-    this.props.onFieldChange({
+    this.props.onFieldBlur({
       value: this.state.value,
       id: this.props.id,
       required: this.props.required,
