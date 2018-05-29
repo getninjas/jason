@@ -2,13 +2,13 @@ import { isUserTyping, isValidZipCodeInput, fillAddressState, getEmptyState } fr
 
 describe('isUserTyping', () => {
   it('returns true if zipcode length less than ZIPCODE_VALID_LENGTH', () => {
-    const result = isUserTyping('1111111'.length);
+    const result = isUserTyping('04405-16'.length);
 
     expect(result).toBe(true);
   });
 
   it('returns false if zipcode length greather than ZIPCODE_VALID_LENGTH', () => {
-    const result = isUserTyping('11111111'.length);
+    const result = isUserTyping('04405-160'.length);
 
     expect(result).toBe(false);
   });
@@ -16,13 +16,13 @@ describe('isUserTyping', () => {
 
 describe('isValidZipCodeInput', () => {
   it('returns true when zipcode length is valid and fetched zipcode is false', () => {
-    const result = isValidZipCodeInput('11111111'.length, false);
+    const result = isValidZipCodeInput('04405-160'.length, false);
 
     expect(result).toBe(true);
   });
 
   it('returns false when zipcode length is valid and fetched zipcode is true', () => {
-    const result = isValidZipCodeInput('1111111'.length, true);
+    const result = isValidZipCodeInput('04405-16'.length, true);
 
     expect(result).toBe(false);
   });

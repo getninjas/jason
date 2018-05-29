@@ -77,7 +77,7 @@ describe('Zipcode', () => {
 
       component.instance().onChange(successCallback, errorCallback, evt);
 
-      expect(component.instance().getZipCode).toHaveBeenCalledWith('04707060', successCallback, errorCallback);
+      expect(component.instance().getZipCode).toHaveBeenCalledWith('04707-060', successCallback, errorCallback);
     });
 
     it('does not fetch zipcode if fetchCompleted true', () => {
