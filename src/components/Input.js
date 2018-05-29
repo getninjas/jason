@@ -7,6 +7,7 @@ const propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onFieldChange: PropTypes.func.isRequired,
+  onFieldBlur: PropTypes.func.isRequired,
   title: PropTypes.string,
   placeholder: PropTypes.string,
   type: PropTypes.string,
@@ -45,12 +46,17 @@ export default class Input extends Component {
   onChange(evt) {
     const inputValue = maxLengthTrim(evt.target.value, this.props.maxLength);
 
+    this.props.onFieldChange({
+      value: inputValue,
+      id: this.props.id,
+    });
+
     this.setState({ value: inputValue });
   }
 
-  onBlur() {
-    this.props.onFieldChange({
-      value: this.state.value,
+  onBlur(evt) {
+    this.props.onFieldBlur({
+      value: evt.target.value,
       id: this.props.id,
       required: this.props.required,
       type: this.props.type,
@@ -63,7 +69,14 @@ export default class Input extends Component {
 
     if (type === 'phone') {
       this.mask = new IMask(this.ref.current, { mask: '(00) 00000-0000' });
-      this.mask.on('complete', () => { this.setState({ value: this.mask.value }); });
+      this.mask.on('complete', () => {
+        this.props.onFieldChange({
+          value: this.mask.value,
+          id: this.props.id,
+        });
+
+        this.setState({ value: this.mask.value });
+      });
     }
 
     this.setState({ initialValue });
