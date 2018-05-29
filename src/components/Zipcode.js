@@ -9,6 +9,7 @@ const propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onFieldChange: PropTypes.func.isRequired,
+  onFieldBlur: PropTypes.func.isRequired,
   title: PropTypes.string,
   placeholder: PropTypes.string,
   type: PropTypes.string,
@@ -59,14 +60,14 @@ export default class Zipcode extends Component {
     if (isUserTyping(zipcode.length)) {
       this.setState({ value: evt.target.value, fullAddress: '', fetchCompleted: false });
     } else if (isValidZipCodeInput(zipcode.length, this.state.fetchCompleted)) {
-      this.props.onFieldChange({ ...this.props, value: evt.target.value });
+      this.props.onFieldBlur({ ...this.props, value: evt.target.value });
       this.setState({ fetching: true, value: evt.target.value });
       this.getZipCode(zipcode, successCallback, errorCallback);
     }
   }
 
   onBlur(evt) {
-    this.props.onFieldChange({ ...this.props, value: this.state.zipcodeInvalid ? '' : evt.target.value });
+    this.props.onFieldBlur({ ...this.props, value: this.state.zipcodeInvalid ? '' : evt.target.value });
   }
 
   async getZipCode(zipcode, successCallback, errorCallback) {
@@ -92,9 +93,9 @@ export default class Zipcode extends Component {
     result.zipcodeUrlService = this.props.zipcodeUrlService;
     result.zipcodeInvalid = false;
 
-    this.props.onFieldChange({ ...this.props, value: this.state.value });
-
     this.setState(result);
+
+    this.props.onFieldChange({ ...this.props, value: this.state.value });
   }
 
   onZipcodeError() {
