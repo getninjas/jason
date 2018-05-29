@@ -66,7 +66,9 @@ export const validateStep = (fields) => {
 
     modifiedField.errorMessage = validateField(modifiedField);
 
-    isValid = modifiedField.errorMessage.length === 0;
+    if (modifiedField.errorMessage.length) {
+      isValid = false;
+    }
 
     return modifiedField;
   });
