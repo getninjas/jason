@@ -5,7 +5,7 @@ import TextArea from './TextArea';
 import Zipcode from './Zipcode';
 
 export default class Factory {
-  static getComponent({ item, index, onFieldChange, formName, zipcodeUrlService }) {
+  static getComponent({ item, index, onFieldChange, onFieldBlur, formName, zipcodeUrlService }) {
     const { type, placeholder, id, name, value, values, required } = item;
 
     const inputTypeAccepted = ['text', 'phone', 'email'];
@@ -15,6 +15,7 @@ export default class Factory {
       key: `${formName}-${index}`,
       name,
       onFieldChange,
+      onFieldBlur,
       placeholder,
       initialValue: value,
       required,
