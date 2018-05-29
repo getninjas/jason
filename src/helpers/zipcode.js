@@ -1,4 +1,4 @@
-const ZIPCODE_VALID_LENGTH = 8;
+const ZIPCODE_VALID_LENGTH = 9;
 
 export const isUserTyping = zipcodeLength => zipcodeLength < ZIPCODE_VALID_LENGTH;
 
