@@ -7,6 +7,7 @@ const input = form.steps[0].fields[1];
 
 const commonProps = {
   onFieldChange: () => {},
+  onFieldBlur: () => {},
   formName: 'formNameTest',
   index: 1,
 };
