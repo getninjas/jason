@@ -6,6 +6,7 @@ const propTypes = {
   name: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   onFieldChange: PropTypes.func.isRequired,
+  onFieldBlur: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   initialValue: PropTypes.any,
@@ -40,10 +41,15 @@ export default class TextArea extends Component {
 
   onChange(evt) {
     this.setState({ value: evt.target.value });
+
+    this.props.onFieldChange({
+      value: evt.target.value,
+      id: this.props.id,
+    });
   }
 
   onBlur() {
-    this.props.onFieldChange({
+    this.props.onFieldBlur({
       value: this.state.value,
       id: this.props.id,
       required: this.props.required,

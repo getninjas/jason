@@ -17,6 +17,7 @@ describe('Select', () => {
         placeholder='placeholderTest'
         required={false}
         onFieldChange={() => {}}
+        onFieldBlur={() => {}}
         values={values}
       />,
     );
@@ -37,6 +38,7 @@ describe('Select', () => {
           placeholder='placeholderTest'
           required={false}
           onFieldChange={() => {}}
+          onFieldBlur={() => {}}
           values={values}
         />,
       );
@@ -55,8 +57,9 @@ describe('Select', () => {
           name='nameTest'
           placeholder='placeholderTest'
           required={false}
-          initialValue='this is the initialValue'
           onFieldChange={() => {}}
+          onFieldBlur={() => {}}
+          initialValue='this is the initialValue'
           values={values}
         />,
       );
@@ -64,6 +67,28 @@ describe('Select', () => {
       component.simulate('change', { target: { value: 'Reformas' } });
 
       expect(component.instance().state.value).toEqual('Reformas');
+    });
+
+    it('calls onFieldChange', () => {
+      const values = form.steps[0].fields[0].values.slice(0, 2);
+      const onFieldChange = jest.fn();
+
+      const component = shallow(
+        <Select
+          id='idTest'
+          name='nameTest'
+          placeholder='placeholderTest'
+          required={false}
+          onFieldChange={onFieldChange}
+          onFieldBlur={() => {}}
+          initialValue='this is the initialValue'
+          values={values}
+        />,
+      );
+
+      component.simulate('change', { target: { value: 'Reformas' } });
+
+      expect(component.instance().props.onFieldChange).toBeCalled();
     });
   });
 
@@ -78,6 +103,7 @@ describe('Select', () => {
           placeholder='placeholderTest'
           required={false}
           onFieldChange={() => {}}
+          onFieldBlur={() => {}}
           values={values}
         />,
       );
@@ -93,6 +119,7 @@ describe('Select', () => {
           placeholder=''
           required={false}
           onFieldChange={() => {}}
+          onFieldBlur={() => {}}
           values={values}
         />,
       );
@@ -102,9 +129,9 @@ describe('Select', () => {
   });
 
   describe('.onBlur', () => {
-    it('calls onFieldChange', () => {
+    it('calls onFieldBlur', () => {
       const values = form.steps[0].fields[0].values.slice(0, 2);
-      const onFieldChange = jest.fn();
+      const onFieldBlur = jest.fn();
 
       const component = shallow(
         <Select
@@ -112,14 +139,15 @@ describe('Select', () => {
           name='nameTest'
           placeholder=''
           required={false}
-          onFieldChange={onFieldChange}
+          onFieldBlur={onFieldBlur}
+          onFieldChange={() => {}}
           values={values}
         />,
       );
 
       component.simulate('blur');
 
-      expect(component.instance().props.onFieldChange).toBeCalled();
+      expect(component.instance().props.onFieldBlur).toBeCalled();
     });
   });
 });

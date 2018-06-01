@@ -50,6 +50,7 @@ export default class Form extends Component {
 
     this.onSubmit = this.onSubmit.bind(this);
     this.onFieldChange = this.onFieldChange.bind(this);
+    this.onFieldBlur = this.onFieldBlur.bind(this);
   }
 
   get currentStep() {
@@ -101,7 +102,6 @@ export default class Form extends Component {
   isStepsValid() {
     const validSteps = this.state.steps.filter((step) => {
       const { isValid } = validateStep(step.fields);
-
       return isValid;
     });
 
@@ -148,12 +148,24 @@ export default class Form extends Component {
     }
   }
 
-  onFieldChange({ value, id, required, type, minLength }) {
+  onFieldBlur({ value, id, required, type, minLength }) {
     const fields = this.currentStep.fields.map((item) => {
       if (item.id === id) {
         const errorMessage = validateField({ required, type, value, minLength });
 
         return { ...item, value, errorMessage };
+      }
+
+      return item;
+    });
+
+    this.updateStep(fields);
+  }
+
+  onFieldChange({ value, id }) {
+    const fields = this.currentStep.fields.map((item) => {
+      if (item.id === id) {
+        return { ...item, value };
       }
 
       return item;
@@ -201,6 +213,7 @@ export default class Form extends Component {
                   headerMarkup={headerMarkup}
                   isLast={this.isLastStep(index)}
                   key={`${this.props.name}-step-${index}`}
+                  onFieldBlur={this.onFieldBlur}
                   onFieldChange={this.onFieldChange}
                   visible={this.isStepVisible(index)}
                   zipcodeUrlService={this.props.data.zipcodeUrlService}

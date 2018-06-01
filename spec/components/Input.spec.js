@@ -17,15 +17,20 @@ function createNodeMock(element) {
 }
 
 describe('Input', () => {
+  const commonProps = {
+    id: 'idTest',
+    name: 'nameTest',
+    onFieldChange: () => {},
+    onFieldBlur: () => {},
+    placeholder: 'placeholderTest',
+    required: false,
+  };
+
   it('renders defaultProps', () => {
     const options = { createNodeMock };
     const component = renderer.create(
       <Input
-        id={'idTest'}
-        name={'nameTest'}
-        placeholder={'placeholderTest'}
-        onFieldChange={() => {}}
-        required={false}
+        {...commonProps}
         value={'ola test value'}
       />, options,
     );
@@ -38,11 +43,7 @@ describe('Input', () => {
   it('changes input value .onChage event', () => {
     const component = shallow(
       <Input
-        id={'idTest'}
-        name={'nameTest'}
-        onFieldChange={() => {}}
-        placeholder={'placeholderTest'}
-        required={false}
+        {...commonProps}
         value={'ola test value'}
       />,
     );
@@ -55,11 +56,7 @@ describe('Input', () => {
   it('retrains input text to maxLenght', () => {
     const component = mount(
       <Input
-        id={'idTest'}
-        name={'nameTest'}
-        onFieldChange={() => {}}
-        placeholder={'placeholderTest'}
-        required={false}
+        {...commonProps}
         value={''}
         maxLength={5}
       />,
@@ -72,19 +69,19 @@ describe('Input', () => {
 
   describe('with type', () => {
     it('renders type text', () => {
-      const component = shallow(<Input id={'id_input'} name={'input_name'} onFieldChange={() => {}}/>);
+      const component = shallow(<Input id={'id_input'} name={'input_name'} onFieldChange={() => {}} onFieldBlur={() => {}} />);
 
       expect(component.prop('type')).toBe('text');
     });
 
     it('renders type email', () => {
-      const component = shallow(<Input id={'id_input'} name={'input_name'} onFieldChange={() => {}} type={'email'}/>);
+      const component = shallow(<Input id={'id_input'} name={'input_name'} onFieldChange={() => {}} onFieldBlur={() => {}} type={'email'}/>);
 
       expect(component.prop('type')).toBe('email');
     });
 
     it('renders type tel when type equal phone', () => {
-      const component = mount(<Input id={'id_input'} name={'input_name'} onFieldChange={() => {}} type={'phone'}/>);
+      const component = mount(<Input id={'id_input'} name={'input_name'} onFieldChange={() => {}} onFieldBlur={() => {}} type={'phone'}/>);
 
       const inputType = component.getDOMNode().attributes.type.value;
 
@@ -93,14 +90,15 @@ describe('Input', () => {
   });
 
   describe('.onBlur', () => {
-    it('calls onFieldChange', () => {
-      const onFieldChange = jest.fn();
+    it('calls onFieldBlur', () => {
+      const onFieldBlur = jest.fn();
 
       const component = shallow(
         <Input
           id={'idTest'}
           name={'nameTest'}
-          onFieldChange={onFieldChange}
+          onFieldBlur={onFieldBlur}
+          onFieldChange={() => {}}
           placeholder={'placeholderTest'}
           required={false}
           value={''}
@@ -108,9 +106,9 @@ describe('Input', () => {
         />,
       );
 
-      component.simulate('blur');
+      component.simulate('blur', { target: { value: '(11) 99999-8888' } });
 
-      expect(component.instance().props.onFieldChange).toBeCalled();
+      expect(component.instance().props.onFieldBlur).toBeCalled();
     });
 
     describe('when input is type phone', () => {
@@ -123,6 +121,7 @@ describe('Input', () => {
             name='phone'
             type='phone'
             onFieldChange={onFieldChange}
+            onFieldBlur={() => {}}
             placeholder='(__) _____-____'
             required={false}
             value=''
@@ -130,7 +129,7 @@ describe('Input', () => {
         );
 
         component.simulate('change', { target: { value: '(11) 99999-8888' } });
-        component.simulate('blur');
+        component.simulate('blur', { target: { value: '(11) 99999-8888' } });
 
         expect(component.state().value).toBe('(11) 99999-8888');
       });

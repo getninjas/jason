@@ -63,10 +63,10 @@ export const validateStep = (fields) => {
 
   const updatedFields = fields.map((field) => {
     const modifiedField = Object.assign({}, field);
-    const errorMessage = validateField(modifiedField);
 
-    if (errorMessage) {
-      modifiedField.errorMessage = errorMessage;
+    modifiedField.errorMessage = validateField(modifiedField);
+
+    if (modifiedField.errorMessage.length) {
       isValid = false;
     }
 
