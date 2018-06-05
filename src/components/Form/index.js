@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { AppContext } from '../../AppContext';
-import Step from '../Step';
 import Breadcrumb from '../Breadcrumb';
+import Step from '../Step';
 import { validateField, validateStep } from './validation';
 
 const propTypes = {
@@ -117,7 +117,7 @@ export default class Form extends Component {
 
       this.props.onSubmitSuccess(response);
     } catch (error) {
-      this.props.onSubmitError(error);
+      this.props.onSubmitError(error.response);
     }
   }
 
