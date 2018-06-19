@@ -8,7 +8,7 @@ export default class Factory {
   static getComponent({ item, index, onFieldChange, onFieldBlur, formName, zipcodeUrlService }) {
     const { type, placeholder, id, name, value, values, required } = item;
 
-    const inputTypeAccepted = ['text', 'phone', 'email'];
+    const inputTypeAccepted = ['text', 'phone', 'email', 'checkbox'];
 
     const commonProps = {
       id,
@@ -50,6 +50,7 @@ export default class Factory {
       return (
         <Input
           {...commonProps}
+          values={values}
           type={type}
         />
       );

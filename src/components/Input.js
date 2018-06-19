@@ -2,6 +2,7 @@ import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import IMask from 'imask';
 import { maxLengthTrim, getInputType } from '../helpers/input';
+// import addPlaceholder from '../helpers/select';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
@@ -13,6 +14,7 @@ const propTypes = {
   type: PropTypes.string,
   required: PropTypes.bool,
   initialValue: PropTypes.any,
+  values: PropTypes.array,
   style: PropTypes.string,
   minLength: PropTypes.number,
   maxLength: PropTypes.number,
@@ -24,6 +26,7 @@ const defaultProps = {
   title: '',
   type: 'text',
   initialValue: '',
+  values: [],
   style: 'form__input',
   minLength: 3,
   maxLength: 255,
@@ -34,11 +37,13 @@ export default class Input extends Component {
     super(props);
 
     this.state = {
+      values: this.props.values,
       value: this.props.initialValue ? this.props.initialValue : '',
     };
 
     this.ref = createRef();
     this.onChange = this.onChange.bind(this);
+    this.onChangeCheck = this.onChangeCheck.bind(this);
     this.onBlur = this.onBlur.bind(this);
     this.mask = null;
   }
@@ -49,6 +54,19 @@ export default class Input extends Component {
     this.props.onFieldChange({
       value: inputValue,
       id: this.props.id,
+    });
+
+    this.setState({ value: inputValue });
+  }
+
+  onChangeCheck(evt) {
+    console.log('evt.target.value', evt.target.value);
+    console.log('this.props.id', evt.target.id);
+    const inputValue = evt.target.value;
+    console.log('this.props', this.props.id);
+    this.props.onFieldChange({
+      value: inputValue,
+      id: evt.target.id,
     });
 
     this.setState({ value: inputValue });
@@ -65,7 +83,7 @@ export default class Input extends Component {
   }
 
   componentDidMount() {
-    const { type, initialValue } = this.props;
+    const { type } = this.props;
 
     if (type === 'phone') {
       this.mask = new IMask(this.ref.current, { mask: '(00) 00000-0000' });
@@ -78,8 +96,6 @@ export default class Input extends Component {
         this.setState({ value: this.mask.value });
       });
     }
-
-    this.setState({ initialValue });
   }
 
   render() {
@@ -95,22 +111,51 @@ export default class Input extends Component {
       maxLength,
     } = this.props;
 
-    return (
-      <input
-        type={getInputType(type)}
-        id={id}
-        name={name}
-        title={title}
-        className={style}
-        placeholder={placeholder}
-        required={required ? 'true' : 'false'}
-        value={this.state.value}
-        onChange={this.onChange}
-        onBlur={this.onBlur}
-        minLength={minLength}
-        maxLength={maxLength}
-        ref={this.ref} />
-    );
+    const prepareComponent = () => {
+      if (type === 'checkbox') {
+        return (
+          <div>
+            {this.state.values.map((elem, idx) => {
+              console.log('elem', elem);
+              return (
+                <div key={idx}>
+                  <input
+                    type={getInputType(type)}
+                    id={elem.databaseId}
+                    name={name}
+                    title={title}
+                    className={style}
+                    required={required ? 'true' : 'false'}
+                    value={elem.value}
+                    onChange={this.onChangeCheck}
+                    ref={this.ref} />
+                    <label htmlFor="">{elem.value}</label>
+                </div>
+              );
+            })}
+          </div>
+        );
+      }
+
+      return (
+        <input
+          type={getInputType(type)}
+          id={id}
+          name={name}
+          title={title}
+          className={style}
+          placeholder={placeholder}
+          required={required ? 'true' : 'false'}
+          value={this.state.value}
+          onChange={this.onChange}
+          onBlur={this.onBlur}
+          minLength={minLength}
+          maxLength={maxLength}
+          ref={this.ref} />
+      );
+    };
+
+    return prepareComponent();
   }
 }
 
