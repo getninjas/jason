@@ -17,6 +17,7 @@
             "id": "0_id",
             "name": "1_name_select",
             "type": "checkbox",
+            "value": null,
             "values": [
               {
                 "databaseId": 6792,
@@ -37,6 +38,10 @@
               {
                 "databaseId": 7689,
                 "value": "Outro"
+              },
+              {
+                "databaseId": 7639,
+                "value": "OTHER"
               }
             ]
           },

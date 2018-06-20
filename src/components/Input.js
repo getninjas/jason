@@ -2,7 +2,6 @@ import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import IMask from 'imask';
 import { maxLengthTrim, getInputType } from '../helpers/input';
-// import addPlaceholder from '../helpers/select';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
@@ -38,7 +37,7 @@ export default class Input extends Component {
 
     this.state = {
       values: this.props.values,
-      value: this.props.initialValue ? [this.props.initialValue] : [],
+      value: this.props.initialValue ? this.props.initialValue : '',
     };
 
     this.ref = createRef();
@@ -60,6 +59,7 @@ export default class Input extends Component {
   }
 
   onChangeCheck(evt) {
+    console.log('evt', evt);
     let idList = [];
     if (!this.state.value.length) {
       idList.push(parseInt(evt.target.id, 10));
@@ -123,7 +123,7 @@ export default class Input extends Component {
         return (
           <div required={required ? 'true' : 'false'}>
             {this.state.values.map((elem, idx) => (
-                <div key={`${elem.databaseId}-${idx}`}>
+                <label key={`${elem.databaseId}-${idx}`} htmlFor={elem.databaseId}>
                   <input
                     type={getInputType(type)}
                     id={elem.databaseId}
@@ -133,8 +133,10 @@ export default class Input extends Component {
                     value={elem.value}
                     onChange={this.onChangeCheck}
                     ref={this.ref} />
-                    <label htmlFor="">{elem.value}</label>
-                </div>
+                    {elem.value === 'OTHER' ? (
+                      <input type="text" />
+                    ) : elem.value}
+                </label>
               ))}
           </div>
         );

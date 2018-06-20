@@ -2,6 +2,7 @@ import errorMessages from '../../../src/helpers/errorMessages';
 
 export const isEmpty = (value) => {
   const regex = /^\s*$/;
+  console.log('value', value);
   return regex.test(value.toString().trim());
 };
 
