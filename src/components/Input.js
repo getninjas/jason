@@ -38,7 +38,7 @@ export default class Input extends Component {
 
     this.state = {
       values: this.props.values,
-      value: this.props.initialValue ? this.props.initialValue : '',
+      value: this.props.initialValue ? [this.props.initialValue] : [],
     };
 
     this.ref = createRef();
@@ -60,16 +60,23 @@ export default class Input extends Component {
   }
 
   onChangeCheck(evt) {
-    console.log('evt.target.value', evt.target.value);
-    console.log('this.props.id', evt.target.id);
-    const inputValue = evt.target.value;
-    console.log('this.props', this.props.id);
+    let idList = [];
+    if (!this.state.value.length) {
+      idList.push(parseInt(evt.target.id, 10));
+    } else {
+      idList = this.state.value.filter(valor => valor !== parseInt(evt.target.id, 10));
+
+      if (idList.length === this.state.value.length) {
+        idList.push(parseInt(evt.target.id, 10));
+      }
+    }
+
     this.props.onFieldChange({
-      value: inputValue,
-      id: evt.target.id,
+      id: this.props.id,
+      value: idList,
     });
 
-    this.setState({ value: inputValue });
+    this.setState({ value: idList });
   }
 
   onBlur(evt) {
@@ -114,25 +121,21 @@ export default class Input extends Component {
     const prepareComponent = () => {
       if (type === 'checkbox') {
         return (
-          <div>
-            {this.state.values.map((elem, idx) => {
-              console.log('elem', elem);
-              return (
-                <div key={idx}>
+          <div required={required ? 'true' : 'false'}>
+            {this.state.values.map((elem, idx) => (
+                <div key={`${elem.databaseId}-${idx}`}>
                   <input
                     type={getInputType(type)}
                     id={elem.databaseId}
                     name={name}
                     title={title}
                     className={style}
-                    required={required ? 'true' : 'false'}
                     value={elem.value}
                     onChange={this.onChangeCheck}
                     ref={this.ref} />
                     <label htmlFor="">{elem.value}</label>
                 </div>
-              );
-            })}
+              ))}
           </div>
         );
       }

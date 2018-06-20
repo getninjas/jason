@@ -14,7 +14,7 @@
             "required": true,
             "title": "Você precisa de serviços adicionais?",
             "placeholder": "Você precisa de serviços adicionais?",
-            "id": "1_id",
+            "id": "0_id",
             "name": "1_name_select",
             "type": "checkbox",
             "values": [
