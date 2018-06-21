@@ -47,6 +47,8 @@ export default class Checkbox extends Component {
 
   onChange(evt) {
     console.log('this.ref', this.ref.current.value);
+    console.log('evt.target', evt.target.value);
+
     let idList = [];
     if (!this.state.value.length) {
       idList.push(parseInt(evt.target.id, 10));
