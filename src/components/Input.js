@@ -13,7 +13,6 @@ const propTypes = {
   type: PropTypes.string,
   required: PropTypes.bool,
   initialValue: PropTypes.any,
-  values: PropTypes.array,
   style: PropTypes.string,
   minLength: PropTypes.number,
   maxLength: PropTypes.number,
@@ -25,7 +24,6 @@ const defaultProps = {
   title: '',
   type: 'text',
   initialValue: '',
-  values: [],
   style: 'form__input',
   minLength: 3,
   maxLength: 255,
@@ -36,13 +34,11 @@ export default class Input extends Component {
     super(props);
 
     this.state = {
-      values: this.props.values,
       value: this.props.initialValue ? this.props.initialValue : '',
     };
 
     this.ref = createRef();
     this.onChange = this.onChange.bind(this);
-    this.onChangeCheck = this.onChangeCheck.bind(this);
     this.onBlur = this.onBlur.bind(this);
     this.mask = null;
   }
@@ -56,27 +52,6 @@ export default class Input extends Component {
     });
 
     this.setState({ value: inputValue });
-  }
-
-  onChangeCheck(evt) {
-    console.log('evt', evt);
-    let idList = [];
-    if (!this.state.value.length) {
-      idList.push(parseInt(evt.target.id, 10));
-    } else {
-      idList = this.state.value.filter(valor => valor !== parseInt(evt.target.id, 10));
-
-      if (idList.length === this.state.value.length) {
-        idList.push(parseInt(evt.target.id, 10));
-      }
-    }
-
-    this.props.onFieldChange({
-      id: this.props.id,
-      value: idList,
-    });
-
-    this.setState({ value: idList });
   }
 
   onBlur(evt) {
@@ -118,49 +93,22 @@ export default class Input extends Component {
       maxLength,
     } = this.props;
 
-    const prepareComponent = () => {
-      if (type === 'checkbox') {
-        return (
-          <div required={required ? 'true' : 'false'}>
-            {this.state.values.map((elem, idx) => (
-                <label key={`${elem.databaseId}-${idx}`} htmlFor={elem.databaseId}>
-                  <input
-                    type={getInputType(type)}
-                    id={elem.databaseId}
-                    name={name}
-                    title={title}
-                    className={style}
-                    value={elem.value}
-                    onChange={this.onChangeCheck}
-                    ref={this.ref} />
-                    {elem.value === 'OTHER' ? (
-                      <input type="text" />
-                    ) : elem.value}
-                </label>
-              ))}
-          </div>
-        );
-      }
-
-      return (
-        <input
-          type={getInputType(type)}
-          id={id}
-          name={name}
-          title={title}
-          className={style}
-          placeholder={placeholder}
-          required={required ? 'true' : 'false'}
-          value={this.state.value}
-          onChange={this.onChange}
-          onBlur={this.onBlur}
-          minLength={minLength}
-          maxLength={maxLength}
-          ref={this.ref} />
-      );
-    };
-
-    return prepareComponent();
+    return (
+      <input
+        type={getInputType(type)}
+        id={id}
+        name={name}
+        title={title}
+        className={style}
+        placeholder={placeholder}
+        required={required ? 'true' : 'false'}
+        value={this.state.value}
+        onChange={this.onChange}
+        onBlur={this.onBlur}
+        minLength={minLength}
+        maxLength={maxLength}
+        ref={this.ref} />
+    );
   }
 }
 

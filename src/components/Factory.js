@@ -3,12 +3,13 @@ import Select from './Select';
 import Input from './Input';
 import TextArea from './TextArea';
 import Zipcode from './Zipcode';
+import Checkbox from './Checkbox';
 
 export default class Factory {
   static getComponent({ item, index, onFieldChange, onFieldBlur, formName, zipcodeUrlService }) {
     const { type, placeholder, id, name, value, values, required } = item;
 
-    const inputTypeAccepted = ['text', 'phone', 'email', 'checkbox'];
+    const inputTypeAccepted = ['text', 'phone', 'email'];
 
     const commonProps = {
       id,
@@ -42,6 +43,16 @@ export default class Factory {
           {...commonProps}
           type={type}
           zipcodeUrlService={zipcodeUrlService}
+        />
+      );
+    }
+
+    if (type === 'checkbox') {
+      return (
+        <Checkbox
+          {...commonProps}
+          values={values}
+          type={type}
         />
       );
     }
