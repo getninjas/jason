@@ -50,9 +50,33 @@ export default class Checkbox extends Component {
     const idNumberEvt = parseInt(evt.target.id, 10);
     const value = this.state.value.map((eachItem) => {
       if (eachItem.databaseId === idNumberEvt) {
-        const testsaporra = eachItem;
-        testsaporra.isChecked = evt.target.checked;
-        Object.assign(eachItem, testsaporra);
+        const itemToSave = eachItem;
+        itemToSave.isChecked = evt.target.checked;
+
+        if (eachItem.value === 'OTHER') {
+          itemToSave.textOther = this.ref.current.value;
+        }
+
+        Object.assign(eachItem, itemToSave);
+      }
+
+      return eachItem;
+    });
+
+    this.setState({ value });
+
+    setTimeout(() => {
+      console.log('NOSSO STADO...............', this.state.value);
+    }, 100);
+  }
+
+  onBlur(evt) {
+    const idNumberEvt = parseInt(evt.target.getAttribute('data-id'), 10);
+    const value = this.state.value.map((eachItem) => {
+      if (eachItem.databaseId === idNumberEvt) {
+        const itemToSave = eachItem;
+        itemToSave.textOther = evt.target.value;
+        Object.assign(eachItem, itemToSave);
       }
 
       return eachItem;
@@ -63,21 +87,8 @@ export default class Checkbox extends Component {
     this.setState({ value });
 
     setTimeout(() => {
-      console.log('NOSSO STADO...............', this.state.value);
+      console.log('NOSSO STADO com TEXTO...............', this.state.value);
     }, 100);
-  }
-
-  onBlur(evt) {
-    console.log('this.ref', this.ref.current.value);
-    console.log('evt.target.value', evt.target.value);
-    console.log('evt.target.value', evt.target.getAttribute('data-id'));
-    // this.props.onFieldBlur({
-    //   value: evt.target.value,
-    //   id: this.props.id,
-    //   required: this.props.required,
-    //   type: this.props.type,
-    //   minLength: this.props.minLength,
-    // });
   }
 
   componentDidMount() {
