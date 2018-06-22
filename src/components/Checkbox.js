@@ -121,9 +121,9 @@ export default class Checkbox extends Component {
     } = this.props;
 
     return (
-      <div required={required ? 'true' : 'false'}>
+      <ul required={required ? 'true' : 'false'}>
         {this.props.values.map((elem, idx) => (
-          <label key={`${elem.databaseId}-${idx}`} htmlFor={elem.databaseId}>
+          <li className='form__check' key={`${elem.databaseId}-${idx}`} htmlFor={elem.databaseId}>
             <input
               type={getInputType(type)}
               id={elem.databaseId}
@@ -132,12 +132,15 @@ export default class Checkbox extends Component {
               className={style}
               value={elem.value}
               onChange={this.onChange} />
-            {elem.value === 'OTHER' ? (
-              <input type="text" disabled={!elem.isChecked} data-id={elem.databaseId} ref={this.ref} onBlur={this.onBlur} />
-            ) : elem.value}
-          </label>
+
+            <label key={`${elem.databaseId}-${idx}`} htmlFor={elem.databaseId}>
+              {elem.value === 'OTHER' ? (
+                <input type="text" className={style} disabled={!elem.isChecked} data-id={elem.databaseId} ref={this.ref} onBlur={this.onBlur} />
+              ) : elem.value}
+            </label>
+          </li>
           ))}
-      </div>
+      </ul>
     );
   }
 }
