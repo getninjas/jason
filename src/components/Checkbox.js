@@ -36,7 +36,8 @@ export default class Checkbox extends Component {
     super(props);
 
     this.state = {
-      value: this.props.initialValue ? this.props.initialValue : '',
+      value: this.props.values,
+      other: {},
     };
 
     this.ref = createRef();
@@ -46,26 +47,24 @@ export default class Checkbox extends Component {
   }
 
   onChange(evt) {
-    console.log('this.ref', this.ref.current.value);
-    console.log('evt.target', evt.target.value);
-
-    let idList = [];
-    if (!this.state.value.length) {
-      idList.push(parseInt(evt.target.id, 10));
-    } else {
-      idList = this.state.value.filter(valor => valor !== parseInt(evt.target.id, 10));
-
-      if (idList.length === this.state.value.length) {
-        idList.push(parseInt(evt.target.id, 10));
+    const idNumberEvt = parseInt(evt.target.id, 10);
+    const value = this.state.value.map((eachItem) => {
+      if (eachItem.databaseId === idNumberEvt) {
+        const testsaporra = eachItem;
+        testsaporra.isChecked = evt.target.checked;
+        Object.assign(eachItem, testsaporra);
       }
-    }
 
-    this.props.onFieldChange({
-      id: this.props.id,
-      value: idList,
+      return eachItem;
     });
 
-    this.setState({ value: idList });
+    console.log(value);
+
+    this.setState({ value });
+
+    setTimeout(() => {
+      console.log('NOSSO STADO...............', this.state.value);
+    }, 100);
   }
 
   onBlur(evt) {
@@ -120,7 +119,7 @@ export default class Checkbox extends Component {
               value={elem.value}
               onChange={this.onChange} />
             {elem.value === 'OTHER' ? (
-              <input type="text" data-id={elem.databaseId} ref={this.ref} onBlur={this.onBlur} />
+              <input type="text" disabled={!elem.isChecked} data-id={elem.databaseId} ref={this.ref} onBlur={this.onBlur} />
             ) : elem.value}
           </label>
           ))}
