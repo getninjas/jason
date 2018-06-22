@@ -44,6 +44,20 @@ export default class Checkbox extends Component {
     this.onChange = this.onChange.bind(this);
     this.onBlur = this.onBlur.bind(this);
     this.mask = null;
+    this.normalizeInputCheck = this.normalizeInputCheck.bind(this);
+  }
+
+  normalizeInputCheck(value) {
+    const inputChecked = value.filter(input => input.isChecked)
+      .map((input) => {
+        if (input.value === 'OTHER') {
+          return input.textOther;
+        }
+
+        return input.databaseId;
+      });
+
+    return inputChecked;
   }
 
   onChange(evt) {
@@ -63,32 +77,22 @@ export default class Checkbox extends Component {
       return eachItem;
     });
 
-    this.setState({ value });
+    this.props.onFieldChange({
+      id: this.props.id,
+      value: this.normalizeInputCheck(value),
+    });
 
-    setTimeout(() => {
-      console.log('NOSSO STADO...............', this.state.value);
-    }, 100);
+    this.setState({ value });
   }
 
   onBlur(evt) {
-    const idNumberEvt = parseInt(evt.target.getAttribute('data-id'), 10);
-    const value = this.state.value.map((eachItem) => {
-      if (eachItem.databaseId === idNumberEvt) {
-        const itemToSave = eachItem;
-        itemToSave.textOther = evt.target.value;
-        Object.assign(eachItem, itemToSave);
-      }
-
-      return eachItem;
-    });
-
-    console.log(value);
-
-    this.setState({ value });
-
-    setTimeout(() => {
-      console.log('NOSSO STADO com TEXTO...............', this.state.value);
-    }, 100);
+    const data = {
+      target: {
+        checked: true,
+        id: evt.target.getAttribute('data-id'),
+      },
+    };
+    this.onChange(data);
   }
 
   componentDidMount() {
@@ -110,7 +114,6 @@ export default class Checkbox extends Component {
   render() {
     const {
       type,
-      id,
       name,
       title,
       style,
