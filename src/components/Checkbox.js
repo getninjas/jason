@@ -1,7 +1,6 @@
 import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import IMask from 'imask';
-import { getInputType } from '../helpers/input';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
@@ -113,7 +112,6 @@ export default class Checkbox extends Component {
 
   render() {
     const {
-      type,
       name,
       title,
       style,
@@ -125,7 +123,7 @@ export default class Checkbox extends Component {
         {this.props.values.map((elem, idx) => (
           <li className='form__check' key={`${elem.databaseId}-${idx}`} htmlFor={elem.databaseId}>
             <input
-              type={getInputType(type)}
+              type='checkbox'
               id={elem.databaseId}
               name={name}
               title={title}
