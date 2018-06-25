@@ -11,41 +11,6 @@
         "headerMarkup": "<h2 class='widget__title section-title--high-contrast'>Lorem Ipsum is simply dummy text <small>It has survived not</small></h2>",
         "fields": [
           {
-            "required": true,
-            "title": "Você precisa de serviços adicionais?",
-            "placeholder": "Você precisa de serviços adicionais?",
-            "id": "0_id",
-            "name": "1_name_select",
-            "type": "checkbox",
-            "value": null,
-            "values": [
-              {
-                "databaseId": 6792,
-                "value": "Cozinhar"
-              },
-              {
-                "databaseId": 6793,
-                "value": "Passar roupa"
-              },
-              {
-                "databaseId": 6794,
-                "value": "Limpar áreas externas (jardim/garagem ou quintal)"
-              },
-              {
-                "databaseId": 6795,
-                "value": "Não preciso"
-              },
-              {
-                "databaseId": 7689,
-                "value": "Outro"
-              },
-              {
-                "databaseId": 7639,
-                "value": "OTHER"
-              }
-            ]
-          },
-          {
             "title": "Qual é o tipo de serviço que você precisa?",
             "placeholder": "Placeholder",
             "required": true,
@@ -95,6 +60,41 @@
             "placeholder": "Descreva o que você precisa",
             "value": null,
             "values": []
+          },
+          {
+            "required": true,
+            "title": "Você precisa de serviços adicionais?",
+            "placeholder": "Você precisa de serviços adicionais?",
+            "id": "0_id",
+            "name": "1_name_select",
+            "type": "checkbox",
+            "value": null,
+            "values": [
+              {
+                "databaseId": 6792,
+                "value": "Cozinhar"
+              },
+              {
+                "databaseId": 6793,
+                "value": "Passar roupa"
+              },
+              {
+                "databaseId": 6794,
+                "value": "Limpar áreas externas (jardim/garagem ou quintal)"
+              },
+              {
+                "databaseId": 6795,
+                "value": "Não preciso"
+              },
+              {
+                "databaseId": 7689,
+                "value": "Outro"
+              },
+              {
+                "databaseId": 7639,
+                "value": "OTHER"
+              }
+            ]
           }
         ]
       },

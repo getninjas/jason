@@ -52,7 +52,6 @@ export default class Factory {
         <Checkbox
           {...commonProps}
           values={values}
-          type={type}
         />
       );
     }

@@ -139,6 +139,145 @@ Array [
                 
             </span>
         </div>
+        <div
+            className="form__field form__field--fluid input"
+        >
+            <label
+                className="form__label"
+                htmlFor="0_id"
+            >
+                Você precisa de serviços adicionais?
+            </label>
+            <ul
+                required="true"
+            >
+                <li
+                    className="form__check"
+                    htmlFor={6792}
+                >
+                    <input
+                        className="form__input"
+                        id={6792}
+                        name="1_name_select"
+                        onChange={[Function]}
+                        title=""
+                        type="checkbox"
+                        value="Cozinhar"
+                    />
+                    <label
+                        htmlFor={6792}
+                    >
+                        Cozinhar
+                    </label>
+                </li>
+                <li
+                    className="form__check"
+                    htmlFor={6793}
+                >
+                    <input
+                        className="form__input"
+                        id={6793}
+                        name="1_name_select"
+                        onChange={[Function]}
+                        title=""
+                        type="checkbox"
+                        value="Passar roupa"
+                    />
+                    <label
+                        htmlFor={6793}
+                    >
+                        Passar roupa
+                    </label>
+                </li>
+                <li
+                    className="form__check"
+                    htmlFor={6794}
+                >
+                    <input
+                        className="form__input"
+                        id={6794}
+                        name="1_name_select"
+                        onChange={[Function]}
+                        title=""
+                        type="checkbox"
+                        value="Limpar áreas externas (jardim/garagem ou quintal)"
+                    />
+                    <label
+                        htmlFor={6794}
+                    >
+                        Limpar áreas externas (jardim/garagem ou quintal)
+                    </label>
+                </li>
+                <li
+                    className="form__check"
+                    htmlFor={6795}
+                >
+                    <input
+                        className="form__input"
+                        id={6795}
+                        name="1_name_select"
+                        onChange={[Function]}
+                        title=""
+                        type="checkbox"
+                        value="Não preciso"
+                    />
+                    <label
+                        htmlFor={6795}
+                    >
+                        Não preciso
+                    </label>
+                </li>
+                <li
+                    className="form__check"
+                    htmlFor={7689}
+                >
+                    <input
+                        className="form__input"
+                        id={7689}
+                        name="1_name_select"
+                        onChange={[Function]}
+                        title=""
+                        type="checkbox"
+                        value="Outro"
+                    />
+                    <label
+                        htmlFor={7689}
+                    >
+                        Outro
+                    </label>
+                </li>
+                <li
+                    className="form__check"
+                    htmlFor={7639}
+                >
+                    <input
+                        className="form__input"
+                        id={7639}
+                        name="1_name_select"
+                        onChange={[Function]}
+                        title=""
+                        type="checkbox"
+                        value="OTHER"
+                    />
+                    <label
+                        htmlFor={7639}
+                    >
+                        <input
+                            className="form__input"
+                            data-id={7639}
+                            disabled={true}
+                            onBlur={[Function]}
+                            type="text"
+                        />
+                    </label>
+                </li>
+            </ul>
+            <span
+                className="form__message form__message--invalid space-element-small error"
+            >
+                
+            </span>
+        </div>
         <button
             className="btn btn--regular btn--high-contrast btn--fluid space-box-medium"
             onClick={[Function]}
