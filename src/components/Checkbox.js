@@ -65,7 +65,7 @@ export default class Checkbox extends Component {
       if (eachItem.databaseId === idNumberEvt) {
         itemToSave.checked = evt.target.checked;
 
-        if (eachItem.value === 'OTHER') {
+        if (eachItem.value === 'OTHER' && evt.target.type !== 'checkbox') {
           itemToSave.textOther = evt.target.value;
         }
       }
@@ -109,10 +109,8 @@ export default class Checkbox extends Component {
               type='checkbox'
               id={elem.databaseId}
               name={name}
-              title={title}
               className={style}
               defaultChecked={!elem.checked ? false : elem.checked}
-              values={elem.values}
               onChange={this.onChange} />
 
             <label key={`${elem.databaseId}-${idx}`} htmlFor={elem.databaseId}>
