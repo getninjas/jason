@@ -1,8 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { enzymeConfig, shallow, mount } from '../enzymeConfig';
 import Checkbox from '../../src/components/Checkbox';
 import { form } from '../../src/form.json';
+import { enzymeConfig, mount } from '../enzymeConfig';
 
 enzymeConfig();
 
@@ -44,8 +44,7 @@ describe('Checkbox', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('changes input value .onChage event', () => {
-    console.log("checkbox.type", checkbox.type);
+  it('changes input checked .onChage event', () => {
     const wrapper = mount(
       <Checkbox
         {...commonProps}
@@ -53,26 +52,10 @@ describe('Checkbox', () => {
       />,
     );
 
-    wrapper.setProps({ active: true });
+    expect(wrapper.instance().state.values[0].checked).toBeFalsy();
 
-    // console.log("wrapper.find('input').get(0)", wrapper.find('input').get(0));
+    wrapper.find('input').simulate('change', { target: { checked: true, id: 6792 } });
 
-    // expect(wrapper.find('input').get(0).checked).toBeFalsy();
-    // console.log("ANTES DO CLICK.....", wrapper.find('input').get(0));
-
-    console.log("ATENS DO CLICK.....", wrapper.instance().props);
-
-    wrapper.find('input').simulate('change');
-
-    let checkboxNo = wrapper.find({ type: 'checkbox' });
-
-    console.log("checkboxNo", checkboxNo);
-
-    expect(checkboxNo.props().checked).to.equal(true);
-
-    console.log("DEPOIS DO CLICK.....", wrapper.instance().props);
-
-
-    expect(true).toEqual(true);
+    expect(wrapper.instance().state.values[0].checked).toBeTruthy();
   });
 });

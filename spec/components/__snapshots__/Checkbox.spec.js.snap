@@ -10,13 +10,13 @@ exports[`Checkbox render component 1`] = `
   >
     <input
       className="form__input"
-      defaultChecked={undefined}
+      defaultChecked={false}
       id={6792}
       name="nameTest"
       onChange={[Function]}
       title=""
       type="checkbox"
-      value="Cozinhar"
+      values={undefined}
     />
     <label
       htmlFor={6792}

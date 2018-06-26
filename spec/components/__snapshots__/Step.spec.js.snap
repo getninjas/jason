@@ -142,13 +142,13 @@ exports[`Step renders with props 1`] = `
       >
         <input
           className="form__input"
-          defaultChecked={undefined}
+          defaultChecked={false}
           id={6792}
           name="1_name_select"
           onChange={[Function]}
           title=""
           type="checkbox"
-          value="Cozinhar"
+          values={undefined}
         />
         <label
           htmlFor={6792}
@@ -162,13 +162,13 @@ exports[`Step renders with props 1`] = `
       >
         <input
           className="form__input"
-          defaultChecked={undefined}
+          defaultChecked={false}
           id={6793}
           name="1_name_select"
           onChange={[Function]}
           title=""
           type="checkbox"
-          value="Passar roupa"
+          values={undefined}
         />
         <label
           htmlFor={6793}
@@ -182,13 +182,13 @@ exports[`Step renders with props 1`] = `
       >
         <input
           className="form__input"
-          defaultChecked={undefined}
+          defaultChecked={false}
           id={6794}
           name="1_name_select"
           onChange={[Function]}
           title=""
           type="checkbox"
-          value="Limpar áreas externas (jardim/garagem ou quintal)"
+          values={undefined}
         />
         <label
           htmlFor={6794}
@@ -202,13 +202,13 @@ exports[`Step renders with props 1`] = `
       >
         <input
           className="form__input"
-          defaultChecked={undefined}
+          defaultChecked={false}
           id={6795}
           name="1_name_select"
           onChange={[Function]}
           title=""
           type="checkbox"
-          value="Não preciso"
+          values={undefined}
         />
         <label
           htmlFor={6795}
@@ -222,13 +222,13 @@ exports[`Step renders with props 1`] = `
       >
         <input
           className="form__input"
-          defaultChecked={undefined}
+          defaultChecked={false}
           id={7689}
           name="1_name_select"
           onChange={[Function]}
           title=""
           type="checkbox"
-          value="Outro"
+          values={undefined}
         />
         <label
           htmlFor={7689}
@@ -242,13 +242,13 @@ exports[`Step renders with props 1`] = `
       >
         <input
           className="form__input"
-          defaultChecked={undefined}
+          defaultChecked={false}
           id={7639}
           name="1_name_select"
           onChange={[Function]}
           title=""
           type="checkbox"
-          value="OTHER"
+          values={undefined}
         />
         <label
           htmlFor={7639}
