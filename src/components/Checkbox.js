@@ -1,6 +1,5 @@
-import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
-import IMask from 'imask';
+import React, { Component, createRef } from 'react';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
@@ -35,7 +34,7 @@ export default class Checkbox extends Component {
     super(props);
 
     this.state = {
-      value: this.props.values,
+      values: this.props.values,
     };
 
     this.ref = createRef();
@@ -46,7 +45,7 @@ export default class Checkbox extends Component {
   }
 
   normalizeInputCheck(value) {
-    const inputChecked = value.filter(input => input.isChecked)
+    const inputChecked = value.filter(input => input.checked)
       .map((input) => {
         if (input.value === 'OTHER') {
           return input.textOther;
@@ -60,27 +59,26 @@ export default class Checkbox extends Component {
 
   onChange(evt) {
     const idNumberEvt = parseInt(evt.target.id, 10);
-    const value = this.state.value.map((eachItem) => {
+    const values = this.state.values.map((eachItem) => {
+      const itemToSave = eachItem;
+
       if (eachItem.databaseId === idNumberEvt) {
-        const itemToSave = eachItem;
         itemToSave.checked = evt.target.checked;
 
         if (eachItem.value === 'OTHER') {
           itemToSave.textOther = this.ref.current.value;
         }
-
-        Object.assign(eachItem, itemToSave);
       }
 
-      return eachItem;
+      return Object.assign(eachItem, itemToSave);
     });
 
     this.props.onFieldChange({
       id: this.props.id,
-      value: this.normalizeInputCheck(value),
+      value: this.normalizeInputCheck(values),
     });
 
-    this.setState({ value });
+    this.setState({ values });
   }
 
   onBlur(evt) {
@@ -90,6 +88,7 @@ export default class Checkbox extends Component {
         id: evt.target.getAttribute('data-id'),
       },
     };
+
     this.onChange(data);
   }
 
@@ -105,20 +104,19 @@ export default class Checkbox extends Component {
       <ul required={required ? 'true' : 'false'}>
         {this.props.values.map((elem, idx) => (
           <li className='form__check' key={`${elem.databaseId}-${idx}`} htmlFor={elem.databaseId}>
-            {console.log(this.state.value[idx].checked)}
             <input
               type='checkbox'
               id={elem.databaseId}
               name={name}
               title={title}
               className={style}
-              defaultChecked={this.state.value[idx].checked ? this.state.value[idx].checked : elem.checked}
-              value={elem.value}
+              defaultChecked={!elem.checked ? false : elem.checked}
+              values={elem.values}
               onChange={this.onChange} />
 
             <label key={`${elem.databaseId}-${idx}`} htmlFor={elem.databaseId}>
               {elem.value === 'OTHER' ? (
-                <input type="text" className={style} disabled={!elem.isChecked} data-id={elem.databaseId} ref={this.ref} onBlur={this.onBlur} />
+                <input type="text" className={style} disabled={!elem.checked} data-id={elem.databaseId} ref={this.ref} onBlur={this.onBlur} />
               ) : elem.value}
             </label>
           </li>
