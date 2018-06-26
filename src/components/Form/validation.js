@@ -6,6 +6,22 @@ export const isEmpty = (value) => {
   return regex.test(value.toString().trim());
 };
 
+export const arrayIsValid = (value) => {
+  let arrayUndefined = false;
+
+  if (!value.length) {
+    return true;
+  }
+
+  for (let i = 0; i < value.length; i += 1) {
+    if ((typeof value[i] === 'undefined') || (typeof value[i] === 'string' && !value[i].length)) {
+      arrayUndefined = true;
+    }
+  }
+
+  return arrayUndefined;
+};
+
 export const isMinLength = (text, length) => {
   let result = true;
 
@@ -46,6 +62,10 @@ export const validateField = ({ required, type, value, minLength }) => {
 
   if (type === 'zipcode' && (isEmpty(value) || !isValidZipcode(value))) {
     return errorMessages.REQUIRED_VALID_ZIPCODE;
+  }
+
+  if (type === 'checkbox' && arrayIsValid(value)) {
+    return errorMessages.REQUIRED_FIELD;
   }
 
   if (required && isEmpty(value)) {
