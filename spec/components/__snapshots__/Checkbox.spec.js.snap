@@ -26,3 +26,36 @@ exports[`Checkbox render component 1`] = `
   </li>
 </ul>
 `;
+
+exports[`Checkbox with input text render component 1`] = `
+<ul
+  required="true"
+>
+  <li
+    className="form__check"
+    htmlFor={7639}
+  >
+    <input
+      className="form__input"
+      defaultChecked={false}
+      id={7639}
+      name="nameTest"
+      onChange={[Function]}
+      title=""
+      type="checkbox"
+      values={undefined}
+    />
+    <label
+      htmlFor={7639}
+    >
+      <input
+        className="form__input"
+        data-id={7639}
+        disabled={true}
+        onBlur={[Function]}
+        type="text"
+      />
+    </label>
+  </li>
+</ul>
+`;

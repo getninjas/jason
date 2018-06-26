@@ -66,7 +66,7 @@ export default class Checkbox extends Component {
         itemToSave.checked = evt.target.checked;
 
         if (eachItem.value === 'OTHER') {
-          itemToSave.textOther = this.ref.current.value;
+          itemToSave.textOther = evt.target.value;
         }
       }
 
@@ -86,6 +86,7 @@ export default class Checkbox extends Component {
       target: {
         checked: true,
         id: evt.target.getAttribute('data-id'),
+        value: evt.target.value,
       },
     };
 

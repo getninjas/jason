@@ -58,4 +58,51 @@ describe('Checkbox', () => {
 
     expect(wrapper.instance().state.values[0].checked).toBeTruthy();
   });
+
+  describe('with input text', () => {
+    it('render component', () => {
+      const options = { createNodeMock };
+      const component = renderer.create(
+        <Checkbox
+          {...commonProps}
+          values={[checkbox.values[5]]}
+        />, options,
+      );
+
+      const tree = component.toJSON();
+
+      expect(tree).toMatchSnapshot();
+    });
+
+    it('checkbox with OTHER value need to have an input text', () => {
+      const wrapper = mount(
+        <Checkbox
+          {...commonProps}
+          values={[checkbox.values[5]]}
+        />,
+      );
+
+      expect(wrapper.instance().state.values[0].checked).toBeFalsy();
+      expect(wrapper.find('input[type="text"]').get(0).props.disabled).toBeTruthy();
+
+      wrapper.find('input[type="checkbox"]').simulate('change', { target: { checked: true, id: 7639 } });
+
+      expect(wrapper.find('input[type="text"]').get(0).props.disabled).toBeFalsy();
+      expect(wrapper.instance().state.values[0].checked).toBeTruthy();
+    });
+
+    it('checkbox with OTHER value need to have an input text', () => {
+      const wrapper = mount(
+        <Checkbox
+        {...commonProps}
+        values={[checkbox.values[5]]}
+        />,
+      );
+
+      wrapper.find('input[type="checkbox"]').simulate('change', { target: { checked: true, id: 7639 } });
+      wrapper.find('input[type="text"]').simulate('blur', { target: { value: 'Teste value', getAttribute: () => 7639 } });
+
+      expect(wrapper.instance().state.values[0].textOther).toEqual('Teste value');
+    });
+  });
 });
