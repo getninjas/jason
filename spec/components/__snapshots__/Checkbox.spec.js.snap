@@ -10,6 +10,7 @@ exports[`Checkbox render component 1`] = `
   >
     <input
       className="form__input"
+      defaultChecked={undefined}
       id={6792}
       name="nameTest"
       onChange={[Function]}
@@ -21,107 +22,6 @@ exports[`Checkbox render component 1`] = `
       htmlFor={6792}
     >
       Cozinhar
-    </label>
-  </li>
-  <li
-    className="form__check"
-    htmlFor={6793}
-  >
-    <input
-      className="form__input"
-      id={6793}
-      name="nameTest"
-      onChange={[Function]}
-      title=""
-      type="checkbox"
-      value="Passar roupa"
-    />
-    <label
-      htmlFor={6793}
-    >
-      Passar roupa
-    </label>
-  </li>
-  <li
-    className="form__check"
-    htmlFor={6794}
-  >
-    <input
-      className="form__input"
-      id={6794}
-      name="nameTest"
-      onChange={[Function]}
-      title=""
-      type="checkbox"
-      value="Limpar áreas externas (jardim/garagem ou quintal)"
-    />
-    <label
-      htmlFor={6794}
-    >
-      Limpar áreas externas (jardim/garagem ou quintal)
-    </label>
-  </li>
-  <li
-    className="form__check"
-    htmlFor={6795}
-  >
-    <input
-      className="form__input"
-      id={6795}
-      name="nameTest"
-      onChange={[Function]}
-      title=""
-      type="checkbox"
-      value="Não preciso"
-    />
-    <label
-      htmlFor={6795}
-    >
-      Não preciso
-    </label>
-  </li>
-  <li
-    className="form__check"
-    htmlFor={7689}
-  >
-    <input
-      className="form__input"
-      id={7689}
-      name="nameTest"
-      onChange={[Function]}
-      title=""
-      type="checkbox"
-      value="Outro"
-    />
-    <label
-      htmlFor={7689}
-    >
-      Outro
-    </label>
-  </li>
-  <li
-    className="form__check"
-    htmlFor={7639}
-  >
-    <input
-      className="form__input"
-      id={7639}
-      name="nameTest"
-      onChange={[Function]}
-      title=""
-      type="checkbox"
-      value="OTHER"
-    />
-    <label
-      htmlFor={7639}
-    >
-      <input
-        className="form__input"
-        data-id={7639}
-        disabled={true}
-        onBlur={[Function]}
-        type="text"
-      />
     </label>
   </li>
 </ul>

@@ -157,6 +157,7 @@ Array [
                 >
                     <input
                         className="form__input"
+                        defaultChecked={undefined}
                         id={6792}
                         name="1_name_select"
                         onChange={[Function]}
@@ -176,6 +177,7 @@ Array [
                 >
                     <input
                         className="form__input"
+                        defaultChecked={undefined}
                         id={6793}
                         name="1_name_select"
                         onChange={[Function]}
@@ -195,6 +197,7 @@ Array [
                 >
                     <input
                         className="form__input"
+                        defaultChecked={undefined}
                         id={6794}
                         name="1_name_select"
                         onChange={[Function]}
@@ -214,6 +217,7 @@ Array [
                 >
                     <input
                         className="form__input"
+                        defaultChecked={undefined}
                         id={6795}
                         name="1_name_select"
                         onChange={[Function]}
@@ -233,6 +237,7 @@ Array [
                 >
                     <input
                         className="form__input"
+                        defaultChecked={undefined}
                         id={7689}
                         name="1_name_select"
                         onChange={[Function]}
@@ -252,6 +257,7 @@ Array [
                 >
                     <input
                         className="form__input"
+                        defaultChecked={undefined}
                         id={7639}
                         name="1_name_select"
                         onChange={[Function]}

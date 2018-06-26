@@ -36,7 +36,6 @@ export default class Checkbox extends Component {
 
     this.state = {
       value: this.props.values,
-      other: {},
     };
 
     this.ref = createRef();
@@ -64,7 +63,7 @@ export default class Checkbox extends Component {
     const value = this.state.value.map((eachItem) => {
       if (eachItem.databaseId === idNumberEvt) {
         const itemToSave = eachItem;
-        itemToSave.isChecked = evt.target.checked;
+        itemToSave.checked = evt.target.checked;
 
         if (eachItem.value === 'OTHER') {
           itemToSave.textOther = this.ref.current.value;
@@ -94,22 +93,6 @@ export default class Checkbox extends Component {
     this.onChange(data);
   }
 
-  componentDidMount() {
-    const { type } = this.props;
-
-    if (type === 'phone') {
-      this.mask = new IMask(this.ref.current, { mask: '(00) 00000-0000' });
-      this.mask.on('complete', () => {
-        this.props.onFieldChange({
-          value: this.mask.value,
-          id: this.props.id,
-        });
-
-        this.setState({ value: this.mask.value });
-      });
-    }
-  }
-
   render() {
     const {
       name,
@@ -122,12 +105,14 @@ export default class Checkbox extends Component {
       <ul required={required ? 'true' : 'false'}>
         {this.props.values.map((elem, idx) => (
           <li className='form__check' key={`${elem.databaseId}-${idx}`} htmlFor={elem.databaseId}>
+            {console.log(this.state.value[idx].checked)}
             <input
               type='checkbox'
               id={elem.databaseId}
               name={name}
               title={title}
               className={style}
+              defaultChecked={this.state.value[idx].checked ? this.state.value[idx].checked : elem.checked}
               value={elem.value}
               onChange={this.onChange} />
 
