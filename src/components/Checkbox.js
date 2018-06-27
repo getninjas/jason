@@ -5,28 +5,17 @@ const propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onFieldChange: PropTypes.func.isRequired,
-  onFieldBlur: PropTypes.func.isRequired,
-  title: PropTypes.string,
-  placeholder: PropTypes.string,
   type: PropTypes.string,
   required: PropTypes.bool,
-  initialValue: PropTypes.any,
   values: PropTypes.array,
   style: PropTypes.string,
-  minLength: PropTypes.number,
-  maxLength: PropTypes.number,
 };
 
 const defaultProps = {
-  placeholder: '',
   required: false,
-  title: '',
   type: 'text',
-  initialValue: '',
   values: [],
   style: 'form__input',
-  minLength: 3,
-  maxLength: 255,
 };
 
 export default class Checkbox extends Component {
@@ -96,7 +85,6 @@ export default class Checkbox extends Component {
   render() {
     const {
       name,
-      title,
       style,
       required,
     } = this.props;
