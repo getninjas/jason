@@ -6,7 +6,7 @@ export const isEmpty = (value) => {
   return regex.test(value.toString().trim());
 };
 
-export const arrayIsValid = (value) => {
+export const arrayIsInvalid = (value) => {
   let arrayUndefined = false;
 
   if (!value.length) {
@@ -64,7 +64,7 @@ export const validateField = ({ required, type, value, minLength }) => {
     return errorMessages.REQUIRED_VALID_ZIPCODE;
   }
 
-  if (type === 'checkbox' && arrayIsValid(value)) {
+  if (type === 'checkbox' && arrayIsInvalid(value)) {
     return errorMessages.REQUIRED_FIELD;
   }
 
