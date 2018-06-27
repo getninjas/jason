@@ -29,12 +29,12 @@ export default class Checkbox extends Component {
     this.ref = createRef();
     this.onChange = this.onChange.bind(this);
     this.onBlur = this.onBlur.bind(this);
-    this.mask = null;
     this.normalizeInputCheck = this.normalizeInputCheck.bind(this);
+    this.inputChecked = [];
   }
 
   normalizeInputCheck(value) {
-    const inputChecked = value.filter(input => input.checked)
+    this.inputChecked = value.filter(input => input.checked)
       .map((input) => {
         if (input.value === 'OTHER') {
           return input.textOther;
@@ -43,7 +43,7 @@ export default class Checkbox extends Component {
         return input.databaseId;
       });
 
-    return inputChecked;
+    return this.inputChecked;
   }
 
   onChange(evt) {
