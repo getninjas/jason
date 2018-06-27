@@ -14,9 +14,7 @@ exports[`Checkbox render component 1`] = `
       id={6792}
       name="nameTest"
       onChange={[Function]}
-      title=""
       type="checkbox"
-      values={undefined}
     />
     <label
       htmlFor={6792}
@@ -41,9 +39,7 @@ exports[`Checkbox with input text render component 1`] = `
       id={7639}
       name="nameTest"
       onChange={[Function]}
-      title=""
       type="checkbox"
-      values={undefined}
     />
     <label
       htmlFor={7639}

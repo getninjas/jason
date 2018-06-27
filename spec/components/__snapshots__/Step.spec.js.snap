@@ -146,9 +146,7 @@ exports[`Step renders with props 1`] = `
           id={6792}
           name="1_name_select"
           onChange={[Function]}
-          title=""
           type="checkbox"
-          values={undefined}
         />
         <label
           htmlFor={6792}
@@ -166,9 +164,7 @@ exports[`Step renders with props 1`] = `
           id={6793}
           name="1_name_select"
           onChange={[Function]}
-          title=""
           type="checkbox"
-          values={undefined}
         />
         <label
           htmlFor={6793}
@@ -186,9 +182,7 @@ exports[`Step renders with props 1`] = `
           id={6794}
           name="1_name_select"
           onChange={[Function]}
-          title=""
           type="checkbox"
-          values={undefined}
         />
         <label
           htmlFor={6794}
@@ -206,9 +200,7 @@ exports[`Step renders with props 1`] = `
           id={6795}
           name="1_name_select"
           onChange={[Function]}
-          title=""
           type="checkbox"
-          values={undefined}
         />
         <label
           htmlFor={6795}
@@ -226,9 +218,7 @@ exports[`Step renders with props 1`] = `
           id={7689}
           name="1_name_select"
           onChange={[Function]}
-          title=""
           type="checkbox"
-          values={undefined}
         />
         <label
           htmlFor={7689}
@@ -246,9 +236,7 @@ exports[`Step renders with props 1`] = `
           id={7639}
           name="1_name_select"
           onChange={[Function]}
-          title=""
           type="checkbox"
-          values={undefined}
         />
         <label
           htmlFor={7639}
