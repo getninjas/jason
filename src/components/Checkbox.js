@@ -108,7 +108,7 @@ export default class Checkbox extends Component {
               ) : elem.value}
             </label>
           </li>
-          ))}
+        ))}
       </ul>
     );
   }
