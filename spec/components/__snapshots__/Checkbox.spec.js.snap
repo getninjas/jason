@@ -1,12 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Checkbox render component 1`] = `
-<ul
-  required="true"
->
+<ul>
   <li
     className="form__check"
-    htmlFor={6792}
   >
     <input
       className="form__input"
@@ -14,6 +11,7 @@ exports[`Checkbox render component 1`] = `
       id={6792}
       name="nameTest"
       onChange={[Function]}
+      required="true"
       type="checkbox"
     />
     <label
@@ -26,12 +24,9 @@ exports[`Checkbox render component 1`] = `
 `;
 
 exports[`Checkbox with input text render component 1`] = `
-<ul
-  required="true"
->
+<ul>
   <li
     className="form__check"
-    htmlFor={7639}
   >
     <input
       className="form__input"
@@ -39,6 +34,7 @@ exports[`Checkbox with input text render component 1`] = `
       id={7639}
       name="nameTest"
       onChange={[Function]}
+      required="true"
       type="checkbox"
     />
     <label

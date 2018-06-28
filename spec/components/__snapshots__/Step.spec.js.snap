@@ -133,12 +133,9 @@ exports[`Step renders with props 1`] = `
     >
       Você precisa de serviços adicionais?
     </label>
-    <ul
-      required="true"
-    >
+    <ul>
       <li
         className="form__check"
-        htmlFor={6792}
       >
         <input
           className="form__input"
@@ -146,6 +143,7 @@ exports[`Step renders with props 1`] = `
           id={6792}
           name="1_name_select"
           onChange={[Function]}
+          required="true"
           type="checkbox"
         />
         <label
@@ -156,7 +154,6 @@ exports[`Step renders with props 1`] = `
       </li>
       <li
         className="form__check"
-        htmlFor={6793}
       >
         <input
           className="form__input"
@@ -164,6 +161,7 @@ exports[`Step renders with props 1`] = `
           id={6793}
           name="1_name_select"
           onChange={[Function]}
+          required="true"
           type="checkbox"
         />
         <label
@@ -174,7 +172,6 @@ exports[`Step renders with props 1`] = `
       </li>
       <li
         className="form__check"
-        htmlFor={6794}
       >
         <input
           className="form__input"
@@ -182,6 +179,7 @@ exports[`Step renders with props 1`] = `
           id={6794}
           name="1_name_select"
           onChange={[Function]}
+          required="true"
           type="checkbox"
         />
         <label
@@ -192,7 +190,6 @@ exports[`Step renders with props 1`] = `
       </li>
       <li
         className="form__check"
-        htmlFor={6795}
       >
         <input
           className="form__input"
@@ -200,6 +197,7 @@ exports[`Step renders with props 1`] = `
           id={6795}
           name="1_name_select"
           onChange={[Function]}
+          required="true"
           type="checkbox"
         />
         <label
@@ -210,7 +208,6 @@ exports[`Step renders with props 1`] = `
       </li>
       <li
         className="form__check"
-        htmlFor={7689}
       >
         <input
           className="form__input"
@@ -218,6 +215,7 @@ exports[`Step renders with props 1`] = `
           id={7689}
           name="1_name_select"
           onChange={[Function]}
+          required="true"
           type="checkbox"
         />
         <label
@@ -228,7 +226,6 @@ exports[`Step renders with props 1`] = `
       </li>
       <li
         className="form__check"
-        htmlFor={7639}
       >
         <input
           className="form__input"
@@ -236,6 +233,7 @@ exports[`Step renders with props 1`] = `
           id={7639}
           name="1_name_select"
           onChange={[Function]}
+          required="true"
           type="checkbox"
         />
         <label
