@@ -90,16 +90,17 @@ export default class Checkbox extends Component {
     } = this.props;
 
     return (
-      <ul required={required ? 'true' : 'false'}>
+      <ul>
         {this.props.values.map((elem, idx) => (
-          <li className='form__check' key={`${elem.databaseId}-${idx}`} htmlFor={elem.databaseId}>
+          <li className='form__check' key={`${elem.databaseId}-${idx}`}>
             <input
               type='checkbox'
               id={elem.databaseId}
               name={name}
               className={style}
               defaultChecked={!elem.checked ? false : elem.checked}
-              onChange={this.onChange} />
+              onChange={this.onChange}
+              required={required ? 'true' : 'false'} />
 
             <label key={`${elem.databaseId}-${idx}`} htmlFor={elem.databaseId}>
               {elem.value === 'OTHER' ? (
