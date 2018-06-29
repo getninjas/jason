@@ -24,62 +24,49 @@ export default class Checkbox extends Component {
 
     this.state = {
       values: this.props.values,
+      checked: false,
     };
 
     this.ref = createRef();
     this.onChange = this.onChange.bind(this);
     this.onBlur = this.onBlur.bind(this);
     this.normalizeInputCheck = this.normalizeInputCheck.bind(this);
-    this.inputChecked = [];
+    this.inputChecked = {};
   }
 
-  normalizeInputCheck(value) {
-    this.inputChecked = value.filter(input => input.checked)
-      .map((input) => {
-        if (input.value === 'OTHER') {
-          return input.textOther;
-        }
+  normalizeInputCheck() {
+    const arrayValues = Object.keys(this.inputChecked);
+    const values = arrayValues.map(value => this.inputChecked[value]);
 
-        return input.databaseId;
-      });
-
-    return this.inputChecked;
+    return values;
   }
 
   onChange(evt) {
-    const idNumberEvt = parseInt(evt.target.id, 10);
-    const values = this.state.values.map((eachItem) => {
-      const itemToSave = eachItem;
+    const checkboxValue = evt.target.getAttribute('data-input-value');
 
-      if (eachItem.databaseId === idNumberEvt) {
-        itemToSave.checked = evt.target.checked;
+    this.inputChecked[evt.target.id] = checkboxValue === 'OTHER' ? this.ref.current.value : evt.target.id;
 
-        if (eachItem.value === 'OTHER' && evt.target.type !== 'checkbox') {
-          itemToSave.textOther = evt.target.value;
-        }
-      }
+    if (!evt.target.checked) {
+      delete this.inputChecked[evt.target.id];
+    }
 
-      return Object.assign(eachItem, itemToSave);
-    });
+    if (checkboxValue === 'OTHER') {
+      this.setState({ checked: !this.state.checked });
+    }
 
     this.props.onFieldChange({
       id: this.props.id,
-      value: this.normalizeInputCheck(values),
+      value: this.normalizeInputCheck(),
     });
-
-    this.setState({ values });
   }
 
   onBlur(evt) {
-    const data = {
-      target: {
-        checked: true,
-        id: evt.target.getAttribute('data-id'),
-        value: evt.target.value,
-      },
-    };
+    this.inputChecked[evt.target.getAttribute('data-id')] = evt.target.value;
 
-    this.onChange(data);
+    this.props.onFieldChange({
+      id: this.props.id,
+      value: this.normalizeInputCheck(),
+    });
   }
 
   render() {
@@ -98,12 +85,12 @@ export default class Checkbox extends Component {
               id={elem.databaseId}
               name={name}
               className={style}
-              defaultChecked={!elem.checked ? false : elem.checked}
-              onChange={this.onChange} />
+              onChange={this.onChange}
+              data-input-value={elem.value} />
 
             <label key={`${elem.databaseId}-${idx}`} htmlFor={elem.databaseId}>
               {elem.value === 'OTHER' ? (
-                <input type="text" className={style} disabled={!elem.checked} data-id={elem.databaseId} ref={this.ref} onBlur={this.onBlur} />
+                <input type="text" className={style} disabled={!this.state.checked} data-id={elem.databaseId} ref={this.ref} onBlur={this.onBlur} />
               ) : elem.value}
             </label>
           </li>
