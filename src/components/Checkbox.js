@@ -23,7 +23,6 @@ export default class Checkbox extends Component {
     super(props);
 
     this.state = {
-      values: this.props.values,
       checked: false,
     };
 
