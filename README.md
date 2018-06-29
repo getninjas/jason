@@ -30,7 +30,7 @@ jason/
 
 For the project to build, **these files must exist with exact filenames**:
 
-* `src/index.js` is the JavaScript entry point for build.
+* `src/index.js` is   the JavaScript entry point for build.
 * `src/index.dev.js` is the JavaScript entry point for development.
 
 You can delete or rename the other files.

@@ -93,7 +93,7 @@ Array [
                 className="form__input"
                 id="2_id"
                 maxLength={255}
-                minLength={3}
+                minLength={1}
                 name="2_name_text"
                 onBlur={[Function]}
                 onChange={[Function]}
@@ -369,7 +369,7 @@ Array [
                 className="form__input"
                 id="user_field_2"
                 maxLength={255}
-                minLength={3}
+                minLength={1}
                 name="user_field_2"
                 onBlur={[Function]}
                 onChange={[Function]}
@@ -398,7 +398,7 @@ Array [
                 className="form__input"
                 id="user_field_3"
                 maxLength={255}
-                minLength={3}
+                minLength={1}
                 name="user_field_3"
                 onBlur={[Function]}
                 onChange={[Function]}
@@ -427,7 +427,7 @@ Array [
                 className="form__input"
                 id="phone"
                 maxLength={255}
-                minLength={3}
+                minLength={1}
                 name="phone"
                 onBlur={[Function]}
                 onChange={[Function]}

@@ -25,7 +25,7 @@ const defaultProps = {
   type: 'text',
   initialValue: '',
   style: 'form__input',
-  minLength: 3,
+  minLength: 1,
   maxLength: 255,
 };
 
