@@ -14,7 +14,7 @@ export const arrayIsInvalid = (value) => {
   }
 
   for (let i = 0; i < value.length; i += 1) {
-    if ((typeof value[i] === 'undefined') || (typeof value[i] === 'string' && !value[i].length)) {
+    if ((value[i] === undefined) || (value[i].length !== undefined && !value[i].length)) {
       arrayUndefined = true;
     }
   }

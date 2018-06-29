@@ -77,16 +77,17 @@ export default class Checkbox extends Component {
     } = this.props;
 
     return (
-      <ul required={required ? 'true' : 'false'}>
+      <ul>
         {this.props.values.map((elem, idx) => (
-          <li className='form__check' key={`${elem.databaseId}-${idx}`} htmlFor={elem.databaseId}>
+          <li className='form__check' key={`${elem.databaseId}-${idx}`}>
             <input
               type='checkbox'
               id={elem.databaseId}
               name={name}
               className={style}
               onChange={this.onChange}
-              data-input-value={elem.value} />
+              data-input-value={elem.value}
+              required={required ? 'true' : 'false'} />
 
             <label key={`${elem.databaseId}-${idx}`} htmlFor={elem.databaseId}>
               {elem.value === 'OTHER' ? (
@@ -94,7 +95,7 @@ export default class Checkbox extends Component {
               ) : elem.value}
             </label>
           </li>
-          ))}
+        ))}
       </ul>
     );
   }
