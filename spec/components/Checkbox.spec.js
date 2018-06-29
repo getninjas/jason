@@ -52,11 +52,11 @@ describe('Checkbox', () => {
       />,
     );
 
-    expect(wrapper.instance().state.values[0].checked).toBeFalsy();
+    expect(wrapper.instance().inputChecked).toEqual({});
 
-    wrapper.find('input').simulate('change', { target: { checked: true, id: 6792 } });
+    wrapper.find('input').simulate('change', { target: { checked: true, id: 6792, getAttribute: () => 'Cozinhar' } });
 
-    expect(wrapper.instance().state.values[0].checked).toBeTruthy();
+    expect(wrapper.instance().inputChecked).toEqual({ 6792: 6792 });
   });
 
   describe('with input text', () => {
@@ -82,13 +82,13 @@ describe('Checkbox', () => {
         />,
       );
 
-      expect(wrapper.instance().state.values[0].checked).toBeFalsy();
+      expect(wrapper.instance().inputChecked).toEqual({});
       expect(wrapper.find('input[type="text"]').get(0).props.disabled).toBeTruthy();
 
-      wrapper.find('input[type="checkbox"]').simulate('change', { target: { checked: true, id: 7639 } });
+      wrapper.find('input[type="checkbox"]').simulate('change', { target: { checked: true, id: 7639, getAttribute: () => 'OTHER' } });
 
       expect(wrapper.find('input[type="text"]').get(0).props.disabled).toBeFalsy();
-      expect(wrapper.instance().state.values[0].checked).toBeTruthy();
+      expect(wrapper.instance().inputChecked).toEqual({ 7639: '' });
     });
 
     it('checkbox with OTHER value need to have an input text', () => {
@@ -99,10 +99,12 @@ describe('Checkbox', () => {
         />,
       );
 
-      wrapper.find('input[type="checkbox"]').simulate('change', { target: { checked: true, id: 7639 } });
+      expect(wrapper.instance().inputChecked).toEqual({});
+
+      wrapper.find('input[type="checkbox"]').simulate('change', { target: { checked: true, id: 7639, getAttribute: () => 'OTHER' } });
       wrapper.find('input[type="text"]').simulate('blur', { target: { value: 'Teste value', getAttribute: () => 7639 } });
 
-      expect(wrapper.instance().state.values[0].textOther).toEqual('Teste value');
+      expect(wrapper.instance().inputChecked).toEqual({ 7639: 'Teste value' });
     });
   });
 });
