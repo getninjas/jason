@@ -10,7 +10,7 @@ exports[`Checkbox render component 1`] = `
   >
     <input
       className="form__input"
-      defaultChecked={false}
+      data-input-value="Cozinhar"
       id={6792}
       name="nameTest"
       onChange={[Function]}
@@ -35,7 +35,7 @@ exports[`Checkbox with input text render component 1`] = `
   >
     <input
       className="form__input"
-      defaultChecked={false}
+      data-input-value="OTHER"
       id={7639}
       name="nameTest"
       onChange={[Function]}

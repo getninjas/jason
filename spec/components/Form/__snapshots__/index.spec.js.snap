@@ -157,7 +157,7 @@ Array [
                 >
                     <input
                         className="form__input"
-                        defaultChecked={false}
+                        data-input-value="Cozinhar"
                         id={6792}
                         name="1_name_select"
                         onChange={[Function]}
@@ -175,7 +175,7 @@ Array [
                 >
                     <input
                         className="form__input"
-                        defaultChecked={false}
+                        data-input-value="Passar roupa"
                         id={6793}
                         name="1_name_select"
                         onChange={[Function]}
@@ -193,7 +193,7 @@ Array [
                 >
                     <input
                         className="form__input"
-                        defaultChecked={false}
+                        data-input-value="Limpar áreas externas (jardim/garagem ou quintal)"
                         id={6794}
                         name="1_name_select"
                         onChange={[Function]}
@@ -211,7 +211,7 @@ Array [
                 >
                     <input
                         className="form__input"
-                        defaultChecked={false}
+                        data-input-value="Não preciso"
                         id={6795}
                         name="1_name_select"
                         onChange={[Function]}
@@ -229,7 +229,7 @@ Array [
                 >
                     <input
                         className="form__input"
-                        defaultChecked={false}
+                        data-input-value="Outro"
                         id={7689}
                         name="1_name_select"
                         onChange={[Function]}
@@ -247,7 +247,7 @@ Array [
                 >
                     <input
                         className="form__input"
-                        defaultChecked={false}
+                        data-input-value="OTHER"
                         id={7639}
                         name="1_name_select"
                         onChange={[Function]}
