@@ -65,7 +65,7 @@ export default class Input extends Component {
   }
 
   componentDidMount() {
-    const { type, initialValue } = this.props;
+    const { type } = this.props;
 
     if (type === 'phone') {
       this.mask = new IMask(this.ref.current, { mask: '(00) 00000-0000' });
@@ -78,8 +78,6 @@ export default class Input extends Component {
         this.setState({ value: this.mask.value });
       });
     }
-
-    this.setState({ initialValue });
   }
 
   render() {

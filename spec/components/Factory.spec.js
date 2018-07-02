@@ -4,6 +4,7 @@ import { form } from '../../src/form.json';
 const select = form.steps[0].fields[0];
 const textArea = form.steps[0].fields[2];
 const input = form.steps[0].fields[1];
+const checkbox = form.steps[0].fields[3];
 
 const commonProps = {
   onFieldChange: () => {},
@@ -23,6 +24,12 @@ describe('Factory', () => {
     const result = Factory.getComponent({ item: textArea, ...commonProps });
 
     expect(result.type.name).toEqual('TextArea');
+  });
+
+  it('renders input type checkbox', () => {
+    const result = Factory.getComponent({ item: checkbox, ...commonProps });
+
+    expect(result.type.name).toEqual('Checkbox');
   });
 
   it('renders input type text', () => {
