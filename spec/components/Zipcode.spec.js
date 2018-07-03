@@ -68,31 +68,31 @@ describe('Zipcode', () => {
   describe('.onChange', () => {
     it('starts zipcode fetch when fetchCompleted false', () => {
       const component = mount(getZipCodeMock());
-
-      component.instance().getZipCode = jest.fn();
-
       const evt = { target: { value: '04707-060' } };
       const successCallback = () => {};
       const errorCallback = () => {};
+      const instance = component.instance();
 
-      component.instance().onChange(successCallback, errorCallback, evt);
+      instance.updateZipcode = jest.fn();
 
-      expect(component.instance().getZipCode).toHaveBeenCalledWith('04707-060', successCallback, errorCallback);
+      instance.onChange(successCallback, errorCallback, evt);
+
+      expect(instance.updateZipcode).toHaveBeenCalledWith('04707-060', successCallback, errorCallback);
     });
 
     it('does not fetch zipcode if fetchCompleted true', () => {
       const component = mount(getZipCodeMock());
-
-      component.state().fetchCompleted = true;
-      component.instance().getZipCode = jest.fn();
-
       const evt = { target: { value: '04707-060' } };
       const successCallback = () => {};
       const errorCallback = () => {};
+      const instance = component.instance();
 
-      component.instance().onChange(successCallback, errorCallback, evt);
+      component.state().fetchCompleted = true;
+      instance.updateZipcode = jest.fn();
 
-      expect(component.instance().getZipCode).not.toHaveBeenCalledWith('04707060', successCallback, errorCallback);
+      instance.onChange(successCallback, errorCallback, evt);
+
+      expect(instance.updateZipcode).not.toHaveBeenCalledWith('04707-060', successCallback, errorCallback);
     });
 
     it('calls onZipcodeSuccess and successCallback on fetch success', async () => {
@@ -128,6 +128,24 @@ describe('Zipcode', () => {
     });
   });
 
+  describe('.updateZipcode', () => {
+    it('calls setState, getZipCode', () => {
+      const component = mount(getZipCodeMock());
+      const successCallback = jest.fn();
+      const errorCallback = jest.fn();
+      const zipcode = '04707060';
+      const instance = component.instance();
+
+      instance.setState = jest.fn();
+      instance.getZipCode = jest.fn();
+
+      instance.updateZipcode(zipcode, successCallback, errorCallback);
+
+      expect(instance.setState).toHaveBeenCalledWith({ fetching: true, value: zipcode });
+      expect(instance.getZipCode).toHaveBeenCalledWith(zipcode, successCallback, errorCallback);
+    });
+  });
+
   describe('.onZipcodeSuccess', () => {
     it('calls setState, this.props.onFieldChange', async () => {
       const onFieldChange = jest.fn();
@@ -146,16 +164,16 @@ describe('Zipcode', () => {
   });
 
   describe('.onZipcodeError', () => {
-    it('calls setState, this.props.onFieldChange', async () => {
-      const onFieldChange = jest.fn();
+    it('calls setState, this.props.onFieldBlur', async () => {
+      const onFieldBlur = jest.fn();
       const ZipcodeMock = getComponentWithContext();
-      const component = mount(<ZipcodeMock id='zip_id' name='zip_name' zipcodeUrlService='' onFieldBlur={() => {}} onFieldChange={ onFieldChange }/>);
+      const component = mount(<ZipcodeMock id='zip_id' name='zip_name' zipcodeUrlService='' onFieldChange={() => {}} onFieldBlur={onFieldBlur} />);
 
       component.instance().setState = jest.fn();
 
       await component.instance().onZipcodeError('04707060');
       expect(component.instance().setState).toHaveBeenCalled();
-      expect(component.instance().props.onFieldChange).toHaveBeenCalled();
+      expect(component.instance().props.onFieldBlur).toHaveBeenCalled();
     });
   });
 });
