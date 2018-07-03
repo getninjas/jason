@@ -92,7 +92,7 @@ describe('Zipcode', () => {
 
       instance.onChange(successCallback, errorCallback, evt);
 
-      expect(instance.updateZipcode).not.toHaveBeenCalledWith('04707060', successCallback, errorCallback);
+      expect(instance.updateZipcode).not.toHaveBeenCalledWith('04707-060', successCallback, errorCallback);
     });
 
     it('calls onZipcodeSuccess and successCallback on fetch success', async () => {
