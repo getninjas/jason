@@ -1,4 +1,4 @@
-import { isEmpty, isMinLength, isValidEmail, isValidZipcode, isValidCellPhone, validateField, validateStep } from '../../../src/components/Form/validation';
+import { isEmpty, arrayIsInvalid, isMinLength, isValidEmail, isValidZipcode, isValidCellPhone, validateField, validateStep } from '../../../src/components/Form/validation';
 import { form } from '../../../src/form.json';
 import fillFormFields from '../../helper';
 import errorMessages from '../../../src/helpers/errorMessages';
@@ -16,6 +16,39 @@ describe('.isEmpty', () => {
     expect(result).toBe(false);
   });
 });
+
+describe('.arrayIsInvalid', () => {
+  it('returns true for array is empty', () => {
+    const result = arrayIsInvalid([]);
+
+    expect(result).toBe(true);
+  });
+
+  it('returns true for array contains undefined', () => {
+    const result = arrayIsInvalid([7962, undefined]);
+
+    expect(result).toBe(true);
+  });
+
+  it('returns true for array contains empty string', () => {
+    const result = arrayIsInvalid([7962, '']);
+
+    expect(result).toBe(true);
+  });
+
+  it('returns true for array only undefined value', () => {
+    const result = arrayIsInvalid([undefined]);
+
+    expect(result).toBe(true);
+  });
+
+  it('returns false for array contains valid values', () => {
+    const result = arrayIsInvalid([7962, 'Test value']);
+
+    expect(result).toBe(false);
+  });
+});
+
 
 describe('.isMinLength', () => {
   it('returns true for string greather than minLength', () => {
@@ -165,6 +198,12 @@ describe('.validateField', () => {
     const result = validateField({ required: true, type: 'zipcode', value: '1111-111' });
 
     expect(result).toBe(errorMessages.REQUIRED_VALID_ZIPCODE);
+  });
+
+  it('returns error message for invalid checkbox', () => {
+    const result = validateField({ required: true, type: 'checkbox', value: [7692, undefined] });
+
+    expect(result).toBe(errorMessages.REQUIRED_FIELD);
   });
 
   it('returns error message for empty value', () => {

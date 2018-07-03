@@ -2,7 +2,24 @@ import errorMessages from '../../../src/helpers/errorMessages';
 
 export const isEmpty = (value) => {
   const regex = /^\s*$/;
+
   return regex.test(value.toString().trim());
+};
+
+export const arrayIsInvalid = (value) => {
+  let arrayUndefined = false;
+
+  if (!value.length) {
+    return true;
+  }
+
+  for (let i = 0; i < value.length; i += 1) {
+    if ((value[i] === undefined) || (value[i].length !== undefined && !value[i].length)) {
+      arrayUndefined = true;
+    }
+  }
+
+  return arrayUndefined;
 };
 
 export const isMinLength = (text, length) => {
@@ -45,6 +62,10 @@ export const validateField = ({ required, type, value, minLength }) => {
 
   if (type === 'zipcode' && (isEmpty(value) || !isValidZipcode(value))) {
     return errorMessages.REQUIRED_VALID_ZIPCODE;
+  }
+
+  if (type === 'checkbox' && arrayIsInvalid(value)) {
+    return errorMessages.REQUIRED_FIELD;
   }
 
   if (required && isEmpty(value)) {

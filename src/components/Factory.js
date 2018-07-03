@@ -3,6 +3,7 @@ import Select from './Select';
 import Input from './Input';
 import TextArea from './TextArea';
 import Zipcode from './Zipcode';
+import Checkbox from './Checkbox';
 
 export default class Factory {
   static getComponent({ item, index, onFieldChange, onFieldBlur, formName, zipcodeUrlService }) {
@@ -46,10 +47,20 @@ export default class Factory {
       );
     }
 
+    if (type === 'checkbox') {
+      return (
+        <Checkbox
+          {...commonProps}
+          values={values}
+        />
+      );
+    }
+
     if (inputTypeAccepted.toString().indexOf(type) > -1) {
       return (
         <Input
           {...commonProps}
+          values={values}
           type={type}
         />
       );
