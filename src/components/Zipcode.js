@@ -54,6 +54,11 @@ export default class Zipcode extends Component {
     this.onBlur = this.onBlur.bind(this);
   }
 
+  updateZipcode(zipcode, successCallback, errorCallback) {
+    this.setState({ fetching: true, value: zipcode });
+    this.getZipCode(zipcode, successCallback, errorCallback);
+  }
+
   onChange(successCallback, errorCallback, evt) {
     const zipcode = evt.target.value;
 
@@ -61,13 +66,17 @@ export default class Zipcode extends Component {
       this.setState({ value: zipcode, fullAddress: '', fetchCompleted: false });
     } else if (isValidZipCodeInput(zipcode.length, this.state.fetchCompleted)) {
       this.props.onFieldBlur({ ...this.props, value: zipcode });
-      this.setState({ fetching: true, value: zipcode });
-      this.getZipCode(zipcode, successCallback, errorCallback);
+
+      this.updateZipcode(zipcode, successCallback, errorCallback);
     }
   }
 
-  onBlur(evt) {
+  onBlur(successCallback, errorCallback, evt) {
     this.props.onFieldBlur({ ...this.props, value: this.state.zipcodeInvalid ? '' : evt.target.value });
+
+    if (isValidZipCodeInput(evt.target.value.length, this.state.fetchCompleted) && !this.state.zipcodeInvalid) {
+      this.updateZipcode(evt.target.value, successCallback, errorCallback);
+    }
   }
 
   async getZipCode(zipcode, successCallback, errorCallback) {
@@ -101,11 +110,20 @@ export default class Zipcode extends Component {
   onZipcodeError() {
     this.setState({ fullAddress: '', fetching: false, zipcodeInvalid: true });
 
-    this.props.onFieldChange({ value: '', fetchCompleted: false, ...this.props });
+    this.props.onFieldBlur({ ...this.props, fetchCompleted: false, value: this.state.zipcodeInvalid ? '' : this.state.value });
   }
 
   componentDidMount() {
     this.mask = new IMask(this.inputRef.current, { mask: ZIPCODE_MASK });
+
+    this.mask.on('complete', () => {
+      this.props.onFieldChange({
+        value: this.mask.value,
+        id: this.props.id,
+      });
+
+      this.setState({ value: this.mask.value, zipcodeInvalid: false });
+    });
   }
 
   render() {
@@ -116,7 +134,7 @@ export default class Zipcode extends Component {
       <AppContext.Consumer>
         { context => <Fragment>
           <a href='http://www.buscacep.correios.com.br' target='_blank' className='form__label-link' rel='noopener noreferrer'>Não lembra seu CEP?</a>
-          <input id={id} name={name} className={style} type='tel' placeholder={placeholder} required={required} onChange={this.onChange.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)} onBlur={this.onBlur} ref={this.inputRef} />
+          <input id={id} name={name} className={style} type='tel' placeholder={placeholder} required={required} onChange={this.onChange.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)} onBlur={this.onBlur.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)} ref={this.inputRef} />
           { fetching ? <span className='zipcode__loader' >Buscando CEP...</span> : <span className='full-address'>{fullAddress}</span> }
           <input id='street' name='street' type='hidden' value={street} />
           <input id='neighborhood' name='neighborhood' type='hidden' value={neighborhood} />
