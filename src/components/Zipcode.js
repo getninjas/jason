@@ -72,10 +72,13 @@ export default class Zipcode extends Component {
   }
 
   onBlur(successCallback, errorCallback, evt) {
-    this.props.onFieldBlur({ ...this.props, value: this.state.zipcodeInvalid ? '' : evt.target.value });
+    const zipcode = evt.target.value;
+    const { fetchCompleted, zipcodeInvalid } = this.state;
 
-    if (isValidZipCodeInput(evt.target.value.length, this.state.fetchCompleted) && !this.state.zipcodeInvalid) {
-      this.updateZipcode(evt.target.value, successCallback, errorCallback);
+    this.props.onFieldBlur({ ...this.props, value: this.state.zipcodeInvalid ? '' : zipcode });
+
+    if (isValidZipCodeInput(zipcode.length, fetchCompleted) && !zipcodeInvalid) {
+      this.updateZipcode(zipcode, successCallback, errorCallback);
     }
   }
 
