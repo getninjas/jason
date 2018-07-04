@@ -5,6 +5,7 @@ const propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onFieldChange: PropTypes.func.isRequired,
+  onFieldBlur: PropTypes.func.isRequired,
   type: PropTypes.string,
   required: PropTypes.bool,
   values: PropTypes.array,
@@ -28,7 +29,8 @@ export default class Checkbox extends Component {
 
     this.ref = createRef();
     this.onChange = this.onChange.bind(this);
-    this.onBlur = this.onBlur.bind(this);
+    this.onBlurCheckbox = this.onBlurCheckbox.bind(this);
+    this.onBlurInputOther = this.onBlurInputOther.bind(this);
     this.normalizeInputCheck = this.normalizeInputCheck.bind(this);
     this.inputChecked = {};
   }
@@ -59,7 +61,14 @@ export default class Checkbox extends Component {
     });
   }
 
-  onBlur(evt) {
+  onBlurCheckbox() {
+    this.props.onFieldBlur({
+      id: this.props.id,
+      value: this.normalizeInputCheck(),
+    });
+  }
+
+  onBlurInputOther(evt) {
     this.inputChecked[evt.target.getAttribute('data-id')] = evt.target.value;
 
     this.props.onFieldChange({
@@ -85,12 +94,13 @@ export default class Checkbox extends Component {
               name={name}
               className={style}
               onChange={this.onChange}
+              onBlur={this.onBlurCheckbox}
               data-input-value={elem.value}
               required={required ? 'true' : 'false'} />
 
             <label key={`${elem.databaseId}-${idx}`} htmlFor={elem.databaseId}>
               {elem.value === 'OTHER' ? (
-                <input type="text" className={style} disabled={!this.state.checked} data-id={elem.databaseId} ref={this.ref} onBlur={this.onBlur} />
+                <input type="text" className={style} disabled={!this.state.checked} data-id={elem.databaseId} ref={this.ref} onBlur={this.onBlurInputOther} />
               ) : elem.value}
             </label>
           </li>

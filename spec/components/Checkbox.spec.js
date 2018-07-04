@@ -45,10 +45,13 @@ describe('Checkbox', () => {
   });
 
   it('changes input checked .onChage event', () => {
+    const onChange = jest.fn();
+
     const wrapper = mount(
       <Checkbox
         {...commonProps}
         values={[checkbox.values[0]]}
+        onFieldChange={onChange}
       />,
     );
 
@@ -56,7 +59,24 @@ describe('Checkbox', () => {
 
     wrapper.find('input').simulate('change', { target: { checked: true, id: 6792, getAttribute: () => 'Cozinhar' } });
 
+    expect(wrapper.instance().props.onFieldChange).toBeCalled();
     expect(wrapper.instance().inputChecked).toEqual({ 6792: 6792 });
+  });
+
+  it('changes input checked .onBlurCheckbox event', () => {
+    const onBlurCheckbox = jest.fn();
+
+    const wrapper = mount(
+      <Checkbox
+        {...commonProps}
+        values={[checkbox.values[0]]}
+        onFieldBlur={onBlurCheckbox}
+      />,
+    );
+
+    wrapper.find('input').simulate('blur');
+
+    expect(wrapper.instance().props.onFieldBlur).toBeCalled();
   });
 
   describe('with input text', () => {
@@ -75,10 +95,13 @@ describe('Checkbox', () => {
     });
 
     it('checkbox with OTHER value need to have an input text', () => {
+      const onBlurInputOther = jest.fn();
+
       const wrapper = mount(
         <Checkbox
           {...commonProps}
           values={[checkbox.values[5]]}
+          onFieldChange={onBlurInputOther}
         />,
       );
 
@@ -87,6 +110,7 @@ describe('Checkbox', () => {
 
       wrapper.find('input[type="checkbox"]').simulate('change', { target: { checked: true, id: 7639, getAttribute: () => 'OTHER' } });
 
+      expect(wrapper.instance().props.onFieldChange).toBeCalled();
       expect(wrapper.find('input[type="text"]').get(0).props.disabled).toBeFalsy();
       expect(wrapper.instance().inputChecked).toEqual({ 7639: '' });
     });
