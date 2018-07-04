@@ -1,7 +1,7 @@
-import { isEmpty, arrayIsInvalid, isMinLength, isValidEmail, isValidZipcode, isValidCellPhone, validateField, validateStep } from '../../../src/components/Form/validation';
+import { arrayIsInvalid, isEmpty, isMinLength, isValidCellPhone, isValidEmail, isValidZipcode, validateField, validateStep } from '../../../src/components/Form/validation';
 import { form } from '../../../src/form.json';
-import fillFormFields from '../../helper';
 import errorMessages from '../../../src/helpers/errorMessages';
+import fillFormFields from '../../helper';
 
 describe('.isEmpty', () => {
   it('returns true for empty string', () => {
@@ -203,7 +203,7 @@ describe('.validateField', () => {
   it('returns error message for invalid checkbox', () => {
     const result = validateField({ required: true, type: 'checkbox', value: [7692, undefined] });
 
-    expect(result).toBe(errorMessages.REQUIRED_FIELD);
+    expect(result).toBe(errorMessages.REQUIRED_CHECKBOX_FIELD);
   });
 
   it('returns error message for empty value', () => {
