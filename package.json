@@ -7,6 +7,7 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "coverage": "node scripts/test.js --env=jsdom --coverage",
+    "preversion": "git checkout master && git pull origin master && git fetch origin --tags",
     "version": "npm run build && git add -f build",
     "postversion": "git push && git push --tags",
     "config": "npm config set progress=false && npm config set git-tag-version=true",
