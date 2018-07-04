@@ -49,7 +49,7 @@ export const isValidCellPhone = (value) => {
 
 export const validateField = ({ required, type, value, minLength }) => {
   if (required && value === null) {
-    return errorMessages.REQUIRED_FIELD;
+    return (type === 'checkbox') ? errorMessages.REQUIRED_CHECKBOX_FIELD : errorMessages.REQUIRED_FIELD;
   }
 
   if (type === 'phone' && (isEmpty(value) || !isValidCellPhone(value))) {
@@ -65,7 +65,7 @@ export const validateField = ({ required, type, value, minLength }) => {
   }
 
   if (type === 'checkbox' && arrayIsInvalid(value)) {
-    return errorMessages.REQUIRED_FIELD;
+    return errorMessages.REQUIRED_CHECKBOX_FIELD;
   }
 
   if (required && isEmpty(value)) {
