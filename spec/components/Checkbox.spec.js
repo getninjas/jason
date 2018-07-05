@@ -64,13 +64,13 @@ describe('Checkbox', () => {
   });
 
   it('changes input checked .onBlurCheckbox event', () => {
-    const onBlurCheckbox = jest.fn();
+    const onBlur = jest.fn();
 
     const wrapper = mount(
       <Checkbox
         {...commonProps}
         values={[checkbox.values[0]]}
-        onFieldBlur={onBlurCheckbox}
+        onFieldBlur={onBlur}
       />,
     );
 
@@ -95,13 +95,13 @@ describe('Checkbox', () => {
     });
 
     it('checkbox with OTHER value need to have an input text', () => {
-      const onBlurInputOther = jest.fn();
+      const onBlur = jest.fn();
 
       const wrapper = mount(
         <Checkbox
           {...commonProps}
           values={[checkbox.values[5]]}
-          onFieldChange={onBlurInputOther}
+          onFieldChange={onBlur}
         />,
       );
 
