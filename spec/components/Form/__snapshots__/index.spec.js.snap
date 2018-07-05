@@ -265,6 +265,7 @@ Array [
                             data-id={7639}
                             disabled={true}
                             onBlur={[Function]}
+                            required={false}
                             type="text"
                         />
                     </label>

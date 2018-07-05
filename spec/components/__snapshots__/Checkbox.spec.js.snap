@@ -47,6 +47,7 @@ exports[`Checkbox with input text render component 1`] = `
         data-id={7639}
         disabled={true}
         onBlur={[Function]}
+        required={false}
         type="text"
       />
     </label>
