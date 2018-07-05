@@ -157,6 +157,7 @@ Array [
                         data-input-value="Cozinhar"
                         id={6792}
                         name="1_name_select"
+                        onBlur={[Function]}
                         onChange={[Function]}
                         required="true"
                         type="checkbox"
@@ -175,6 +176,7 @@ Array [
                         data-input-value="Passar roupa"
                         id={6793}
                         name="1_name_select"
+                        onBlur={[Function]}
                         onChange={[Function]}
                         required="true"
                         type="checkbox"
@@ -193,6 +195,7 @@ Array [
                         data-input-value="Limpar áreas externas (jardim/garagem ou quintal)"
                         id={6794}
                         name="1_name_select"
+                        onBlur={[Function]}
                         onChange={[Function]}
                         required="true"
                         type="checkbox"
@@ -211,6 +214,7 @@ Array [
                         data-input-value="Não preciso"
                         id={6795}
                         name="1_name_select"
+                        onBlur={[Function]}
                         onChange={[Function]}
                         required="true"
                         type="checkbox"
@@ -229,6 +233,7 @@ Array [
                         data-input-value="Outro"
                         id={7689}
                         name="1_name_select"
+                        onBlur={[Function]}
                         onChange={[Function]}
                         required="true"
                         type="checkbox"
@@ -247,6 +252,7 @@ Array [
                         data-input-value="OTHER"
                         id={7639}
                         name="1_name_select"
+                        onBlur={[Function]}
                         onChange={[Function]}
                         required="true"
                         type="checkbox"
@@ -259,6 +265,7 @@ Array [
                             data-id={7639}
                             disabled={true}
                             onBlur={[Function]}
+                            required={false}
                             type="text"
                         />
                     </label>
