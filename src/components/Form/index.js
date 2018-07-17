@@ -67,6 +67,12 @@ export default class Form extends Component {
     }, this.props.onReady);
   }
 
+  updatedSteps(steps) {
+    this.setState({
+      steps,
+    });
+  }
+
   onZipcodeFetchSuccess(data) {
     this.props.onZipcodeFetchSuccess(data);
 

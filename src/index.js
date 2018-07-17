@@ -13,6 +13,10 @@ export default class Jason {
     this.form.formSubmit();
   }
 
+  updateSteps(steps) {
+    this.form.updatedSteps(steps);
+  }
+
   init() {
     ReactDOM.render(
       <Form data={this.data.form}
