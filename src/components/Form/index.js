@@ -42,12 +42,17 @@ export default class Form extends Component {
       onZipcodeFetchSuccess: data => this.onZipcodeFetchSuccess(data),
       onZipcodeFetchError: data => this.props.onZipcodeFetchError(data),
       stepsCount: 0,
+      address: {
+        type_street: '',
+        street: '',
+        neighborhood: '',
+        city: '',
+        uf: '',
+      },
       steps: [],
     };
 
-    this.requestAddress = {};
     this.formStyle = 'form container sh-form-content space-box-small';
-
     this.onSubmit = this.onSubmit.bind(this);
     this.onFieldChange = this.onFieldChange.bind(this);
     this.onFieldBlur = this.onFieldBlur.bind(this);
@@ -78,13 +83,15 @@ export default class Form extends Component {
 
     const { type_street, street, neighborhood, city, uf } = data;
 
-    this.requestAddress = {
-      type_street,
-      street,
-      neighborhood,
-      city,
-      uf,
-    };
+    this.setState({
+      address: {
+        type_street,
+        street,
+        neighborhood,
+        city,
+        uf,
+      },
+    });
   }
 
   formSubmit() {
@@ -130,7 +137,7 @@ export default class Form extends Component {
   getFields() {
     const fields = this.state.steps.map(step => step.fields);
 
-    return { data: { ...fields, address: { ...this.requestAddress } } };
+    return { data: { ...fields, ...this.state.address } };
   }
 
   handleStepChange() {

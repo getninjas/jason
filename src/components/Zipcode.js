@@ -130,9 +130,9 @@ export default class Zipcode extends Component {
     });
 
     if (this.props.initialValue.length) {
-      console.log('mount', this.inputRef.current);
-      this.inputRef.current.focus();
-      this.inputRef.current.blur();
+      const elem = document.getElementById('zipcode');
+      const event = new Event('blur');
+      elem.dispatchEvent(event);
     }
   }
 
@@ -142,10 +142,14 @@ export default class Zipcode extends Component {
 
     return (
       <AppContext.Consumer>
-        { context => <Fragment>
+        {context => <Fragment>
           <a href='http://www.buscacep.correios.com.br' target='_blank' className='form__label-link' rel='noopener noreferrer'>Não lembra seu CEP?</a>
-          <input id={id} name={name} className={style} type='tel' placeholder={placeholder} required={required} onChange={this.onChange.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)} onBlur={this.onBlur.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)} ref={this.inputRef} value={this.state.value} />
-          { fetching ? <span className='zipcode__loader' >Buscando CEP...</span> : <span className='full-address'>{fullAddress}</span> }
+          <input id={id} name={name} className={style} type='tel' placeholder={placeholder} required={required}
+            onChange={this.onChange.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)}
+            onBlur={this.onBlur.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)}
+            ref={this.inputRef}
+            value={this.state.value} />
+          {fetching ? <span className='zipcode__loader' >Buscando CEP...</span> : <span className='full-address'>{fullAddress}</span>}
           <input id='street' name='street' type='hidden' value={street} />
           <input id='neighborhood' name='neighborhood' type='hidden' value={neighborhood} />
           <input id='city' name={'city'} type={'hidden'} value={city} />
