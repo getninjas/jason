@@ -15,6 +15,7 @@ const propTypes = {
   type: PropTypes.string,
   required: PropTypes.bool,
   style: PropTypes.string,
+  initialValue: PropTypes.string,
   value: PropTypes.any,
   zipcodeUrlService: PropTypes.string.isRequired,
   minLength: PropTypes.number,
@@ -37,7 +38,7 @@ export default class Zipcode extends Component {
     super(props);
 
     this.state = {
-      value: '',
+      value: this.props.initialValue,
       type_street: '',
       street: '',
       city: '',
@@ -127,6 +128,12 @@ export default class Zipcode extends Component {
 
       this.setState({ value: this.mask.value, zipcodeInvalid: false });
     });
+
+    if (this.props.initialValue.length) {
+      console.log('mount', this.inputRef.current);
+      this.inputRef.current.focus();
+      this.inputRef.current.blur();
+    }
   }
 
   render() {
@@ -137,7 +144,7 @@ export default class Zipcode extends Component {
       <AppContext.Consumer>
         { context => <Fragment>
           <a href='http://www.buscacep.correios.com.br' target='_blank' className='form__label-link' rel='noopener noreferrer'>Não lembra seu CEP?</a>
-          <input id={id} name={name} className={style} type='tel' placeholder={placeholder} required={required} onChange={this.onChange.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)} onBlur={this.onBlur.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)} ref={this.inputRef} />
+          <input id={id} name={name} className={style} type='tel' placeholder={placeholder} required={required} onChange={this.onChange.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)} onBlur={this.onBlur.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)} ref={this.inputRef} value={this.state.value} />
           { fetching ? <span className='zipcode__loader' >Buscando CEP...</span> : <span className='full-address'>{fullAddress}</span> }
           <input id='street' name='street' type='hidden' value={street} />
           <input id='neighborhood' name='neighborhood' type='hidden' value={neighborhood} />

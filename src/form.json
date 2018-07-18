@@ -53,7 +53,7 @@
           },
           {
             "title": "Informações adicionais",
-            "required": true,
+            "required": false,
             "type": "textarea",
             "id": "3_id",
             "name": "3_name_textarea",
@@ -73,22 +73,6 @@
               {
                 "databaseId": 6792,
                 "value": "Cozinhar"
-              },
-              {
-                "databaseId": 6793,
-                "value": "Passar roupa"
-              },
-              {
-                "databaseId": 6794,
-                "value": "Limpar áreas externas (jardim/garagem ou quintal)"
-              },
-              {
-                "databaseId": 6795,
-                "value": "Não preciso"
-              },
-              {
-                "databaseId": 7689,
-                "value": "Outro"
               },
               {
                 "databaseId": 7639,
@@ -111,7 +95,7 @@
             "id": "zipcode",
             "name": "zipcode",
             "placeholder": "00000-000",
-            "value": null,
+            "value": "04904-060",
             "wrapperClassName": "form__field input",
             "values": []
           },
@@ -142,7 +126,7 @@
             "type": "phone",
             "placeholder": "(__) _____-____",
             "required": true,
-            "value": null,
+            "value": "(11) 96311-2689",
             "values": []
           }
         ]
