@@ -4,6 +4,7 @@ import axios from 'axios';
 import IMask from 'imask';
 import { AppContext } from '../AppContext';
 import { isUserTyping, isValidZipCodeInput, getEmptyState, fillAddressState } from '../helpers/zipcode';
+import triggerNativeEvent from '../helpers/domEvent';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
@@ -130,9 +131,7 @@ export default class Zipcode extends Component {
     });
 
     if (this.props.initialValue.length) {
-      const elem = document.getElementById('zipcode');
-      const event = new Event('blur');
-      elem.dispatchEvent(event);
+      triggerNativeEvent('#zipcode', 'blur');
     }
   }
 
