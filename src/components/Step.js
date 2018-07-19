@@ -24,6 +24,15 @@ const defaultProps = {
 };
 
 export default class Step extends Component {
+  constructor() {
+    super();
+    this.handleButtonClick = this.handleButtonClick.bind(this);
+  }
+
+  handleButtonClick(evt) {
+    this.props.onSubmit(evt);
+  }
+
   render() {
     const { buttonText, headerMarkup, fields } = this.props;
 
@@ -53,7 +62,7 @@ export default class Step extends Component {
           )
         }
 
-        <Button isSubmit={this.props.isLast} handleButtonClick={this.props.onSubmit}>
+        <Button isSubmit={this.props.isLast} handleButtonClick={this.handleButtonClick}>
           {buttonText}
         </Button>
       </fieldset>

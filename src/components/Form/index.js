@@ -72,10 +72,10 @@ export default class Form extends Component {
     }, this.props.onReady);
   }
 
-  updatedSteps(steps) {
-    this.setState({
-      steps,
-    });
+  updateState(state) {
+    console.log('state', state);
+
+    this.setState({ ...state });
   }
 
   onZipcodeFetchSuccess(data) {
@@ -208,6 +208,8 @@ export default class Form extends Component {
 
   render() {
     const { name, action } = this.props;
+
+    console.log('render jason', this.state);
 
     return (
       <AppContext.Provider value={this.state}>

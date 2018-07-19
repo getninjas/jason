@@ -13,8 +13,15 @@ export default class Jason {
     this.form.formSubmit();
   }
 
-  updateSteps(steps) {
-    this.form.updatedSteps(steps);
+  updateState(state) {
+    // this.form.updateState(steps);
+
+    ReactDOM.unmountComponentAtNode(this.element);
+
+    ReactDOM.render(
+      <Form data={state}
+        ref={(component) => { this.form = component; }} />,
+        this.element);
   }
 
   init() {
@@ -31,7 +38,6 @@ export default class Jason {
         onSubmitError={ this.onSubmitError }
         onStepChange={ this.onStepChange }
         ref={(component) => { this.form = component; }} />,
-        this.element,
-    );
+        this.element);
   }
 }

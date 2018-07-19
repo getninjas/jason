@@ -60,7 +60,6 @@ export default class Factory {
       return (
         <Input
           {...commonProps}
-          values={values}
           type={type}
         />
       );

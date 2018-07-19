@@ -39,7 +39,7 @@ export default class Zipcode extends Component {
     super(props);
 
     this.state = {
-      value: this.props.initialValue,
+      value: this.props.initialValue || defaultProps.value,
       type_street: '',
       street: '',
       city: '',
@@ -130,7 +130,7 @@ export default class Zipcode extends Component {
       this.setState({ value: this.mask.value, zipcodeInvalid: false });
     });
 
-    if (this.props.initialValue.length) {
+    if (this.state.value.length) {
       triggerNativeEvent('#zipcode', 'blur');
     }
   }

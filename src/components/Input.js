@@ -23,7 +23,7 @@ const defaultProps = {
   required: false,
   title: '',
   type: 'text',
-  initialValue: '',
+  value: '',
   style: 'form__input',
   minLength: 1,
   maxLength: 255,
@@ -34,7 +34,7 @@ export default class Input extends Component {
     super(props);
 
     this.state = {
-      value: this.props.initialValue ? this.props.initialValue : '',
+      value: this.props.initialValue || defaultProps.value,
     };
 
     this.ref = createRef();
