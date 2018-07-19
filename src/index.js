@@ -20,6 +20,15 @@ export default class Jason {
 
     ReactDOM.render(
       <Form data={state}
+        action={this.action}
+        onReady={ this.onReady }
+        onZipcodeFetchSuccess={ (data) => { this.onZipcodeFetchSuccess(data); } }
+        onZipcodeFetchError={ (data) => { this.onZipcodeFetchError(data); } }
+        onSubmit={ this.onSubmit }
+        onSubmitSuccess={ this.onSubmitSuccess }
+        onSubmitFieldError={ this.onSubmitFieldError }
+        onSubmitError={ this.onSubmitError }
+        onStepChange={ this.onStepChange }
         ref={(component) => { this.form = component; }} />,
         this.element);
   }
