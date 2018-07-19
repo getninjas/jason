@@ -73,8 +73,6 @@ export default class Form extends Component {
   }
 
   updateState(state) {
-    console.log('state', state);
-
     this.setState({ ...state });
   }
 
@@ -208,8 +206,6 @@ export default class Form extends Component {
 
   render() {
     const { name, action } = this.props;
-
-    console.log('render jason', this.state);
 
     return (
       <AppContext.Provider value={this.state}>
