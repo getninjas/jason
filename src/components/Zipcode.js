@@ -74,6 +74,7 @@ export default class Zipcode extends Component {
   }
 
   onBlur(successCallback, errorCallback, evt) {
+    console.log('onBlur');
     const zipcode = evt.target.value;
     const { fetchCompleted, zipcodeInvalid } = this.state;
 
@@ -89,10 +90,13 @@ export default class Zipcode extends Component {
       const url = this.state.zipcodeUrlService.replace(/@@zipcode@@/, zipcode.replace(/[^0-9]/g, ''));
       const response = await axios.get(url);
 
+      console.log('getZipCode', url);
+
       this.onZipcodeSuccess(zipcode, response);
 
       successCallback(this.state);
     } catch (error) {
+      console.log('getZipCode error', error);
       this.onZipcodeError(zipcode);
 
       errorCallback({ ...this.state, error });
@@ -100,6 +104,7 @@ export default class Zipcode extends Component {
   }
 
   onZipcodeSuccess(zipcode, response) {
+    console.log('onZipcodeSuccess');
     let result = getEmptyState(this.state);
 
     result = fillAddressState(response.data, zipcode);
@@ -113,6 +118,7 @@ export default class Zipcode extends Component {
   }
 
   onZipcodeError() {
+    console.log('onZipcodeError');
     this.setState({ fullAddress: '', fetching: false, zipcodeInvalid: true });
 
     this.props.onFieldBlur({ ...this.props, fetchCompleted: false, value: this.state.zipcodeInvalid ? '' : this.state.value });
@@ -131,7 +137,8 @@ export default class Zipcode extends Component {
     });
 
     if (this.state.value.length) {
-      triggerNativeEvent('#zipcode', 'blur');
+      console.log('triggerNativeEvent');
+      triggerNativeEvent(`#${this.props.id}`, 'blur');
     }
   }
 

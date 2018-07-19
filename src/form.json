@@ -92,7 +92,7 @@
             "title": "Zipcode",
             "required": true,
             "type": "zipcode",
-            "id": "zipcode",
+            "id": "zip_code",
             "name": "zipcode",
             "placeholder": "00000-000",
             "value": "04904-060",
