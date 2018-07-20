@@ -62,7 +62,7 @@ export default class Zipcode extends Component {
   }
 
   onChange(successCallback, errorCallback, evt) {
-    const zipcode = evt.nativeEvent.target.defaultValue;
+    const zipcode = evt.target.value;
 
     if (isUserTyping(zipcode.length)) {
       this.setState({ value: zipcode, fullAddress: '', fetchCompleted: false });
@@ -74,10 +74,9 @@ export default class Zipcode extends Component {
   }
 
   onBlur(successCallback, errorCallback, evt) {
-    const zipcode = evt.nativeEvent.target.defaultValue;
+    const zipcode = evt.target.value;
     const { fetchCompleted, zipcodeInvalid } = this.state;
 
-    console.log('onBlur', zipcode);
 
     this.props.onFieldBlur({ ...this.props, value: this.state.zipcodeInvalid ? '' : zipcode });
 
@@ -91,13 +90,10 @@ export default class Zipcode extends Component {
       const url = this.state.zipcodeUrlService.replace(/@@zipcode@@/, zipcode.replace(/[^0-9]/g, ''));
       const response = await axios.get(url);
 
-      console.log('getZipCode', url);
-
       this.onZipcodeSuccess(zipcode, response);
 
       successCallback(this.state);
     } catch (error) {
-      console.log('getZipCode error', error);
       this.onZipcodeError(zipcode);
 
       errorCallback({ ...this.state, error });
@@ -105,7 +101,6 @@ export default class Zipcode extends Component {
   }
 
   onZipcodeSuccess(zipcode, response) {
-    console.log('onZipcodeSuccess');
     let result = getEmptyState(this.state);
 
     result = fillAddressState(response.data, zipcode);
@@ -119,7 +114,6 @@ export default class Zipcode extends Component {
   }
 
   onZipcodeError() {
-    console.log('onZipcodeError');
     this.setState({ fullAddress: '', fetching: false, zipcodeInvalid: true });
 
     this.props.onFieldBlur({ ...this.props, fetchCompleted: false, value: this.state.zipcodeInvalid ? '' : this.state.value });
@@ -138,7 +132,6 @@ export default class Zipcode extends Component {
     });
 
     if (this.state.value.length) {
-      console.log('triggerNativeEvent');
       triggerNativeEvent(`#${this.props.id}`, 'blur');
     }
   }
