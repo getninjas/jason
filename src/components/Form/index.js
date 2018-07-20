@@ -142,7 +142,7 @@ export default class Form extends Component {
   getFields() {
     const fields = this.state.steps.map(step => step.fields);
 
-    return { data: { ...fields, ...this.state.address } };
+    return { data: { ...fields, address: { ...this.state.address } } }};
   }
 
   handleStepChange() {
