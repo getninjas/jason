@@ -95,10 +95,8 @@ export default class Form extends Component {
     });
   }
 
-  onButtonClick(evt) {
+  onButtonClick() {
     this.handleStepChange();
-
-    console.log('form buttonClick');
 
     if (this.isLastStep(this.state.activeStepIndex)) {
       this.handleSubmit();
@@ -106,8 +104,6 @@ export default class Form extends Component {
   }
 
   onSubmit(evt) {
-    console.log('form onSubmit', evt.target);
-
     evt.preventDefault();
 
     this.handleStepChange();
@@ -116,7 +112,6 @@ export default class Form extends Component {
   }
 
   handleSubmit() {
-    console.log('form handleSubmit');
     if (this.isStepsValid()) {
       this.submitRequest();
     }
@@ -133,7 +128,6 @@ export default class Form extends Component {
 
   async submitRequest() {
     try {
-      console.log('form submitRequest');
       this.props.onSubmit();
 
       const body = this.getFields();
@@ -156,7 +150,6 @@ export default class Form extends Component {
 
     this.updateStep(updatedFields);
 
-    console.log('form handleStepChange', this.state);
 
     if (isValid) {
       this.nextStep(this.state);
@@ -168,10 +161,8 @@ export default class Form extends Component {
   }
 
   nextStep({ activeStepIndex, stepsCount }) {
-    console.log('form nextStep');
     if (activeStepIndex < stepsCount) {
       this.props.onStepChange();
-      console.log('form onStepChange', activeStepIndex + 1);
       this.setState({ activeStepIndex: activeStepIndex + 1 });
     }
   }
