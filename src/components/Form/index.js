@@ -54,6 +54,7 @@ export default class Form extends Component {
 
     this.formStyle = 'form container sh-form-content space-box-small';
     this.onSubmit = this.onSubmit.bind(this);
+    this.onButtonClick = this.onButtonClick.bind(this);
     this.onFieldChange = this.onFieldChange.bind(this);
     this.onFieldBlur = this.onFieldBlur.bind(this);
   }
@@ -94,19 +95,28 @@ export default class Form extends Component {
     });
   }
 
-  formSubmit() {
+  onButtonClick(evt) {
+    this.handleStepChange();
+
+    console.log('form buttonClick');
+
+    if (this.isLastStep(this.state.activeStepIndex)) {
+      this.handleSubmit();
+    }
+  }
+
+  onSubmit(evt) {
+    console.log('form onSubmit', evt.target);
+
+    evt.preventDefault();
+
     this.handleStepChange();
 
     this.handleSubmit();
   }
 
-  onSubmit(evt) {
-    evt.preventDefault();
-
-    this.formSubmit();
-  }
-
   handleSubmit() {
+    console.log('form handleSubmit');
     if (this.isStepsValid()) {
       this.submitRequest();
     }
@@ -123,6 +133,7 @@ export default class Form extends Component {
 
   async submitRequest() {
     try {
+      console.log('form submitRequest');
       this.props.onSubmit();
 
       const body = this.getFields();
@@ -145,6 +156,8 @@ export default class Form extends Component {
 
     this.updateStep(updatedFields);
 
+    console.log('form handleStepChange', this.state);
+
     if (isValid) {
       this.nextStep(this.state);
       return;
@@ -155,8 +168,10 @@ export default class Form extends Component {
   }
 
   nextStep({ activeStepIndex, stepsCount }) {
+    console.log('form nextStep');
     if (activeStepIndex < stepsCount) {
       this.props.onStepChange();
+      console.log('form onStepChange', activeStepIndex + 1);
       this.setState({ activeStepIndex: activeStepIndex + 1 });
     }
   }
@@ -222,7 +237,7 @@ export default class Form extends Component {
                   buttonText={buttonText}
                   fields={fields}
                   formName={this.props.name}
-                  onSubmit={this.onSubmit}
+                  onButtonClick={this.onButtonClick}
                   headerMarkup={headerMarkup}
                   isLast={this.isLastStep(index)}
                   key={`${this.props.name}-step-${index}`}

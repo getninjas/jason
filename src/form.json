@@ -100,26 +100,6 @@
             "values": []
           },
           {
-            "title": "Nome",
-            "id": "user_field_2",
-            "name": "user_field_2",
-            "type": "text",
-            "placeholder": "",
-            "required": true,
-            "value": null,
-            "values": []
-          },
-          {
-            "title": "E-mail",
-            "id": "user_field_3",
-            "name": "user_field_3",
-            "type": "email",
-            "placeholder": "Ex: nome@email.com",
-            "required": true,
-            "value": null,
-            "values": []
-          },
-          {
             "title": "DDD + Celular",
             "id": "phone",
             "name": "phone",
