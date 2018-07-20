@@ -42,6 +42,7 @@ export default class Factory {
         <Zipcode
           {...commonProps}
           type={type}
+          key={commonProps.initialValue}
           zipcodeUrlService={zipcodeUrlService}
         />
       );
@@ -60,6 +61,7 @@ export default class Factory {
       return (
         <Input
           {...commonProps}
+          key={commonProps.initialValue}
           type={type}
         />
       );
