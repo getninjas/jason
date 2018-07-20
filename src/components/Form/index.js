@@ -72,8 +72,10 @@ export default class Form extends Component {
     }, this.props.onReady);
   }
 
-  updateState(state) {
-    this.setState({ ...state });
+  updateUserFields(fields) {
+    const userFieldsStep = { ...this.state.steps[1], fields };
+
+    this.setState({ steps: [this.state.steps[0], userFieldsStep] });
   }
 
   onZipcodeFetchSuccess(data) {
