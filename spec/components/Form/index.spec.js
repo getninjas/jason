@@ -33,19 +33,43 @@ describe('Form', () => {
   });
 
   describe('.formSubmit', () => {
-    it('calls .handleStepChange and handleSubmit', () => {
-      const component = shallow(
-        <Form name={'form'} action={'/'} data={form} />,
-      );
-      const instance = component.instance();
+    describe('when is not the last step', () => {
+      it('does not call .handleSubmit', () => {
+        const component = shallow(
+          <Form name={'form'} action={'/'} data={form} />,
+        );
+        const instance = component.instance();
 
-      instance.handleStepChange = jest.fn();
-      instance.handleSubmit = jest.fn();
+        instance.handleStepChange = jest.fn();
+        instance.isLastStep = jest.fn();
+        instance.handleSubmit = jest.fn();
 
-      instance.formSubmit();
+        instance.formSubmit();
 
-      expect(instance.handleStepChange).toBeCalled();
-      // expect(instance.handleSubmit).toBeCalled();
+        expect(instance.handleStepChange).toBeCalled();
+        expect(instance.isLastStep).toBeCalledWith(0);
+        expect(instance.handleSubmit).not.toBeCalled();
+      });
+    });
+
+    describe('when is last step', () => {
+      it('calls .handleSubmit', () => {
+        const data = copyState(form);
+        data.steps = fillFormFields(data.steps);
+        data.steps[0].fields[2].required = false;
+
+        const component = shallow(
+          <Form name={'form'} action={'/'} data={data} />,
+        );
+        const instance = component.instance();
+        const evt = { preventDefault() {}, nativeEvent: { isTrusted: true } };
+
+        instance.handleSubmit = jest.fn();
+
+        data.steps.map(() => instance.onSubmit(evt));
+
+        expect(instance.handleSubmit).toBeCalled();
+      });
     });
   });
 
