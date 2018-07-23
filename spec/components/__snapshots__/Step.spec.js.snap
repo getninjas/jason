@@ -99,36 +99,6 @@ exports[`Step renders with props 1`] = `
   >
     <label
       className="form__label"
-      htmlFor="3_id"
-    >
-      Informações adicionais
-    </label>
-    <textarea
-      className="form__input"
-      id="3_id"
-      maxLength={255}
-      minLength={3}
-      name="3_name_textarea"
-      onBlur={[Function]}
-      onChange={[Function]}
-      placeholder="Descreva o que você precisa"
-      required={true}
-      title=""
-      value=""
-    >
-      
-    </textarea>
-    <span
-      className="form__message form__message--invalid space-element-small error"
-    >
-      
-    </span>
-  </div>
-  <div
-    className="form__field form__field--fluid input"
-  >
-    <label
-      className="form__label"
       htmlFor="0_id"
     >
       Você precisa de serviços adicionais?
@@ -256,6 +226,36 @@ exports[`Step renders with props 1`] = `
         </label>
       </li>
     </ul>
+    <span
+      className="form__message form__message--invalid space-element-small error"
+    >
+      
+    </span>
+  </div>
+  <div
+    className="form__field form__field--fluid input"
+  >
+    <label
+      className="form__label"
+      htmlFor="3_id"
+    >
+      Informações adicionais
+    </label>
+    <textarea
+      className="form__input"
+      id="3_id"
+      maxLength={255}
+      minLength={3}
+      name="3_name_textarea"
+      onBlur={[Function]}
+      onChange={[Function]}
+      placeholder="Descreva o que você precisa"
+      required={true}
+      title=""
+      value=""
+    >
+      
+    </textarea>
     <span
       className="form__message form__message--invalid space-element-small error"
     >
