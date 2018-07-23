@@ -52,16 +52,6 @@
             "values": []
           },
           {
-            "title": "Informações adicionais",
-            "required": true,
-            "type": "textarea",
-            "id": "3_id",
-            "name": "3_name_textarea",
-            "placeholder": "Descreva o que você precisa",
-            "value": null,
-            "values": []
-          },
-          {
             "required": true,
             "title": "Você precisa de serviços adicionais?",
             "placeholder": "Você precisa de serviços adicionais?",
@@ -95,6 +85,16 @@
                 "value": "OTHER"
               }
             ]
+          },
+          {
+            "title": "Informações adicionais",
+            "required": true,
+            "type": "textarea",
+            "id": "3_id",
+            "name": "3_name_textarea",
+            "placeholder": "Descreva o que você precisa",
+            "value": null,
+            "values": []
           }
         ]
       },
