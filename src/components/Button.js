@@ -13,26 +13,12 @@ const defaultProps = {
 };
 
 export default class Button extends Component {
-  constructor() {
-    super();
-
-    this.click = this.click.bind(this);
-  }
-
-  click(evt) {
-    evt.preventDefault();
-
-    if (evt.nativeEvent.isTrusted) {
-      this.props.handleButtonClick(evt);
-    }
-  }
-
   render() {
     const type = this.props.isSubmit ? 'submit' : 'button';
     const style = 'btn btn--regular btn--high-contrast btn--fluid space-box-medium';
 
     return (
-      <button type={type} className={style} onClick={this.click}>
+      <button type={type} className={style} onClick={this.props.handleButtonClick}>
         {this.props.children}
       </button>
     );
