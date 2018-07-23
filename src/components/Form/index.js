@@ -54,7 +54,6 @@ export default class Form extends Component {
 
     this.formStyle = 'form container sh-form-content space-box-small';
     this.onSubmit = this.onSubmit.bind(this);
-    this.onButtonClick = this.onButtonClick.bind(this);
     this.onFieldChange = this.onFieldChange.bind(this);
     this.onFieldBlur = this.onFieldBlur.bind(this);
   }
@@ -95,7 +94,7 @@ export default class Form extends Component {
     });
   }
 
-  onButtonClick() {
+  formSubmit() {
     this.handleStepChange();
 
     if (this.isLastStep(this.state.activeStepIndex)) {
@@ -106,9 +105,9 @@ export default class Form extends Component {
   onSubmit(evt) {
     evt.preventDefault();
 
-    this.handleStepChange();
-
-    this.handleSubmit();
+    if (evt.nativeEvent.isTrusted) {
+      this.formSubmit();
+    }
   }
 
   handleSubmit() {
@@ -149,7 +148,6 @@ export default class Form extends Component {
     const { updatedFields, isValid } = validateStep(this.currentStep.fields);
 
     this.updateStep(updatedFields);
-
 
     if (isValid) {
       this.nextStep(this.state);
@@ -228,7 +226,7 @@ export default class Form extends Component {
                   buttonText={buttonText}
                   fields={fields}
                   formName={this.props.name}
-                  onButtonClick={this.onButtonClick}
+                  onSubmit={this.onSubmit}
                   headerMarkup={headerMarkup}
                   isLast={this.isLastStep(index)}
                   key={`${this.props.name}-step-${index}`}
