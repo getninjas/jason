@@ -77,7 +77,6 @@ export default class Zipcode extends Component {
     const zipcode = evt.target.value;
     const { fetchCompleted, zipcodeInvalid } = this.state;
 
-
     this.props.onFieldBlur({ ...this.props, value: this.state.zipcodeInvalid ? '' : zipcode });
 
     if (isValidZipCodeInput(zipcode.length, fetchCompleted) && !zipcodeInvalid) {
@@ -144,11 +143,7 @@ export default class Zipcode extends Component {
       <AppContext.Consumer>
         {context => <Fragment>
           <a href='http://www.buscacep.correios.com.br' target='_blank' className='form__label-link' rel='noopener noreferrer'>Não lembra seu CEP?</a>
-          <input id={id} name={name} className={style} type='tel' placeholder={placeholder} required={required}
-            onChange={this.onChange.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)}
-            onBlur={this.onBlur.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)}
-            ref={this.inputRef}
-            value={this.state.value} />
+          <input id={id} name={name} className={style} type='tel' placeholder={placeholder} required={required} onChange={this.onChange.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)} onBlur={this.onBlur.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)} ref={this.inputRef} value={this.state.value} />
           {fetching ? <span className='zipcode__loader' >Buscando CEP...</span> : <span className='full-address'>{fullAddress}</span>}
           <input id='street' name='street' type='hidden' value={street} />
           <input id='neighborhood' name='neighborhood' type='hidden' value={neighborhood} />
