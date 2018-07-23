@@ -41,22 +41,36 @@ describe('Input', () => {
   });
 
   it('changes input value .onChage event', () => {
+    const onFieldChange = jest.fn();
+
     const component = shallow(
       <Input
-        {...commonProps}
+        id={'idTest'}
+        name={'nameTest'}
+        onFieldBlur={() => {}}
+        onFieldChange={onFieldChange}
+        placeholder={'placeholderTest'}
+        required={false}
         value={'ola test value'}
       />,
     );
 
     component.simulate('change', { target: { value: 'Bora pra action' } });
 
-    expect(component.instance().state.value).toEqual('Bora pra action');
+    expect(component.instance().props.onFieldChange).toBeCalledWith({
+      value: 'Bora pra action',
+      id: 'idTest',
+    });
   });
 
   it('retrains input text to maxLenght', () => {
+    const onFieldChange = jest.fn();
+
     const component = mount(
       <Input
         {...commonProps}
+        id={'idTest'}
+        onFieldChange={onFieldChange}
         value={''}
         maxLength={5}
       />,
@@ -64,7 +78,10 @@ describe('Input', () => {
 
     component.simulate('change', { target: { value: 'Bora pra action' } });
 
-    expect(component.instance().state.value).toHaveLength(5);
+    expect(component.instance().props.onFieldChange).toBeCalledWith({
+      value: 'Bora ',
+      id: 'idTest',
+    });
   });
 
   describe('with type', () => {
@@ -75,13 +92,13 @@ describe('Input', () => {
     });
 
     it('renders type email', () => {
-      const component = shallow(<Input id={'id_input'} name={'input_name'} onFieldChange={() => {}} onFieldBlur={() => {}} type={'email'}/>);
+      const component = shallow(<Input id={'id_input'} name={'input_name'} onFieldChange={() => {}} onFieldBlur={() => {}} type={'email'} />);
 
       expect(component.prop('type')).toBe('email');
     });
 
     it('renders type tel when type equal phone', () => {
-      const component = mount(<Input id={'id_input'} name={'input_name'} onFieldChange={() => {}} onFieldBlur={() => {}} type={'phone'}/>);
+      const component = mount(<Input id={'id_input'} name={'input_name'} onFieldChange={() => {}} onFieldBlur={() => {}} type={'phone'} />);
 
       const inputType = component.getDOMNode().attributes.type.value;
 
@@ -113,15 +130,15 @@ describe('Input', () => {
 
     describe('when input is type phone', () => {
       it('keeps state updated on blur event', () => {
-        const onFieldChange = jest.fn();
+        const onFieldBlur = jest.fn();
 
         const component = mount(
           <Input
             id='phone'
             name='phone'
             type='phone'
-            onFieldChange={onFieldChange}
-            onFieldBlur={() => {}}
+            onFieldChange={() => {}}
+            onFieldBlur={onFieldBlur}
             placeholder='(__) _____-____'
             required={false}
             value=''
@@ -131,7 +148,13 @@ describe('Input', () => {
         component.simulate('change', { target: { value: '(11) 99999-8888' } });
         component.simulate('blur', { target: { value: '(11) 99999-8888' } });
 
-        expect(component.state().value).toBe('(11) 99999-8888');
+        expect(component.instance().props.onFieldBlur).toBeCalledWith({
+          id: 'phone',
+          minLength: 1,
+          required: false,
+          type: 'phone',
+          value: '(11) 99999-8888',
+        });
       });
     });
   });
