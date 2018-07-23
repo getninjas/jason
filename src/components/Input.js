@@ -94,7 +94,7 @@ export default class Input extends Component {
         className={style}
         placeholder={placeholder}
         required={required ? 'true' : 'false'}
-        value={this.props.initialValue}
+        value={this.props.initialValue || defaultProps.value}
         onChange={this.onChange}
         onBlur={this.onBlur}
         minLength={minLength}
