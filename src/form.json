@@ -17,7 +17,7 @@
             "id": "1_id",
             "name": "1_name_select",
             "type": "select",
-            "value": 7117,
+            "value": null,
             "values": [
               {
                 "databaseId": 7117,
@@ -48,12 +48,12 @@
             "name": "2_name_text",
             "type": "text",
             "placeholder": "Bora pra action",
-            "value": "AHUAHuhhHUHAU",
+            "value": null,
             "values": []
           },
           {
             "title": "Informações adicionais",
-            "required": false,
+            "required": true,
             "type": "textarea",
             "id": "3_id",
             "name": "3_name_textarea",
@@ -75,6 +75,22 @@
                 "value": "Cozinhar"
               },
               {
+                "databaseId": 6793,
+                "value": "Passar roupa"
+              },
+              {
+                "databaseId": 6794,
+                "value": "Limpar áreas externas (jardim/garagem ou quintal)"
+              },
+              {
+                "databaseId": 6795,
+                "value": "Não preciso"
+              },
+              {
+                "databaseId": 7689,
+                "value": "Outro"
+              },
+              {
                 "databaseId": 7639,
                 "value": "OTHER"
               }
@@ -92,11 +108,31 @@
             "title": "Zipcode",
             "required": true,
             "type": "zipcode",
-            "id": "zip_code",
+            "id": "zipcode",
             "name": "zipcode",
             "placeholder": "00000-000",
-            "value": "04904-060",
+            "value": null,
             "wrapperClassName": "form__field input",
+            "values": []
+          },
+          {
+            "title": "Nome",
+            "id": "user_field_2",
+            "name": "user_field_2",
+            "type": "text",
+            "placeholder": "",
+            "required": true,
+            "value": null,
+            "values": []
+          },
+          {
+            "title": "E-mail",
+            "id": "user_field_3",
+            "name": "user_field_3",
+            "type": "email",
+            "placeholder": "Ex: nome@email.com",
+            "required": true,
+            "value": null,
             "values": []
           },
           {
@@ -106,7 +142,7 @@
             "type": "phone",
             "placeholder": "(__) _____-____",
             "required": true,
-            "value": "(11) 96311-2689",
+            "value": null,
             "values": []
           }
         ]
