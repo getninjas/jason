@@ -61,7 +61,6 @@ export default class Factory {
       return (
         <Input
           {...commonProps}
-          key={commonProps.initialValue}
           type={type}
         />
       );
