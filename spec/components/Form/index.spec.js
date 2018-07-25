@@ -101,6 +101,46 @@ describe('Form', () => {
     });
   });
 
+  describe('.updateUserFields', () => {
+    describe('with prefilled zipcode', () => {
+      it('matches updated state', () => {
+        const component = shallow(
+          <Form name={'form'} data={form} action={'/'} />,
+        );
+
+        const mock = [{
+          title: 'Zipcode',
+          required: false,
+          type: 'zipcode',
+          id: 'zipcode',
+          name: 'zipcode',
+          placeholder: '00000-000',
+          value: '04904-160',
+          wrapperClassName: 'form__field input',
+          values: [],
+        }];
+
+        component.instance().updateUserFields(mock);
+
+        expect(component.state().steps[1].fields).toBe(mock);
+      });
+    });
+
+    describe('with default values', () => {
+      it('does not change state', () => {
+        const component = shallow(
+          <Form name={'form'} data={form} action={'/'} />,
+        );
+
+        const fields = [...component.state().steps[1].fields];
+
+        component.instance().updateUserFields(fields);
+
+        expect(component.state().steps[1].fields).toBe(fields);
+      });
+    });
+  });
+
   describe('.submitRequest', () => {
     it('calls .props.onSubmitSuccess, getFields', async () => {
       const onSubmit = jest.fn();
