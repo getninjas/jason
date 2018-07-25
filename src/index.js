@@ -32,6 +32,6 @@ export default class Jason {
         onStepChange={ this.onStepChange }
         ref={(component) => { this.form = component; }} />,
         this.element,
-      );
+    );
   }
 }
