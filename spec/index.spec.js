@@ -40,7 +40,7 @@ describe('Jason', () => {
   });
 
   describe('.updateUserFields', () => {
-    it('calls updateUserFields', () => {
+    it('calls form.updateUserFields', () => {
       jasonForm.form.updateUserFields = jest.fn();
       jasonForm.updateUserFields([]);
 
