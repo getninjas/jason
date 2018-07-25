@@ -52,3 +52,56 @@ Array [
 />,
 ]
 `;
+
+exports[`Zipcode triggers native DOM event 1`] = `
+Array [
+  <a
+    className="form__label-link"
+    href="http://www.buscacep.correios.com.br"
+    rel="noopener noreferrer"
+    target="_blank"
+>
+    Não lembra seu CEP?
+</a>,
+  <input
+    className="form__input"
+    id="zipcodeTest"
+    name="zipcodeTest"
+    onBlur={[Function]}
+    onChange={[Function]}
+    placeholder="00000-000"
+    required={true}
+    type="tel"
+    value="04904-160"
+/>,
+  <span
+    className="full-address"
+>
+    
+</span>,
+  <input
+    id="street"
+    name="street"
+    type="hidden"
+    value=""
+/>,
+  <input
+    id="neighborhood"
+    name="neighborhood"
+    type="hidden"
+    value=""
+/>,
+  <input
+    id="city"
+    name="city"
+    type="hidden"
+    value=""
+/>,
+  <input
+    id="uf"
+    name="uf"
+    type="hidden"
+    value=""
+/>,
+]
+`;

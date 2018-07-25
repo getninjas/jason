@@ -54,6 +54,7 @@ export default class Zipcode extends Component {
 
     this.inputRef = createRef();
     this.onBlur = this.onBlur.bind(this);
+    this.triggerBlur = triggerNativeEvent;
   }
 
   updateZipcode(zipcode, successCallback, errorCallback) {
@@ -131,7 +132,7 @@ export default class Zipcode extends Component {
     });
 
     if (this.state.value.length) {
-      triggerNativeEvent(`#${this.props.id}`, 'blur');
+      this.triggerBlur(`#${this.props.id}`, 'blur');
     }
   }
 
