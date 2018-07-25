@@ -62,7 +62,7 @@ describe('Form', () => {
           <Form name={'form'} action={'/'} data={data} />,
         );
         const instance = component.instance();
-        const evt = { preventDefault() {}, nativeEvent: { isTrusted: true } };
+        const evt = { preventDefault() {} };
 
         instance.handleSubmit = jest.fn();
 
