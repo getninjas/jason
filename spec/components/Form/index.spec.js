@@ -270,7 +270,7 @@ describe('Form', () => {
 
       component.instance().updateStep = jest.fn();
 
-      const evt = { preventDefault() { }, nativeEvent: { isTrusted: true } };
+      const evt = { preventDefault() { } };
       component.instance().onSubmit(evt);
 
       expect(component.instance().updateStep).toBeCalled();
