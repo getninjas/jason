@@ -31,6 +31,7 @@ export default class Jason {
         onSubmitError={ this.onSubmitError }
         onStepChange={ this.onStepChange }
         ref={(component) => { this.form = component; }} />,
-        this.element);
+        this.element,
+      );
   }
 }
