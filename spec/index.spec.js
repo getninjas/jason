@@ -38,4 +38,13 @@ describe('Jason', () => {
 
     expect(jasonForm.form.formSubmit).toHaveBeenCalled();
   });
+
+  describe('.updateUserFields', () => {
+    it('calls updateUserFields', () => {
+      jasonForm.form.updateUserFields = jest.fn();
+      jasonForm.updateUserFields([]);
+
+      expect(jasonForm.form.updateUserFields).toHaveBeenCalled();
+    });
+  });
 });
