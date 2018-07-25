@@ -52,6 +52,7 @@ export default class Zipcode extends Component {
       fetching: false,
     };
 
+    this.mounted = false;
     this.inputRef = createRef();
     this.onBlur = this.onBlur.bind(this);
     this.triggerBlur = triggerNativeEvent;
@@ -119,7 +120,12 @@ export default class Zipcode extends Component {
     this.props.onFieldBlur({ ...this.props, fetchCompleted: false, value: this.state.zipcodeInvalid ? '' : this.state.value });
   }
 
+  componentWillUnmount() {
+    this.mounted = false;
+  }
+
   componentDidMount() {
+    this.mounted = true;
     this.mask = new IMask(this.inputRef.current, { mask: ZIPCODE_MASK });
 
     this.mask.on('complete', () => {
@@ -128,7 +134,9 @@ export default class Zipcode extends Component {
         id: this.props.id,
       });
 
-      this.setState({ value: this.mask.value, zipcodeInvalid: false });
+      if (this.mounted) {
+        this.setState({ value: this.mask.value, zipcodeInvalid: false });
+      }
     });
 
     if (this.state.value.length) {
