@@ -67,14 +67,14 @@ describe('Zipcode', () => {
 
   describe('with prefilled zipcode', () => {
     it('triggers native DOM event', () => {
-      const component = mount(getZipCodeMock({ initialValue: '04707060' }));
-      const instane = component.instance();
+      const component = mount(getZipCodeMock({ initialValue: '04707-060' }));
+      const instance = component.instance();
 
-      instane.triggerBlur = jest.fn();
+      instance.triggerBlur = jest.fn();
 
-      instane.componentDidMount();
+      instance.componentDidMount();
 
-      expect(instane.triggerBlur).toBeCalledWith('#zipcodeTest', 'blur');
+      expect(instance.triggerBlur).toBeCalledWith('#zipcodeTest', 'blur');
     });
   });
 
