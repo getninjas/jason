@@ -15,6 +15,7 @@ const fillFormFields = (steps) => {
 
       Object.entries(validFields).map((entry) => {
         const [key, value] = entry;
+
         if (updatedField.type === key) {
           Object.assign(updatedField, { value });
         }
