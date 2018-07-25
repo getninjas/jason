@@ -92,13 +92,13 @@ describe('Input', () => {
     });
 
     it('renders type email', () => {
-      const component = shallow(<Input id={'id_input'} name={'input_name'} onFieldChange={() => {}} onFieldBlur={() => {}} type={'email'} />);
+      const component = shallow(<Input id={'id_input'} name={'input_name'} onFieldChange={() => {}} onFieldBlur={() => {}} type={'email'}/>);
 
       expect(component.prop('type')).toBe('email');
     });
 
     it('renders type tel when type equal phone', () => {
-      const component = mount(<Input id={'id_input'} name={'input_name'} onFieldChange={() => {}} onFieldBlur={() => {}} type={'phone'} />);
+      const component = mount(<Input id={'id_input'} name={'input_name'} onFieldChange={() => {}} onFieldBlur={() => {}} type={'phone'}/>);
 
       const inputType = component.getDOMNode().attributes.type.value;
 
