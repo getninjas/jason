@@ -95,7 +95,6 @@ export default class Form extends Component {
   }
 
   formSubmit() {
-    console.log('formSubmit');
     this.handleStepChange();
 
     if (this.isLastStep(this.state.activeStepIndex)) {
@@ -104,14 +103,12 @@ export default class Form extends Component {
   }
 
   onSubmit(evt) {
-    console.log('onSubmit');
     evt.preventDefault();
 
     this.formSubmit();
   }
 
   handleSubmit() {
-    console.log('handleSubmit');
     if (this.isStepsValid()) {
       this.submitRequest();
     }
@@ -131,7 +128,6 @@ export default class Form extends Component {
       this.props.onSubmit();
 
       const body = this.getFields();
-      console.log('submitRequest', body);
       const response = await axios.post(this.props.action, body);
 
       this.props.onSubmitSuccess(response);
