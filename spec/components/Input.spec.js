@@ -40,7 +40,7 @@ describe('Input', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('changes input value .onChage event', () => {
+  it('triggers onFieldChange', () => {
     const onFieldChange = jest.fn();
 
     const component = shallow(
@@ -63,7 +63,7 @@ describe('Input', () => {
     });
   });
 
-  it('retrains input text to maxLenght', () => {
+  it('trims text to maxLenght', () => {
     const onFieldChange = jest.fn();
 
     const component = mount(
@@ -129,7 +129,7 @@ describe('Input', () => {
     });
 
     describe('when input is type phone', () => {
-      it('keeps state updated on blur event', () => {
+      it('triggers onFieldBlur on blur event with target values', () => {
         const onFieldBlur = jest.fn();
 
         const component = mount(
@@ -146,14 +146,14 @@ describe('Input', () => {
         );
 
         component.simulate('change', { target: { value: '(11) 99999-8888' } });
-        component.simulate('blur', { target: { value: '(11) 99999-8888' } });
+        component.simulate('blur', { target: { value: '(11) 97878-1212' } });
 
         expect(component.instance().props.onFieldBlur).toBeCalledWith({
           id: 'phone',
           minLength: 1,
           required: false,
           type: 'phone',
-          value: '(11) 99999-8888',
+          value: '(11) 97878-1212',
         });
       });
     });
