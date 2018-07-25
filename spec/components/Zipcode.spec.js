@@ -70,11 +70,11 @@ describe('Zipcode', () => {
       const component = mount(getZipCodeMock({ initialValue: '04707-060' }));
       const instance = component.instance();
 
-      instance.triggerBlur = jest.fn();
+      instance.triggerEvent = jest.fn();
 
       instance.componentDidMount();
 
-      expect(instance.triggerBlur).toBeCalledWith('#zipcodeTest', 'blur');
+      expect(instance.triggerEvent).toBeCalledWith('#zipcodeTest', 'blur');
     });
   });
 
