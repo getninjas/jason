@@ -4,11 +4,11 @@ describe('.triggerNativeEvent', () => {
   it('trigger blur event', () => {
     document.body.innerHTML = '<input type="text" class="name input" name="name" value="">';
 
-    const elmt = [...document.querySelectorAll('.input')];
-    elmt[0].dispatchEvent = jest.fn();
+    const elmt = document.querySelector('.input');
+    elmt.dispatchEvent = jest.fn();
 
     triggerNativeEvent('.input', 'blur');
 
-    expect(elmt[0].dispatchEvent).toBeCalled();
+    expect(elmt.dispatchEvent).toBeCalled();
   });
 });
