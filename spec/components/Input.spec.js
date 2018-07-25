@@ -129,7 +129,7 @@ describe('Input', () => {
     });
 
     describe('when input is type phone', () => {
-      it('triggers onFieldBlur on blur event with target values', () => {
+      it('triggers onFieldBlur with target values', () => {
         const onFieldBlur = jest.fn();
 
         const component = mount(
