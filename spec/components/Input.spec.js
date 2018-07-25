@@ -63,7 +63,7 @@ describe('Input', () => {
     });
   });
 
-  it('trims text to maxLenght', () => {
+  it('trims text to maxLength', () => {
     const onFieldChange = jest.fn();
 
     const component = mount(
