@@ -33,18 +33,43 @@ describe('Form', () => {
   });
 
   describe('.formSubmit', () => {
-    it('calls .handleStepChange and handleSubmit', () => {
-      const component = shallow(
-        <Form name={'form'} action={'/'} data={form} />,
-      );
+    describe('when is not the last step', () => {
+      it('does not call .handleSubmit', () => {
+        const component = shallow(
+          <Form name={'form'} action={'/'} data={form} />,
+        );
+        const instance = component.instance();
 
-      component.instance().handleStepChange = jest.fn();
-      component.instance().handleSubmit = jest.fn();
+        instance.handleStepChange = jest.fn();
+        instance.isLastStep = jest.fn();
+        instance.handleSubmit = jest.fn();
 
-      component.instance().formSubmit();
+        instance.formSubmit();
 
-      expect(component.instance().handleStepChange).toBeCalled();
-      expect(component.instance().handleSubmit).toBeCalled();
+        expect(instance.handleStepChange).toBeCalled();
+        expect(instance.isLastStep).toBeCalledWith(0);
+        expect(instance.handleSubmit).not.toBeCalled();
+      });
+    });
+
+    describe('when is last step', () => {
+      it('calls .handleSubmit', () => {
+        const data = copyState(form);
+        data.steps = fillFormFields(data.steps);
+        data.steps[0].fields[2].required = false;
+
+        const component = shallow(
+          <Form name={'form'} action={'/'} data={data} />,
+        );
+        const instance = component.instance();
+        const evt = { preventDefault() {} };
+
+        instance.handleSubmit = jest.fn();
+
+        data.steps.map(() => instance.onSubmit(evt));
+
+        expect(instance.handleSubmit).toBeCalled();
+      });
     });
   });
 
@@ -68,11 +93,51 @@ describe('Form', () => {
       const fields = component.state().steps.map(step => step.fields);
       const mockFields = { data: { ...fields, address: { ...address } } };
 
-      component.instance().requestAddress = { ...address };
+      component.state().address = { ...address };
 
       const result = component.instance().getFields();
 
       expect(result).toEqual(mockFields);
+    });
+  });
+
+  describe('.updateUserFields', () => {
+    describe('with prefilled zipcode', () => {
+      it('matches updated state', () => {
+        const component = shallow(
+          <Form name={'form'} data={form} action={'/'} />,
+        );
+
+        const mock = [{
+          title: 'Zipcode',
+          required: false,
+          type: 'zipcode',
+          id: 'zipcode',
+          name: 'zipcode',
+          placeholder: '00000-000',
+          value: '04904-160',
+          wrapperClassName: 'form__field input',
+          values: [],
+        }];
+
+        component.instance().updateUserFields(mock);
+
+        expect(component.state().steps[1].fields).toBe(mock);
+      });
+    });
+
+    describe('with default values', () => {
+      it('does not change state', () => {
+        const component = shallow(
+          <Form name={'form'} data={form} action={'/'} />,
+        );
+
+        const fields = [...component.state().steps[1].fields];
+
+        component.instance().updateUserFields(fields);
+
+        expect(component.state().steps[1].fields).toBe(fields);
+      });
     });
   });
 

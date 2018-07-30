@@ -46,9 +46,9 @@ const zipcodeElement = () => (
   </AppContext.Provider>
 );
 
-const getZipCodeMock = () => {
+const getZipCodeMock = (params = {}) => {
   const ZipcodeMock = getComponentWithContext();
-  return (<ZipcodeMock {...commonProps}/>);
+  return (<ZipcodeMock {...commonProps} {...params}/>);
 };
 
 describe('Zipcode', () => {
@@ -63,6 +63,19 @@ describe('Zipcode', () => {
     const tree = component.toJSON();
 
     expect(tree).toMatchSnapshot();
+  });
+
+  describe('with prefilled zipcode', () => {
+    it('triggers native DOM event', () => {
+      const component = mount(getZipCodeMock({ initialValue: '04707-060' }));
+      const instance = component.instance();
+
+      instance.triggerEvent = jest.fn();
+
+      instance.componentDidMount();
+
+      expect(instance.triggerEvent).toBeCalledWith('#zipcodeTest', 'blur');
+    });
   });
 
   describe('.onChange', () => {

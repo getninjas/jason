@@ -13,6 +13,10 @@ export default class Jason {
     this.form.formSubmit();
   }
 
+  updateUserFields(fields) {
+    this.form.updateUserFields(fields);
+  }
+
   init() {
     ReactDOM.render(
       <Form data={this.data.form}

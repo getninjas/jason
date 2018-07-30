@@ -23,7 +23,7 @@ const defaultProps = {
   required: false,
   title: '',
   type: 'text',
-  initialValue: '',
+  value: '',
   style: 'form__input',
   minLength: 1,
   maxLength: 255,
@@ -32,10 +32,6 @@ const defaultProps = {
 export default class Input extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      value: this.props.initialValue ? this.props.initialValue : '',
-    };
 
     this.ref = createRef();
     this.onChange = this.onChange.bind(this);
@@ -50,8 +46,6 @@ export default class Input extends Component {
       value: inputValue,
       id: this.props.id,
     });
-
-    this.setState({ value: inputValue });
   }
 
   onBlur(evt) {
@@ -74,8 +68,6 @@ export default class Input extends Component {
           value: this.mask.value,
           id: this.props.id,
         });
-
-        this.setState({ value: this.mask.value });
       });
     }
   }
@@ -102,7 +94,7 @@ export default class Input extends Component {
         className={style}
         placeholder={placeholder}
         required={required ? 'true' : 'false'}
-        value={this.state.value}
+        value={this.props.initialValue || defaultProps.value}
         onChange={this.onChange}
         onBlur={this.onBlur}
         minLength={minLength}

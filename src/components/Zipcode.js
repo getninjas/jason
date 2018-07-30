@@ -4,6 +4,7 @@ import axios from 'axios';
 import IMask from 'imask';
 import { AppContext } from '../AppContext';
 import { isUserTyping, isValidZipCodeInput, getEmptyState, fillAddressState } from '../helpers/zipcode';
+import triggerNativeEvent from '../helpers/domEvent';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
@@ -15,6 +16,7 @@ const propTypes = {
   type: PropTypes.string,
   required: PropTypes.bool,
   style: PropTypes.string,
+  initialValue: PropTypes.string,
   value: PropTypes.any,
   zipcodeUrlService: PropTypes.string.isRequired,
   minLength: PropTypes.number,
@@ -37,7 +39,7 @@ export default class Zipcode extends Component {
     super(props);
 
     this.state = {
-      value: '',
+      value: this.props.initialValue || defaultProps.value,
       type_street: '',
       street: '',
       city: '',
@@ -50,8 +52,10 @@ export default class Zipcode extends Component {
       fetching: false,
     };
 
+    this.mounted = false;
     this.inputRef = createRef();
     this.onBlur = this.onBlur.bind(this);
+    this.triggerEvent = triggerNativeEvent;
   }
 
   updateZipcode(zipcode, successCallback, errorCallback) {
@@ -116,7 +120,12 @@ export default class Zipcode extends Component {
     this.props.onFieldBlur({ ...this.props, fetchCompleted: false, value: this.state.zipcodeInvalid ? '' : this.state.value });
   }
 
+  componentWillUnmount() {
+    this.mounted = false;
+  }
+
   componentDidMount() {
+    this.mounted = true;
     this.mask = new IMask(this.inputRef.current, { mask: ZIPCODE_MASK });
 
     this.mask.on('complete', () => {
@@ -125,8 +134,14 @@ export default class Zipcode extends Component {
         id: this.props.id,
       });
 
-      this.setState({ value: this.mask.value, zipcodeInvalid: false });
+      if (this.mounted) {
+        this.setState({ value: this.mask.value, zipcodeInvalid: false });
+      }
     });
+
+    if (this.state.value.length) {
+      this.triggerEvent(`#${this.props.id}`, 'blur');
+    }
   }
 
   render() {
@@ -137,7 +152,7 @@ export default class Zipcode extends Component {
       <AppContext.Consumer>
         { context => <Fragment>
           <a href='http://www.buscacep.correios.com.br' target='_blank' className='form__label-link' rel='noopener noreferrer'>Não lembra seu CEP?</a>
-          <input id={id} name={name} className={style} type='tel' placeholder={placeholder} required={required} onChange={this.onChange.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)} onBlur={this.onBlur.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)} ref={this.inputRef} />
+          <input id={id} name={name} className={style} type='tel' placeholder={placeholder} required={required} onChange={this.onChange.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)} onBlur={this.onBlur.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)} ref={this.inputRef} value={this.state.value} />
           { fetching ? <span className='zipcode__loader' >Buscando CEP...</span> : <span className='full-address'>{fullAddress}</span> }
           <input id='street' name='street' type='hidden' value={street} />
           <input id='neighborhood' name='neighborhood' type='hidden' value={neighborhood} />

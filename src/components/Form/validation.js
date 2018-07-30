@@ -9,13 +9,11 @@ export const isEmpty = (value) => {
 export const arrayIsInvalid = (value) => {
   let arrayUndefined = false;
 
-  if (!value.length) {
-    return true;
-  }
-
-  for (let i = 0; i < value.length; i += 1) {
-    if ((value[i] === undefined) || (value[i].length !== undefined && !value[i].length)) {
-      arrayUndefined = true;
+  if (value && value.length) {
+    for (let i = 0; i < value.length; i += 1) {
+      if ((value[i] === undefined) || (value[i].length !== undefined && !value[i].length)) {
+        arrayUndefined = true;
+      }
     }
   }
 

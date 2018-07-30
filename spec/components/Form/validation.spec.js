@@ -18,10 +18,10 @@ describe('.isEmpty', () => {
 });
 
 describe('.arrayIsInvalid', () => {
-  it('returns true for array is empty', () => {
+  it('returns false for empty array', () => {
     const result = arrayIsInvalid([]);
 
-    expect(result).toBe(true);
+    expect(result).toBe(false);
   });
 
   it('returns true for array contains undefined', () => {

@@ -40,23 +40,37 @@ describe('Input', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('changes input value .onChage event', () => {
+  it('triggers onFieldChange', () => {
+    const onFieldChange = jest.fn();
+
     const component = shallow(
       <Input
-        {...commonProps}
+        id={'idTest'}
+        name={'nameTest'}
+        onFieldBlur={() => {}}
+        onFieldChange={onFieldChange}
+        placeholder={'placeholderTest'}
+        required={false}
         value={'ola test value'}
       />,
     );
 
     component.simulate('change', { target: { value: 'Bora pra action' } });
 
-    expect(component.instance().state.value).toEqual('Bora pra action');
+    expect(component.instance().props.onFieldChange).toBeCalledWith({
+      value: 'Bora pra action',
+      id: 'idTest',
+    });
   });
 
-  it('retrains input text to maxLenght', () => {
+  it('trims text to maxLength', () => {
+    const onFieldChange = jest.fn();
+
     const component = mount(
       <Input
         {...commonProps}
+        id={'idTest'}
+        onFieldChange={onFieldChange}
         value={''}
         maxLength={5}
       />,
@@ -64,7 +78,10 @@ describe('Input', () => {
 
     component.simulate('change', { target: { value: 'Bora pra action' } });
 
-    expect(component.instance().state.value).toHaveLength(5);
+    expect(component.instance().props.onFieldChange).toBeCalledWith({
+      value: 'Bora ',
+      id: 'idTest',
+    });
   });
 
   describe('with type', () => {
@@ -112,16 +129,16 @@ describe('Input', () => {
     });
 
     describe('when input is type phone', () => {
-      it('keeps state updated on blur event', () => {
-        const onFieldChange = jest.fn();
+      it('triggers onFieldBlur with target values', () => {
+        const onFieldBlur = jest.fn();
 
         const component = mount(
           <Input
             id='phone'
             name='phone'
             type='phone'
-            onFieldChange={onFieldChange}
-            onFieldBlur={() => {}}
+            onFieldChange={() => {}}
+            onFieldBlur={onFieldBlur}
             placeholder='(__) _____-____'
             required={false}
             value=''
@@ -129,9 +146,15 @@ describe('Input', () => {
         );
 
         component.simulate('change', { target: { value: '(11) 99999-8888' } });
-        component.simulate('blur', { target: { value: '(11) 99999-8888' } });
+        component.simulate('blur', { target: { value: '(11) 97878-1212' } });
 
-        expect(component.state().value).toBe('(11) 99999-8888');
+        expect(component.instance().props.onFieldBlur).toBeCalledWith({
+          id: 'phone',
+          minLength: 1,
+          required: false,
+          type: 'phone',
+          value: '(11) 97878-1212',
+        });
       });
     });
   });

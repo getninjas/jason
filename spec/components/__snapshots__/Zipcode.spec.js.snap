@@ -19,6 +19,7 @@ Array [
     placeholder="00000-000"
     required={true}
     type="tel"
+    value=""
 />,
   <span
     className="full-address"
