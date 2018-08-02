@@ -158,4 +158,95 @@ describe('Input', () => {
       });
     });
   });
+
+  describe('.onChange', () => {
+    it('applies mask input', () => {
+      const onFieldChange = jest.fn();
+
+      const component = mount(
+        <Input
+          id='phone'
+          name='phone'
+          type='phone'
+          onFieldChange={onFieldChange}
+          onFieldBlur={() => {}}
+          placeholder='(__) _____-____'
+          required={false}
+          value=''
+        />,
+      );
+
+      const instance = component.instance();
+
+      component.simulate('change', { target: { value: '11999998888' } });
+
+      expect(instance.props.onFieldChange).toBeCalledWith({
+        id: 'phone',
+        value: '(11) 99999-8888',
+      });
+    });
+
+    it('calls applyMask onChange', () => {
+      const component = mount(
+        <Input
+          id='phone'
+          name='phone'
+          type='phone'
+          onFieldChange={() => {}}
+          onFieldBlur={() => {}}
+          placeholder='(__) _____-____'
+          required={false}
+          value=''
+        />,
+      );
+
+      const instance = component.instance();
+
+      instance.applyMask = jest.fn();
+
+      component.simulate('change', { target: { value: '11999998888' } });
+
+      expect(instance.applyMask).toBeCalledWith('11999998888');
+    });
+  });
+
+  describe('.applyMask', () => {
+    describe('when input type phone', () => {
+      it('returns masked value', () => {
+        const component = mount(
+          <Input
+            id='phone'
+            name='phone'
+            type='phone'
+            onFieldChange={() => {}}
+            onFieldBlur={() => {}}
+            placeholder='(__) _____-____'
+            required={false}
+            value=''
+          />,
+        );
+
+        expect(component.instance().applyMask('11999998888')).toBe('(11) 99999-8888');
+      });
+    });
+
+    describe('when input not of type phone', () => {
+      it('does not apply mask', () => {
+        const component = mount(
+          <Input
+            id='idTest'
+            name='idTest'
+            type='text'
+            onFieldChange={() => {}}
+            onFieldBlur={() => {}}
+            placeholder='(__) _____-____'
+            required={false}
+            value=''
+          />,
+        );
+
+        expect(component.instance().applyMask('John Doe')).toBe('John Doe');
+      });
+    });
+  });
 });
