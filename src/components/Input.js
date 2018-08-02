@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import IMask from 'imask';
 import { maxLengthTrim, getInputType } from '../helpers/input';
@@ -29,18 +29,20 @@ const defaultProps = {
   maxLength: 255,
 };
 
+const mask = IMask.createMask({ mask: '(00) 00000-0000' });
+
 export default class Input extends Component {
   constructor(props) {
     super(props);
 
-    this.ref = createRef();
     this.onChange = this.onChange.bind(this);
     this.onBlur = this.onBlur.bind(this);
-    this.mask = null;
   }
 
   onChange(evt) {
-    const inputValue = maxLengthTrim(evt.target.value, this.props.maxLength);
+    let inputValue = maxLengthTrim(evt.target.value, this.props.maxLength);
+
+    inputValue = this.applyMask(inputValue);
 
     this.props.onFieldChange({
       value: inputValue,
@@ -58,18 +60,18 @@ export default class Input extends Component {
     });
   }
 
-  componentDidMount() {
-    const { type } = this.props;
-
-    if (type === 'phone') {
-      this.mask = new IMask(this.ref.current, { mask: '(00) 00000-0000' });
-      this.mask.on('complete', () => {
-        this.props.onFieldChange({
-          value: this.mask.value,
-          id: this.props.id,
-        });
-      });
+  applyMask(value) {
+    if (this.props.type !== 'phone') {
+      return value;
     }
+
+    return mask.resolve(value);
+  }
+
+  componentDidMount() {
+    const { initialValue } = this.props;
+
+    this.applyMask(initialValue || '');
   }
 
   render() {
@@ -99,7 +101,7 @@ export default class Input extends Component {
         onBlur={this.onBlur}
         minLength={minLength}
         maxLength={maxLength}
-        ref={this.ref} />
+      />
     );
   }
 }
