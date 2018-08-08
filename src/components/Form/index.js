@@ -66,7 +66,6 @@ export default class Form extends Component {
   }
 
   componentDidMount() {
-    console.log('this data: ', this.props.data.errorMessages);
     this.setState({
       activeStepIndex: 0,
       stepsCount: this.props.data.steps.length - 1,
