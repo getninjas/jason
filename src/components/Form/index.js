@@ -56,6 +56,7 @@ export default class Form extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.onFieldChange = this.onFieldChange.bind(this);
     this.onFieldBlur = this.onFieldBlur.bind(this);
+    this.errorMessages = this.props.data.errorMessages[0];
   }
 
   get currentStep() {
@@ -65,6 +66,7 @@ export default class Form extends Component {
   }
 
   componentDidMount() {
+    console.log('this data: ', this.props.data.errorMessages);
     this.setState({
       activeStepIndex: 0,
       stepsCount: this.props.data.steps.length - 1,
@@ -115,8 +117,9 @@ export default class Form extends Component {
   }
 
   isStepsValid() {
+    const errorMessages = this.errorMessages;
     const validSteps = this.state.steps.filter((step) => {
-      const { isValid } = validateStep(step.fields);
+      const { isValid } = validateStep(step.fields, errorMessages);
       return isValid;
     });
 
@@ -143,7 +146,7 @@ export default class Form extends Component {
   }
 
   handleStepChange() {
-    const { updatedFields, isValid } = validateStep(this.currentStep.fields);
+    const { updatedFields, isValid } = validateStep(this.currentStep.fields, this.errorMessages);
 
     this.updateStep(updatedFields);
 
@@ -164,9 +167,11 @@ export default class Form extends Component {
   }
 
   onFieldBlur({ value, id, required, type, minLength }) {
+    const errorMessages = this.errorMessages;
     const fields = this.currentStep.fields.map((item) => {
       if (item.id === id) {
-        const errorMessage = validateField({ required, type, value, minLength });
+        console.log('errorMessages >>>', errorMessages);
+        const errorMessage = validateField({ required, type, value, minLength }, errorMessages);
 
         return { ...item, value, errorMessage };
       }

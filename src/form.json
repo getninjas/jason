@@ -3,6 +3,16 @@
     "title": "Form Title",
     "databaseId": 81,
     "zipcodeUrlService": "http://www.mocky.io/v2/5afaebc92f00000e00f7c654",
+    "errorMessages": [
+      {
+        "REQUIRED_FIELD": "Este campo é requerido",
+        "REQUIRED_VALID_CELLPHONE": "Celular válido requerido",
+        "REQUIRED_VALID_EMAIL": "E-mail válido requerido",
+        "REQUIRED_VALID_ZIPCODE": "CEP válido requerido",
+        "REQUIRED_MINLENGHT": "Este campo requer ao menos 2 caracteres.",
+        "REQUIRED_CHECKBOX_FIELD": "Marque pelo menos uma opção"
+      }
+    ],
     "steps": [
       {
         "title": "General data",
