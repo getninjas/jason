@@ -207,13 +207,11 @@ describe('.validateField', () => {
     expect(result).toBe(errorMessages.REQUIRED_CHECKBOX_FIELD);
   });
 
-  // it('returns error message for empty value', () => {
-  //   const result = validateField({ required: true, value: '' }, errorMessages);
-  //   console.log('result spec >>>>>> ', result);
-  //   console.log('inside spec >>>>>> ', errorMessages.REQUIRED_FIELD);
+  it('returns error message for empty value', () => {
+    const result = validateField({ required: true, value: '' }, errorMessages);
 
-  //   expect(result).toBe(errorMessages.REQUIRED_FIELD);
-  // });
+    expect(result).toBe(errorMessages.REQUIRED_FIELD);
+  });
 
   it('returns error message for value smaller than minlength', () => {
     const result = validateField({ required: true, value: 'ab', minLength: 3 }, errorMessages);
@@ -231,7 +229,7 @@ describe('.validateField', () => {
 describe('.validateStep', () => {
   it('expects output to be invalid', () => {
     const steps = [...form.steps];
-    const result = validateStep(steps[0].fields);
+    const result = validateStep(steps[0].fields, errorMessages);
 
     expect(result.isValid).toBe(false);
   });
@@ -242,7 +240,7 @@ describe('.validateStep', () => {
 
     data.steps = fillFormFields(data.steps);
 
-    const result = validateStep(data.steps[0].fields);
+    const result = validateStep(data.steps[0].fields, errorMessages);
 
     expect(result.isValid).toBe(true);
   });
