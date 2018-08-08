@@ -56,7 +56,7 @@ export default class Form extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.onFieldChange = this.onFieldChange.bind(this);
     this.onFieldBlur = this.onFieldBlur.bind(this);
-    this.errorMessages = this.props.data.errorMessages[0];
+    this.errorMessages = this.props.data.errorMessages;
   }
 
   get currentStep() {

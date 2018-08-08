@@ -2,7 +2,7 @@ import { arrayIsInvalid, isEmpty, isMinLength, isValidCellPhone, isValidEmail, i
 import { form } from '../../../src/form.json';
 import fillFormFields from '../../helper';
 
-const errorMessages = form.errorMessages[0];
+const errorMessages = form.errorMessages;
 
 describe('.isEmpty', () => {
   it('returns true for empty string', () => {
