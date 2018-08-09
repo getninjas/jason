@@ -120,6 +120,7 @@
             "id": "zipcode",
             "name": "zipcode",
             "placeholder": "00000-000",
+            "regexPattern": "^[0-9]{5}-[0-9]{3}$",
             "value": null,
             "wrapperClassName": "form__field input",
             "values": []
@@ -150,6 +151,7 @@
             "name": "phone",
             "type": "phone",
             "placeholder": "(__) _____-____",
+            "regexPattern": "^d{2}[6-9]{1}[0-9]{8}$",
             "required": true,
             "value": null,
             "values": []

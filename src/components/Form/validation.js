@@ -33,22 +33,24 @@ export const isValidEmail = (value) => {
   return regex.test(value.trim());
 };
 
-export const isValidZipcode = (value) => {
-  const regex = /^[0-9]{5}-[0-9]{3}$/;
+export const isValidZipcode = (value, regexPattern) => {
+  const regex = new RegExp(regexPattern);
+
   return regex.test(value.trim());
 };
 
-export const isValidCellPhone = (value) => {
-  const regex = /^\d{2}[6-9]{1}[0-9]{8}$/g;
+export const isValidCellPhone = (value, regexPattern) => {
+  const regex = new RegExp(regexPattern);
+
   return regex.test(value.replace(/\D+/g, '').trim());
 };
 
-export const validateField = ({ required, type, value, minLength }, errorMessages) => {
+export const validateField = ({ required, type, value, minLength, regexPattern }, errorMessages) => {
   if (required && value === null) {
     return (type === 'checkbox') ? errorMessages.REQUIRED_CHECKBOX_FIELD : errorMessages.REQUIRED_FIELD;
   }
 
-  if (type === 'phone' && (isEmpty(value) || !isValidCellPhone(value))) {
+  if (type === 'phone' && (isEmpty(value) || !isValidCellPhone(value, regexPattern))) {
     return errorMessages.REQUIRED_VALID_CELLPHONE;
   }
 
@@ -56,7 +58,7 @@ export const validateField = ({ required, type, value, minLength }, errorMessage
     return errorMessages.REQUIRED_VALID_EMAIL;
   }
 
-  if (type === 'zipcode' && (isEmpty(value) || !isValidZipcode(value))) {
+  if (type === 'zipcode' && (isEmpty(value) || !isValidZipcode(value, regexPattern))) {
     return errorMessages.REQUIRED_VALID_ZIPCODE;
   }
 

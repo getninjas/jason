@@ -119,6 +119,7 @@ export default class Form extends Component {
     const errorMessages = this.errorMessages;
     const validSteps = this.state.steps.filter((step) => {
       const { isValid } = validateStep(step.fields, errorMessages);
+
       return isValid;
     });
 
@@ -165,12 +166,11 @@ export default class Form extends Component {
     }
   }
 
-  onFieldBlur({ value, id, required, type, minLength }) {
+  onFieldBlur({ value, id, required, type, minLength, regexPattern }) {
     const errorMessages = this.errorMessages;
     const fields = this.currentStep.fields.map((item) => {
       if (item.id === id) {
-        console.log('errorMessages >>>', errorMessages);
-        const errorMessage = validateField({ required, type, value, minLength }, errorMessages);
+        const errorMessage = validateField({ required, type, value, minLength, regexPattern }, errorMessages);
 
         return { ...item, value, errorMessage };
       }

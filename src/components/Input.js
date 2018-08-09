@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import IMask from 'imask';
-import { maxLengthTrim, getInputType } from '../helpers/input';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { getInputType, maxLengthTrim } from '../helpers/input';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
@@ -16,6 +16,7 @@ const propTypes = {
   style: PropTypes.string,
   minLength: PropTypes.number,
   maxLength: PropTypes.number,
+  regexPattern: PropTypes.string,
 };
 
 const defaultProps = {
@@ -57,6 +58,7 @@ export default class Input extends Component {
       required: this.props.required,
       type: this.props.type,
       minLength: this.props.minLength,
+      regexPattern: this.props.regexPattern,
     });
   }
 
