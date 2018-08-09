@@ -7,7 +7,7 @@ import Zipcode from './Zipcode';
 
 export default class Factory {
   static getComponent({ item, index, onFieldChange, onFieldBlur, formName, zipcodeUrlService }) {
-    const { type, placeholder, id, name, value, values, required, regexPattern } = item;
+    const { type, placeholder, id, name, value, values, required, regexPattern, mask } = item;
 
     const inputTypeAccepted = ['text', 'phone', 'email'];
 
@@ -45,6 +45,7 @@ export default class Factory {
           key={commonProps.initialValue}
           zipcodeUrlService={zipcodeUrlService}
           regexPattern={regexPattern}
+          mask={mask}
         />
       );
     }
@@ -64,6 +65,7 @@ export default class Factory {
           {...commonProps}
           type={type}
           regexPattern={regexPattern}
+          mask={mask || ''}
         />
       );
     }

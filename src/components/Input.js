@@ -17,6 +17,7 @@ const propTypes = {
   minLength: PropTypes.number,
   maxLength: PropTypes.number,
   regexPattern: PropTypes.string,
+  mask: PropTypes.string,
 };
 
 const defaultProps = {
@@ -30,7 +31,7 @@ const defaultProps = {
   maxLength: 255,
 };
 
-const mask = IMask.createMask({ mask: '(00) 00000-0000' });
+let mask = IMask.createMask({ mask: '(00) 00000-0000' });
 
 export default class Input extends Component {
   constructor(props) {
@@ -72,6 +73,7 @@ export default class Input extends Component {
 
   componentDidMount() {
     const { initialValue } = this.props;
+    mask = IMask.createMask({ mask: this.props.mask });
 
     this.applyMask(initialValue || '');
   }
