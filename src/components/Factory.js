@@ -1,9 +1,10 @@
 import React from 'react';
-import Select from './Select';
+import Checkbox from './Checkbox';
 import Input from './Input';
+import Select from './Select';
+import SelectCategory from './SelectCategory';
 import TextArea from './TextArea';
 import Zipcode from './Zipcode';
-import Checkbox from './Checkbox';
 
 export default class Factory {
   static getComponent({ item, index, onFieldChange, onFieldBlur, formName, zipcodeUrlService }) {
@@ -28,6 +29,16 @@ export default class Factory {
           {...commonProps}
           selected={value}
           values={values} />
+      );
+    }
+
+    if (type === 'select_category') {
+      return (
+        <SelectCategory
+          {...commonProps}
+          selected={value}
+          values={values}
+          nested={item.nested_values} />
       );
     }
 
