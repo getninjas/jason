@@ -42,6 +42,110 @@
             ]
           },
           {
+            "title": "Exempla Select Category",
+            "placeholder": "Exempla Select Category",
+            "required": true,
+            "id": "10_id",
+            "name": "1_name_select_category",
+            "type": "select_category",
+            "value": null,
+            "values": [
+              {
+                "databaseId": 124,
+                "value": "Video Game"
+              },
+              {
+                "databaseId": 154,
+                "value": "Televisor"
+              },
+              {
+                "databaseId": 141,
+                "value": "Celular"
+              }
+            ],
+            "nested_values": [
+              {
+                "reference": "124",
+                "name": "Qual a marca?",
+                "label": "Qual a marca?",
+                "placeholder": "Qual a marca?",
+                "mask": "Sinalize o produto antes",
+                "type": "enumerable",
+                "required": true,
+                "allow_multiple_value": false,
+                "allow_custom_value": false,
+                "values": [
+                  {
+                    "databaseId": 549,
+                    "value": "Sony"
+                  },
+                  {
+                    "databaseId": 479,
+                    "value": "Microsoft"
+                  },
+                  {
+                    "databaseId": 669,
+                    "value": "Nintendo"
+                  }
+                ]
+              },
+              {
+                "reference": "154",
+                "name": "Qual a marca?",
+                "label": "Qual a marca?",
+                "placeholder": "Qual a marca?",
+                "mask": "Sinalize o produto antes",
+                "type": "enumerable",
+                "required": true,
+                "allow_multiple_value": false,
+                "allow_custom_value": false,
+                "values": [
+                  {
+                    "id": 1352,
+                    "name": "Samsung"
+                  },
+                  {
+                    "id": 1355,
+                    "name": "Sony"
+                  },
+                  {
+                    "id": 523,
+                    "name": "LG"
+                  }
+                ]
+              },
+              {
+                "reference": "141",
+                "name": "Qual a marca?",
+                "label": "Qual a marca?",
+                "placeholder": "Qual a marca?",
+                "mask": "Sinalize o produto antes",
+                "type": "enumerable",
+                "required": true,
+                "allow_multiple_value": false,
+                "allow_custom_value": false,
+                "values": [
+                  {
+                    "id": 1177,
+                    "name": "Samsung"
+                  },
+                  {
+                    "id": 1231,
+                    "name": "Apple"
+                  },
+                  {
+                    "id": 1542,
+                    "name": "LG"
+                  },
+                  {
+                    "id": 1632,
+                    "name": "Asus"
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "title": "Especifique melhor a metragem do serviço",
             "required": true,
             "id": "2_id",
