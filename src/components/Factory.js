@@ -38,7 +38,8 @@ export default class Factory {
           {...commonProps}
           selected={value}
           values={values}
-          nested={item.nested_values} />
+          nestedProperties={item.nested_properties}
+          nestedValues={item.nested_values} />
       );
     }
 
