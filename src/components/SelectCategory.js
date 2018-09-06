@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React, { Component, Fragment } from 'react';
-import addPlaceholder from '../helpers/select';
 import Select from './Select';
 
 const propTypes = {
@@ -16,7 +15,8 @@ const propTypes = {
   type: PropTypes.string,
   placeholder: PropTypes.string,
   style: PropTypes.string,
-  nested: PropTypes.array,
+  nestedProperties: PropTypes.object,
+  nestedValues: PropTypes.object,
 };
 
 const defaultProps = {
@@ -35,31 +35,41 @@ export default class SelectCategory extends Component {
     super(props);
 
     this.state = {
-      values: [],
-      value: this.props.initialValue ? this.props.initialValue : '',
+      nested: {
+        values: [{
+          databaseId: '',
+          value: this.props.nestedProperties.mask,
+        }],
+      },
     };
 
     this.onChange = this.onChange.bind(this);
   }
 
-  componentDidMount() {
-    const values = addPlaceholder(this.props);
-
-    this.setState({ values });
-  }
-
   onChange(evt) {
-    console.log('Event >>>> ', evt);
+    const nested = Object.assign({}, this.props.nestedValues);
+    const nestedSelectedValues = nested[`${evt.value}`].values;
+
+    this.setState({ nested: { values: nestedSelectedValues } });
   }
 
   render() {
-    const { id, name, required, placeholder, values, style, selected, onFieldBlur, onFieldChange, nested } = this.props;
-
-    console.log('Nested Select Category >>>>> ', nested[0]);
+    const {
+      id,
+      name,
+      nestedProperties,
+      onFieldBlur,
+      onFieldChange,
+      placeholder,
+      required,
+      style,
+      selected,
+      values } = this.props;
 
     return (
       <Fragment>
         <Select
+          key={id}
           id={id}
           name={name}
           onFieldBlur={onFieldBlur}
@@ -70,17 +80,18 @@ export default class SelectCategory extends Component {
           style={style}
           values={values}
         />
-        <Select
-          id={nested[0].reference}
-          name={nested[0].name}
-          onFieldBlur={onFieldBlur}
-          onFieldChange={onFieldChange}
-          placeholder={nested[0].placeholder}
-          required={nested[0].required}
-          selected={selected}
-          style={style}
-          values={nested[0].values}
-        />
+        <div className={'form__field form__field--fluid input'}>
+          <label className={'form_label'}>{nestedProperties.label}</label>
+          <Select
+            key={nestedProperties.name}
+            id={nestedProperties.name}
+            name={nestedProperties.name}
+            onFieldBlur={onFieldBlur}
+            onFieldChange={onFieldChange}
+            placeholder={nestedProperties.mask}
+            values={[...this.state.nested.values]}
+          />
+        </div>
       </Fragment>
     );
   }
