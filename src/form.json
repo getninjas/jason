@@ -20,6 +20,10 @@
             "value": null,
             "values": [
               {
+                "databaseId": "",
+                "value": "Placeholder Example"
+              },
+              {
                 "databaseId": 7117,
                 "value": "Construção"
               },
@@ -51,6 +55,10 @@
             "value": null,
             "values": [
               {
+                "databaseId": "",
+                "value": "Placeholder Example"
+              },
+              {
                 "databaseId": 124,
                 "value": "Video Game"
               },
@@ -63,18 +71,20 @@
                 "value": "Celular"
               }
             ],
-            "nested_values": [
-              {
-                "reference": "124",
-                "name": "Qual a marca?",
-                "label": "Qual a marca?",
-                "placeholder": "Qual a marca?",
-                "mask": "Sinalize o produto antes",
-                "type": "enumerable",
-                "required": true,
-                "allow_multiple_value": false,
-                "allow_custom_value": false,
+            "nested_properties": {
+              "name": "Qual a marca?",
+              "label": "Qual a marca?",
+              "placeholder": "Qual a marca?",
+              "mask": "Sinalize o produto antes",
+              "required": true
+            },
+            "nested_values": {
+              "124": {
                 "values": [
+                  {
+                    "databaseId": "",
+                    "value": "Qual a marca?"
+                  },
                   {
                     "databaseId": 549,
                     "value": "Sony"
@@ -89,61 +99,51 @@
                   }
                 ]
               },
-              {
-                "reference": "154",
-                "name": "Qual a marca?",
-                "label": "Qual a marca?",
-                "placeholder": "Qual a marca?",
-                "mask": "Sinalize o produto antes",
-                "type": "enumerable",
-                "required": true,
-                "allow_multiple_value": false,
-                "allow_custom_value": false,
+              "154": {
                 "values": [
                   {
-                    "id": 1352,
-                    "name": "Samsung"
+                    "databaseId": "",
+                    "value": "Qual a marca?"
                   },
                   {
-                    "id": 1355,
-                    "name": "Sony"
+                    "databaseId": 1352,
+                    "value": "Samsung"
                   },
                   {
-                    "id": 523,
-                    "name": "LG"
+                    "databaseId": 1355,
+                    "value": "Sony"
+                  },
+                  {
+                    "databaseId": 523,
+                    "value": "LG"
                   }
                 ]
               },
-              {
-                "reference": "141",
-                "name": "Qual a marca?",
-                "label": "Qual a marca?",
-                "placeholder": "Qual a marca?",
-                "mask": "Sinalize o produto antes",
-                "type": "enumerable",
-                "required": true,
-                "allow_multiple_value": false,
-                "allow_custom_value": false,
+              "141": {
                 "values": [
                   {
-                    "id": 1177,
-                    "name": "Samsung"
+                    "databaseId": "",
+                    "value": "Qual a marca?"
                   },
                   {
-                    "id": 1231,
-                    "name": "Apple"
+                    "databaseId": 1177,
+                    "value": "Apple"
                   },
                   {
-                    "id": 1542,
-                    "name": "LG"
+                    "databaseId": 1231,
+                    "value": "Samsung"
                   },
                   {
-                    "id": 1632,
-                    "name": "Asus"
+                    "databaseId": 1542,
+                    "value": "LG"
+                  },
+                  {
+                    "databaseId": 1632,
+                    "value": "Asus"
                   }
                 ]
               }
-            ]
+            }
           },
           {
             "title": "Especifique melhor a metragem do serviço",
