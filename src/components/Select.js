@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import addPlaceholder from '../helpers/select';
+import React, { Component } from 'react';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
@@ -41,12 +40,6 @@ export default class Select extends Component {
     this.onBlur = this.onBlur.bind(this);
   }
 
-  componentDidMount() {
-    const values = addPlaceholder(this.props);
-
-    this.setState({ values });
-  }
-
   onChange(evt) {
     this.setState({ value: evt.target.value });
 
@@ -78,9 +71,9 @@ export default class Select extends Component {
         onBlur={this.onBlur}
         required={required ? 'true' : 'false'}>
         {
-          this.state.values.map((item, index) =>
+          this.props.values.map((item, index) =>
             (
-              <option key={`option-${index}`} value={item.databaseId}>
+              <option key={`${id}-${index}`} value={item.databaseId}>
                 {item.value}
               </option>
             ),
