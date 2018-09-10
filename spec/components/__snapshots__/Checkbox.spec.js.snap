@@ -7,8 +7,8 @@ exports[`Checkbox render component 1`] = `
   >
     <input
       className="form__input"
-      data-input-value="Cozinhar"
-      id={6792}
+      data-input-value="Sinalize o produto antes"
+      id=""
       name="nameTest"
       onBlur={[Function]}
       onChange={[Function]}
@@ -16,9 +16,9 @@ exports[`Checkbox render component 1`] = `
       type="checkbox"
     />
     <label
-      htmlFor={6792}
+      htmlFor=""
     >
-      Cozinhar
+      Sinalize o produto antes
     </label>
   </li>
 </ul>

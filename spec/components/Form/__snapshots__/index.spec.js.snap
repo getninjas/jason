@@ -46,7 +46,7 @@ Array [
                 <option
                     value=""
                 >
-                    Placeholder
+                    Placeholder Example
                 </option>
                 <option
                     value={7117}
@@ -72,6 +72,81 @@ Array [
                     value={7121}
                 >
                     Outros
+                </option>
+            </select>
+            <span
+                className="form__message form__message--invalid space-element-small error"
+            >
+                
+            </span>
+        </div>
+        <div
+            className="form__field form__field--fluid input"
+        >
+            <label
+                className="form__label"
+                htmlFor="10_id"
+            >
+                Example Select Category
+            </label>
+            <select
+                className="form__input"
+                id="10_id"
+                name="1_name_select_category"
+                onBlur={[Function]}
+                onChange={[Function]}
+                required="true"
+                value=""
+            >
+                <option
+                    value=""
+                >
+                    Placeholder Example
+                </option>
+                <option
+                    value={124}
+                >
+                    Video Game
+                </option>
+                <option
+                    value={154}
+                >
+                    Televisor
+                </option>
+                <option
+                    value={141}
+                >
+                    Celular
+                </option>
+            </select>
+            <span
+                className="form__message form__message--invalid space-element-small error"
+            >
+                
+            </span>
+        </div>
+        <div
+            className="form__field form__field--fluid input"
+        >
+            <label
+                className="form__label"
+                htmlFor="09_sc"
+            >
+                Qual a marca?
+            </label>
+            <select
+                className="form__input"
+                id="09_sc"
+                name="1_nested_select"
+                onBlur={[Function]}
+                onChange={[Function]}
+                required="true"
+                value=""
+            >
+                <option
+                    value=""
+                >
+                    Sinalize o produto antes
                 </option>
             </select>
             <span
