@@ -92,42 +92,6 @@ describe('Select', () => {
     });
   });
 
-  describe('.addPlaceholder', () => {
-    const values = form.steps[0].fields[0].values.slice(0, 2);
-
-    it('sets placeholder as first option', () => {
-      const component = mount(
-        <Select
-          id='idTest'
-          name='nameTest'
-          placeholder='placeholderTest'
-          required={false}
-          onFieldChange={() => {}}
-          onFieldBlur={() => {}}
-          values={values}
-        />,
-      );
-
-      expect(component.instance().state.values[0].value).toEqual('placeholderTest');
-    });
-
-    it('does not set placeholder', () => {
-      const component = mount(
-        <Select
-          id='idTest'
-          name='nameTest'
-          placeholder=''
-          required={false}
-          onFieldChange={() => {}}
-          onFieldBlur={() => {}}
-          values={values}
-        />,
-      );
-
-      expect(component.instance().state.values[0].value).not.toEqual('');
-    });
-  });
-
   describe('.onBlur', () => {
     it('calls onFieldBlur', () => {
       const values = form.steps[0].fields[0].values.slice(0, 2);
