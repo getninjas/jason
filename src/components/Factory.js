@@ -7,7 +7,7 @@ import Zipcode from './Zipcode';
 
 export default class Factory {
   static getComponent({ item, index, onFieldChange, onFieldBlur, formName, zipcodeUrlService }) {
-    const { type, placeholder, id, name, value, values, required, nested, reference } = item;
+    const { type, placeholder, id, name, value, values, required } = item;
 
     const inputTypeAccepted = ['text', 'phone', 'email'];
 
@@ -27,8 +27,6 @@ export default class Factory {
         <Select
           {...commonProps}
           selected={value}
-          nested={nested}
-          reference={reference}
           values={values} />
       );
     }

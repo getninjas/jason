@@ -14,8 +14,6 @@ const propTypes = {
   type: PropTypes.string,
   placeholder: PropTypes.string,
   style: PropTypes.string,
-  nested: PropTypes.bool,
-  reference: PropTypes.string,
 };
 
 const defaultProps = {
@@ -27,8 +25,6 @@ const defaultProps = {
   values: [],
   placeholder: '',
   style: 'form__input',
-  nested: false,
-  reference: '',
 };
 
 export default class Select extends Component {
@@ -45,9 +41,6 @@ export default class Select extends Component {
   }
 
   onChange(evt) {
-    console.log('onChange nested >>>>>>> ', this.props.id);
-    console.log('onChange nested >>>>>>> ', this.props.nested);
-    console.log('onChange value >>>>>>> ', evt.target.value);
     this.setState({ value: evt.target.value });
 
     this.props.onFieldChange({
