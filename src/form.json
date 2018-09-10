@@ -46,12 +46,13 @@
             ]
           },
           {
-            "title": "Exempla Select Category",
-            "placeholder": "Exempla Select Category",
+            "title": "Example Select Category",
+            "placeholder": "Example Select Category",
             "required": true,
             "id": "10_id",
             "name": "1_name_select_category",
-            "type": "select_category",
+            "type": "select",
+            "nested": true,
             "value": null,
             "values": [
               {
@@ -70,14 +71,23 @@
                 "databaseId": 141,
                 "value": "Celular"
               }
+            ]
+          },
+          {
+            "reference": "10_id",
+            "name": "1_nested_select",
+            "id": "09_sc",
+            "title": "Qual a marca?",
+            "placeholder": "Qual a marca?",
+            "type": "select",
+            "required": true,
+            "value": null,
+            "values": [
+              {
+                "databaseId": "",
+                "value": "Sinalize o produto antes"
+              }
             ],
-            "nested_properties": {
-              "name": "Qual a marca?",
-              "label": "Qual a marca?",
-              "placeholder": "Qual a marca?",
-              "mask": "Sinalize o produto antes",
-              "required": true
-            },
             "nested_values": {
               "124": {
                 "values": [
