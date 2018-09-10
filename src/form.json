@@ -52,7 +52,6 @@
             "id": "10_id",
             "name": "1_name_select_category",
             "type": "select",
-            "nested": true,
             "value": null,
             "values": [
               {
@@ -79,6 +78,7 @@
             "id": "09_sc",
             "title": "Qual a marca?",
             "placeholder": "Qual a marca?",
+            "mask": "Sinalize o produto antes",
             "type": "select",
             "required": true,
             "value": null,
