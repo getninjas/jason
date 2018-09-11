@@ -310,7 +310,7 @@ describe('Form', () => {
       expect(updatedState.steps[0].fields[2].values).toEqual(updatedOptions);
     });
 
-    it('expects does not updated select with dynamic options', () => {
+    it('does not updated select with dynamic options', () => {
       const component = shallow(
         <Form name={'form'} action={'/'} data={form} />,
       );
