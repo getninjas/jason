@@ -73,7 +73,7 @@ export default class Select extends Component {
         {
           this.props.values.map((item, index) =>
             (
-              <option key={`${id}-${index}`} value={item.databaseId}>
+              <option key={`option-${index}`} value={item.databaseId}>
                 {item.value}
               </option>
             ),
