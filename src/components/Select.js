@@ -11,7 +11,6 @@ const propTypes = {
   selected: PropTypes.any,
   initialValue: PropTypes.any,
   values: PropTypes.array,
-  type: PropTypes.string,
   placeholder: PropTypes.string,
   style: PropTypes.string,
 };
@@ -31,30 +30,22 @@ export default class Select extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      values: [],
-      value: this.props.initialValue ? this.props.initialValue : '',
-    };
-
     this.onChange = this.onChange.bind(this);
     this.onBlur = this.onBlur.bind(this);
   }
 
   onChange(evt) {
-    this.setState({ value: evt.target.value });
-
     this.props.onFieldChange({
       value: evt.target.value,
       id: this.props.id,
     });
   }
 
-  onBlur() {
+  onBlur(evt) {
     this.props.onFieldBlur({
-      value: this.state.value,
+      value: evt.target.value,
       id: this.props.id,
       required: this.props.required,
-      type: this.props.type,
     });
   }
 
@@ -65,7 +56,7 @@ export default class Select extends Component {
       <select
         id={id}
         name={name}
-        value={this.state.value}
+        value={this.props.initialValue || ''}
         className={style}
         onChange={this.onChange}
         onBlur={this.onBlur}
