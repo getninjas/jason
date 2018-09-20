@@ -179,6 +179,12 @@ export default class Form extends Component {
 
   onFieldChange({ value, id }) {
     const fields = this.currentStep.fields.map((item) => {
+      if (item.reference === id) {
+        const defaultValue = { values: [{ databaseId: '', value: item.mask }] };
+
+        return { ...item, values: (item.nested_values[value] || defaultValue).values };
+      }
+
       if (item.id === id) {
         return { ...item, value };
       }

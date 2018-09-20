@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Select from '../../src/components/Select';
 import { form } from '../../src/form.json';
-import { enzymeConfig, shallow, mount } from '../enzymeConfig';
+import { enzymeConfig, shallow } from '../enzymeConfig';
 
 enzymeConfig();
 
@@ -28,47 +28,6 @@ describe('Select', () => {
   });
 
   describe('.onChange', () => {
-    it('updates state selected', () => {
-      const values = form.steps[0].fields[0].values.slice(0, 2);
-
-      const component = shallow(
-        <Select
-          id='idTest'
-          name='nameTest'
-          placeholder='placeholderTest'
-          required={false}
-          onFieldChange={() => {}}
-          onFieldBlur={() => {}}
-          values={values}
-        />,
-      );
-
-      component.simulate('change', { target: { value: 'Reformas' } });
-
-      expect(component.instance().state.value).toEqual('Reformas');
-    });
-
-    it('onverrides initialValue on change event', () => {
-      const values = form.steps[0].fields[0].values.slice(0, 2);
-
-      const component = shallow(
-        <Select
-          id='idTest'
-          name='nameTest'
-          placeholder='placeholderTest'
-          required={false}
-          onFieldChange={() => {}}
-          onFieldBlur={() => {}}
-          initialValue='this is the initialValue'
-          values={values}
-        />,
-      );
-
-      component.simulate('change', { target: { value: 'Reformas' } });
-
-      expect(component.instance().state.value).toEqual('Reformas');
-    });
-
     it('calls onFieldChange', () => {
       const values = form.steps[0].fields[0].values.slice(0, 2);
       const onFieldChange = jest.fn();
@@ -88,43 +47,9 @@ describe('Select', () => {
 
       component.simulate('change', { target: { value: 'Reformas' } });
 
-      expect(component.instance().props.onFieldChange).toBeCalled();
-    });
-  });
+      const params = { value: 'Reformas', id: component.instance().props.id };
 
-  describe('.addPlaceholder', () => {
-    const values = form.steps[0].fields[0].values.slice(0, 2);
-
-    it('sets placeholder as first option', () => {
-      const component = mount(
-        <Select
-          id='idTest'
-          name='nameTest'
-          placeholder='placeholderTest'
-          required={false}
-          onFieldChange={() => {}}
-          onFieldBlur={() => {}}
-          values={values}
-        />,
-      );
-
-      expect(component.instance().state.values[0].value).toEqual('placeholderTest');
-    });
-
-    it('does not set placeholder', () => {
-      const component = mount(
-        <Select
-          id='idTest'
-          name='nameTest'
-          placeholder=''
-          required={false}
-          onFieldChange={() => {}}
-          onFieldBlur={() => {}}
-          values={values}
-        />,
-      );
-
-      expect(component.instance().state.values[0].value).not.toEqual('');
+      expect(component.instance().props.onFieldChange).toHaveBeenCalledWith(params);
     });
   });
 
@@ -145,9 +70,11 @@ describe('Select', () => {
         />,
       );
 
-      component.simulate('blur');
+      component.simulate('blur', { target: { value: 'Reformas' } });
 
-      expect(component.instance().props.onFieldBlur).toBeCalled();
+      const params = { value: 'Reformas', id: component.instance().props.id, required: false };
+
+      expect(component.instance().props.onFieldBlur).toHaveBeenCalledWith(params);
     });
   });
 });

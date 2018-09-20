@@ -1,9 +1,9 @@
 import React from 'react';
-import Select from './Select';
+import Checkbox from './Checkbox';
 import Input from './Input';
+import Select from './Select';
 import TextArea from './TextArea';
 import Zipcode from './Zipcode';
-import Checkbox from './Checkbox';
 
 export default class Factory {
   static getComponent({ item, index, onFieldChange, onFieldBlur, formName, zipcodeUrlService }) {
