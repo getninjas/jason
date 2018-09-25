@@ -170,7 +170,13 @@ export default class Form extends Component {
     const errorMessages = this.errorMessages;
     const fields = this.currentStep.fields.map((item) => {
       if (item.id === id) {
-        const errorMessage = validateField({ required, type, value, minLength, regexPattern }, errorMessages);
+        const errorMessage = validateField({
+          minLength,
+          regexPattern,
+          required,
+          type,
+          value,
+        }, errorMessages);
 
         return { ...item, value, errorMessage };
       }

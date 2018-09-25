@@ -45,7 +45,9 @@ export const isValidCellPhone = (value, regexPattern) => {
   return regex.test(value.replace(/\D+/g, '').trim());
 };
 
-export const validateField = ({ required, type, value, minLength, regexPattern }, errorMessages) => {
+export const validateField = (optionsValidation, errorMessages) => {
+  const { required, type, value, minLength, regexPattern } = optionsValidation;
+
   if (required && value === null) {
     return (type === 'checkbox') ? errorMessages.REQUIRED_CHECKBOX_FIELD : errorMessages.REQUIRED_FIELD;
   }
