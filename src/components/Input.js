@@ -29,6 +29,8 @@ const defaultProps = {
   style: 'form__input',
   minLength: 1,
   maxLength: 255,
+  mask: '',
+  regexPattern: '',
 };
 
 let mask = IMask.createMask({ mask: '(00) 00000-0000' });
