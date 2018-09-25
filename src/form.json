@@ -29,6 +29,10 @@
             "value": null,
             "values": [
               {
+                "databaseId": "",
+                "value": "Placeholder Example"
+              },
+              {
                 "databaseId": 7117,
                 "value": "Construção"
               },
@@ -49,6 +53,116 @@
                 "value": "Outros"
               }
             ]
+          },
+          {
+            "title": "Example Select Category",
+            "placeholder": "Example Select Category",
+            "required": true,
+            "id": "10_id",
+            "name": "1_name_select_category",
+            "type": "select",
+            "value": null,
+            "values": [
+              {
+                "databaseId": "",
+                "value": "Placeholder Example"
+              },
+              {
+                "databaseId": 124,
+                "value": "Video Game"
+              },
+              {
+                "databaseId": 154,
+                "value": "Televisor"
+              },
+              {
+                "databaseId": 141,
+                "value": "Celular"
+              }
+            ]
+          },
+          {
+            "reference": "10_id",
+            "name": "1_nested_select",
+            "id": "09_sc",
+            "title": "Qual a marca?",
+            "placeholder": "Qual a marca?",
+            "mask": "Sinalize o produto antes",
+            "type": "select",
+            "required": true,
+            "value": null,
+            "values": [
+              {
+                "databaseId": "",
+                "value": "Sinalize o produto antes"
+              }
+            ],
+            "nested_values": {
+              "124": {
+                "values": [
+                  {
+                    "databaseId": "",
+                    "value": "Qual a marca?"
+                  },
+                  {
+                    "databaseId": 549,
+                    "value": "Sony"
+                  },
+                  {
+                    "databaseId": 479,
+                    "value": "Microsoft"
+                  },
+                  {
+                    "databaseId": 669,
+                    "value": "Nintendo"
+                  }
+                ]
+              },
+              "154": {
+                "values": [
+                  {
+                    "databaseId": "",
+                    "value": "Qual a marca?"
+                  },
+                  {
+                    "databaseId": 1352,
+                    "value": "Samsung"
+                  },
+                  {
+                    "databaseId": 1355,
+                    "value": "Sony"
+                  },
+                  {
+                    "databaseId": 523,
+                    "value": "LG"
+                  }
+                ]
+              },
+              "141": {
+                "values": [
+                  {
+                    "databaseId": "",
+                    "value": "Qual a marca?"
+                  },
+                  {
+                    "databaseId": 1177,
+                    "value": "Apple"
+                  },
+                  {
+                    "databaseId": 1231,
+                    "value": "Samsung"
+                  },
+                  {
+                    "databaseId": 1542,
+                    "value": "LG"
+                  },
+                  {
+                    "databaseId": 1632,
+                    "value": "Asus"
+                  }
+                ]
+              }
+            }
           },
           {
             "title": "Especifique melhor a metragem do serviço",
