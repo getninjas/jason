@@ -3,6 +3,8 @@ import { form } from '../../../src/form.json';
 import fillFormFields from '../../helper';
 
 const errorMessages = form.errorMessages;
+const zipcodeRegexPattern = form.steps[1].fields[0].regexPattern;
+const cellphoneRegexPattern = form.steps[1].fields[3].regexPattern;
 
 describe('.isEmpty', () => {
   it('returns true for empty string', () => {
@@ -126,19 +128,19 @@ describe('.isValidEmail', () => {
 
 describe('.isValidZipcode', () => {
   it('returns false for empty zipcode', () => {
-    const result = isValidZipcode('');
+    const result = isValidZipcode('', zipcodeRegexPattern);
 
     expect(result).toBe(false);
   });
 
   it('returns false for zipcode 1111-111', () => {
-    const result = isValidZipcode('1111-111');
+    const result = isValidZipcode('1111-111', zipcodeRegexPattern);
 
     expect(result).toBe(false);
   });
 
   it('returns true for zipcode 05402-300', () => {
-    const result = isValidZipcode('05402-300');
+    const result = isValidZipcode('05402-300', zipcodeRegexPattern);
 
     expect(result).toBe(true);
   });
@@ -146,25 +148,25 @@ describe('.isValidZipcode', () => {
 
 describe('.isValidCellPhone', () => {
   it('returns false for empty cellphone', () => {
-    const result = isValidCellPhone('');
+    const result = isValidCellPhone('', cellphoneRegexPattern);
 
     expect(result).toBe(false);
   });
 
   it('returns false for landline (11) 5181-5683', () => {
-    const result = isValidCellPhone('(11) 5181-5683');
+    const result = isValidCellPhone('(11) 5181-5683', cellphoneRegexPattern);
 
     expect(result).toBe(false);
   });
 
   it('returns false for cellphone (11) 9181-3567', () => {
-    const result = isValidCellPhone('(11) 9181-3567');
+    const result = isValidCellPhone('(11) 9181-3567', cellphoneRegexPattern);
 
     expect(result).toBe(false);
   });
 
   it('returns true for cellphone (11) 99654-1515', () => {
-    const result = isValidCellPhone('(11) 99654-1515');
+    const result = isValidCellPhone('(11) 99654-1515', cellphoneRegexPattern);
 
     expect(result).toBe(true);
   });
@@ -178,13 +180,13 @@ describe('.validateField', () => {
   });
 
   it('returns error message for empty cellphone', () => {
-    const result = validateField({ required: true, type: 'phone', value: '' }, errorMessages);
+    const result = validateField({ required: true, type: 'phone', value: '', regexPattern: cellphoneRegexPattern }, errorMessages);
 
     expect(result).toBe(errorMessages.REQUIRED_VALID_CELLPHONE);
   });
 
   it('returns error message for invalid cellphone', () => {
-    const result = validateField({ required: true, type: 'phone', value: '(11) 5367-8741' }, errorMessages);
+    const result = validateField({ required: true, type: 'phone', value: '(11) 5367-8741', regexPattern: cellphoneRegexPattern }, errorMessages);
 
     expect(result).toBe(errorMessages.REQUIRED_VALID_CELLPHONE);
   });
@@ -196,7 +198,7 @@ describe('.validateField', () => {
   });
 
   it('returns error message for invalid zipcode', () => {
-    const result = validateField({ required: true, type: 'zipcode', value: '1111-111' }, errorMessages);
+    const result = validateField({ required: true, type: 'zipcode', value: '1111-111', regexPattern: zipcodeRegexPattern }, errorMessages);
 
     expect(result).toBe(errorMessages.REQUIRED_VALID_ZIPCODE);
   });
