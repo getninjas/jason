@@ -266,8 +266,8 @@
             "name": "phone",
             "type": "phone",
             "placeholder": "(__) _____-____",
-            "mask": "(00) 000 000 00",
-            "regexPattern": "^d{2}[6-9]{1}[0-9]{8}$",
+            "mask": "(00) 00000-0000",
+            "regexPattern": "([0-9]{2})([6-9]{1})([0-9]{4})([0-9]{4})$",
             "required": true,
             "value": null,
             "values": []
