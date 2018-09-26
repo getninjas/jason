@@ -4,7 +4,7 @@ import fillFormFields from '../../helper';
 
 const errorMessages = form.errorMessages;
 const zipcodeRegexPattern = form.steps[1].fields[0].regexPattern;
-const cellphoneRegexPattern = form.steps[1].fields[3].regexPattern;
+const brazilianCellphoneRegexPattern = form.steps[1].fields[3].regexPattern;
 
 describe('.isEmpty', () => {
   it('returns true for empty string', () => {
@@ -148,25 +148,25 @@ describe('.isValidZipcode', () => {
 
 describe('.isValidCellPhone', () => {
   it('returns false for empty cellphone', () => {
-    const result = isValidCellPhone('', cellphoneRegexPattern);
+    const result = isValidCellPhone('', brazilianCellphoneRegexPattern);
 
     expect(result).toBe(false);
   });
 
   it('returns false for landline (11) 5181-5683', () => {
-    const result = isValidCellPhone('(11) 5181-5683', cellphoneRegexPattern);
+    const result = isValidCellPhone('(11) 5181-5683', brazilianCellphoneRegexPattern);
 
     expect(result).toBe(false);
   });
 
   it('returns false for cellphone (11) 9181-3567', () => {
-    const result = isValidCellPhone('(11) 9181-3567', cellphoneRegexPattern);
+    const result = isValidCellPhone('(11) 9181-3567', brazilianCellphoneRegexPattern);
 
     expect(result).toBe(false);
   });
 
   it('returns true for cellphone (11) 99654-1515', () => {
-    const result = isValidCellPhone('(11) 99654-1515', cellphoneRegexPattern);
+    const result = isValidCellPhone('(11) 99654-1515', brazilianCellphoneRegexPattern);
 
     expect(result).toBe(true);
   });
@@ -180,13 +180,13 @@ describe('.validateField', () => {
   });
 
   it('returns error message for empty cellphone', () => {
-    const result = validateField({ required: true, type: 'phone', value: '', regexPattern: cellphoneRegexPattern }, errorMessages);
+    const result = validateField({ required: true, type: 'phone', value: '', regexPattern: brazilianCellphoneRegexPattern }, errorMessages);
 
     expect(result).toBe(errorMessages.REQUIRED_VALID_CELLPHONE);
   });
 
   it('returns error message for invalid cellphone', () => {
-    const result = validateField({ required: true, type: 'phone', value: '(11) 5367-8741', regexPattern: cellphoneRegexPattern }, errorMessages);
+    const result = validateField({ required: true, type: 'phone', value: '(11) 5367-8741', regexPattern: brazilianCellphoneRegexPattern }, errorMessages);
 
     expect(result).toBe(errorMessages.REQUIRED_VALID_CELLPHONE);
   });
