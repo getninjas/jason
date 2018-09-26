@@ -131,6 +131,7 @@ describe('Input', () => {
     describe('when input is type phone', () => {
       it('triggers onFieldBlur with target values', () => {
         const onFieldBlur = jest.fn();
+        const brazilianCellphoneRegexPattern = '^(\\([1-9]{2}\\))\\s([6-9]{1})([0-9]{4})-([0-9]{4})$';
 
         const component = mount(
           <Input
@@ -139,7 +140,7 @@ describe('Input', () => {
             onFieldChange={() => {}}
             onFieldBlur={onFieldBlur}
             placeholder='(__) _____-____'
-            regexPattern='([0-9]{2})([6-9]{1})([0-9]{4})([0-9]{4})$'
+            regexPattern={brazilianCellphoneRegexPattern}
             required={false}
             type='phone'
             value=''
@@ -152,7 +153,7 @@ describe('Input', () => {
         expect(component.instance().props.onFieldBlur).toBeCalledWith({
           id: 'phone',
           minLength: 1,
-          regexPattern: '([0-9]{2})([6-9]{1})([0-9]{4})([0-9]{4})$',
+          regexPattern: '^(\\([1-9]{2}\\))\\s([6-9]{1})([0-9]{4})-([0-9]{4})$',
           required: false,
           type: 'phone',
           value: '(11) 97878-1212',
