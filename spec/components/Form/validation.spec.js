@@ -3,7 +3,7 @@ import { form } from '../../../src/form.json';
 import fillFormFields from '../../helper';
 
 const errorMessages = form.errorMessages;
-const zipcodeRegexPattern = form.steps[1].fields[0].regexPattern;
+const brazilianZipcodeRegexPattern = form.steps[1].fields[0].regexPattern;
 const brazilianCellphoneRegexPattern = form.steps[1].fields[3].regexPattern;
 
 describe('.isEmpty', () => {
@@ -128,21 +128,32 @@ describe('.isValidEmail', () => {
 
 describe('.isValidZipcode', () => {
   it('returns false for empty zipcode', () => {
-    const result = isValidZipcode('', zipcodeRegexPattern);
+    const result = isValidZipcode('', brazilianZipcodeRegexPattern);
 
     expect(result).toBe(false);
   });
 
-  it('returns false for zipcode 1111-111', () => {
-    const result = isValidZipcode('1111-111', zipcodeRegexPattern);
+  describe('Brazilian zipcode format', () => {
+    it('returns false for zipcode 1111-111', () => {
+      const result = isValidZipcode('1111-111', brazilianZipcodeRegexPattern);
 
-    expect(result).toBe(false);
+      expect(result).toBe(false);
+    });
+
+    it('returns true for zipcode 05402-300', () => {
+      const result = isValidZipcode('05402-300', brazilianZipcodeRegexPattern);
+
+      expect(result).toBe(true);
+    });
   });
 
-  it('returns true for zipcode 05402-300', () => {
-    const result = isValidZipcode('05402-300', zipcodeRegexPattern);
+  describe('Mexican zipcode format', () => {
+    it('returns true for zipcode 22891', () => {
+      const mexicanZipcodeRegexPattern = '\\d{5}';
+      const result = isValidZipcode('22891', mexicanZipcodeRegexPattern);
 
-    expect(result).toBe(true);
+      expect(result).toBe(true);
+    });
   });
 });
 
@@ -209,7 +220,7 @@ describe('.validateField', () => {
   });
 
   it('returns error message for invalid zipcode', () => {
-    const result = validateField({ required: true, type: 'zipcode', value: '1111-111', regexPattern: zipcodeRegexPattern }, errorMessages);
+    const result = validateField({ required: true, type: 'zipcode', value: '1111-111', regexPattern: brazilianZipcodeRegexPattern }, errorMessages);
 
     expect(result).toBe(errorMessages.REQUIRED_VALID_ZIPCODE);
   });
