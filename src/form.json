@@ -215,6 +215,7 @@
             "type": "textarea",
             "id": "3_id",
             "name": "3_name_textarea",
+            "maxlength": null,
             "placeholder": "Descreva o que você precisa",
             "value": null,
             "values": []
