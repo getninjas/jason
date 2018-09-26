@@ -42,7 +42,7 @@ export const isValidZipcode = (value, regexPattern) => {
 export const isValidCellPhone = (value, regexPattern) => {
   const regex = new RegExp(regexPattern);
 
-  return regex.test(value.replace(/\D+/g, '').trim());
+  return regex.test(value.trim());
 };
 
 export const validateField = (optionsValidation, errorMessages) => {
