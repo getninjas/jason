@@ -136,11 +136,12 @@ describe('Input', () => {
           <Input
             id='phone'
             name='phone'
-            type='phone'
             onFieldChange={() => {}}
             onFieldBlur={onFieldBlur}
             placeholder='(__) _____-____'
+            regexPattern='([0-9]{2})([6-9]{1})([0-9]{4})([0-9]{4})$'
             required={false}
+            type='phone'
             value=''
           />,
         );
@@ -151,6 +152,7 @@ describe('Input', () => {
         expect(component.instance().props.onFieldBlur).toBeCalledWith({
           id: 'phone',
           minLength: 1,
+          regexPattern: '([0-9]{2})([6-9]{1})([0-9]{4})([0-9]{4})$',
           required: false,
           type: 'phone',
           value: '(11) 97878-1212',
@@ -167,11 +169,12 @@ describe('Input', () => {
         <Input
           id='phone'
           name='phone'
-          type='phone'
+          mask='(00) 00000-0000'
           onFieldChange={onFieldChange}
           onFieldBlur={() => {}}
           placeholder='(__) _____-____'
           required={false}
+          type='phone'
           value=''
         />,
       );
@@ -191,11 +194,12 @@ describe('Input', () => {
         <Input
           id='phone'
           name='phone'
-          type='phone'
+          mask='(00) 00000-0000'
           onFieldChange={() => {}}
           onFieldBlur={() => {}}
           placeholder='(__) _____-____'
           required={false}
+          type='phone'
           value=''
         />,
       );
@@ -217,11 +221,12 @@ describe('Input', () => {
           <Input
             id='phone'
             name='phone'
-            type='phone'
+            mask='(00) 00000-0000'
             onFieldChange={() => {}}
             onFieldBlur={() => {}}
             placeholder='(__) _____-____'
             required={false}
+            type='phone'
             value=''
           />,
         );
@@ -236,11 +241,11 @@ describe('Input', () => {
           <Input
             id='idTest'
             name='idTest'
-            type='text'
             onFieldChange={() => {}}
             onFieldBlur={() => {}}
             placeholder='(__) _____-____'
             required={false}
+            type='text'
             value=''
           />,
         );
