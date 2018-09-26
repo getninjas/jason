@@ -153,22 +153,33 @@ describe('.isValidCellPhone', () => {
     expect(result).toBe(false);
   });
 
-  it('returns false for landline (11) 5181-5683', () => {
-    const result = isValidCellPhone('(11) 5181-5683', brazilianCellphoneRegexPattern);
+  describe('PT-BR format phone', () => {
+    it('returns false for landline (11) 5181-5683', () => {
+      const result = isValidCellPhone('(11) 5181-5683', brazilianCellphoneRegexPattern);
 
-    expect(result).toBe(false);
+      expect(result).toBe(false);
+    });
+
+    it('returns false for cellphone (11) 9181-3567', () => {
+      const result = isValidCellPhone('(11) 9181-3567', brazilianCellphoneRegexPattern);
+
+      expect(result).toBe(false);
+    });
+
+    it('returns true for cellphone (11) 99654-1515', () => {
+      const result = isValidCellPhone('(11) 99654-1515', brazilianCellphoneRegexPattern);
+
+      expect(result).toBe(true);
+    });
   });
 
-  it('returns false for cellphone (11) 9181-3567', () => {
-    const result = isValidCellPhone('(11) 9181-3567', brazilianCellphoneRegexPattern);
+  describe('ES-MX format phone', () => {
+    it('returns true for cellphone 55 1234 5678', () => {
+      const mexicanCellphoneRegexPattern = '^[0-9]{2}\\s[0-9]{4}\\s[0-9]{4}$';
+      const result = isValidCellPhone('55 1234 5678', mexicanCellphoneRegexPattern);
 
-    expect(result).toBe(false);
-  });
-
-  it('returns true for cellphone (11) 99654-1515', () => {
-    const result = isValidCellPhone('(11) 99654-1515', brazilianCellphoneRegexPattern);
-
-    expect(result).toBe(true);
+      expect(result).toBe(true);
+    });
   });
 });
 
