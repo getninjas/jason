@@ -27,7 +27,7 @@ const defaultProps = {
   type: 'text',
   value: '',
   style: 'form__input',
-  minLength: 1,
+  minLength: 3,
   maxLength: 255,
   mask: '',
   regexPattern: '',
@@ -60,7 +60,7 @@ export default class Input extends Component {
       id: this.props.id,
       required: this.props.required,
       type: this.props.type,
-      minLength: this.props.minLength,
+      minLength: this.props.minLength || defaultProps.minLength,
       regexPattern: this.props.regexPattern,
     });
   }
@@ -105,8 +105,8 @@ export default class Input extends Component {
         value={this.props.initialValue || defaultProps.value}
         onChange={this.onChange}
         onBlur={this.onBlur}
-        minLength={minLength}
-        maxLength={maxLength}
+        minLength={minLength || defaultProps.minLength}
+        maxLength={maxLength || defaultProps.maxLength}
       />
     );
   }
