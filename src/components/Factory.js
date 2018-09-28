@@ -49,7 +49,7 @@ export default class Factory {
         <TextArea
           {...commonProps}
           maxLength={maxlength}
-          minlength={minlength}
+          minLength={minlength}
         />
       );
     }
@@ -61,7 +61,7 @@ export default class Factory {
           key={commonProps.initialValue}
           mask={mask}
           maxLength={maxlength}
-          minlength={minlength}
+          minLength={minlength}
           regexPattern={regexPattern}
           type={type}
           zipcodeUrlService={zipcodeUrlService}
@@ -84,7 +84,7 @@ export default class Factory {
           {...commonProps}
           mask={mask || ''}
           maxLength={maxlength}
-          minlength={minlength}
+          minLength={minlength}
           regexPattern={regexPattern}
           type={type}
         />
