@@ -27,7 +27,7 @@ const defaultProps = {
   type: 'text',
   value: '',
   style: 'form__input',
-  minLength: 3,
+  minLength: 1,
   maxLength: 255,
   mask: '',
   regexPattern: '',
