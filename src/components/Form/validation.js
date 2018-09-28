@@ -73,9 +73,7 @@ export const validateField = (optionsValidation, errorMessages) => {
   }
 
   if (required && !isMinLength(value, minLength)) {
-    const message = errorMessages.REQUIRED_MINLENGHT.replace(/{{length}}/g, minLength);
-
-    return message;
+    return errorMessages.REQUIRED_MINLENGHT.replace(/{{length}}/g, minLength);
   }
 
   return '';
