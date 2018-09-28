@@ -240,7 +240,7 @@ describe('.validateField', () => {
   it('returns error message for value smaller than minlength', () => {
     const result = validateField({ required: true, value: 'ab', minLength: 3 }, errorMessages);
 
-    expect(result).toBe(errorMessages.REQUIRED_MINLENGHT);
+    expect(result).toBe('Este campo requer ao menos 3 caracteres.');
   });
 
   it('returns empty error message', () => {
