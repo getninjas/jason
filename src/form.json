@@ -9,7 +9,7 @@
       "REQUIRED_VALID_CELLPHONE": "Celular válido requerido",
       "REQUIRED_VALID_EMAIL": "E-mail válido requerido",
       "REQUIRED_VALID_ZIPCODE": "CEP válido requerido",
-      "REQUIRED_MINLENGHT": "Este campo requer ao menos 2 caracteres.",
+      "REQUIRED_MINLENGHT": "Este campo requer ao menos {{length}} caracteres.",
       "REQUIRED_CHECKBOX_FIELD": "Marque pelo menos uma opção"
     },
     "steps": [
