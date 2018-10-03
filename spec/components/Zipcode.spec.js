@@ -1,8 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { enzymeConfig, mount } from '../enzymeConfig';
 import { AppContext } from '../../src/AppContext';
 import Zipcode from '../../src/components/Zipcode';
+import { enzymeConfig, mount } from '../enzymeConfig';
 
 enzymeConfig();
 
@@ -38,6 +38,7 @@ const commonProps = {
   zipcodeUrlService: 'http://www.mocky.io/v2/5afd94c63200007f00f1ad38',
   onFieldChange: () => {},
   onFieldBlur: () => {},
+  mask: '00000-000',
 };
 
 const zipcodeElement = () => (
@@ -163,7 +164,7 @@ describe('Zipcode', () => {
     it('calls setState, this.props.onFieldChange', async () => {
       const onFieldChange = jest.fn();
       const ZipcodeMock = getComponentWithContext();
-      const component = mount(<ZipcodeMock id='zip_id' name='zip_name' zipcodeUrlService='' onFieldBlur={() => {}} onFieldChange={ onFieldChange }/>);
+      const component = mount(<ZipcodeMock id='zip_id' name='zip_name' zipcodeUrlService='' onFieldBlur={() => {}} onFieldChange={ onFieldChange } mask='00000-000' />);
       const responseData = {
         data: { type_street: '', street: 'Rua Mock', city: 'Cidade Mock', neighborhood: 'Bairro Mock', uf: 'SP' },
       };
@@ -180,7 +181,7 @@ describe('Zipcode', () => {
     it('calls setState, this.props.onFieldBlur', async () => {
       const onFieldBlur = jest.fn();
       const ZipcodeMock = getComponentWithContext();
-      const component = mount(<ZipcodeMock id='zip_id' name='zip_name' zipcodeUrlService='' onFieldChange={() => {}} onFieldBlur={onFieldBlur} />);
+      const component = mount(<ZipcodeMock id='zip_id' name='zip_name' zipcodeUrlService='' onFieldChange={() => {}} onFieldBlur={onFieldBlur} mask='00000-000' />);
 
       component.instance().setState = jest.fn();
 

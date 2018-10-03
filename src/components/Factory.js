@@ -7,7 +7,19 @@ import Zipcode from './Zipcode';
 
 export default class Factory {
   static getComponent({ item, index, onFieldChange, onFieldBlur, formName, zipcodeUrlService }) {
-    const { type, placeholder, id, name, value, values, required } = item;
+    const {
+      id,
+      mask,
+      maxlength,
+      minlength,
+      name,
+      placeholder,
+      required,
+      regexPattern,
+      type,
+      value,
+      values,
+    } = item;
 
     const inputTypeAccepted = ['text', 'phone', 'email'];
 
@@ -27,13 +39,18 @@ export default class Factory {
         <Select
           {...commonProps}
           selected={value}
-          values={values} />
+          values={values}
+        />
       );
     }
 
     if (type === 'textarea') {
       return (
-        <TextArea {...commonProps} />
+        <TextArea
+          {...commonProps}
+          maxLength={maxlength}
+          minLength={minlength}
+        />
       );
     }
 
@@ -41,8 +58,12 @@ export default class Factory {
       return (
         <Zipcode
           {...commonProps}
-          type={type}
           key={commonProps.initialValue}
+          mask={mask}
+          maxLength={maxlength}
+          minLength={minlength}
+          regexPattern={regexPattern}
+          type={type}
           zipcodeUrlService={zipcodeUrlService}
         />
       );
@@ -61,6 +82,10 @@ export default class Factory {
       return (
         <Input
           {...commonProps}
+          mask={mask || ''}
+          maxLength={maxlength}
+          minLength={minlength}
+          regexPattern={regexPattern}
           type={type}
         />
       );

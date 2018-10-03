@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import IMask from 'imask';
-import { maxLengthTrim, getInputType } from '../helpers/input';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { getInputType, maxLengthTrim } from '../helpers/input';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
@@ -16,6 +16,8 @@ const propTypes = {
   style: PropTypes.string,
   minLength: PropTypes.number,
   maxLength: PropTypes.number,
+  regexPattern: PropTypes.string,
+  mask: PropTypes.string,
 };
 
 const defaultProps = {
@@ -27,9 +29,11 @@ const defaultProps = {
   style: 'form__input',
   minLength: 1,
   maxLength: 255,
+  mask: '',
+  regexPattern: '',
 };
 
-const mask = IMask.createMask({ mask: '(00) 00000-0000' });
+let mask = IMask.createMask({ mask: '(00) 00000-0000' });
 
 export default class Input extends Component {
   constructor(props) {
@@ -56,7 +60,8 @@ export default class Input extends Component {
       id: this.props.id,
       required: this.props.required,
       type: this.props.type,
-      minLength: this.props.minLength,
+      minLength: this.props.minLength || defaultProps.minLength,
+      regexPattern: this.props.regexPattern,
     });
   }
 
@@ -70,6 +75,7 @@ export default class Input extends Component {
 
   componentDidMount() {
     const { initialValue } = this.props;
+    mask = IMask.createMask({ mask: this.props.mask });
 
     this.applyMask(initialValue || '');
   }
@@ -99,8 +105,8 @@ export default class Input extends Component {
         value={this.props.initialValue || defaultProps.value}
         onChange={this.onChange}
         onBlur={this.onBlur}
-        minLength={minLength}
-        maxLength={maxLength}
+        minLength={minLength || defaultProps.minLength}
+        maxLength={maxLength || defaultProps.maxLength}
       />
     );
   }

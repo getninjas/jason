@@ -18,7 +18,7 @@ function createNodeMock(element) {
   return null;
 }
 
-const copyState = ({ steps, zipcodeUrlService }) => ({ steps: [...steps], zipcodeUrlService });
+const copyState = data => (JSON.parse(JSON.stringify(data)));
 
 describe('Form', () => {
   it('renders defaultProps', () => {

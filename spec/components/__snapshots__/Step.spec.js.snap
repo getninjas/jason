@@ -319,7 +319,7 @@ exports[`Step renders with props 1`] = `
     <textarea
       className="form__input"
       id="3_id"
-      maxLength={255}
+      maxLength={null}
       minLength={3}
       name="3_name_textarea"
       onBlur={[Function]}

@@ -1,5 +1,3 @@
-import errorMessages from '../../../src/helpers/errorMessages';
-
 export const isEmpty = (value) => {
   const regex = /^\s*$/;
 
@@ -35,22 +33,26 @@ export const isValidEmail = (value) => {
   return regex.test(value.trim());
 };
 
-export const isValidZipcode = (value) => {
-  const regex = /^[0-9]{5}-[0-9]{3}$/;
+export const isValidZipcode = (value, regexPattern) => {
+  const regex = new RegExp(regexPattern);
+
   return regex.test(value.trim());
 };
 
-export const isValidCellPhone = (value) => {
-  const regex = /^\d{2}[6-9]{1}[0-9]{8}$/g;
-  return regex.test(value.replace(/\D+/g, '').trim());
+export const isValidCellPhone = (value, regexPattern) => {
+  const regex = new RegExp(regexPattern);
+
+  return regex.test(value.trim());
 };
 
-export const validateField = ({ required, type, value, minLength }) => {
+export const validateField = (optionsValidation, errorMessages) => {
+  const { required, type, value, minLength, regexPattern } = optionsValidation;
+
   if (required && value === null) {
     return (type === 'checkbox') ? errorMessages.REQUIRED_CHECKBOX_FIELD : errorMessages.REQUIRED_FIELD;
   }
 
-  if (type === 'phone' && (isEmpty(value) || !isValidCellPhone(value))) {
+  if (type === 'phone' && (isEmpty(value) || !isValidCellPhone(value, regexPattern))) {
     return errorMessages.REQUIRED_VALID_CELLPHONE;
   }
 
@@ -58,7 +60,7 @@ export const validateField = ({ required, type, value, minLength }) => {
     return errorMessages.REQUIRED_VALID_EMAIL;
   }
 
-  if (type === 'zipcode' && (isEmpty(value) || !isValidZipcode(value))) {
+  if (type === 'zipcode' && (isEmpty(value) || !isValidZipcode(value, regexPattern))) {
     return errorMessages.REQUIRED_VALID_ZIPCODE;
   }
 
@@ -71,19 +73,19 @@ export const validateField = ({ required, type, value, minLength }) => {
   }
 
   if (required && !isMinLength(value, minLength)) {
-    return errorMessages.REQUIRED_MINLENGHT(minLength);
+    return errorMessages.REQUIRED_MINLENGHT.replace(/{{length}}/g, minLength);
   }
 
   return '';
 };
 
-export const validateStep = (fields) => {
+export const validateStep = (fields, errorMessages) => {
   let isValid = true;
 
   const updatedFields = fields.map((field) => {
     const modifiedField = Object.assign({}, field);
 
-    modifiedField.errorMessage = validateField(modifiedField);
+    modifiedField.errorMessage = validateField(modifiedField, errorMessages);
 
     if (modifiedField.errorMessage.length) {
       isValid = false;

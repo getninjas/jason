@@ -1,10 +1,10 @@
-import React, { Component, Fragment, createRef } from 'react';
-import PropTypes from 'prop-types';
 import axios from 'axios';
 import IMask from 'imask';
+import PropTypes from 'prop-types';
+import React, { Component, createRef, Fragment } from 'react';
 import { AppContext } from '../AppContext';
-import { isUserTyping, isValidZipCodeInput, getEmptyState, fillAddressState } from '../helpers/zipcode';
 import triggerNativeEvent from '../helpers/domEvent';
+import { fillAddressState, getEmptyState, isUserTyping, isValidZipCodeInput } from '../helpers/zipcode';
 
 const propTypes = {
   id: PropTypes.string.isRequired,
@@ -20,6 +20,7 @@ const propTypes = {
   value: PropTypes.any,
   zipcodeUrlService: PropTypes.string.isRequired,
   minLength: PropTypes.number,
+  mask: PropTypes.string,
 };
 
 const defaultProps = {
@@ -31,8 +32,6 @@ const defaultProps = {
   value: '',
   minLength: 9,
 };
-
-const ZIPCODE_MASK = '00000-000';
 
 export default class Zipcode extends Component {
   constructor(props) {
@@ -126,7 +125,7 @@ export default class Zipcode extends Component {
 
   componentDidMount() {
     this.mounted = true;
-    this.mask = new IMask(this.inputRef.current, { mask: ZIPCODE_MASK });
+    this.mask = new IMask(this.inputRef.current, { mask: this.props.mask });
 
     this.mask.on('complete', () => {
       this.props.onFieldChange({
