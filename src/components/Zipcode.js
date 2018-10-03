@@ -65,9 +65,9 @@ export default class Zipcode extends Component {
   onChange(successCallback, errorCallback, evt) {
     const zipcode = evt.target.value;
 
-    if (isUserTyping(zipcode.length)) {
+    if (isUserTyping(zipcode.length, this.props.minLength)) {
       this.setState({ value: zipcode, fullAddress: '', fetchCompleted: false });
-    } else if (isValidZipCodeInput(zipcode.length, this.state.fetchCompleted)) {
+    } else if (isValidZipCodeInput(zipcode.length, this.props.minLength, this.state.fetchCompleted)) {
       this.props.onFieldBlur({ ...this.props, value: zipcode });
 
       this.updateZipcode(zipcode, successCallback, errorCallback);
@@ -80,7 +80,7 @@ export default class Zipcode extends Component {
 
     this.props.onFieldBlur({ ...this.props, value: this.state.zipcodeInvalid ? '' : zipcode });
 
-    if (isValidZipCodeInput(zipcode.length, fetchCompleted) && !zipcodeInvalid) {
+    if (isValidZipCodeInput(zipcode.length, this.props.minLength, fetchCompleted) && !zipcodeInvalid) {
       this.updateZipcode(zipcode, successCallback, errorCallback);
     }
   }

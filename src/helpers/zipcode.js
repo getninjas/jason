@@ -1,9 +1,8 @@
-const ZIPCODE_VALID_LENGTH = 9;
+export const isUserTyping = (zipcodeLength, zipcodeValidLength) =>
+  zipcodeLength < zipcodeValidLength;
 
-export const isUserTyping = zipcodeLength => zipcodeLength < ZIPCODE_VALID_LENGTH;
-
-export const isValidZipCodeInput = (zipcodeLength, fetchCompleted) =>
-  zipcodeLength === ZIPCODE_VALID_LENGTH && !fetchCompleted;
+export const isValidZipCodeInput = (zipcodeLength, zipcodeValidLength, fetchCompleted) =>
+  zipcodeLength === zipcodeValidLength && !fetchCompleted;
 
 export const getEmptyState = state =>
   Object.keys(state).reduce((output, key) => {
