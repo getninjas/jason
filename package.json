@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "eslint-config-getninjas": "^4.0.1",
+    "eslint-config-getninjas": "^4.0.3",
     "imask": "^3.3.0",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
