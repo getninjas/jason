@@ -1,14 +1,14 @@
-import { isUserTyping, isValidZipCodeInput, fillAddressState, getEmptyState } from '../../src/helpers/zipcode';
+import { fillAddressState, getEmptyState, isUserTyping, isValidZipCodeInput } from '../../src/helpers/zipcode';
 
 describe('isUserTyping', () => {
-  it('returns true if zipcode length less than ZIPCODE_VALID_LENGTH', () => {
-    const result = isUserTyping('04405-16'.length);
+  it('returns true if zipcode length less than 9 characters', () => {
+    const result = isUserTyping('04405-16'.length, 9);
 
     expect(result).toBe(true);
   });
 
-  it('returns false if zipcode length greather than ZIPCODE_VALID_LENGTH', () => {
-    const result = isUserTyping('04405-160'.length);
+  it('returns false if zipcode length greather than 9 characters', () => {
+    const result = isUserTyping('04405-160'.length, 9);
 
     expect(result).toBe(false);
   });
@@ -16,13 +16,13 @@ describe('isUserTyping', () => {
 
 describe('isValidZipCodeInput', () => {
   it('returns true when zipcode length is valid and fetched zipcode is false', () => {
-    const result = isValidZipCodeInput('04405-160'.length, false);
+    const result = isValidZipCodeInput('04405-160'.length, 9, false);
 
     expect(result).toBe(true);
   });
 
   it('returns false when zipcode length is valid and fetched zipcode is true', () => {
-    const result = isValidZipCodeInput('04405-16'.length, true);
+    const result = isValidZipCodeInput('04405-16'.length, 9, true);
 
     expect(result).toBe(false);
   });

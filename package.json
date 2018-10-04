@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "eslint-config-getninjas": "^4.0.3",
     "imask": "^3.3.0",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
@@ -42,7 +43,6 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb-base": "^11.3.2",
-    "eslint-config-getninjas": "^4.0.0",
     "eslint-config-react-app": "^2.1.0",
     "eslint-loader": "1.9.0",
     "eslint-plugin-babel": "^4.1.2",
