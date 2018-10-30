@@ -54,6 +54,62 @@ describe('fillAddressState', () => {
 
     expect(result).toEqual(newState);
   });
+
+  describe('full adddres without street', () => {
+    it('does not display empty space with comma', () => {
+      const zipcode = '13150000';
+      const responseAddress = {
+        street: '',
+        neighborhood: 'xpto neighborhood',
+        city: 'xpto city',
+        uf: 'xpto uf',
+      };
+
+      const fullAddress = `${responseAddress.neighborhood} \n${responseAddress.city} - ${responseAddress.uf}`;
+
+      const newState = {
+        value: '13150000',
+        fetchCompleted: true,
+        street: '',
+        neighborhood: 'xpto neighborhood',
+        city: 'xpto city',
+        uf: 'xpto uf',
+        fullAddress,
+      };
+
+      const result = fillAddressState(responseAddress, zipcode);
+
+      expect(result).toEqual(newState);
+    });
+  });
+
+  describe('full adddres without street and neighborhood', () => {
+    it('does not display empty space with comma', () => {
+      const zipcode = '13150000';
+      const responseAddress = {
+        street: '',
+        neighborhood: '',
+        city: 'xpto city',
+        uf: 'xpto uf',
+      };
+
+      const fullAddress = `${responseAddress.city} - ${responseAddress.uf}`;
+
+      const newState = {
+        value: '13150000',
+        fetchCompleted: true,
+        street: '',
+        neighborhood: '',
+        city: 'xpto city',
+        uf: 'xpto uf',
+        fullAddress,
+      };
+
+      const result = fillAddressState(responseAddress, zipcode);
+
+      expect(result).toEqual(newState);
+    });
+  });
 });
 
 

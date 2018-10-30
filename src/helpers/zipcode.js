@@ -16,7 +16,7 @@ export const getEmptyState = state =>
   }, {});
 
 const getFullAddress = ({ street, neighborhood, city, uf }) => {
-  const displayStreet = street ? `${street},` : '';
+  const displayStreet = street ? `${street}, ` : '';
   const displayNeighborhood = neighborhood ? `${neighborhood} \n` : '';
 
   return `${displayStreet}${displayNeighborhood}${city} - ${uf}`;

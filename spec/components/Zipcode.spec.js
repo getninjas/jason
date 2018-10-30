@@ -175,6 +175,38 @@ describe('Zipcode', () => {
       expect(component.instance().setState).toHaveBeenCalled();
       expect(component.instance().props.onFieldChange).toHaveBeenCalled();
     });
+
+    describe('with empty street on response', () => {
+      it('does not display empty space with commma', async () => {
+        const onFieldChange = jest.fn();
+        const ZipcodeMock = getComponentWithContext();
+        const component = mount(<ZipcodeMock id='zip_id' name='zip_name' zipcodeUrlService='' onFieldBlur={() => {}} onFieldChange={ onFieldChange } mask='00000-000' />);
+        const instance = component.instance();
+        const responseData = {
+          data: { type_street: '', street: '', city: 'Cidade Mock', neighborhood: 'Bairro Mock', uf: 'SP' },
+        };
+
+        await instance.onZipcodeSuccess('04707060', responseData);
+
+        expect(instance.state.fullAddress).toBe('Bairro Mock \nCidade Mock - SP');
+      });
+    });
+
+    describe('with empty street and neighborhood', () => {
+      it('does not display empty space with commma', async () => {
+        const onFieldChange = jest.fn();
+        const ZipcodeMock = getComponentWithContext();
+        const component = mount(<ZipcodeMock id='zip_id' name='zip_name' zipcodeUrlService='' onFieldBlur={() => {}} onFieldChange={ onFieldChange } mask='00000-000' />);
+        const instance = component.instance();
+        const responseData = {
+          data: { type_street: '', street: '', city: 'Cidade Mock', neighborhood: '', uf: 'SP' },
+        };
+
+        await instance.onZipcodeSuccess('04707060', responseData);
+
+        expect(instance.state.fullAddress).toBe('Cidade Mock - SP');
+      });
+    });
   });
 
   describe('.onZipcodeError', () => {
