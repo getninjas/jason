@@ -16,6 +16,7 @@ const propTypes = {
   headerMarkup: PropTypes.string,
   visible: PropTypes.bool,
   isLast: PropTypes.bool,
+  zipcode: PropTypes.object,
 };
 
 const defaultProps = {
@@ -46,6 +47,7 @@ export default class Step extends Component {
                   onFieldChange: this.props.onFieldChange,
                   onFieldBlur: this.props.onFieldBlur,
                   formName: this.props.formName,
+                  zipcode: this.props.zipcode,
                   zipcodeUrlService: this.props.zipcodeUrlService,
                 })
               }

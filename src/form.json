@@ -12,6 +12,11 @@
       "REQUIRED_MINLENGHT": "Este campo requer ao menos {{length}} caracteres.",
       "REQUIRED_CHECKBOX_FIELD": "Marque pelo menos uma opção"
     },
+    "zipcode": {
+      "loading": "Buscando CEP...",
+      "link": "http://www.buscacep.correios.com.br",
+      "linkLabel": "Não lembra seu CEP?"
+    },
     "steps": [
       {
         "title": "General data",

@@ -247,6 +247,7 @@ export default class Form extends Component {
                   onFieldBlur={this.onFieldBlur}
                   onFieldChange={this.onFieldChange}
                   visible={this.isStepVisible(index)}
+                  zipcode={this.props.data.zipcode}
                   zipcodeUrlService={this.props.data.zipcodeUrlService}
                 />
               );

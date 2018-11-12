@@ -6,7 +6,7 @@ import TextArea from './TextArea';
 import Zipcode from './Zipcode';
 
 export default class Factory {
-  static getComponent({ item, index, onFieldChange, onFieldBlur, formName, zipcodeUrlService }) {
+  static getComponent({ item, index, onFieldChange, onFieldBlur, formName, zipcodeUrlService, zipcode }) {
     const {
       id,
       mask,
@@ -64,6 +64,7 @@ export default class Factory {
           minLength={minlength}
           regexPattern={regexPattern}
           type={type}
+          zipcode= {zipcode}
           zipcodeUrlService={zipcodeUrlService}
         />
       );
