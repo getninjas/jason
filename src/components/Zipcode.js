@@ -18,10 +18,9 @@ const propTypes = {
   style: PropTypes.string,
   initialValue: PropTypes.string,
   value: PropTypes.any,
-  zipcodeUrlService: PropTypes.string.isRequired,
   minLength: PropTypes.number,
   mask: PropTypes.string,
-  zipcode: PropTypes.object,
+  zipcode: PropTypes.object.isRequired,
 };
 
 const defaultProps = {
@@ -50,7 +49,7 @@ export default class Zipcode extends Component {
       fullAddress: '',
       zipcodeInvalid: false,
       fetchCompleted: false,
-      zipcodeUrlService: this.props.zipcodeUrlService,
+      serviceUrl: this.props.zipcode.serviceUrl,
       fetching: false,
     };
 
@@ -90,7 +89,7 @@ export default class Zipcode extends Component {
 
   async getZipCode(zipcode, successCallback, errorCallback) {
     try {
-      const url = this.state.zipcodeUrlService.replace(/@@zipcode@@/, zipcode.replace(/[^0-9]/g, ''));
+      const url = this.state.serviceUrl.replace(/@@zipcode@@/, zipcode.replace(/[^0-9]/g, ''));
       const response = await axios.get(url);
 
       this.onZipcodeSuccess(zipcode, response);
@@ -108,7 +107,7 @@ export default class Zipcode extends Component {
 
     result = fillAddressState(response.data, zipcode);
     result.fetching = false;
-    result.zipcodeUrlService = this.props.zipcodeUrlService;
+    result.serviceUrl = this.props.zipcode.serviceUrl;
     result.zipcodeInvalid = false;
 
     this.setState(result);

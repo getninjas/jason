@@ -248,7 +248,6 @@ export default class Form extends Component {
                   onFieldChange={this.onFieldChange}
                   visible={this.isStepVisible(index)}
                   zipcode={this.props.data.zipcode}
-                  zipcodeUrlService={this.props.data.zipcodeUrlService}
                 />
               );
             })

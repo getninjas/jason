@@ -9,14 +9,13 @@ const propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onFieldChange: PropTypes.func.isRequired,
   onFieldBlur: PropTypes.func.isRequired,
-  zipcodeUrlService: PropTypes.string.isRequired,
   formName: PropTypes.string.isRequired,
   buttonText: PropTypes.string.isRequired,
   fields: PropTypes.array.isRequired,
   headerMarkup: PropTypes.string,
   visible: PropTypes.bool,
   isLast: PropTypes.bool,
-  zipcode: PropTypes.object,
+  zipcode: PropTypes.object.isRequired,
 };
 
 const defaultProps = {
@@ -48,7 +47,6 @@ export default class Step extends Component {
                   onFieldBlur: this.props.onFieldBlur,
                   formName: this.props.formName,
                   zipcode: this.props.zipcode,
-                  zipcodeUrlService: this.props.zipcodeUrlService,
                 })
               }
             </Field>,

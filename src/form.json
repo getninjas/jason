@@ -3,7 +3,6 @@
     "language": "pt-BR",
     "title": "Form Title",
     "databaseId": 81,
-    "zipcodeUrlService": "http://www.mocky.io/v2/5afaebc92f00000e00f7c654",
     "errorMessages": {
       "REQUIRED_FIELD": "Este campo é requerido",
       "REQUIRED_VALID_CELLPHONE": "Celular válido requerido",
@@ -15,7 +14,8 @@
     "zipcode": {
       "loading": "Buscando CEP...",
       "link": "http://www.buscacep.correios.com.br",
-      "linkLabel": "Não lembra seu CEP?"
+      "linkLabel": "Não lembra seu CEP?",
+      "serviceUrl": "http://www.mocky.io/v2/5afaebc92f00000e00f7c654"
     },
     "steps": [
       {
