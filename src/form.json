@@ -14,13 +14,44 @@
     },
     "steps": [
       {
+        "title": "Service",
+        "breadcrumbTitle": "Service",
+        "buttonText": "Continue",
+        "headerMarkup": "<h2 class='widget__title section-title--high-contrast'>Lorem Ipsum is simply dummy text <small>It has survived not</small></h2>",
+        "fields": [
+          {
+            "required": true,
+            "title": "What's the service?",
+            "placeholder": "What's the service?",
+            "type": "checkbox",
+            "id": "select_category",
+            "name": "1_name_select",
+            "value": null,
+            "values": [
+              {
+                "databaseId": 6792,
+                "value": "Category One"
+              },
+              {
+                "databaseId": 6793,
+                "value": "Category Two"
+              },
+              {
+                "databaseId": 6794,
+                "value": "Category Three"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "title": "General data",
         "breadcrumbTitle": "Your request",
         "buttonText": "Start request",
         "headerMarkup": "<h2 class='widget__title section-title--high-contrast'>Lorem Ipsum is simply dummy text <small>It has survived not</small></h2>",
         "fields": [
           {
-            "title": "Qual é o tipo de serviço que você precisa?",
+            "title": "Example Select Field",
             "placeholder": "Placeholder",
             "required": true,
             "id": "1_id",
