@@ -1,3 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Radio renders defaultProps 1`] = `<ul />`;
+exports[`Radio renders defaultProps 1`] = `
+<ul>
+  <li
+    className="form__radio"
+  >
+    <input
+      id={6792}
+      name="nameTest"
+      onBlur={[Function]}
+      onChange={[Function]}
+      required="true"
+      type="radio"
+      value={6792}
+    />
+    <label
+      htmlFor={6792}
+    >
+      Category One
+    </label>
+  </li>
+</ul>
+`;
