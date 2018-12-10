@@ -6,6 +6,7 @@ const validFields = {
   phone: '(11) 99999-8888',
   select: 7117,
   checkbox: ['6792'],
+  radio: 6792,
 };
 
 const fillFormFields = (steps) => {
