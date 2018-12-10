@@ -15,7 +15,7 @@ exports[`Step renders with props 1`] = `
   >
     <label
       className="form__label"
-      htmlFor="select_category"
+      htmlFor="radio_input"
     >
       What's the service?
     </label>
@@ -25,7 +25,7 @@ exports[`Step renders with props 1`] = `
       >
         <input
           id={6792}
-          name="1_name_select"
+          name="1_name_radio"
           onBlur={[Function]}
           onChange={[Function]}
           required="true"
@@ -43,7 +43,7 @@ exports[`Step renders with props 1`] = `
       >
         <input
           id={6793}
-          name="1_name_select"
+          name="1_name_radio"
           onBlur={[Function]}
           onChange={[Function]}
           required="true"
@@ -61,7 +61,7 @@ exports[`Step renders with props 1`] = `
       >
         <input
           id={6794}
-          name="1_name_select"
+          name="1_name_radio"
           onBlur={[Function]}
           onChange={[Function]}
           required="true"

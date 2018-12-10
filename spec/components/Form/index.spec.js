@@ -302,12 +302,12 @@ describe('Form', () => {
       const component = shallow(
         <Form name={'form'} action={'/'} data={form} />,
       );
-      const notUpdatedOptions = form.steps[1].fields[1].values;
+      const notUpdatedOptions = form.steps[1].fields[2].values;
       const updatedOptions = form.steps[1].fields[2].nested_values['124'].values;
 
       const initialState = component.instance().state;
 
-      expect(initialState.steps[1].fields[1].values).toEqual(notUpdatedOptions);
+      expect(initialState.steps[1].fields[2].values).toEqual(notUpdatedOptions);
 
       const field = { value: 124, id: '10_id', required: true, type: 'text', minLength: 3 };
       component.instance().onFieldChange(field);

@@ -24,8 +24,8 @@
             "title": "What's the service?",
             "placeholder": "What's the service?",
             "type": "radio",
-            "id": "select_category",
-            "name": "1_name_select",
+            "id": "radio_input",
+            "name": "1_name_radio",
             "value": null,
             "values": [
               {
