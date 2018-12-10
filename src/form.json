@@ -23,7 +23,7 @@
             "required": true,
             "title": "What's the service?",
             "placeholder": "What's the service?",
-            "type": "checkbox",
+            "type": "radio",
             "id": "select_category",
             "name": "1_name_select",
             "value": null,

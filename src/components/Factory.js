@@ -1,6 +1,7 @@
 import React from 'react';
 import Checkbox from './Checkbox';
 import Input from './Input';
+import Radio from './Radio';
 import Select from './Select';
 import TextArea from './TextArea';
 import Zipcode from './Zipcode';
@@ -72,6 +73,15 @@ export default class Factory {
     if (type === 'checkbox') {
       return (
         <Checkbox
+          {...commonProps}
+          values={values}
+        />
+      );
+    }
+
+    if (type === 'radio') {
+      return (
+        <Radio
           {...commonProps}
           values={values}
         />

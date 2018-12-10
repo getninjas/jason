@@ -16,18 +16,16 @@ const defaultProps = {
   required: false,
   type: 'radio',
   values: [],
-  style: 'form__input',
 };
 
 export default class Radio extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   render() {
     const {
       name,
-      style,
       required,
       type,
     } = this.props;
@@ -35,16 +33,16 @@ export default class Radio extends Component {
     return (
       <ul>
         {this.props.values.map((elem, idx) => (
-          <li className='form__check' key={`${elem.databaseId}-${idx}`}>
+          <li className='form__radio' key={`${elem.databaseId}-${idx}`}>
             <input
               type={type}
               id={elem.databaseId}
               name={name}
-              className={style}
-              onChange={this.onChange}
-              onBlur={this.onBlurCheckbox}
+              // onChange={this.onChange}
+              // onBlur={this.onBlurCheckbox}
               data-input-value={elem.value}
               required={required ? 'true' : 'false'} />
+            <label htmlFor={elem.databaseId}>{elem.value}</label>
           </li>
         ))}
       </ul>
