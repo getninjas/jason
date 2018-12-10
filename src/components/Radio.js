@@ -9,7 +9,6 @@ const propTypes = {
   type: PropTypes.string,
   required: PropTypes.bool,
   values: PropTypes.array,
-  style: PropTypes.string,
 };
 
 const defaultProps = {
@@ -19,9 +18,31 @@ const defaultProps = {
 };
 
 export default class Radio extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+
+    this.onChange = this.onChange.bind(this);
+    this.onBlur = this.onBlur.bind(this);
+  }
+
+  onChange(evt) {
+    this.setState({ value: evt.target.value });
+
+    this.props.onFieldChange({
+      value: evt.target.value,
+      id: this.props.id,
+    });
+  }
+
+  onBlur() {
+    this.props.onFieldBlur({
+      value: this.state.value,
+      id: this.props.id,
+      required: this.props.required,
+    });
+  }
 
   render() {
     const {
@@ -37,10 +58,10 @@ export default class Radio extends Component {
             <input
               type={type}
               id={elem.databaseId}
-              name={name}
-              // onChange={this.onChange}
-              // onBlur={this.onBlurCheckbox}
-              data-input-value={elem.value}
+              name={name}s
+              value={elem.databaseId}
+              onChange={this.onChange}
+              onBlur={this.onBlur}
               required={required ? 'true' : 'false'} />
             <label htmlFor={elem.databaseId}>{elem.value}</label>
           </li>
