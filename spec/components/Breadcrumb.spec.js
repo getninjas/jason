@@ -71,11 +71,27 @@ describe('Breadcrumb', () => {
     const component = shallow(<Breadcrumb active={1} steps={form.steps} />);
 
     it('expects the first breadcrumb to be inactive', () => {
-      expect(component.find('li').first().hasClass('form__steps-item--active')).toBe(false);
+      expect(component.find('li').at(0).hasClass('form__steps-item--active')).toBe(false);
     });
 
     it('expects the second breadcrumb to be active', () => {
-      expect(component.find('li').last().hasClass('form__steps-item--active')).toBe(true);
+      expect(component.find('li').at(1).hasClass('form__steps-item--active')).toBe(true);
+    });
+  });
+
+  describe('when third step is active', () => {
+    const component = shallow(<Breadcrumb active={2} steps={form.steps} />);
+
+    it('expects the first breadcrumb to be inactive', () => {
+      expect(component.find('li').at(0).hasClass('form__steps-item--active')).toBe(false);
+    });
+
+    it('expects the second breadcrumb to be inactive', () => {
+      expect(component.find('li').at(1).hasClass('form__steps-item--active')).toBe(false);
+    });
+
+    it('expects the second breadcrumb to be active', () => {
+      expect(component.find('li').at(2).hasClass('form__steps-item--active')).toBe(true);
     });
   });
 });
