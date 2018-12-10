@@ -58,7 +58,7 @@ export default class Radio extends Component {
             <input
               type={type}
               id={elem.databaseId}
-              name={name}s
+              name={name}
               value={elem.databaseId}
               onChange={this.onChange}
               onBlur={this.onBlur}
