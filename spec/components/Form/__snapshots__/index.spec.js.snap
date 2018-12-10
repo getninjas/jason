@@ -44,7 +44,6 @@ Array [
                         onBlur={[Function]}
                         onChange={[Function]}
                         required="true"
-                        s={true}
                         type="radio"
                         value={6792}
                     />
@@ -63,7 +62,6 @@ Array [
                         onBlur={[Function]}
                         onChange={[Function]}
                         required="true"
-                        s={true}
                         type="radio"
                         value={6793}
                     />
@@ -82,7 +80,6 @@ Array [
                         onBlur={[Function]}
                         onChange={[Function]}
                         required="true"
-                        s={true}
                         type="radio"
                         value={6794}
                     />
