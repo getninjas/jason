@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextArea renders defaultProps 1`] = `
+<textarea
+  className="form__input"
+  id="idTest"
+  maxLength={255}
+  minLength={3}
+  name="nameTest"
+  onBlur={[Function]}
+  onChange={[Function]}
+  placeholder="placeholderTest"
+  required={false}
+  title=""
+  value=""
+>
+  
+</textarea>
+`;

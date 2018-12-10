@@ -7,6 +7,11 @@ exports[`Breadcrumb renders defaultProps 1`] = `
   <li
     className="form__steps-item form__steps-item--active"
   >
+    Service
+  </li>
+  <li
+    className="form__steps-item "
+  >
     Your request
   </li>
   <li
