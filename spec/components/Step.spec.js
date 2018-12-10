@@ -57,7 +57,7 @@ describe('Step', () => {
   });
 
   it('shows inputs, select and textarea inner component', () => {
-    const step = formData.form.steps[0];
+    const step = formData.form.steps[1];
 
     const component = shallow(
       <Step
