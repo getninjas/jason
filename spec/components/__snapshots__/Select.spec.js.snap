@@ -11,12 +11,12 @@ exports[`Select renders defaultProps 1`] = `
   value=""
 >
   <option
-    value={6792}
+    value={7890}
   >
     Category One
   </option>
   <option
-    value={6793}
+    value={7891}
   >
     Category Two
   </option>

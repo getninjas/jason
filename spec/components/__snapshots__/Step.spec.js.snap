@@ -24,16 +24,16 @@ exports[`Step renders with props 1`] = `
         className="form__radio"
       >
         <input
-          id={6792}
+          id={7890}
           name="1_name_radio"
           onBlur={[Function]}
           onChange={[Function]}
           required="true"
           type="radio"
-          value={6792}
+          value={7890}
         />
         <label
-          htmlFor={6792}
+          htmlFor={7890}
         >
           Category One
         </label>
@@ -42,16 +42,16 @@ exports[`Step renders with props 1`] = `
         className="form__radio"
       >
         <input
-          id={6793}
+          id={7891}
           name="1_name_radio"
           onBlur={[Function]}
           onChange={[Function]}
           required="true"
           type="radio"
-          value={6793}
+          value={7891}
         />
         <label
-          htmlFor={6793}
+          htmlFor={7891}
         >
           Category Two
         </label>
@@ -60,16 +60,16 @@ exports[`Step renders with props 1`] = `
         className="form__radio"
       >
         <input
-          id={6794}
+          id={7892}
           name="1_name_radio"
           onBlur={[Function]}
           onChange={[Function]}
           required="true"
           type="radio"
-          value={6794}
+          value={7892}
         />
         <label
-          htmlFor={6794}
+          htmlFor={7892}
         >
           Category Three
         </label>
