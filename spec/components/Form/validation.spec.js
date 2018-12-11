@@ -10,9 +10,10 @@ import {
 import { form } from '../../../src/form.json';
 import fillFormFields from '../../helper';
 
+const CONTACT_FIELD = 2;
 const errorMessages = form.errorMessages;
-const brazilianZipcodeRegexPattern = form.steps[2].fields[0].regexPattern;
-const brazilianCellphoneRegexPattern = form.steps[2].fields[3].regexPattern;
+const brazilianZipcodeRegexPattern = form.steps[CONTACT_FIELD].fields[0].regexPattern;
+const brazilianCellphoneRegexPattern = form.steps[CONTACT_FIELD].fields[3].regexPattern;
 
 describe('.isEmpty', () => {
   it('returns true for empty string', () => {

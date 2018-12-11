@@ -1,10 +1,11 @@
 import Factory from '../../src/components/Factory';
 import { form } from '../../src/form.json';
 
-const select = form.steps[1].fields[0];
-const input = form.steps[1].fields[3];
-const checkbox = form.steps[1].fields[4];
-const textArea = form.steps[1].fields[5];
+const REQUEST_FIELD = 1;
+const select = form.steps[REQUEST_FIELD].fields[0];
+const input = form.steps[REQUEST_FIELD].fields[3];
+const checkbox = form.steps[REQUEST_FIELD].fields[4];
+const textArea = form.steps[REQUEST_FIELD].fields[5];
 
 const commonProps = {
   onFieldChange: () => {},

@@ -358,11 +358,12 @@ describe('Form', () => {
     });
 
     it('calls .submitRequest when step is valid', () => {
+      const CONTACT_FIELD = 2;
       const data = copyState(form);
       data.steps = fillFormFields(data.steps);
-      data.steps[2].fields[0].value = '11111-111';
-      data.steps[2].fields[2].value = 'iondr@ig.com';
-      data.steps[2].fields[3].value = '(11) 98888-9999';
+      data.steps[CONTACT_FIELD].fields[0].value = '11111-111';
+      data.steps[CONTACT_FIELD].fields[2].value = 'iondr@ig.com';
+      data.steps[CONTACT_FIELD].fields[3].value = '(11) 98888-9999';
 
       const component = shallow(
         <Form name={'form'} action={'/'} data={data} />,
