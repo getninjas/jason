@@ -284,9 +284,16 @@ describe('Form', () => {
     });
 
     it('expects initial state to differ from current state', () => {
+      const data = copyState(form);
+
+      data.steps = fillFormFields(data.steps);
+
       const component = shallow(
-        <Form name={'form'} action={'/'} data={form} />,
+        <Form name={'form'} action={'/'} data={data} />,
       );
+      const evt = { preventDefault() { } };
+
+      component.instance().onSubmit(evt);
 
       const initialState = component.instance().state;
 
@@ -299,17 +306,25 @@ describe('Form', () => {
     });
 
     it('expects updated select with dynamic options', () => {
-      const component = shallow(
-        <Form name={'form'} action={'/'} data={form} />,
-      );
-      const notUpdatedOptions = form.steps[1].fields[2].values;
-      const updatedOptions = form.steps[1].fields[2].nested_values['124'].values;
+      const data = copyState(form);
 
+      data.steps = fillFormFields(data.steps);
+
+      const component = shallow(
+        <Form name={'form'} action={'/'} data={data} />,
+      );
+      const evt = { preventDefault() { } };
+
+      component.instance().onSubmit(evt);
+
+      const notUpdatedOptions = form.steps[1].fields[2].values;
       const initialState = component.instance().state;
 
-      expect(initialState.steps[1].fields[2].values).toEqual(notUpdatedOptions);
+      expect(notUpdatedOptions).toEqual(initialState.steps[1].fields[2].values);
 
-      const field = { value: 124, id: '10_id', required: true, type: 'text', minLength: 3 };
+      const updatedOptions = form.steps[1].fields[2].nested_values['124'].values;
+      const field = { value: 124, id: '10_id' };
+
       component.instance().onFieldChange(field);
 
       const updatedState = component.instance().state;
