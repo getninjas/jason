@@ -193,14 +193,7 @@ describe('Form', () => {
       expect(stepOneIsLast).toBe(false);
     });
 
-    it('returns false for secondStep ', () => {
-      const stepTwo = component.state().activeStepIndex + 1;
-      const stepTwoIsLast = component.instance().isLastStep(stepTwo);
-
-      expect(stepTwoIsLast).toBe(false);
-    });
-
-    it('returns true for secondStep ', () => {
+    it('returns true for thirdStep ', () => {
       const stepThree = component.state().activeStepIndex + 2;
       const stepThreeIsLast = component.instance().isLastStep(stepThree);
 
