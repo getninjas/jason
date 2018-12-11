@@ -288,14 +288,14 @@ describe('Form', () => {
 
       component.instance().onSubmit(evt);
 
-      const initialState = component.instance().state;
+      const initialSecondStepState = component.instance().state;
 
-      const field = { value: '', id: '2_id', required: true, type: 'text', minLength: 3 };
+      const field = { value: '', id: '2_id' };
       component.instance().onFieldChange(field);
 
       const updatedState = component.instance().state;
 
-      expect(initialState).not.toEqual(updatedState);
+      expect(updatedState).not.toEqual(initialSecondStepState);
     });
 
     it('expects updated select with dynamic options', () => {
@@ -309,11 +309,6 @@ describe('Form', () => {
       const evt = { preventDefault() { } };
 
       component.instance().onSubmit(evt);
-
-      const notUpdatedOptions = form.steps[1].fields[2].values;
-      const initialState = component.instance().state;
-
-      expect(notUpdatedOptions).toEqual(initialState.steps[1].fields[2].values);
 
       const updatedOptions = form.steps[1].fields[2].nested_values['124'].values;
       const field = { value: 124, id: '10_id' };
@@ -329,18 +324,14 @@ describe('Form', () => {
       const component = shallow(
         <Form name={'form'} action={'/'} data={form} />,
       );
-      const notUpdatedOptions = form.steps[1].fields[2].values;
+      const initialSecondStepState = form.steps[1].fields[2].values;
+      const field = { value: '', id: '10_id' };
 
-      const initialState = component.instance().state;
-
-      expect(initialState.steps[1].fields[2].values).toEqual(notUpdatedOptions);
-
-      const field = { value: '', id: '10_id', required: true, type: 'text', minLength: 3 };
       component.instance().onFieldChange(field);
 
       const updatedState = component.instance().state;
 
-      expect(updatedState.steps[1].fields[2].values).toEqual(notUpdatedOptions);
+      expect(updatedState.steps[1].fields[2].values).toEqual(initialSecondStepState);
     });
   });
 
