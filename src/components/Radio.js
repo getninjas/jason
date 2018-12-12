@@ -28,10 +28,11 @@ export default class Radio extends Component {
   }
 
   onChange(evt) {
-    this.setState({ value: evt.target.value });
+    const value = evt.target.value;
+    this.setState({ value });
 
     this.props.onFieldChange({
-      value: evt.target.value,
+      value,
       id: this.props.id,
     });
   }

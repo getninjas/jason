@@ -7,7 +7,7 @@ import TextArea from './TextArea';
 import Zipcode from './Zipcode';
 
 export default class Factory {
-  static getComponent({ item, index, onFieldChange, onFieldBlur, formName, zipcodeUrlService }) {
+  static _components(props) {
     const {
       id,
       mask,
@@ -20,10 +20,9 @@ export default class Factory {
       type,
       value,
       values,
-    } = item;
+    } = props.item;
 
-    const inputTypeAccepted = ['text', 'phone', 'email'];
-
+    const { formName, index, onFieldBlur, onFieldChange, zipcodeUrlService } = props;
     const commonProps = {
       id,
       key: `${formName}-${index}`,
@@ -35,29 +34,33 @@ export default class Factory {
       required,
     };
 
-    if (type === 'select') {
-      return (
-        <Select
-          {...commonProps}
-          selected={value}
-          values={values}
-        />
-      );
-    }
-
-    if (type === 'textarea') {
-      return (
-        <TextArea
-          {...commonProps}
-          maxLength={maxlength}
-          minLength={minlength}
-        />
-      );
-    }
-
-    if (type === 'zipcode') {
-      return (
-        <Zipcode
+    return {
+      textarea: <TextArea {...commonProps} maxLength={maxlength} minLength={minlength} />,
+      select: <Select {...commonProps} selected={value} values={values} />,
+      checkbox: <Checkbox {...commonProps} values={values} />,
+      radio: <Radio {...commonProps} values={values} />,
+      phone: <Input {...commonProps}
+              mask={mask || ''}
+              maxLength={maxlength}
+              minLength={minlength}
+              regexPattern={regexPattern}
+              type={type}
+            />,
+      text: <Input {...commonProps}
+              mask={mask || ''}
+              maxLength={maxlength}
+              minLength={minlength}
+              regexPattern={regexPattern}
+              type={type}
+            />,
+      email: <Input {...commonProps}
+              mask={mask || ''}
+              maxLength={maxlength}
+              minLength={minlength}
+              regexPattern={regexPattern}
+              type={type}
+            />,
+      zipcode: <Zipcode
           {...commonProps}
           key={commonProps.initialValue}
           mask={mask}
@@ -66,41 +69,17 @@ export default class Factory {
           regexPattern={regexPattern}
           type={type}
           zipcodeUrlService={zipcodeUrlService}
-        />
-      );
+        />,
+    };
+  }
+
+  static getComponent(props) {
+    const component = Factory._components(props);
+
+    if (component[props.item.type]) {
+      return component[props.item.type];
     }
 
-    if (type === 'checkbox') {
-      return (
-        <Checkbox
-          {...commonProps}
-          values={values}
-        />
-      );
-    }
-
-    if (type === 'radio') {
-      return (
-        <Radio
-          {...commonProps}
-          values={values}
-        />
-      );
-    }
-
-    if (inputTypeAccepted.toString().indexOf(type) > -1) {
-      return (
-        <Input
-          {...commonProps}
-          mask={mask || ''}
-          maxLength={maxlength}
-          minLength={minlength}
-          regexPattern={regexPattern}
-          type={type}
-        />
-      );
-    }
-
-    throw new Error(`JasonForm: Invalid component type: ${type}`);
+    throw new Error(`JasonForm: Invalid component type: ${props.item.type}`);
   }
 }
