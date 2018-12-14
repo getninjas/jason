@@ -15,322 +15,66 @@ exports[`Step renders with props 1`] = `
   >
     <label
       className="form__label"
-      htmlFor="1_id"
+      htmlFor="radio_input"
     >
-      Qual é o tipo de serviço que você precisa?
-    </label>
-    <select
-      className="form__input"
-      id="1_id"
-      name="1_name_select"
-      onBlur={[Function]}
-      onChange={[Function]}
-      required="true"
-      value=""
-    >
-      <option
-        value=""
-      >
-        Placeholder Example
-      </option>
-      <option
-        value={7117}
-      >
-        Construção
-      </option>
-      <option
-        value={7118}
-      >
-        Reformas
-      </option>
-      <option
-        value={7119}
-      >
-        Instalações
-      </option>
-      <option
-        value={7120}
-      >
-        Troca
-      </option>
-      <option
-        value={7121}
-      >
-        Outros
-      </option>
-    </select>
-    <span
-      className="form__message form__message--invalid space-element-small error"
-    >
-      
-    </span>
-  </div>
-  <div
-    className="form__field form__field--fluid input"
-  >
-    <label
-      className="form__label"
-      htmlFor="10_id"
-    >
-      Example Select Category
-    </label>
-    <select
-      className="form__input"
-      id="10_id"
-      name="1_name_select_category"
-      onBlur={[Function]}
-      onChange={[Function]}
-      required="true"
-      value=""
-    >
-      <option
-        value=""
-      >
-        Placeholder Example
-      </option>
-      <option
-        value={124}
-      >
-        Video Game
-      </option>
-      <option
-        value={154}
-      >
-        Televisor
-      </option>
-      <option
-        value={141}
-      >
-        Celular
-      </option>
-    </select>
-    <span
-      className="form__message form__message--invalid space-element-small error"
-    >
-      
-    </span>
-  </div>
-  <div
-    className="form__field form__field--fluid input"
-  >
-    <label
-      className="form__label"
-      htmlFor="09_sc"
-    >
-      Qual a marca?
-    </label>
-    <select
-      className="form__input"
-      id="09_sc"
-      name="1_nested_select"
-      onBlur={[Function]}
-      onChange={[Function]}
-      required="true"
-      value=""
-    >
-      <option
-        value=""
-      >
-        Sinalize o produto antes
-      </option>
-    </select>
-    <span
-      className="form__message form__message--invalid space-element-small error"
-    >
-      
-    </span>
-  </div>
-  <div
-    className="form__field form__field--fluid input"
-  >
-    <label
-      className="form__label"
-      htmlFor="2_id"
-    >
-      Especifique melhor a metragem do serviço
-    </label>
-    <input
-      className="form__input"
-      id="2_id"
-      maxLength={255}
-      minLength={1}
-      name="2_name_text"
-      onBlur={[Function]}
-      onChange={[Function]}
-      placeholder="Bora pra action"
-      required="true"
-      title=""
-      type="text"
-      value=""
-    />
-    <span
-      className="form__message form__message--invalid space-element-small error"
-    >
-      
-    </span>
-  </div>
-  <div
-    className="form__field form__field--fluid input"
-  >
-    <label
-      className="form__label"
-      htmlFor="0_id"
-    >
-      Você precisa de serviços adicionais?
+      What's the service?
     </label>
     <ul>
       <li
-        className="form__check"
+        className="form__radio"
       >
         <input
-          className="form__input"
-          data-input-value="Cozinhar"
-          id={6792}
-          name="1_name_select"
+          id={7890}
+          name="1_name_radio"
           onBlur={[Function]}
           onChange={[Function]}
           required="true"
-          type="checkbox"
+          type="radio"
+          value={7890}
         />
         <label
-          htmlFor={6792}
+          htmlFor={7890}
         >
-          Cozinhar
+          Category One
         </label>
       </li>
       <li
-        className="form__check"
+        className="form__radio"
       >
         <input
-          className="form__input"
-          data-input-value="Passar roupa"
-          id={6793}
-          name="1_name_select"
+          id={7891}
+          name="1_name_radio"
           onBlur={[Function]}
           onChange={[Function]}
           required="true"
-          type="checkbox"
+          type="radio"
+          value={7891}
         />
         <label
-          htmlFor={6793}
+          htmlFor={7891}
         >
-          Passar roupa
+          Category Two
         </label>
       </li>
       <li
-        className="form__check"
+        className="form__radio"
       >
         <input
-          className="form__input"
-          data-input-value="Limpar áreas externas (jardim/garagem ou quintal)"
-          id={6794}
-          name="1_name_select"
+          id={7892}
+          name="1_name_radio"
           onBlur={[Function]}
           onChange={[Function]}
           required="true"
-          type="checkbox"
+          type="radio"
+          value={7892}
         />
         <label
-          htmlFor={6794}
+          htmlFor={7892}
         >
-          Limpar áreas externas (jardim/garagem ou quintal)
-        </label>
-      </li>
-      <li
-        className="form__check"
-      >
-        <input
-          className="form__input"
-          data-input-value="Não preciso"
-          id={6795}
-          name="1_name_select"
-          onBlur={[Function]}
-          onChange={[Function]}
-          required="true"
-          type="checkbox"
-        />
-        <label
-          htmlFor={6795}
-        >
-          Não preciso
-        </label>
-      </li>
-      <li
-        className="form__check"
-      >
-        <input
-          className="form__input"
-          data-input-value="Outro"
-          id={7689}
-          name="1_name_select"
-          onBlur={[Function]}
-          onChange={[Function]}
-          required="true"
-          type="checkbox"
-        />
-        <label
-          htmlFor={7689}
-        >
-          Outro
-        </label>
-      </li>
-      <li
-        className="form__check"
-      >
-        <input
-          className="form__input"
-          data-input-value="OTHER"
-          id={7639}
-          name="1_name_select"
-          onBlur={[Function]}
-          onChange={[Function]}
-          required="true"
-          type="checkbox"
-        />
-        <label
-          htmlFor={7639}
-        >
-          <input
-            className="form__input"
-            data-id={7639}
-            disabled={true}
-            onBlur={[Function]}
-            required={false}
-            type="text"
-          />
+          Category Three
         </label>
       </li>
     </ul>
-    <span
-      className="form__message form__message--invalid space-element-small error"
-    >
-      
-    </span>
-  </div>
-  <div
-    className="form__field form__field--fluid input"
-  >
-    <label
-      className="form__label"
-      htmlFor="3_id"
-    >
-      Informações adicionais
-    </label>
-    <textarea
-      className="form__input"
-      id="3_id"
-      maxLength={null}
-      minLength={3}
-      name="3_name_textarea"
-      onBlur={[Function]}
-      onChange={[Function]}
-      placeholder="Descreva o que você precisa"
-      required={true}
-      title=""
-      value=""
-    >
-      
-    </textarea>
     <span
       className="form__message form__message--invalid space-element-small error"
     >

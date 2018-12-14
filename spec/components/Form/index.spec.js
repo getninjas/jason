@@ -56,7 +56,7 @@ describe('Form', () => {
       it('calls .handleSubmit', () => {
         const data = copyState(form);
         data.steps = fillFormFields(data.steps);
-        data.steps[0].fields[2].required = false;
+        data.steps[1].fields[2].required = false;
 
         const component = shallow(
           <Form name={'form'} action={'/'} data={data} />,
@@ -193,11 +193,11 @@ describe('Form', () => {
       expect(stepOneIsLast).toBe(false);
     });
 
-    it('returns true for secondStep ', () => {
-      const stepTwo = component.state().activeStepIndex + 1;
-      const stepTwoIsLast = component.instance().isLastStep(stepTwo);
+    it('returns true for thirdStep ', () => {
+      const stepThree = component.state().activeStepIndex + 2;
+      const stepThreeIsLast = component.instance().isLastStep(stepThree);
 
-      expect(stepTwoIsLast).toBe(true);
+      expect(stepThreeIsLast).toBe(true);
     });
   });
 
@@ -277,55 +277,61 @@ describe('Form', () => {
     });
 
     it('expects initial state to differ from current state', () => {
+      const data = copyState(form);
+
+      data.steps = fillFormFields(data.steps);
+
       const component = shallow(
-        <Form name={'form'} action={'/'} data={form} />,
+        <Form name={'form'} action={'/'} data={data} />,
       );
+      const evt = { preventDefault() { } };
 
-      const initialState = component.instance().state;
+      component.instance().onSubmit(evt);
 
-      const field = { value: '', id: '2_id', required: true, type: 'text', minLength: 3 };
+      const initialSecondStepState = component.instance().state;
+
+      const field = { value: '', id: '2_id' };
       component.instance().onFieldChange(field);
 
       const updatedState = component.instance().state;
 
-      expect(initialState).not.toEqual(updatedState);
+      expect(updatedState).not.toEqual(initialSecondStepState);
     });
 
     it('expects updated select with dynamic options', () => {
+      const data = copyState(form);
+
+      data.steps = fillFormFields(data.steps);
+
       const component = shallow(
-        <Form name={'form'} action={'/'} data={form} />,
+        <Form name={'form'} action={'/'} data={data} />,
       );
-      const notUpdatedOptions = form.steps[0].fields[2].values;
-      const updatedOptions = form.steps[0].fields[2].nested_values['124'].values;
+      const evt = { preventDefault() { } };
 
-      const initialState = component.instance().state;
+      component.instance().onSubmit(evt);
 
-      expect(initialState.steps[0].fields[2].values).toEqual(notUpdatedOptions);
+      const updatedOptions = form.steps[1].fields[2].nested_values['124'].values;
+      const field = { value: 124, id: '10_id' };
 
-      const field = { value: 124, id: '10_id', required: true, type: 'text', minLength: 3 };
       component.instance().onFieldChange(field);
 
       const updatedState = component.instance().state;
 
-      expect(updatedState.steps[0].fields[2].values).toEqual(updatedOptions);
+      expect(updatedState.steps[1].fields[2].values).toEqual(updatedOptions);
     });
 
     it('does not updated select with dynamic options', () => {
       const component = shallow(
         <Form name={'form'} action={'/'} data={form} />,
       );
-      const notUpdatedOptions = form.steps[0].fields[2].values;
+      const initialSecondStepState = form.steps[1].fields[2].values;
+      const field = { value: '', id: '10_id' };
 
-      const initialState = component.instance().state;
-
-      expect(initialState.steps[0].fields[2].values).toEqual(notUpdatedOptions);
-
-      const field = { value: '', id: '10_id', required: true, type: 'text', minLength: 3 };
       component.instance().onFieldChange(field);
 
       const updatedState = component.instance().state;
 
-      expect(updatedState.steps[0].fields[2].values).toEqual(notUpdatedOptions);
+      expect(updatedState.steps[1].fields[2].values).toEqual(initialSecondStepState);
     });
   });
 
@@ -343,11 +349,12 @@ describe('Form', () => {
     });
 
     it('calls .submitRequest when step is valid', () => {
+      const CONTACT_FIELD = 2;
       const data = copyState(form);
       data.steps = fillFormFields(data.steps);
-      data.steps[1].fields[0].value = '11111-111';
-      data.steps[1].fields[2].value = 'iondr@ig.com';
-      data.steps[1].fields[3].value = '(11) 98888-9999';
+      data.steps[CONTACT_FIELD].fields[0].value = '11111-111';
+      data.steps[CONTACT_FIELD].fields[2].value = 'iondr@ig.com';
+      data.steps[CONTACT_FIELD].fields[3].value = '(11) 98888-9999';
 
       const component = shallow(
         <Form name={'form'} action={'/'} data={data} />,

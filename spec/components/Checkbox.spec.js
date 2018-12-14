@@ -17,7 +17,7 @@ function createNodeMock(element) {
   return null;
 }
 
-const checkbox = form.steps[0].fields[4];
+const checkbox = form.steps[1].fields[4];
 
 describe('Checkbox', () => {
   const commonProps = {
