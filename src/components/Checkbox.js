@@ -96,7 +96,7 @@ export default class Checkbox extends Component {
               onChange={this.onChange}
               onBlur={this.onBlurCheckbox}
               data-input-value={elem.value}
-              required={required ? 'true' : 'false'} />
+              required={required} />
 
             <label key={`${elem.databaseId}-${idx}`} htmlFor={elem.databaseId}>
               {elem.value === 'OTHER' ? (

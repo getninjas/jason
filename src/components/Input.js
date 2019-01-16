@@ -101,7 +101,7 @@ export default class Input extends Component {
         title={title}
         className={style}
         placeholder={placeholder}
-        required={required ? 'true' : 'false'}
+        required={required}
         value={this.props.initialValue || defaultProps.value}
         onChange={this.onChange}
         onBlur={this.onBlur}
