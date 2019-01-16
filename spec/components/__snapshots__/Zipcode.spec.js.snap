@@ -7,9 +7,9 @@ Array [
     href="http://www.buscacep.correios.com.br"
     rel="noopener noreferrer"
     target="_blank"
->
+  >
     Não lembra seu CEP?
-</a>,
+  </a>,
   <input
     className="form__input"
     id="zipcodeTest"
@@ -20,35 +20,35 @@ Array [
     required={true}
     type="tel"
     value=""
-/>,
+  />,
   <span
     className="full-address"
->
+  >
     
-</span>,
+  </span>,
   <input
     id="street"
     name="street"
     type="hidden"
     value=""
-/>,
+  />,
   <input
     id="neighborhood"
     name="neighborhood"
     type="hidden"
     value=""
-/>,
+  />,
   <input
     id="city"
     name="city"
     type="hidden"
     value=""
-/>,
+  />,
   <input
     id="uf"
     name="uf"
     type="hidden"
     value=""
-/>,
+  />,
 ]
 `;
