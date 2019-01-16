@@ -73,7 +73,7 @@ export default class Form extends Component {
     }, this.props.onReady);
   }
 
-  updateUserFields(fields) {
+  updateFields(fields) {
     const userFieldsStep = { ...this.state.steps[1], fields };
 
     this.setState({ steps: [this.state.steps[0], userFieldsStep] });

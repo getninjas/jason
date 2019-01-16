@@ -13,8 +13,8 @@ export default class Jason {
     this.form.formSubmit();
   }
 
-  updateUserFields(fields) {
-    this.form.updateUserFields(fields);
+  updateFields(fields) {
+    this.form.updateFields(fields);
   }
 
   init() {

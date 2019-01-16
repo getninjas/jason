@@ -39,12 +39,12 @@ describe('Jason', () => {
     expect(jasonForm.form.formSubmit).toHaveBeenCalled();
   });
 
-  describe('.updateUserFields', () => {
-    it('calls form.updateUserFields', () => {
-      jasonForm.form.updateUserFields = jest.fn();
-      jasonForm.updateUserFields([]);
+  describe('.updateFields', () => {
+    it('calls form.updateFields', () => {
+      jasonForm.form.updateFields = jest.fn();
+      jasonForm.updateFields([]);
 
-      expect(jasonForm.form.updateUserFields).toHaveBeenCalled();
+      expect(jasonForm.form.updateFields).toHaveBeenCalled();
     });
   });
 });

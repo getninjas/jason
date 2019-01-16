@@ -101,7 +101,7 @@ describe('Form', () => {
     });
   });
 
-  describe('.updateUserFields', () => {
+  describe('.updateFields', () => {
     describe('with prefilled zipcode', () => {
       it('matches updated state', () => {
         const component = shallow(
@@ -120,7 +120,7 @@ describe('Form', () => {
           values: [],
         }];
 
-        component.instance().updateUserFields(mock);
+        component.instance().updateFields(mock);
 
         expect(component.state().steps[1].fields).toBe(mock);
       });
@@ -134,7 +134,7 @@ describe('Form', () => {
 
         const fields = [...component.state().steps[1].fields];
 
-        component.instance().updateUserFields(fields);
+        component.instance().updateFields(fields);
 
         expect(component.state().steps[1].fields).toBe(fields);
       });
