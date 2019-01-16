@@ -14,8 +14,8 @@ class Jason {
     this.form.formSubmit();
   }
 
-  updateFields(fields) {
-    this.form.updateFields(fields);
+  updateState(state) {
+    this.form.updateState(state);
   }
 
   init() {
@@ -42,15 +42,55 @@ const jason = new Jason({
   name: 'form-name',
   action: 'http://www.mocky.io/v2/5afb459c2f00005b00f7c7ab',
   data: { form },
-  onReady: () => {},
+  onReady: () => { },
   onZipcodeFetchSuccess: data => data,
   onZipcodeFetchError: data => data,
-  onSubmit: () => {},
+  onSubmit: () => { },
   onSubmitSuccess: data => data,
   onSubmitFieldError: data => data,
   onSubmitError: data => data,
-  onStepChange: () => {},
+  onStepChange: () => { },
   element: document.getElementById('root'),
 });
 
 jason.init();
+
+document.body.addEventListener('dblclick', () => {
+  form.steps[1].fields = [{
+    title: 'Example Select Field',
+    placeholder: 'Placeholder',
+    required: true,
+    id: '1_id',
+    name: '1_name_select',
+    type: 'select',
+    value: null,
+    values: [
+      {
+        databaseId: '',
+        value: 'Placeholder Example',
+      },
+      {
+        databaseId: 7117,
+        value: 'Construção',
+      },
+      {
+        databaseId: 7118,
+        value: 'Reformas',
+      },
+      {
+        databaseId: 7119,
+        value: 'Instalações',
+      },
+      {
+        databaseId: 7120,
+        value: 'Troca',
+      },
+      {
+        databaseId: 7121,
+        value: 'Outros',
+      },
+    ],
+  }];
+
+  jason.updateState(form);
+});
