@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Form from './components/Form';
-import { form } from './form.dev.json';
+import { form } from './form.json';
 
 class Jason {
   constructor(options) {
@@ -54,43 +54,3 @@ const jason = new Jason({
 });
 
 jason.init();
-
-document.body.addEventListener('dblclick', () => {
-  form.steps[1].fields = [{
-    title: 'Example Select Field',
-    placeholder: 'Placeholder',
-    required: true,
-    id: '1_id',
-    name: '1_name_select',
-    type: 'select',
-    value: null,
-    values: [
-      {
-        databaseId: '',
-        value: 'Placeholder Example',
-      },
-      {
-        databaseId: 7117,
-        value: 'Construção',
-      },
-      {
-        databaseId: 7118,
-        value: 'Reformas',
-      },
-      {
-        databaseId: 7119,
-        value: 'Instalações',
-      },
-      {
-        databaseId: 7120,
-        value: 'Troca',
-      },
-      {
-        databaseId: 7121,
-        value: 'Outros',
-      },
-    ],
-  }];
-
-  jason.updateState(form);
-});
