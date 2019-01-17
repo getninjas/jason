@@ -128,7 +128,7 @@ describe('Form', () => {
 
         component.instance().updateState(data);
 
-        expect(component.state().steps[last].fields).toEqual(mock);
+        expect(component.state().steps[last].fields).toBe(userFields.fields);
       });
     });
 
@@ -139,13 +139,9 @@ describe('Form', () => {
           <Form name={'form'} data={ data } action={'/'} />,
         );
 
-        const state = component.state();
-        const last = state.steps.length - 1;
-        const userFields = state.steps[last].fields;
+        component.instance().updateState(data);
 
-        component.instance().updateState(component.state());
-
-        expect(component.state().steps[last].fields).toEqual(userFields);
+        expect(component.state()).toEqual(data);
       });
     });
   });
