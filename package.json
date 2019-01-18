@@ -2,6 +2,7 @@
   "name": "jason-react-form",
   "version": "3.1.0",
   "main": "build/main.js",
+  "license": "MIT",
   "scripts": {
     "start": "PORT=7777 node scripts/start.js",
     "build": "node scripts/build.js",
@@ -18,9 +19,15 @@
     "url": "git+https://github.com/getninjas/jason.git"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "imask": "^3.3.0",
+    "prop-types": "^15.6.1",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  },
+  "devDependencies": {
     "@babel/core": "7.1.6",
     "@svgr/webpack": "2.4.1",
-    "axios": "^0.18.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "9.0.0",
     "babel-jest": "23.6.0",
@@ -53,7 +60,6 @@
     "gaiden": "^17.1.2",
     "html-webpack-plugin": "4.0.0-alpha.2",
     "identity-obj-proxy": "3.0.0",
-    "imask": "^3.3.0",
     "jest": "23.6.0",
     "jest-pnp-resolver": "1.0.1",
     "jest-resolve": "23.6.0",
@@ -64,11 +70,8 @@
     "postcss-loader": "3.0.0",
     "postcss-preset-env": "6.3.1",
     "postcss-safe-parser": "4.0.1",
-    "prop-types": "^15.6.1",
-    "react": "^16.7.0",
     "react-app-polyfill": "^0.2.0",
     "react-dev-utils": "^7.0.1",
-    "react-dom": "^16.7.0",
     "react-test-renderer": "^16.7.0",
     "resolve": "1.8.1",
     "sass-loader": "7.1.0",
