@@ -24,7 +24,18 @@
     "implicit-arrow-linebreak": 1,
     "function-paren-newline": 1,
     "object-curly-newline": 1,
-    "prefer-destructuring": 1,
+    "prefer-destructuring": [1, {
+      "VariableDeclarator": {
+        "array": false,
+        "object": true
+      },
+      "AssignmentExpression": {
+        "array": true,
+        "object": false
+      }
+    }, {
+      "enforceForRenamedProperties": false
+    }],
     "camelcase": 1
   },
 
