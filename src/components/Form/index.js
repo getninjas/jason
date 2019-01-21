@@ -19,6 +19,7 @@ const propTypes = {
   onSubmitError: PropTypes.func,
   onSubmit: PropTypes.func,
   onStepChange: PropTypes.func,
+  onStepChangeAsync: PropTypes.func,
 };
 
 const defaultProps = {
@@ -31,6 +32,7 @@ const defaultProps = {
   onSubmitFieldError() {},
   onSubmitError() {},
   onStepChange() {},
+  onStepChangeAsync: async () => {},
 };
 
 export default class Form extends Component {
@@ -159,9 +161,10 @@ export default class Form extends Component {
     this.props.onSubmitFieldError(step);
   }
 
-  nextStep({ activeStepIndex, stepsCount }) {
+  async nextStep({ activeStepIndex, stepsCount }) {
     if (activeStepIndex < stepsCount) {
-      this.props.onStepChange();
+      await this.props.onStepChangeAsync(activeStepIndex);
+
       this.setState({ activeStepIndex: activeStepIndex + 1 });
     }
   }

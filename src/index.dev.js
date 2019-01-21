@@ -31,6 +31,7 @@ class Jason {
         onSubmitFieldError={this.onSubmitFieldError}
         onSubmitError={this.onSubmitError}
         onStepChange={this.onStepChange}
+        onStepChangeAsync={this.onStepChangeAsync}
         ref={(component) => { this.form = component; }} />,
       this.element,
     );
@@ -50,6 +51,16 @@ const jason = new Jason({
   onSubmitFieldError: data => data,
   onSubmitError: data => data,
   onStepChange: () => { },
+  onStepChangeAsync: async (step) => {
+    console.log('start onStepChangeAsync change', step);
+
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log('end onStepChangeAsync change', step);
+        resolve();
+      }, 3000);
+    });
+  },
   element: document.getElementById('root'),
 });
 
