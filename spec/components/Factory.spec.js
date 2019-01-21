@@ -10,8 +10,8 @@ const textArea = form.steps[REQUEST_FIELD].fields[5];
 const commonProps = {
   onFieldChange: () => {},
   onFieldBlur: () => {},
-  formName: 'formNameTest',
   zipcodeUrlService: '',
+  formName: 'formNameTest',
   index: 1,
 };
 

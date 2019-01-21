@@ -101,11 +101,12 @@ describe('Form', () => {
     });
   });
 
-  describe('.updateUserFields', () => {
+  describe('.updateState', () => {
     describe('with prefilled zipcode', () => {
       it('matches updated state', () => {
+        const data = copyState(form);
         const component = shallow(
-          <Form name={'form'} data={form} action={'/'} />,
+          <Form name={'form'} data={data} action={'/'} />,
         );
 
         const mock = [{
@@ -120,23 +121,27 @@ describe('Form', () => {
           values: [],
         }];
 
-        component.instance().updateUserFields(mock);
+        const last = data.steps.length - 1;
+        const userFields = data.steps[last];
 
-        expect(component.state().steps[1].fields).toBe(mock);
+        Object.assign(userFields, { fields: [...mock] });
+
+        component.instance().updateState(data);
+
+        expect(component.state().steps[last].fields).toBe(userFields.fields);
       });
     });
 
     describe('with default values', () => {
       it('does not change state', () => {
+        const data = copyState(form);
         const component = shallow(
-          <Form name={'form'} data={form} action={'/'} />,
+          <Form name={'form'} data={ data } action={'/'} />,
         );
 
-        const fields = [...component.state().steps[1].fields];
+        component.instance().updateState(data);
 
-        component.instance().updateUserFields(fields);
-
-        expect(component.state().steps[1].fields).toBe(fields);
+        expect(component.state()).toEqual(data);
       });
     });
   });

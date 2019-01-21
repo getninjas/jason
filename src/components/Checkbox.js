@@ -100,7 +100,13 @@ export default class Checkbox extends Component {
 
             <label key={`${elem.databaseId}-${idx}`} htmlFor={elem.databaseId}>
               {elem.value === 'OTHER' ? (
-                <input type="text" className={style} disabled={!this.state.checked} required={this.state.checked} data-id={elem.databaseId} ref={this.ref} onBlur={this.onBlurInputOther} />
+                <input type="text"
+                  className={style}
+                  disabled={!this.state.checked}
+                  required={this.state.checked}
+                  data-id={elem.databaseId}
+                  ref={this.ref}
+                  onBlur={this.onBlurInputOther} />
               ) : elem.value}
             </label>
           </li>
