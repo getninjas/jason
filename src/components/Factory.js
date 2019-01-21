@@ -30,7 +30,7 @@ export default class Factory {
       onFieldChange,
       onFieldBlur,
       placeholder,
-      initialValue: value,
+      initialValue: value ? value.toString() : '',
       required,
     };
 

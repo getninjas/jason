@@ -28,7 +28,7 @@ exports[`Step renders with props 1`] = `
           name="1_name_radio"
           onBlur={[Function]}
           onChange={[Function]}
-          required="true"
+          required={true}
           type="radio"
           value={7890}
         />
@@ -46,7 +46,7 @@ exports[`Step renders with props 1`] = `
           name="1_name_radio"
           onBlur={[Function]}
           onChange={[Function]}
-          required="true"
+          required={true}
           type="radio"
           value={7891}
         />
@@ -64,7 +64,7 @@ exports[`Step renders with props 1`] = `
           name="1_name_radio"
           onBlur={[Function]}
           onChange={[Function]}
-          required="true"
+          required={true}
           type="radio"
           value={7892}
         />

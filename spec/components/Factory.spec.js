@@ -11,6 +11,7 @@ const commonProps = {
   onFieldChange: () => {},
   onFieldBlur: () => {},
   formName: 'formNameTest',
+  zipcodeUrlService: '',
   index: 1,
 };
 

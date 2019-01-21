@@ -10,7 +10,7 @@ exports[`Radio renders defaultProps 1`] = `
       name="nameTest"
       onBlur={[Function]}
       onChange={[Function]}
-      required="true"
+      required={true}
       type="radio"
       value={7890}
     />

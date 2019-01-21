@@ -20,7 +20,23 @@
     "class-methods-use-this": 1,
     "no-new": 1,
     "max-len": 1,
-    "arrow-body-style": 1
+    "arrow-body-style": 1,
+    "implicit-arrow-linebreak": 1,
+    "function-paren-newline": 1,
+    "object-curly-newline": 1,
+    "prefer-destructuring": [1, {
+      "VariableDeclarator": {
+        "array": false,
+        "object": true
+      },
+      "AssignmentExpression": {
+        "array": true,
+        "object": false
+      }
+    }, {
+      "enforceForRenamedProperties": false
+    }],
+    "camelcase": 1
   },
 
   "globals": {
