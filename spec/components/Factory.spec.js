@@ -12,7 +12,6 @@ const commonProps = {
   onFieldBlur: () => {},
   zipcodeUrlService: '',
   formName: 'formNameTest',
-  zipcodeUrlService: '',
   index: 1,
 };
 
