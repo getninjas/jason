@@ -22,6 +22,18 @@ describe('.isEmpty', () => {
     expect(result).toBe(true);
   });
 
+  it('returns true for undefined value', () => {
+    const result = isEmpty(undefined);
+
+    expect(result).toBe(true);
+  });
+
+  it('returns true for null value', () => {
+    const result = isEmpty(null);
+
+    expect(result).toBe(true);
+  });
+
   it('returns false for not empty string', () => {
     const result = isEmpty('xpto');
 
