@@ -12,7 +12,7 @@ exports[`Checkbox render component 1`] = `
       name="nameTest"
       onBlur={[Function]}
       onChange={[Function]}
-      required="true"
+      required={true}
       type="checkbox"
     />
     <label
@@ -36,7 +36,7 @@ exports[`Checkbox with input text render component 1`] = `
       name="nameTest"
       onBlur={[Function]}
       onChange={[Function]}
-      required="true"
+      required={true}
       type="checkbox"
     />
     <label

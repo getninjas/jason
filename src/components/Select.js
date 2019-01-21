@@ -60,7 +60,7 @@ export default class Select extends Component {
         className={style}
         onChange={this.onChange}
         onBlur={this.onBlur}
-        required={required ? 'true' : 'false'}>
+        required={required}>
         {
           this.props.values.map((item, index) =>
             (

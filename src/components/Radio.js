@@ -63,7 +63,7 @@ export default class Radio extends Component {
               value={elem.databaseId}
               onChange={this.onChange}
               onBlur={this.onBlur}
-              required={required ? 'true' : 'false'} />
+              required={required} />
             <label htmlFor={elem.databaseId}>{elem.value}</label>
           </li>
         ))}
