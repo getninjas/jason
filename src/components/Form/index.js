@@ -19,7 +19,6 @@ const propTypes = {
   onSubmitError: PropTypes.func,
   onSubmit: PropTypes.func,
   onStepChange: PropTypes.func,
-  onStepChangeAsync: PropTypes.func,
 };
 
 const defaultProps = {
@@ -32,7 +31,6 @@ const defaultProps = {
   onSubmitFieldError() {},
   onSubmitError() {},
   onStepChange() {},
-  onStepChangeAsync: async () => {},
 };
 
 export default class Form extends Component {
@@ -147,12 +145,18 @@ export default class Form extends Component {
     return { data: { ...fields, address: { ...this.state.address } } };
   }
 
-  handleStepChange() {
+  beforeStepChange() {
+    return this.state.steps[this.state.activeStepIndex].beforeChange();
+  }
+
+  async handleStepChange() {
     const { updatedFields, isValid } = validateStep(this.currentStep.fields, this.errorMessages);
 
     this.updateStep(updatedFields);
 
     if (isValid) {
+      await this.beforeStepChange();
+
       this.nextStep(this.state);
       return;
     }
@@ -163,8 +167,6 @@ export default class Form extends Component {
 
   async nextStep({ activeStepIndex, stepsCount }) {
     if (activeStepIndex < stepsCount) {
-      await this.props.onStepChangeAsync(activeStepIndex);
-
       this.setState({ activeStepIndex: activeStepIndex + 1 });
     }
   }
