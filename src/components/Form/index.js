@@ -146,7 +146,9 @@ export default class Form extends Component {
   }
 
   beforeStepChange() {
-    return this.state.steps[this.state.activeStepIndex].beforeChange();
+    const currentStep = this.state.steps[this.state.activeStepIndex];
+
+    return currentStep.beforeChange ? currentStep.beforeChange(currentStep) : this.props.onStepChange(currentStep);
   }
 
   async handleStepChange() {
@@ -158,6 +160,7 @@ export default class Form extends Component {
       await this.beforeStepChange();
 
       this.nextStep(this.state);
+
       return;
     }
 
@@ -165,7 +168,7 @@ export default class Form extends Component {
     this.props.onSubmitFieldError(step);
   }
 
-  async nextStep({ activeStepIndex, stepsCount }) {
+  nextStep({ activeStepIndex, stepsCount }) {
     if (activeStepIndex < stepsCount) {
       this.setState({ activeStepIndex: activeStepIndex + 1 });
     }
