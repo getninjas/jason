@@ -148,7 +148,7 @@ export default class Form extends Component {
   beforeStepChange() {
     const currentStep = this.state.steps[this.state.activeStepIndex];
 
-    return currentStep.beforeChange ? currentStep.beforeChange(currentStep) : this.props.onStepChange(currentStep);
+    return currentStep.beforeChange ? currentStep.beforeChange(currentStep) : this.props.onStepChange();
   }
 
   async handleStepChange() {
