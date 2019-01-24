@@ -31,4 +31,8 @@ const fillFormFields = (steps) => {
   });
 };
 
+const sleep = delay => new Promise(resolve => setTimeout(resolve, delay));
+
+export { sleep };
+
 export default fillFormFields;
