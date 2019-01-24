@@ -21,7 +21,7 @@ function createNodeMock(element) {
 const copyState = data => (JSON.parse(JSON.stringify(data)));
 
 describe('Form', () => {
-  it('renders defaultProps ', () => {
+  it('renders defaultProps', () => {
     const data = copyState(form);
     const options = { createNodeMock };
     const component = renderer.create(
@@ -64,7 +64,7 @@ describe('Form', () => {
           <Form name={'form'} action={'/'} data={data} />,
         );
         const instance = component.instance();
-        const evt = { preventDefault() { } };
+        const evt = { preventDefault() {} };
 
         instance.handleSubmit = jest.fn();
 
@@ -140,7 +140,7 @@ describe('Form', () => {
       it('does not change state', () => {
         const data = copyState(form);
         const component = shallow(
-          <Form name={'form'} data={data} action={'/'} />,
+          <Form name={'form'} data={ data } action={'/'} />,
         );
 
         component.instance().updateState(data);
@@ -155,7 +155,7 @@ describe('Form', () => {
       const onSubmit = jest.fn();
       const onSubmitSuccess = jest.fn();
       const component = shallow(
-        <Form name={'form'} onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} action={'/'} data={form} />,
+        <Form name={'form'} onSubmit={ onSubmit } onSubmitSuccess={ onSubmitSuccess } action={'/'} data={form} />,
       );
 
       component.instance().getFields = jest.fn();
@@ -237,7 +237,7 @@ describe('Form', () => {
     it('calls .updateStep', () => {
       const onSubmitFieldError = jest.fn();
       const component = shallow(
-        <Form name={'form'} action={'/'} data={form} onSubmitFieldError={onSubmitFieldError} />,
+        <Form name={'form'} action={'/'} data={form} onSubmitFieldError={ onSubmitFieldError } />,
       );
 
       component.instance().updateStep = jest.fn();
@@ -257,7 +257,7 @@ describe('Form', () => {
       data.steps = fillFormFields(data.steps);
 
       const component = shallow(
-        <Form name={'form'} action={'/'} data={data} onSubmitFieldError={onSubmitFieldError} />,
+        <Form name={'form'} action={'/'} data={data} onSubmitFieldError={ onSubmitFieldError } />,
       );
 
       component.instance().updateStep = jest.fn();
