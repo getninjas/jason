@@ -19,14 +19,21 @@
     "url": "git+https://github.com/getninjas/jason.git"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.2.5",
     "axios": "^0.18.0",
+    "core-js": "^2.6.3",
     "imask": "^3.3.0",
     "prop-types": "^15.6.1",
     "react": "^16.7.0",
+    "react-app-polyfill": "^0.2.0",
     "react-dom": "^16.7.0"
   },
   "devDependencies": {
     "@babel/core": "7.1.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.3.1",
+    "@babel/plugin-transform-object-assign": "^7.2.0",
+    "@babel/plugin-transform-spread": "^7.2.2",
+    "@babel/plugin-transform-typeof-symbol": "^7.2.0",
     "@svgr/webpack": "2.4.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "9.0.0",
@@ -70,7 +77,6 @@
     "postcss-loader": "3.0.0",
     "postcss-preset-env": "6.3.1",
     "postcss-safe-parser": "4.0.1",
-    "react-app-polyfill": "^0.2.0",
     "react-dev-utils": "^7.0.1",
     "react-test-renderer": "^16.7.0",
     "resolve": "1.8.1",
@@ -123,18 +129,33 @@
       "node"
     ]
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
   "babel": {
     "presets": [
-      "react-app"
+      "react-app",
+      [
+        "@babel/env",
+        {
+          "targets": {
+            "ie": "11"
+          },
+          "useBuiltIns": "usage"
+        }
+      ]
+    ],
+    "plugins": [
+      "@babel/plugin-transform-object-assign",
+      "@babel/plugin-transform-spread",
+      "@babel/plugin-proposal-object-rest-spread",
+      "@babel/plugin-transform-typeof-symbol"
     ]
   },
   "eslintConfig": {
     "extends": "react-app"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie >=10",
+    "not op_mini all"
+  ]
 }
