@@ -1,6 +1,5 @@
-import '@babel/polyfill';
 import 'react-app-polyfill/ie11';
-import './helpers/string-repeat-polyfill';
+import './polyfill/custom-event';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Form from './components/Form';
