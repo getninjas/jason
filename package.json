@@ -19,7 +19,6 @@
     "url": "git+https://github.com/getninjas/jason.git"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.2.5",
     "axios": "^0.18.0",
     "core-js": "^2.6.3",
     "imask": "^3.3.0",
@@ -30,10 +29,6 @@
   },
   "devDependencies": {
     "@babel/core": "7.1.6",
-    "@babel/plugin-proposal-object-rest-spread": "^7.3.1",
-    "@babel/plugin-transform-object-assign": "^7.2.0",
-    "@babel/plugin-transform-spread": "^7.2.2",
-    "@babel/plugin-transform-typeof-symbol": "^7.2.0",
     "@svgr/webpack": "2.4.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "9.0.0",
@@ -141,12 +136,6 @@
           "useBuiltIns": "usage"
         }
       ]
-    ],
-    "plugins": [
-      "@babel/plugin-transform-object-assign",
-      "@babel/plugin-transform-spread",
-      "@babel/plugin-proposal-object-rest-spread",
-      "@babel/plugin-transform-typeof-symbol"
     ]
   },
   "eslintConfig": {
@@ -155,7 +144,7 @@
   "browserslist": [
     ">0.2%",
     "not dead",
-    "not ie >=10",
+    "not ie >=11",
     "not op_mini all"
   ]
 }
