@@ -41,7 +41,7 @@
     "dotenv": "6.0.0",
     "dotenv-expand": "4.2.0",
     "enzyme": "^3.8.0",
-    "enzyme-adapter-react-16": "^1.7.1",
+    "enzyme-adapter-react-16": "^1.8.0",
     "eslint": "5.6.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-getninjas": "^4.0.3",
