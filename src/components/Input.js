@@ -33,8 +33,6 @@ const defaultProps = {
   regexPattern: '',
 };
 
-let mask = IMask.createMask({ mask: '(00) 00000-0000' });
-
 export default class Input extends Component {
   constructor(props) {
     super(props);
@@ -46,7 +44,7 @@ export default class Input extends Component {
   onChange(evt) {
     let inputValue = maxLengthTrim(evt.target.value, this.props.maxLength);
 
-    inputValue = this.applyMask(inputValue);
+    inputValue = this.applyMask(inputValue, this.props.mask);
 
     this.props.onFieldChange({
       value: inputValue,
@@ -65,19 +63,20 @@ export default class Input extends Component {
     });
   }
 
-  applyMask(value) {
+  applyMask(value, mask) {
     if (this.props.type !== 'phone') {
       return value;
     }
 
-    return mask.resolve(value);
+    const imask = IMask.createMask({ mask });
+
+    return imask.resolve(value);
   }
 
   componentDidMount() {
     const { initialValue } = this.props;
-    mask = IMask.createMask({ mask: this.props.mask });
 
-    this.applyMask(initialValue || '');
+    this.applyMask(initialValue || '', this.props.mask);
   }
 
   render() {
