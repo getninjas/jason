@@ -233,11 +233,9 @@ export default class Form extends Component {
   }
 
   render() {
-    const { name, action } = this.props;
-
     return (
       <AppContext.Provider value={this.state}>
-        <form noValidate onSubmit={this.onSubmit} name={name} action={action}
+        <form noValidate onSubmit={this.onSubmit} name={this.props.name} action={this.state.action}
           className={this.formStyle}>
           {
             this.state.steps.map((step, index) => {
