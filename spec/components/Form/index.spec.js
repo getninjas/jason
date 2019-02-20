@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import Form from '../../../src/components/Form';
 import { form } from '../../../src/form.json';
 import { enzymeConfig, shallow } from '../../enzymeConfig';
-import fillFormFields from '../../helper';
+import fillFormFields, { sleep } from '../../helper';
 
 enzymeConfig();
 
@@ -22,9 +22,10 @@ const copyState = data => (JSON.parse(JSON.stringify(data)));
 
 describe('Form', () => {
   it('renders defaultProps', () => {
+    const data = copyState(form);
     const options = { createNodeMock };
     const component = renderer.create(
-      <Form name={'form'} action={'/'} data={form} />, options,
+      <Form name={'form'} action={'/'} data={data} />, options,
     );
 
     const tree = component.toJSON();
@@ -35,8 +36,9 @@ describe('Form', () => {
   describe('.formSubmit', () => {
     describe('when is not the last step', () => {
       it('does not call .handleSubmit', () => {
+        const data = copyState(form);
         const component = shallow(
-          <Form name={'form'} action={'/'} data={form} />,
+          <Form name={'form'} action={'/'} data={data} />,
         );
         const instance = component.instance();
 
@@ -66,7 +68,9 @@ describe('Form', () => {
 
         instance.handleSubmit = jest.fn();
 
-        data.steps.map(() => instance.onSubmit(evt));
+        data.steps.map(() => instance.nextStep(component.state()));
+
+        instance.onSubmit(evt);
 
         expect(instance.handleSubmit).toBeCalled();
       });
@@ -246,7 +250,7 @@ describe('Form', () => {
       expect(component.instance().props.onSubmitFieldError).toBeCalled();
     });
 
-    it('calls .nextStep', () => {
+    it('calls .nextStep', async () => {
       const data = copyState(form);
       const onSubmitFieldError = jest.fn();
 
@@ -260,6 +264,8 @@ describe('Form', () => {
       component.instance().nextStep = jest.fn();
 
       component.instance().handleStepChange();
+
+      await sleep(100);
 
       expect(component.instance().updateStep).toBeCalled();
       expect(component.instance().nextStep).toBeCalled();
@@ -281,7 +287,7 @@ describe('Form', () => {
       expect(component.instance().updateStep).toBeCalled();
     });
 
-    it('expects initial state to differ from current state', () => {
+    it('expects initial state to differ from current state', async () => {
       const data = copyState(form);
 
       data.steps = fillFormFields(data.steps);
@@ -289,21 +295,24 @@ describe('Form', () => {
       const component = shallow(
         <Form name={'form'} action={'/'} data={data} />,
       );
+
       const evt = { preventDefault() { } };
+      const instance = component.instance();
 
-      component.instance().onSubmit(evt);
+      instance.onSubmit(evt);
 
-      const initialSecondStepState = component.instance().state;
+      await sleep(100);
 
+      const initialSecondStepState = instance.state;
       const field = { value: '', id: '2_id' };
-      component.instance().onFieldChange(field);
+      instance.onFieldChange(field);
 
-      const updatedState = component.instance().state;
+      const updatedState = instance.state;
 
       expect(updatedState).not.toEqual(initialSecondStepState);
     });
 
-    it('expects updated select with dynamic options', () => {
+    it('expects updated select with dynamic options', async () => {
       const data = copyState(form);
 
       data.steps = fillFormFields(data.steps);
@@ -314,6 +323,8 @@ describe('Form', () => {
       const evt = { preventDefault() { } };
 
       component.instance().onSubmit(evt);
+
+      await sleep(100);
 
       const updatedOptions = form.steps[1].fields[2].nested_values['124'].values;
       const field = { value: 124, id: '10_id' };
@@ -383,7 +394,7 @@ describe('Form', () => {
       expect(activeStepIndex).toEqual(0);
     });
 
-    it('goes to next step', () => {
+    it('goes to next step', async () => {
       const data = copyState(form);
       data.steps = fillFormFields(data.steps);
 
@@ -395,6 +406,7 @@ describe('Form', () => {
 
       component.instance().formSubmit();
 
+      await sleep(100);
       const { activeStepIndex } = component.state();
 
       expect(initialStep).toEqual(0);

@@ -211,7 +211,7 @@ describe('Input', () => {
 
       component.simulate('change', { target: { value: '11999998888' } });
 
-      expect(instance.applyMask).toBeCalledWith('11999998888');
+      expect(instance.applyMask).toBeCalledWith('11999998888', '(00) 00000-0000');
     });
   });
 
@@ -232,7 +232,7 @@ describe('Input', () => {
           />,
         );
 
-        expect(component.instance().applyMask('11999998888')).toBe('(11) 99999-8888');
+        expect(component.instance().applyMask('11999998888', '(00) 00000-0000')).toBe('(11) 99999-8888');
       });
     });
 
@@ -251,7 +251,7 @@ describe('Input', () => {
           />,
         );
 
-        expect(component.instance().applyMask('John Doe')).toBe('John Doe');
+        expect(component.instance().applyMask('John Doe', '')).toBe('John Doe');
       });
     });
   });

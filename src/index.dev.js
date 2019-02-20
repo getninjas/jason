@@ -1,3 +1,5 @@
+import 'react-app-polyfill/ie11';
+import './polyfill/custom-event';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Form from './components/Form';
@@ -36,7 +38,6 @@ class Jason {
     );
   }
 }
-
 
 const jason = new Jason({
   name: 'form-name',

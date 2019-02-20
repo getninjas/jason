@@ -1,7 +1,7 @@
 export const isEmpty = (value) => {
   const regex = /^\s*$/;
 
-  return regex.test(value.toString().trim());
+  return value ? regex.test(value.toString().trim()) : true;
 };
 
 export const arrayIsInvalid = (value) => {

@@ -145,13 +145,22 @@ export default class Form extends Component {
     return { data: { ...fields, address: { ...this.state.address } } };
   }
 
-  handleStepChange() {
+  beforeStepChange() {
+    const currentStep = this.state.steps[this.state.activeStepIndex];
+
+    return currentStep.beforeChange ? currentStep.beforeChange(currentStep) : this.props.onStepChange();
+  }
+
+  async handleStepChange() {
     const { updatedFields, isValid } = validateStep(this.currentStep.fields, this.errorMessages);
 
     this.updateStep(updatedFields);
 
     if (isValid) {
+      await this.beforeStepChange();
+
       this.nextStep(this.state);
+
       return;
     }
 
@@ -161,7 +170,6 @@ export default class Form extends Component {
 
   nextStep({ activeStepIndex, stepsCount }) {
     if (activeStepIndex < stepsCount) {
-      this.props.onStepChange();
       this.setState({ activeStepIndex: activeStepIndex + 1 });
     }
   }
@@ -225,11 +233,9 @@ export default class Form extends Component {
   }
 
   render() {
-    const { name, action } = this.props;
-
     return (
       <AppContext.Provider value={this.state}>
-        <form noValidate onSubmit={this.onSubmit} name={name} action={action}
+        <form noValidate onSubmit={this.onSubmit} name={this.props.name} action={this.state.action}
           className={this.formStyle}>
           {
             this.state.steps.map((step, index) => {

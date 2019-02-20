@@ -21,10 +21,10 @@
     "no-new": 1,
     "max-len": 1,
     "arrow-body-style": 1,
-    "implicit-arrow-linebreak": 1,
-    "function-paren-newline": 1,
-    "object-curly-newline": 1,
-    "prefer-destructuring": [1, {
+    "implicit-arrow-linebreak": 0,
+    "function-paren-newline": 0,
+    "object-curly-newline": 0,
+    "prefer-destructuring": [0, {
       "VariableDeclarator": {
         "array": false,
         "object": true
