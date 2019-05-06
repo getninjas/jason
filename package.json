@@ -12,7 +12,9 @@
     "version": "npm run build && git add -f build",
     "postversion": "git push && git push --tags",
     "config": "npm config set progress=false && npm config set git-tag-version=true",
-    "clear": "rm -rf ./build"
+    "clear": "rm -rf ./build",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -24,7 +26,8 @@
     "prop-types": "^15.6.1",
     "react": "^16.7.0",
     "react-app-polyfill": "^0.2.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "snyk": "^1.161.1"
   },
   "devDependencies": {
     "@babel/core": "7.1.6",
@@ -145,5 +148,6 @@
     "not dead",
     "not ie >=11",
     "not op_mini all"
-  ]
+  ],
+  "snyk": true
 }
