@@ -20,11 +20,11 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "imask": "^3.3.0",
-    "prop-types": "^15.6.1",
-    "react": "^16.7.0",
-    "react-app-polyfill": "^0.2.0",
-    "react-dom": "^16.7.0"
+    "imask": "^3.4.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.4",
+    "react-app-polyfill": "^0.2.2",
+    "react-dom": "^16.8.4"
   },
   "devDependencies": {
     "@babel/core": "7.1.6",
