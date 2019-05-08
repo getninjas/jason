@@ -82,6 +82,7 @@ export default class Form extends Component {
   onZipcodeFetchSuccess(data) {
     this.props.onZipcodeFetchSuccess(data);
 
+    // eslint-disable-next-line camelcase
     const { type_street, street, neighborhood, city, uf } = data;
 
     this.setState({
