@@ -134,7 +134,7 @@ export default class Form extends Component {
 
       this.props.onSubmitSuccess(response);
     } catch (error) {
-      this.props.onSubmitError(error.response);
+      this.props.onSubmitError(error);
     }
   }
 
