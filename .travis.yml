@@ -12,6 +12,7 @@ before_install:
 before_script:
   - npm install
   - npm install -g jest-cli
+  - snyk auth $SNYK_TOKEN
 script:
   - CI=false npm run build
   - npm run coverage
