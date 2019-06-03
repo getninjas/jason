@@ -1,6 +1,6 @@
 {
   "name": "jason-react-form",
-  "version": "3.2.2",
+  "version": "3.3.2",
   "main": "build/static/js/main.js",
   "license": "MIT",
   "scripts": {
@@ -12,7 +12,9 @@
     "version": "npm run build && git add -f build",
     "postversion": "git push && git push --tags",
     "config": "npm config set progress=false && npm config set git-tag-version=true",
-    "clear": "rm -rf ./build"
+    "clear": "rm -rf ./build",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -20,18 +22,19 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "imask": "^3.3.0",
-    "prop-types": "^15.6.1",
-    "react": "^16.7.0",
-    "react-app-polyfill": "^0.2.0",
-    "react-dom": "^16.7.0"
+    "core-js": "^3.1.2",
+    "imask": "^3.4.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.4",
+    "react-app-polyfill": "^0.2.2",
+    "react-dom": "^16.8.4"
   },
   "devDependencies": {
     "@babel/core": "7.1.6",
     "@svgr/webpack": "2.4.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "9.0.0",
-    "babel-jest": "23.6.0",
+    "babel-jest": "^24.8.0",
     "babel-loader": "8.0.4",
     "babel-plugin-named-asset-import": "^0.3.0",
     "babel-preset-react-app": "^8.0.0",
@@ -61,7 +64,7 @@
     "gaiden": "^17.2.0",
     "html-webpack-plugin": "4.0.0-alpha.2",
     "identity-obj-proxy": "3.0.0",
-    "jest": "23.6.0",
+    "jest": "^24.8.0",
     "jest-pnp-resolver": "1.0.1",
     "jest-resolve": "23.6.0",
     "mini-css-extract-plugin": "0.4.3",
@@ -69,7 +72,7 @@
     "pnp-webpack-plugin": "1.1.0",
     "postcss-flexbugs-fixes": "4.1.0",
     "postcss-loader": "3.0.0",
-    "postcss-preset-env": "6.3.1",
+    "postcss-preset-env": "^6.6.0",
     "postcss-safe-parser": "4.0.1",
     "react-dev-utils": "^7.0.1",
     "react-test-renderer": "^16.7.0",
@@ -132,6 +135,7 @@
           "targets": {
             "ie": "11"
           },
+          "corejs": 3,
           "useBuiltIns": "usage"
         }
       ]
@@ -145,5 +149,6 @@
     "not dead",
     "not ie >=11",
     "not op_mini all"
-  ]
+  ],
+  "snyk": true
 }

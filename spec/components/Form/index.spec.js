@@ -166,6 +166,31 @@ describe('Form', () => {
       expect(component.instance().getFields).toBeCalled();
       expect(component.instance().props.onSubmitSuccess).toBeCalled();
     });
+
+    it('calls .props.onSubmitError, getFields', async () => {
+      const onSubmit = jest.fn();
+      const onSubmitError = jest.fn();
+      const error = new Error({
+        config: {},
+        data: '',
+        headers: {},
+        request: {},
+        status: 404,
+        statusText: 'Not Found',
+      });
+
+      const component = shallow(
+        <Form name={'form'} onSubmit={ onSubmit } onSubmitError={ onSubmitError } action={''} data={form} />,
+      );
+
+      component.instance().getFields = jest.fn();
+
+      await component.instance().submitRequest();
+
+      expect(component.instance().props.onSubmit).toBeCalled();
+      expect(component.instance().getFields).toBeCalled();
+      expect(component.instance().props.onSubmitError).toBeCalledWith(error);
+    });
   });
 
   describe('.isStepVisible', () => {

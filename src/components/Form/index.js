@@ -43,7 +43,7 @@ export default class Form extends Component {
       onZipcodeFetchError: data => this.props.onZipcodeFetchError(data),
       stepsCount: 0,
       address: {
-        type_street: '',
+        typeStreet: '',
         street: '',
         neighborhood: '',
         city: '',
@@ -81,12 +81,11 @@ export default class Form extends Component {
 
   onZipcodeFetchSuccess(data) {
     this.props.onZipcodeFetchSuccess(data);
-
-    const { type_street, street, neighborhood, city, uf } = data;
+    const { typeStreet, street, neighborhood, city, uf } = data;
 
     this.setState({
       address: {
-        type_street,
+        typeStreet,
         street,
         neighborhood,
         city,
@@ -135,7 +134,7 @@ export default class Form extends Component {
 
       this.props.onSubmitSuccess(response);
     } catch (error) {
-      this.props.onSubmitError(error.response);
+      this.props.onSubmitError(error);
     }
   }
 
