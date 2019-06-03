@@ -21,8 +21,8 @@
     "url": "git+https://github.com/getninjas/jason.git"
   },
   "dependencies": {
-    "axios": "^0.18.0",
-    "core-js": "^3.1.2",
+    "axios": "^0.18.1",
+    "core-js": "^3.1.3",
     "imask": "^3.4.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
