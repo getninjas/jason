@@ -49,6 +49,7 @@ export default class Form extends Component {
         city: '',
         uf: '',
       },
+      action: this.props.action,
       steps: [],
     };
 
@@ -74,7 +75,7 @@ export default class Form extends Component {
   }
 
   updateState(state) {
-    Object.assign(state, { ...this.state });
+    Object.assign(state, { ...this.state, action: state.action });
 
     this.setState({ ...state });
   }
@@ -130,7 +131,7 @@ export default class Form extends Component {
       this.props.onSubmit();
 
       const body = this.getFields();
-      const response = await axios.post(this.props.action, body);
+      const response = await axios.post(this.state.action, body);
 
       this.props.onSubmitSuccess(response);
     } catch (error) {
