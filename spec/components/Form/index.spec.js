@@ -128,10 +128,11 @@ describe('Form', () => {
         const last = data.steps.length - 1;
         const userFields = data.steps[last];
 
-        Object.assign(userFields, { fields: [...mock] });
+        Object.assign(userFields, { fields: [...mock], action: 'https://updated/form/action' });
 
         component.instance().updateState(data);
 
+        expect(component.state().action).toBe('https://updated/form/action');
         expect(component.state().steps[last].fields).toBe(userFields.fields);
       });
     });
