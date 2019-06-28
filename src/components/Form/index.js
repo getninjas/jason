@@ -74,10 +74,12 @@ export default class Form extends Component {
     }, this.props.onReady);
   }
 
-  updateState(state) {
-    Object.assign(state, { ...this.state, action: state.action });
+  updateState(newState) {
+    const localState = { ...this.state };
 
-    this.setState({ ...state });
+    Object.assign(localState, { ...newState });
+
+    this.setState({ ...localState });
   }
 
   onZipcodeFetchSuccess(data) {
