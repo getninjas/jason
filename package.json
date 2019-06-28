@@ -12,9 +12,7 @@
     "version": "npm run build && git add -f build",
     "postversion": "git push && git push --tags",
     "config": "npm config set progress=false && npm config set git-tag-version=true",
-    "clear": "rm -rf ./build",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "clear": "rm -rf ./build"
   },
   "repository": {
     "type": "git",
@@ -149,6 +147,5 @@
     "not dead",
     "not ie >=11",
     "not op_mini all"
-  ],
-  "snyk": true
+  ]
 }
