@@ -128,11 +128,39 @@ describe('Form', () => {
         const last = data.steps.length - 1;
         const userFields = data.steps[last];
 
-        Object.assign(userFields, { fields: [...mock] });
+        userFields.fields = [...mock];
 
         component.instance().updateState(data);
 
         expect(component.state().steps[last].fields).toBe(userFields.fields);
+      });
+    });
+
+    describe('with updated form action', () => {
+      it('matches action url', () => {
+        const data = copyState(form);
+        const component = shallow(
+          <Form name={'form'} data={data} action={'/'} />,
+        );
+
+        data.action = 'https://updated/form/action';
+
+        component.instance().updateState(data);
+
+        expect(component.state().action).toBe('https://updated/form/action');
+      });
+    });
+
+    describe('without updated form action', () => {
+      it('matches initial action url', () => {
+        const data = copyState(form);
+        const component = shallow(
+          <Form name={'form'} data={data} action={'/'} />,
+        );
+
+        component.instance().updateState(data);
+
+        expect(component.state().action).toBe('/');
       });
     });
 

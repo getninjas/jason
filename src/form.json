@@ -1,5 +1,17 @@
 {
   "form": {
+    "action": "/",
+    "activeStepIndex": 0,
+    "address": {
+      "city": "",
+      "neighborhood": "",
+      "street": "",
+      "typeStreet": "",
+      "uf": ""
+    },
+    "onZipcodeFetchError": {},
+    "onZipcodeFetchSuccess": {},
+    "stepsCount": 2,
     "language": "pt-BR",
     "title": "Form Title",
     "databaseId": 81,
