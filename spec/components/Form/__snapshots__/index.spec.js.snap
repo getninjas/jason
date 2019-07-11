@@ -3,6 +3,7 @@
 exports[`Form renders defaultProps 1`] = `
 Array [
   <form
+    action="/"
     className="form container sh-form-content space-box-small"
     name="form"
     noValidate={true}
