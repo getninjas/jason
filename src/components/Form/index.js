@@ -229,7 +229,7 @@ export default class Form extends Component {
   }
 
   isLastStep(index) {
-    return index == this.state.stepsCount;
+    return index === this.state.stepsCount;
   }
 
   render() {
