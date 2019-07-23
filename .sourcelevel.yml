@@ -5,8 +5,7 @@
 # it as you wish - To know more on how to change this file to better review your
 # repository you can go to https://docs.sourcelevel.io/configuration and see the configuration
 # details.
----
-styleguide: getninjas/jason
+--- styleguide: getninjas/jason
 engines:
   fixme:
     enabled: true
@@ -19,3 +18,4 @@ exclude_paths:
 - public
 - spec
 - build
+- scripts

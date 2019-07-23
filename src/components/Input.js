@@ -64,9 +64,7 @@ export default class Input extends Component {
   }
 
   applyMask(value, mask) {
-    if (this.props.type !== 'phone') {
-      return value;
-    }
+    if (this.props.type !== 'phone') return value;
 
     const imask = IMask.createMask({ mask });
 
