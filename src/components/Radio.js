@@ -21,7 +21,7 @@ export default class Radio extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {}
 
     this.onChange = this.onChange.bind(this);
     this.onBlur = this.onBlur.bind(this);
