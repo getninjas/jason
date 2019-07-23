@@ -41,7 +41,8 @@
 
   "globals": {
     "document": true,
-    "window": true
+    "window": true,
+    "CustomEvent": true
   },
 
   "env": {
