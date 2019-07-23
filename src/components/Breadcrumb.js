@@ -11,7 +11,7 @@ export default class Breadcrumb extends Component {
   }
 
   handleActiveStyle(index) {
-    return this.isActive(index) ? 'form__steps-item--active' : '';
+    return this.isActive(index) ? "form__steps-item--active" : "";
   }
 
   render() {
