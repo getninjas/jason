@@ -73,13 +73,14 @@ export default class Factory {
     };
   }
 
+  // TODO: fix
   static getComponent(props) {
     const component = Factory._components(props);
 
     if (component[props.item.type]) {
       return component[props.item.type];
-    } else {
-      throw new Error(`JasonForm: Invalid component type: ${props.item.type}`);
     }
+
+    throw new Error(`JasonForm: Invalid component type: ${props.item.type}`);
   }
 }
