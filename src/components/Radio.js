@@ -33,7 +33,7 @@ export default class Radio extends Component {
 
     this.props.onFieldChange({
       value,
-      id: this.props.id,
+      id: this.props.id
     });
   }
 
