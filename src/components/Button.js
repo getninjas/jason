@@ -9,7 +9,7 @@ const propTypes = {
 
 const defaultProps = {
   children: 'Prosseguir',
-  isSubmit: false,
+  isSubmit: false
 };
 
 export default class Button extends Component {

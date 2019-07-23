@@ -99,7 +99,7 @@ export default class Form extends Component {
     this.handleStepChange();
 
     if (this.isLastStep(this.state.activeStepIndex)) {
-      this.handleSubmit();
+      this._handleSubmit();
     }
   }
 
@@ -109,7 +109,7 @@ export default class Form extends Component {
     this.formSubmit();
   }
 
-  handleSubmit() {
+  _handleSubmit() {
     if (this.isStepsValid()) {
       this.submitRequest();
     }
@@ -229,7 +229,7 @@ export default class Form extends Component {
   }
 
   isLastStep(index) {
-    return index === this.state.stepsCount;
+    return index == this.state.stepsCount;
   }
 
   render() {
