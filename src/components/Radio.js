@@ -48,6 +48,7 @@ export default class Radio extends Component {
     });
   }
 
+  // TODO: test
   render() {
     const {
       name,
