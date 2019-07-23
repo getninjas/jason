@@ -39,6 +39,7 @@ export default class Radio extends Component {
     });
   }
 
+  // TODO: test
   onBlur() {
     this.props.onFieldBlur({
       value: this.state.value,
