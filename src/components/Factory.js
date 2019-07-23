@@ -78,6 +78,7 @@ export default class Factory {
     const component = Factory._components(props);
 
     if (component[props.item.type]) {
+
       return component[props.item.type];
     }
 
