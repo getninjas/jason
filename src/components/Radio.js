@@ -28,6 +28,7 @@ export default class Radio extends Component {
     this.onBlur = this.onBlur.bind(this);
   }
 
+  // TODO: test
   onChange(evt) {
     const value = evt.target.value;
     this.setState({ value });
