@@ -7,7 +7,7 @@ const propTypes = {
 };
 export default class Breadcrumb extends Component {
   isActive(index) {
-    return this.props.active === index;
+    return this.props.active == index;
   }
 
   handleActiveStyle(index) {
