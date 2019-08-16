@@ -1,6 +1,6 @@
 self.__precacheManifest = [
   {
-    "revision": "aa8ed3daf847d2d8073b",
+    "revision": "980e3a347b6f02ed028b",
     "url": "/static/js/main.js"
   },
   {
