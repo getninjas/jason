@@ -94,7 +94,7 @@ export default class Zipcode extends Component {
 
       successCallback(this.state);
     } catch (error) {
-      this.onZipcodeError(zipcode);
+      this.onZipcodeError();
 
       errorCallback({ ...this.state, error });
     }
@@ -114,10 +114,13 @@ export default class Zipcode extends Component {
   }
 
   onZipcodeError() {
-    const { value, zipcodeInvalid } = this.state;
     this.setState({ fullAddress: '', fetching: false, zipcodeInvalid: true });
 
-    this.props.onFieldBlur({ ...this.props, fetchCompleted: false, value: zipcodeInvalid ? '' : value });
+    this.props.onFieldBlur({
+      ...this.props,
+      fetchCompleted: false,
+      value: '',
+    });
   }
 
   componentWillUnmount() {

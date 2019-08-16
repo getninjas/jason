@@ -138,7 +138,7 @@ describe('Zipcode', () => {
 
       expect(successCallback).not.toHaveBeenCalledWith(component.instance().state);
       expect(errorCallback).toHaveBeenCalledWith({ ...component.instance().state, error: { data: {} } });
-      expect(component.instance().onZipcodeError).toHaveBeenCalledWith('04707060');
+      expect(component.instance().onZipcodeError).toHaveBeenCalled();
     });
   });
 
