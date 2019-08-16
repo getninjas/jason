@@ -117,7 +117,11 @@ export default class Zipcode extends Component {
     const { value } = this.state;
     this.setState({ fullAddress: '', fetching: false, zipcodeInvalid: true });
 
-    this.props.onFieldBlur({ ...this.props, fetchCompleted: false, value: this.state.zipcodeInvalid ? '' : value });
+    this.props.onFieldBlur({
+      ...this.props,
+      fetchCompleted: false,
+      value: this.state.zipcodeInvalid ? '' : value,
+    });
   }
 
   componentWillUnmount() {
