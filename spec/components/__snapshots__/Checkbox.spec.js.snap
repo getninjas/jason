@@ -18,7 +18,11 @@ exports[`Checkbox render component 1`] = `
     <label
       htmlFor={6792}
     >
-      Cozinhar
+      <label
+        htmlFor={6792}
+      >
+        Cozinhar
+      </label>
     </label>
   </li>
 </ul>
