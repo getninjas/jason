@@ -107,7 +107,10 @@ export default class Checkbox extends Component {
                   data-id={elem.databaseId}
                   ref={this.ref}
                   onBlur={this.onBlurInputOther} />
-              ) : elem.value}
+              ) : <label key={`${elem.databaseId}-${idx}`} htmlFor={elem.databaseId}>
+                    {elem.value}
+                  </label>
+              }
             </label>
           </li>
         ))}
