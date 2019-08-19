@@ -305,7 +305,11 @@ Array [
             <label
               htmlFor={6792}
             >
-              Cozinhar
+              <label
+                htmlFor={6792}
+              >
+                Cozinhar
+              </label>
             </label>
           </li>
           <li
@@ -324,7 +328,11 @@ Array [
             <label
               htmlFor={6793}
             >
-              Passar roupa
+              <label
+                htmlFor={6793}
+              >
+                Passar roupa
+              </label>
             </label>
           </li>
           <li
@@ -343,7 +351,11 @@ Array [
             <label
               htmlFor={6794}
             >
-              Limpar áreas externas (jardim/garagem ou quintal)
+              <label
+                htmlFor={6794}
+              >
+                Limpar áreas externas (jardim/garagem ou quintal)
+              </label>
             </label>
           </li>
           <li
@@ -362,7 +374,11 @@ Array [
             <label
               htmlFor={6795}
             >
-              Não preciso
+              <label
+                htmlFor={6795}
+              >
+                Não preciso
+              </label>
             </label>
           </li>
           <li
@@ -381,7 +397,11 @@ Array [
             <label
               htmlFor={7689}
             >
-              Outro
+              <label
+                htmlFor={7689}
+              >
+                Outro
+              </label>
             </label>
           </li>
           <li
