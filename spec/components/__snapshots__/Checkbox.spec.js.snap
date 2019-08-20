@@ -15,9 +15,7 @@ exports[`Checkbox render component 1`] = `
       required={true}
       type="checkbox"
     />
-    <label
-      htmlFor={6792}
-    >
+    <label>
       <label
         htmlFor={6792}
       >
@@ -43,9 +41,7 @@ exports[`Checkbox with input text render component 1`] = `
       required={true}
       type="checkbox"
     />
-    <label
-      htmlFor={7639}
-    >
+    <label>
       <input
         className="form__input"
         data-id={7639}

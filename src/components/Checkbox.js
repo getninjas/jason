@@ -98,7 +98,7 @@ export default class Checkbox extends Component {
               data-input-value={elem.value}
               required={required} />
 
-            <label key={`${elem.databaseId}-${idx}`} htmlFor={elem.databaseId}>
+            <label key={`${elem.databaseId}-${idx}`}>
               {elem.value === 'OTHER' ? (
                 <input type="text"
                   className={style}
