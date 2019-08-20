@@ -15,12 +15,10 @@ exports[`Checkbox render component 1`] = `
       required={true}
       type="checkbox"
     />
-    <label>
-      <label
-        htmlFor={6792}
-      >
-        Cozinhar
-      </label>
+    <label
+      htmlFor={6792}
+    >
+      Cozinhar
     </label>
   </li>
 </ul>
