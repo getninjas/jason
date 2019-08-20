@@ -302,9 +302,7 @@ Array [
               required={true}
               type="checkbox"
             />
-            <label
-              htmlFor={6792}
-            >
+            <label>
               <label
                 htmlFor={6792}
               >
@@ -325,9 +323,7 @@ Array [
               required={true}
               type="checkbox"
             />
-            <label
-              htmlFor={6793}
-            >
+            <label>
               <label
                 htmlFor={6793}
               >
@@ -348,9 +344,7 @@ Array [
               required={true}
               type="checkbox"
             />
-            <label
-              htmlFor={6794}
-            >
+            <label>
               <label
                 htmlFor={6794}
               >
@@ -371,9 +365,7 @@ Array [
               required={true}
               type="checkbox"
             />
-            <label
-              htmlFor={6795}
-            >
+            <label>
               <label
                 htmlFor={6795}
               >
@@ -394,9 +386,7 @@ Array [
               required={true}
               type="checkbox"
             />
-            <label
-              htmlFor={7689}
-            >
+            <label>
               <label
                 htmlFor={7689}
               >
@@ -417,9 +407,7 @@ Array [
               required={true}
               type="checkbox"
             />
-            <label
-              htmlFor={7639}
-            >
+            <label>
               <input
                 className="form__input"
                 data-id={7639}
