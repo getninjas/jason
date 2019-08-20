@@ -98,8 +98,8 @@ export default class Checkbox extends Component {
               data-input-value={elem.value}
               required={required} />
 
-            <label key={`${elem.databaseId}-${idx}`}>
-              {elem.value === 'OTHER' ? (
+            {elem.value === 'OTHER' ? (
+              <label key={`${elem.databaseId}-${idx}`}>
                 <input type="text"
                   className={style}
                   disabled={!this.state.checked}
@@ -107,11 +107,11 @@ export default class Checkbox extends Component {
                   data-id={elem.databaseId}
                   ref={this.ref}
                   onBlur={this.onBlurInputOther} />
-              ) : <label key={`${elem.databaseId}-${idx}`} htmlFor={elem.databaseId}>
-                    {elem.value}
-                  </label>
-              }
-            </label>
+              </label>
+            ) : <label key={`${elem.databaseId}-${idx}`} htmlFor={elem.databaseId}>
+                  {elem.value}
+                </label>
+            }
           </li>
         ))}
       </ul>
