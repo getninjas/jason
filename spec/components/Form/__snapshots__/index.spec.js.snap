@@ -302,12 +302,10 @@ Array [
               required={true}
               type="checkbox"
             />
-            <label>
-              <label
-                htmlFor={6792}
-              >
-                Cozinhar
-              </label>
+            <label
+              htmlFor={6792}
+            >
+              Cozinhar
             </label>
           </li>
           <li
@@ -323,12 +321,10 @@ Array [
               required={true}
               type="checkbox"
             />
-            <label>
-              <label
-                htmlFor={6793}
-              >
-                Passar roupa
-              </label>
+            <label
+              htmlFor={6793}
+            >
+              Passar roupa
             </label>
           </li>
           <li
@@ -344,12 +340,10 @@ Array [
               required={true}
               type="checkbox"
             />
-            <label>
-              <label
-                htmlFor={6794}
-              >
-                Limpar áreas externas (jardim/garagem ou quintal)
-              </label>
+            <label
+              htmlFor={6794}
+            >
+              Limpar áreas externas (jardim/garagem ou quintal)
             </label>
           </li>
           <li
@@ -365,12 +359,10 @@ Array [
               required={true}
               type="checkbox"
             />
-            <label>
-              <label
-                htmlFor={6795}
-              >
-                Não preciso
-              </label>
+            <label
+              htmlFor={6795}
+            >
+              Não preciso
             </label>
           </li>
           <li
@@ -386,12 +378,10 @@ Array [
               required={true}
               type="checkbox"
             />
-            <label>
-              <label
-                htmlFor={7689}
-              >
-                Outro
-              </label>
+            <label
+              htmlFor={7689}
+            >
+              Outro
             </label>
           </li>
           <li
