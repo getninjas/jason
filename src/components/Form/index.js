@@ -80,6 +80,10 @@ export default class Form extends Component {
     this.setState({ ...state });
   }
 
+  updateStateForce(state) {
+    this.setState({ ...state });
+  }
+
   onZipcodeFetchSuccess(data) {
     this.props.onZipcodeFetchSuccess(data);
     const { typeStreet, street, neighborhood, city, uf } = data;

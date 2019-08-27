@@ -19,6 +19,10 @@ export default class Jason {
     this.form.updateState(state);
   }
 
+  updateStateForce(state) {
+    this.form.updateStateForce(state);
+  }
+
   init() {
     ReactDOM.render(
       <Form data={this.data.form}
