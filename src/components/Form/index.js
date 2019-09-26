@@ -200,7 +200,7 @@ export default class Form extends Component {
       if (item.reference === id) {
         const defaultValue = { values: [{ databaseId: '', value: item.mask }] };
 
-        return { ...item, values: (item.nested_values[value] || defaultValue).values };
+        return { ...item, values: (item.nested_values[value] || defaultValue).values, value: null };
       }
 
       if (item.id === id) {
