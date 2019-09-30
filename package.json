@@ -23,9 +23,9 @@
     "core-js": "^3.2.1",
     "imask": "^3.4.0",
     "prop-types": "^15.7.2",
-    "react": "^16.9.0",
+    "react": "^16.10.1",
     "react-app-polyfill": "^0.2.2",
-    "react-dom": "^16.9.0"
+    "react-dom": "^16.10.1"
   },
   "devDependencies": {
     "@babel/core": "7.1.6",
