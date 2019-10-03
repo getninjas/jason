@@ -389,6 +389,23 @@ describe('Form', () => {
       expect(updatedState.steps[1].fields[2].values).toEqual(updatedOptions);
     });
 
+    it('resets dynamic selection when the reference changes', () => {
+      const component = shallow(
+        <Form name={'form'} action={'/'} data={form} />,
+      );
+      component.instance().nextStep({ activeStepIndex: 0, stepsCount: 3 });
+
+      // Select reference field
+      component.instance().onFieldChange({ value: 124, id: '10_id' });
+      // Select dynamic field
+      component.instance().onFieldChange({ value: 549, id: '09_sc' });
+      // Change reference field
+      component.instance().onFieldChange({ value: 154, id: '10_id' });
+
+      const updatedState = component.instance().state;
+      expect(updatedState.steps[1].fields[2].value).toBeNull();
+    });
+
     it('does not updated select with dynamic options', () => {
       const component = shallow(
         <Form name={'form'} action={'/'} data={form} />,
