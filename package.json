@@ -20,12 +20,12 @@
   },
   "dependencies": {
     "axios": "^0.19.0",
-    "core-js": "^3.3.2",
+    "core-js": "^3.3.4",
     "imask": "^3.4.0",
     "prop-types": "^15.7.2",
-    "react": "^16.10.2",
+    "react": "^16.11.0",
     "react-app-polyfill": "^0.2.2",
-    "react-dom": "^16.10.2"
+    "react-dom": "^16.11.0"
   },
   "devDependencies": {
     "@babel/core": "7.1.6",
