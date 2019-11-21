@@ -46,6 +46,10 @@ export const isValidCellPhone = (value, regexPattern) => {
   return regex.test(value.trim());
 };
 
+export const validateWhenEmailRequired = (required, value) => required && !isValidEmail(value);
+
+export const validateWhenEmailNonRequired = (required, value) => (!required && !isEmpty(value) && !isValidEmail(value));
+
 export const validateField = (optionsValidation, errorMessages) => {
   const { required, type, value, minLength, regexPattern } = optionsValidation;
 
@@ -57,7 +61,8 @@ export const validateField = (optionsValidation, errorMessages) => {
     return errorMessages.REQUIRED_VALID_CELLPHONE;
   }
 
-  if (type === 'email' && !isValidEmail(value)) {
+  if (type === 'email' && (validateWhenEmailRequired(required, value)
+  || validateWhenEmailNonRequired(required, value))) {
     return errorMessages.REQUIRED_VALID_EMAIL;
   }
 
