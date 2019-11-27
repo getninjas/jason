@@ -6,7 +6,9 @@ import {
   isValidEmail,
   isValidZipcode,
   validateField,
-  validateStep } from '../../../src/components/Form/validation';
+  validateStep,
+  validateWhenEmailRequired,
+  validateWhenEmailNonRequired } from '../../../src/components/Form/validation';
 import { form } from '../../../src/form.json';
 import fillFormFields from '../../helper';
 
@@ -288,5 +290,33 @@ describe('.validateStep', () => {
     const result = validateStep(data.steps[0].fields, errorMessages);
 
     expect(result.isValid).toBe(true);
+  });
+});
+
+describe('.validateWhenEmailRequired', () => {
+  it('returns false when field is required and email is valid', () => {
+    expect(validateWhenEmailRequired(true, 'xpto@xpto.com')).toBe(false);
+  });
+
+  it('returns true when field is required and email is invalid', () => {
+    expect(validateWhenEmailRequired(true, 'xpto@xp')).toBe(true);
+  });
+
+  it('returns true when field is required and email is blank', () => {
+    expect(validateWhenEmailRequired(true, '')).toBe(true);
+  });
+});
+
+describe('.validateWhenEmailNonRequired', () => {
+  it('returns true when field is not required and email is filled valid', () => {
+    expect(validateWhenEmailNonRequired(false, 'xpto@xpto.com')).toBe(false);
+  });
+
+  it('returns true when field is not required and email is filled invalid', () => {
+    expect(validateWhenEmailNonRequired(false, 'xpto@xp')).toBe(true);
+  });
+
+  it('returns false when field is not required and email is blank', () => {
+    expect(validateWhenEmailNonRequired(false, '')).toBe(false);
   });
 });
