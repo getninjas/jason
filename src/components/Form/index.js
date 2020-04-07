@@ -12,6 +12,7 @@ const propTypes = {
   action: PropTypes.string.isRequired,
   method: PropTypes.string,
   onReady: PropTypes.func,
+  handleZipcodeExternalLinkClick: PropTypes.func,
   onZipcodeFetchSuccess: PropTypes.func,
   onZipcodeFetchError: PropTypes.func,
   onSubmitSuccess: PropTypes.func,
@@ -24,6 +25,7 @@ const propTypes = {
 const defaultProps = {
   method: 'POST',
   onReady() {},
+  handleZipcodeExternalLinkClick() {},
   onZipcodeFetchSuccess() {},
   onZipcodeFetchError() {},
   onSubmit() {},
@@ -39,6 +41,7 @@ export default class Form extends Component {
 
     this.state = {
       activeStepIndex: 0,
+      handleZipcodeExternalLinkClick: this.handleZipcodeExternalLinkClick,
       onZipcodeFetchSuccess: data => this.onZipcodeFetchSuccess(data),
       onZipcodeFetchError: data => this.props.onZipcodeFetchError(data),
       stepsCount: 0,
@@ -58,6 +61,7 @@ export default class Form extends Component {
     this.onFieldChange = this.onFieldChange.bind(this);
     this.onFieldBlur = this.onFieldBlur.bind(this);
     this.errorMessages = this.props.data.errorMessages;
+    this.handleZipcodeExternalLinkClick = this.handleZipcodeExternalLinkClick.bind(this);
   }
 
   get currentStep() {
@@ -78,6 +82,11 @@ export default class Form extends Component {
     Object.assign(state, { ...this.state, action: state.action || this.props.action });
 
     this.setState({ ...state });
+  }
+
+  handleZipcodeExternalLinkClick(event) {
+    const { handleZipcodeExternalLinkClick } = this.props;
+    return handleZipcodeExternalLinkClick(event);
   }
 
   onZipcodeFetchSuccess(data) {
