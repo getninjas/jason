@@ -160,6 +160,7 @@ export default class Zipcode extends Component {
             href='http://www.buscacep.correios.com.br'
             target='_blank'
             className='form__label-link'
+            onClick={context.handleZipcodeExternalLinkClick}
             rel='noopener noreferrer'>
             Não lembra seu CEP?
           </a>
