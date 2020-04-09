@@ -147,45 +147,54 @@ export default class Zipcode extends Component {
     }
   }
 
+  handleZipcodeExternalLinkClick(event) {
+    event.preventDefault();
+    this.context.handleZipcodeExternalLinkClick(event);
+    setTimeout( () => {
+      window.open(
+        'http://www.buscacep.correios.com.br/sistemas/buscacep/',
+        '_blank'
+      );
+    }, 300);
+    return false;
+  }
+
   render() {
+    const { onZipcodeFetchSuccess, onZipcodeFetchError } = this.context;
     const { id, name, required, placeholder, style } = this.props;
     const { street, city, neighborhood, uf, fullAddress, fetching } = this.state;
     const searchingZipcode = <span className='zipcode__loader' >Buscando CEP...</span>;
     const completeAddress = <span className='full-address'>{fullAddress}</span>;
 
     return (
-      <AppContext.Consumer>
-        { context => <Fragment>
-          <a
-            href='http://www.buscacep.correios.com.br'
-            target='_blank'
-            className='form__label-link'
-            onClick={context.handleZipcodeExternalLinkClick}
-            rel='noopener noreferrer'>
-            Não lembra seu CEP?
-          </a>
-          <input
-            id={id}
-            name={name}
-            className={style}
-            type='tel'
-            placeholder={placeholder}
-            required={required}
-            onChange={this.onChange.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)}
-            onBlur={this.onBlur.bind(this, context.onZipcodeFetchSuccess, context.onZipcodeFetchError)}
-            ref={this.inputRef} value={this.state.value}
-          />
-          { fetching ? searchingZipcode : completeAddress }
-          <input id='street' name='street' type='hidden' value={street} />
-          <input id='neighborhood' name='neighborhood' type='hidden' value={neighborhood} />
-          <input id='city' name={'city'} type={'hidden'} value={city} />
-          <input id='uf' name='uf' type='hidden' value={uf} />
-        </Fragment>
-        }
-      </AppContext.Consumer>
+      <Fragment>
+        <a
+          className='form__label-link'
+          onClick={(event) => this.handleZipcodeExternalLinkClick(event) }
+          rel='noopener noreferrer'>
+          Não lembra seu CEP?
+        </a>
+        <input
+          id={id}
+          name={name}
+          className={style}
+          type='tel'
+          placeholder={placeholder}
+          required={required}
+          onChange={this.onChange.bind(this, onZipcodeFetchSuccess, onZipcodeFetchError)}
+          onBlur={this.onBlur.bind(this, onZipcodeFetchSuccess, onZipcodeFetchError)}
+          ref={this.inputRef} value={this.state.value}
+        />
+        { fetching ? searchingZipcode : completeAddress }
+        <input id='street' name='street' type='hidden' value={street} />
+        <input id='neighborhood' name='neighborhood' type='hidden' value={neighborhood} />
+        <input id='city' name={'city'} type={'hidden'} value={city} />
+        <input id='uf' name='uf' type='hidden' value={uf} />
+      </Fragment>
     );
   }
 }
 
+Zipcode.contextType = AppContext;
 Zipcode.propTypes = propTypes;
 Zipcode.defaultProps = defaultProps;
