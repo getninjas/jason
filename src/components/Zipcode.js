@@ -55,6 +55,7 @@ export default class Zipcode extends Component {
     this.inputRef = createRef();
     this.onBlur = this.onBlur.bind(this);
     this.triggerEvent = triggerNativeEvent;
+    this.handleZipcodeExternalLinkClick = this.handleZipcodeExternalLinkClick.bind(this);
   }
 
   updateZipcode(zipcode, successCallback, errorCallback) {
@@ -147,6 +148,12 @@ export default class Zipcode extends Component {
     }
   }
 
+  handleZipcodeExternalLinkClick(event, context) {
+    event.preventDefault();
+    context.handleZipcodeExternalLinkClick(event);
+    return false;
+  }
+
   render() {
     const { id, name, required, placeholder, style } = this.props;
     const { street, city, neighborhood, uf, fullAddress, fetching } = this.state;
@@ -157,10 +164,8 @@ export default class Zipcode extends Component {
       <AppContext.Consumer>
         { context => <Fragment>
           <a
-            href='http://www.buscacep.correios.com.br'
-            target='_blank'
             className='form__label-link'
-            onClick={context.handleZipcodeExternalLinkClick}
+            onClick={ event => this.handleZipcodeExternalLinkClick(event, context)}
             rel='noopener noreferrer'>
             Não lembra seu CEP?
           </a>

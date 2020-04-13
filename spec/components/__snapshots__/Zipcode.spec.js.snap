@@ -4,9 +4,8 @@ exports[`Zipcode renders defaultProps 1`] = `
 Array [
   <a
     className="form__label-link"
-    href="http://www.buscacep.correios.com.br"
+    onClick={[Function]}
     rel="noopener noreferrer"
-    target="_blank"
   >
     Não lembra seu CEP?
   </a>,
