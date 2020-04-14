@@ -4,6 +4,7 @@ exports[`Zipcode renders defaultProps 1`] = `
 Array [
   <a
     className="form__label-link"
+    data-js="zipcodeExternalLink"
     onClick={[Function]}
     rel="noopener noreferrer"
   >
