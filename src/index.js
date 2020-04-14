@@ -25,7 +25,7 @@ export default class Jason {
         name={this.name}
         action={this.action}
         onReady={ this.onReady }
-        handleZipcodeExternalLinkClick={ this.handleZipcodeExternalLinkClick }
+        handleZipcodeExternalLinkClick={ (event) => this.handleZipcodeExternalLinkClick(event) }
         onZipcodeFetchSuccess={ (data) => { this.onZipcodeFetchSuccess(data); } }
         onZipcodeFetchError={ (data) => { this.onZipcodeFetchError(data); } }
         onSubmit={ this.onSubmit }
