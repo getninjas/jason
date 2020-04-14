@@ -41,7 +41,7 @@ export default class Form extends Component {
 
     this.state = {
       activeStepIndex: 0,
-      handleZipcodeExternalLinkClick: (event) => this.handleZipcodeExternalLinkClick(event),
+      handleZipcodeExternalLinkClick: event => this.handleZipcodeExternalLinkClick(event),
       onZipcodeFetchSuccess: data => this.onZipcodeFetchSuccess(data),
       onZipcodeFetchError: data => this.props.onZipcodeFetchError(data),
       stepsCount: 0,

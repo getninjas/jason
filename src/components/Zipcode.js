@@ -150,8 +150,8 @@ export default class Zipcode extends Component {
 
   handleZipcodeExternalLinkClick(event, context) {
     const isValid = (
-      event 
-      && event.type === 'click' 
+      event
+      && event.type === 'click'
       && context
       && typeof context.handleZipcodeExternalLinkClick === 'function'
     );
@@ -160,7 +160,7 @@ export default class Zipcode extends Component {
 
     event.preventDefault();
     context.handleZipcodeExternalLinkClick(event);
-    
+    return false;
   }
 
   render() {
