@@ -480,6 +480,7 @@ Array [
         </label>
         <a
           className="form__label-link"
+          data-js="zipcodeExternalLink"
           onClick={[Function]}
           rel="noopener noreferrer"
         >

@@ -222,4 +222,66 @@ describe('Zipcode', () => {
       expect(component.instance().props.onFieldBlur).toHaveBeenCalled();
     });
   });
+
+  describe('.handleZipcodeExternalLinkClick', () => {
+    it('calls function inside context using click simulator', () => {
+      const ZipcodeMock = getComponentWithContext();
+      const component = mount(<ZipcodeMock id='zip_id' name='zip_name' zipcodeUrlService='' onFieldChange={() => {}} onFieldBlur={() => {}} mask='00000-000' />);
+      const componentInstance = component.instance();
+
+      componentInstance.handleZipcodeExternalLinkClick = jest.fn();
+
+      const zipcodeExternalLink = component.find('[data-js="zipcodeExternalLink"]');
+      zipcodeExternalLink.simulate('click');
+
+      expect(componentInstance.handleZipcodeExternalLinkClick).toHaveBeenCalled();
+    });
+
+    it('dont call if params are incorrect', async () => {
+      const ZipcodeMock = getComponentWithContext();
+      const handleZipcodeExternalLinkClick = undefined;
+      const component = mount(<ZipcodeMock id='zip_id' name='zip_name' zipcodeUrlService='' onFieldChange={() => {}} onFieldBlur={() => {}} handleZipcodeExternalLinkClick={handleZipcodeExternalLinkClick} mask='00000-000' />);
+      const componentInstance = component.instance();
+      const clickEvent = new Event('click');
+      const mouseoverEvent = new Event('mouseover');
+
+      // !event && !context
+      let zipcodeExternalLinkCall = componentInstance.handleZipcodeExternalLinkClick();
+      expect(zipcodeExternalLinkCall).toBeFalsy();
+      
+      // whrong type event without context
+      zipcodeExternalLinkCall = componentInstance.handleZipcodeExternalLinkClick(mouseoverEvent);
+      expect(zipcodeExternalLinkCall).toBeFalsy();
+
+      // correct type event without context
+      zipcodeExternalLinkCall = componentInstance.handleZipcodeExternalLinkClick(clickEvent);
+      expect(zipcodeExternalLinkCall).toBeFalsy();
+
+      // correct type event with error type of context
+      zipcodeExternalLinkCall = componentInstance.handleZipcodeExternalLinkClick(clickEvent, true);
+      expect(zipcodeExternalLinkCall).toBeFalsy();
+
+      // correct type event with empty context
+      zipcodeExternalLinkCall = componentInstance.handleZipcodeExternalLinkClick(clickEvent, {});
+      expect(zipcodeExternalLinkCall).toBeFalsy();
+
+    });
+
+    it('calls callback function if receive correct params', async () => {
+      const ZipcodeMock = getComponentWithContext();
+      const handleZipcodeExternalLinkClick = (event, context) => {};
+      const component = mount(<ZipcodeMock id='zip_id' name='zip_name' zipcodeUrlService='' onFieldChange={() => {}} onFieldBlur={() => {}} handleZipcodeExternalLinkClick={handleZipcodeExternalLinkClick} mask='00000-000' />);
+      const componentInstance = component.instance();
+
+      let event = new Event('click');
+      let context = { handleZipcodeExternalLinkClick : jest.fn() };
+      
+      // correct type event with expected type of context
+      let zipcodeExternalLinkCall = componentInstance.handleZipcodeExternalLinkClick(event, context);
+      expect(context.handleZipcodeExternalLinkClick).toHaveBeenCalled();
+
+    });
+
+  });
+
 });

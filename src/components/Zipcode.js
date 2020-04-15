@@ -149,6 +149,15 @@ export default class Zipcode extends Component {
   }
 
   handleZipcodeExternalLinkClick(event, context) {
+    const isValid = (
+      event
+      && event.type === 'click'
+      && context
+      && typeof context.handleZipcodeExternalLinkClick === 'function'
+    );
+
+    if (!isValid) { return false; }
+
     event.preventDefault();
     context.handleZipcodeExternalLinkClick(event);
     return false;
@@ -165,6 +174,7 @@ export default class Zipcode extends Component {
         { context => <Fragment>
           <a
             className='form__label-link'
+            data-js='zipcodeExternalLink'
             onClick={ event => this.handleZipcodeExternalLinkClick(event, context)}
             rel='noopener noreferrer'>
             Não lembra seu CEP?

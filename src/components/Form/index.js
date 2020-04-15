@@ -25,7 +25,7 @@ const propTypes = {
 const defaultProps = {
   method: 'POST',
   onReady() {},
-  handleZipcodeExternalLinkClick() {},
+  handleZipcodeExternalLinkClick(event) { return false; },
   onZipcodeFetchSuccess() {},
   onZipcodeFetchError() {},
   onSubmit() {},
@@ -41,7 +41,7 @@ export default class Form extends Component {
 
     this.state = {
       activeStepIndex: 0,
-      handleZipcodeExternalLinkClick: this.handleZipcodeExternalLinkClick,
+      handleZipcodeExternalLinkClick: event => this.handleZipcodeExternalLinkClick(event),
       onZipcodeFetchSuccess: data => this.onZipcodeFetchSuccess(data),
       onZipcodeFetchError: data => this.props.onZipcodeFetchError(data),
       stepsCount: 0,
@@ -85,6 +85,8 @@ export default class Form extends Component {
   }
 
   handleZipcodeExternalLinkClick(event) {
+    const handleZipcodeExists = this.props && this.props.handleZipcodeExternalLinkClick;
+    if (!handleZipcodeExists) { return false; }
     const { handleZipcodeExternalLinkClick } = this.props;
     return handleZipcodeExternalLinkClick(event);
   }
