@@ -23,6 +23,7 @@ describe('Step', () => {
         onFieldChange={() => {}}
         onFieldBlur={() => {}}
         visible={true}
+        mustShowBreadcrumb={true}
       />,
     );
 
@@ -48,6 +49,7 @@ describe('Step', () => {
         onFieldChange={() => {}}
         onFieldBlur={() => {}}
         visible={true}
+        mustShowBreadcrumb={true}
       />,
     );
 
@@ -72,6 +74,7 @@ describe('Step', () => {
         onFieldBlur={() => {}}
         zipcodeUrlService={formData.form.zipcodeUrlService}
         visible={true}
+        mustShowBreadcrumb={true}
       />,
     );
 
@@ -100,6 +103,7 @@ describe('Step', () => {
           onFieldBlur={() => {}}
           zipcodeUrlService={formData.form.zipcodeUrlService}
           visible={true}
+          mustShowBreadcrumb={true}
         />,
       );
 
@@ -125,6 +129,7 @@ describe('Step', () => {
           onFieldBlur={() => {}}
           zipcodeUrlService={formData.form.zipcodeUrlService}
           visible={true}
+          mustShowBreadcrumb={true}
         />,
       );
 
