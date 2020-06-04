@@ -21,6 +21,7 @@ const propTypes = {
   onSubmitError: PropTypes.func,
   onSubmit: PropTypes.func,
   onStepChange: PropTypes.func,
+  mustShowBreadcrumb: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -34,6 +35,7 @@ const defaultProps = {
   onSubmitFieldError() {},
   onSubmitError() {},
   onStepChange() {},
+  mustShowBreadcrumb: false,
 };
 
 export default class Form extends Component {
@@ -55,6 +57,7 @@ export default class Form extends Component {
       },
       action: this.props.action,
       steps: [],
+      mustShowBreadcrumb: this.props.mustShowBreadcrumb,
     };
 
     this.formStyle = 'form container sh-form-content space-box-small';
@@ -273,7 +276,9 @@ export default class Form extends Component {
           }
         </form>
 
-        <Breadcrumb active={this.state.activeStepIndex} steps={this.state.steps} />
+        { this.state.mustShowBreadcrumb
+          && <Breadcrumb active={this.state.activeStepIndex} steps={this.state.steps} />
+        }
       </AppContext.Provider>
     );
   }
