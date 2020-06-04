@@ -9,7 +9,6 @@ exports[`Step renders with props 1`] = `
     }
   }
 >
-  
   <div
     className="form__field form__field--fluid input"
   >
