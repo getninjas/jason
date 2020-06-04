@@ -32,7 +32,32 @@ describe('Step', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('shows header html when exists', () => {
+  it('renders without breadcrumb', () => {
+    const step = formData.form.steps[0];
+
+    const component = renderer.create(
+      <Step
+        key={'step'}
+        buttonText={'next step'}
+        fields={step.fields}
+        formName={'formNameTest'}
+        onSubmit={() => {}}
+        isLast={false}
+        step={step}
+        zipcodeUrlService={formData.form.zipcodeUrlService}
+        onFieldChange={() => {}}
+        onFieldBlur={() => {}}
+        visible={true}
+        mustShowBreadcrumb={false}
+      />,
+    );
+
+    const tree = component.toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('do not show header html inside steps, even if is passed', () => {
     const step = formData.form.steps[0];
 
     const component = shallow(
@@ -55,7 +80,7 @@ describe('Step', () => {
 
     const result = component.html();
 
-    expect(result).toContain('widget__title');
+    expect(result).not.toContain('widget__title');
   });
 
   it('shows inputs, select and textarea inner component', () => {
@@ -86,7 +111,7 @@ describe('Step', () => {
     expect(result.includes('breadcrumb')).toBe(false);
   });
 
-  describe('.addHeaderMarkup', () => {
+  describe('.addHeaderMarkup does not exists inside steps', () => {
     it('does not add header markup', () => {
       const step = formData.form.steps[0];
 
@@ -112,7 +137,7 @@ describe('Step', () => {
       expect(result.includes('__headerMarkup__')).toBe(false);
     });
 
-    it('adds header markup', () => {
+    it('adds header markup will not work inside steps form', () => {
       const step = formData.form.steps[0];
 
       const component = shallow(
@@ -135,8 +160,8 @@ describe('Step', () => {
 
       const result = component.html();
 
-      expect(result.includes('__headerMarkup__')).toBe(true);
-      expect(result.includes('widget__title')).toBe(true);
+      expect(result.includes('__headerMarkup__')).toBe(false);
+      expect(result.includes('widget__title')).toBe(false);
     });
   });
 });

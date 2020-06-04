@@ -2,6 +2,7 @@ import { JSDOM } from 'jsdom';
 import Jason from '../src/index';
 import { form } from '../src/form.json';
 import { enzymeConfig } from './enzymeConfig';
+import { sleep } from './helper';
 
 enzymeConfig();
 
@@ -46,5 +47,42 @@ describe('Jason', () => {
 
       expect(jasonForm.form.updateState).toHaveBeenCalled();
     });
+  });
+});
+
+describe('Markup outside form', () => {
+  const documentHTML = '<!doctype html><div id="root"></div>';
+  const doc = (new JSDOM(documentHTML)).window.document;
+
+  const onReady = jest.fn();
+  const formElementContainer = doc.querySelector('#root');
+  const newForm = new Jason({
+    element: formElementContainer,
+    data: { form },
+    name: 'form-name',
+    scope: this,
+    action: 'http://www.mocky.io/v2/5afb459c2f00005b00f7c7ab',
+    onReady,
+  });
+
+  it('header markup does not exists before category choice', async () => {
+    newForm.init();
+    expect(formElementContainer.innerHTML.includes('__headerMarkup__')).toBe(false);
+    expect(formElementContainer.innerHTML.includes('widget__title')).toBe(false);
+  });
+
+  it('adds header markup outside steps form after category choise', async () => {
+    newForm.init();
+    await sleep(100);
+
+    const checkbox = doc.querySelector('input[type="radio"]');
+    const button = doc.querySelector('button');
+    checkbox.click();
+    button.click();
+
+    await sleep(100);
+
+    expect(formElementContainer.innerHTML.includes('__headerMarkup__')).toBe(true);
+    expect(formElementContainer.innerHTML.includes('widget__title')).toBe(true);
   });
 });
