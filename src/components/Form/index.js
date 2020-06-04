@@ -5,6 +5,7 @@ import { AppContext } from '../../AppContext';
 import Breadcrumb from '../Breadcrumb';
 import Step from '../Step';
 import { validateField, validateStep } from './validation';
+import { addHeaderMarkup } from '../../helpers/step';
 
 const propTypes = {
   name: PropTypes.string.isRequired,
@@ -244,13 +245,15 @@ export default class Form extends Component {
   }
 
   render() {
+    const headerMarkup = this.state.activeStepIndex && this.state.steps[this.state.activeStepIndex].headerMarkup;
     return (
       <AppContext.Provider value={this.state}>
+        { addHeaderMarkup(headerMarkup) }
         <form noValidate onSubmit={this.onSubmit} name={this.props.name} action={this.state.action}
           className={this.formStyle}>
           {
             this.state.steps.map((step, index) => {
-              const { buttonText, headerMarkup, fields } = step;
+              const { buttonText, fields } = step;
 
               return (
                 <Step
@@ -258,7 +261,6 @@ export default class Form extends Component {
                   fields={fields}
                   formName={this.props.name}
                   onSubmit={this.onSubmit}
-                  headerMarkup={headerMarkup}
                   isLast={this.isLastStep(index)}
                   key={`${this.props.name}-step-${index}`}
                   onFieldBlur={this.onFieldBlur}
