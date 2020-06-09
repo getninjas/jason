@@ -248,36 +248,38 @@ export default class Form extends Component {
   }
 
   render() {
-    const headerMarkup = this.state.activeStepIndex && this.state.steps[this.state.activeStepIndex].headerMarkup;
+    const { steps, activeStepIndex, action, mustShowBreadcrumb } = this.state;
+    const { name, data } = this.props;
+    const headerMarkup = steps && activeStepIndex && steps[activeStepIndex].headerMarkup;
     return (
       <AppContext.Provider value={this.state}>
         { addHeaderMarkup(headerMarkup) }
-        <form noValidate onSubmit={this.onSubmit} name={this.props.name} action={this.state.action}
+        <form noValidate onSubmit={this.onSubmit} name={name} action={action}
           className={this.formStyle}>
           {
-            this.state.steps.map((step, index) => {
+            steps.map((step, index) => {
               const { buttonText, fields } = step;
 
               return (
                 <Step
                   buttonText={buttonText}
                   fields={fields}
-                  formName={this.props.name}
+                  formName={name}
                   onSubmit={this.onSubmit}
                   isLast={this.isLastStep(index)}
-                  key={`${this.props.name}-step-${index}`}
+                  key={`${name}-step-${index}`}
                   onFieldBlur={this.onFieldBlur}
                   onFieldChange={this.onFieldChange}
                   visible={this.isStepVisible(index)}
-                  zipcodeUrlService={this.props.data.zipcodeUrlService}
+                  zipcodeUrlService={data.zipcodeUrlService}
                 />
               );
             })
           }
         </form>
 
-        { this.state.mustShowBreadcrumb
-          && <Breadcrumb active={this.state.activeStepIndex} steps={this.state.steps} />
+        { mustShowBreadcrumb
+          && <Breadcrumb active={activeStepIndex} steps={steps} />
         }
       </AppContext.Provider>
     );
