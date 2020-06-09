@@ -250,7 +250,7 @@ export default class Form extends Component {
   render() {
     const { steps, activeStepIndex, action, mustShowBreadcrumb } = this.state;
     const { name, data } = this.props;
-    const headerMarkup = steps && activeStepIndex && steps[activeStepIndex].headerMarkup;
+    const headerMarkup = steps && activeStepIndex >= 0 && steps[activeStepIndex].headerMarkup;
     return (
       <AppContext.Provider value={this.state}>
         { addHeaderMarkup(headerMarkup) }
