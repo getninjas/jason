@@ -35,7 +35,6 @@ const defaultProps = {
   onSubmitFieldError() {},
   onSubmitError() {},
   onStepChange() {},
-  mustShowBreadcrumb: true,
 };
 
 export default class Form extends Component {
