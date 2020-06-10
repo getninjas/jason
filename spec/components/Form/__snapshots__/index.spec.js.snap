@@ -2,7 +2,14 @@
 
 exports[`Form renders defaultProps 1`] = `
 Array [
-  "",
+  <div
+    className="__headerMarkup__"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<h2 class='widget__title section-title--high-contrast'>Lorem Ipsum is simply dummy text <small>It has survived not</small></h2>",
+      }
+    }
+  />,
   <form
     action="/"
     className="form container sh-form-content space-box-small"

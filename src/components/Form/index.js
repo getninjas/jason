@@ -249,8 +249,7 @@ export default class Form extends Component {
   render() {
     const { steps, activeStepIndex, action, mustShowBreadcrumb } = this.state;
     const { name, data } = this.props;
-    const headerMarkup = (steps
-      && activeStepIndex > 0
+    const headerMarkup = (steps.length
       && steps[activeStepIndex]
       && steps[activeStepIndex].headerMarkup);
     return (

@@ -25,7 +25,7 @@ describe('Jason', () => {
   jasonForm.init();
 
   it('renders jason form to the DOM', () => {
-    expect(formElementContainer.children.length).toEqual(1);
+    expect(formElementContainer.children.length).toEqual(2);
   });
 
   it('calls onReady callback', () => {
@@ -65,10 +65,10 @@ describe('Markup outside form', () => {
     onReady,
   });
 
-  it('header markup does not exists before category choice', async () => {
+  it('header markup must be visible by default', async () => {
     newForm.init();
-    expect(formElementContainer.innerHTML.includes('__headerMarkup__')).toBe(false);
-    expect(formElementContainer.innerHTML.includes('widget__title')).toBe(false);
+    expect(formElementContainer.innerHTML.includes('__headerMarkup__')).toBe(true);
+    expect(formElementContainer.innerHTML.includes('widget__title')).toBe(true);
   });
 
   it('adds header markup outside steps form after category choise', async () => {
