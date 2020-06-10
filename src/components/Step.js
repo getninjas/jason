@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Field from './Field';
 import Button from './Button';
 import Factory from './Factory';
-import { display, addHeaderMarkup } from '../helpers/step';
+import { display } from '../helpers/step';
 
 const propTypes = {
   onSubmit: PropTypes.func.isRequired,
@@ -25,12 +25,10 @@ const defaultProps = {
 
 export default class Step extends Component {
   render() {
-    const { buttonText, headerMarkup, fields } = this.props;
+    const { buttonText, fields } = this.props;
 
     return (
       <fieldset className="form__container inputs" style={{ display: display(this.props.visible) }}>
-        { addHeaderMarkup(headerMarkup) }
-
         {
           fields.map((item, index) =>
             <Field
