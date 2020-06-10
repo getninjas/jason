@@ -5,6 +5,7 @@ import { AppContext } from '../../AppContext';
 import Breadcrumb from '../Breadcrumb';
 import Step from '../Step';
 import { validateField, validateStep } from './validation';
+import { addHeaderMarkup } from '../../helpers/step';
 
 const propTypes = {
   name: PropTypes.string.isRequired,
@@ -20,6 +21,7 @@ const propTypes = {
   onSubmitError: PropTypes.func,
   onSubmit: PropTypes.func,
   onStepChange: PropTypes.func,
+  mustShowBreadcrumb: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -54,6 +56,7 @@ export default class Form extends Component {
       },
       action: this.props.action,
       steps: [],
+      mustShowBreadcrumb: this.props.mustShowBreadcrumb,
     };
 
     this.formStyle = 'form container sh-form-content space-box-small';
@@ -244,34 +247,41 @@ export default class Form extends Component {
   }
 
   render() {
+    const { steps, activeStepIndex, action, mustShowBreadcrumb } = this.state;
+    const { name, data } = this.props;
+    const headerMarkup = (steps.length
+      && steps[activeStepIndex]
+      && steps[activeStepIndex].headerMarkup);
     return (
       <AppContext.Provider value={this.state}>
-        <form noValidate onSubmit={this.onSubmit} name={this.props.name} action={this.state.action}
+        { addHeaderMarkup(headerMarkup) }
+        <form noValidate onSubmit={this.onSubmit} name={name} action={action}
           className={this.formStyle}>
           {
-            this.state.steps.map((step, index) => {
-              const { buttonText, headerMarkup, fields } = step;
+            steps.map((step, index) => {
+              const { buttonText, fields } = step;
 
               return (
                 <Step
                   buttonText={buttonText}
                   fields={fields}
-                  formName={this.props.name}
+                  formName={name}
                   onSubmit={this.onSubmit}
-                  headerMarkup={headerMarkup}
                   isLast={this.isLastStep(index)}
-                  key={`${this.props.name}-step-${index}`}
+                  key={`${name}-step-${index}`}
                   onFieldBlur={this.onFieldBlur}
                   onFieldChange={this.onFieldChange}
                   visible={this.isStepVisible(index)}
-                  zipcodeUrlService={this.props.data.zipcodeUrlService}
+                  zipcodeUrlService={data.zipcodeUrlService}
                 />
               );
             })
           }
         </form>
 
-        <Breadcrumb active={this.state.activeStepIndex} steps={this.state.steps} />
+        { mustShowBreadcrumb
+          && <Breadcrumb active={activeStepIndex} steps={steps} />
+        }
       </AppContext.Provider>
     );
   }

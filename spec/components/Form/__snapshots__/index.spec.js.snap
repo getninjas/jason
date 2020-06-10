@@ -2,6 +2,14 @@
 
 exports[`Form renders defaultProps 1`] = `
 Array [
+  <div
+    className="__headerMarkup__"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<h2 class='widget__title section-title--high-contrast'>Lorem Ipsum is simply dummy text <small>It has survived not</small></h2>",
+      }
+    }
+  />,
   <form
     action="/"
     className="form container sh-form-content space-box-small"
@@ -17,14 +25,6 @@ Array [
         }
       }
     >
-      <div
-        className="__headerMarkup__"
-        dangerouslySetInnerHTML={
-          Object {
-            "__html": "<h2 class='widget__title section-title--high-contrast'>Lorem Ipsum is simply dummy text <small>It has survived not</small></h2>",
-          }
-        }
-      />
       <div
         className="form__field form__field--fluid input"
       >
@@ -112,14 +112,6 @@ Array [
         }
       }
     >
-      <div
-        className="__headerMarkup__"
-        dangerouslySetInnerHTML={
-          Object {
-            "__html": "<h2 class='widget__title section-title--high-contrast'>Lorem Ipsum is simply dummy text <small>It has survived not</small></h2>",
-          }
-        }
-      />
       <div
         className="form__field form__field--fluid input"
       >
@@ -462,14 +454,6 @@ Array [
       }
     >
       <div
-        className="__headerMarkup__"
-        dangerouslySetInnerHTML={
-          Object {
-            "__html": "<div class='form__alert-message space-element-large'><img src='https://www.getninjas.com.br/assets/request/phone_call.svg' class='form__icon' alt='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'><h2 class='form__info'>Almost there<small>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's<strong>standard dummy text ever since the 1500s</strong></small></h2></div>",
-          }
-        }
-      />
-      <div
         className="form__field input"
       >
         <label
@@ -628,24 +612,5 @@ Array [
       </button>
     </fieldset>
   </form>,
-  <ol
-    className="form__steps space-box-medium"
-  >
-    <li
-      className="form__steps-item form__steps-item--active"
-    >
-      Service
-    </li>
-    <li
-      className="form__steps-item "
-    >
-      Your request
-    </li>
-    <li
-      className="form__steps-item "
-    >
-      Your data
-    </li>
-  </ol>,
 ]
 `;

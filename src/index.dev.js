@@ -34,6 +34,7 @@ class Jason {
         onSubmitFieldError={this.onSubmitFieldError}
         onSubmitError={this.onSubmitError}
         onStepChange={this.onStepChange}
+        mustShowBreadcrumb={this.mustShowBreadcrumb}
         ref={(component) => { this.form = component; }} />,
       this.element,
     );
@@ -53,6 +54,7 @@ const jason = new Jason({
   onSubmitError: data => data,
   onStepChange: () => { },
   element: document.getElementById('root'),
+  mustShowBreadcrumb: true,
 });
 
 jason.init();

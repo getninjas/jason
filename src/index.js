@@ -33,6 +33,7 @@ export default class Jason {
         onSubmitFieldError={ this.onSubmitFieldError }
         onSubmitError={ this.onSubmitError }
         onStepChange={ this.onStepChange }
+        mustShowBreadcrumb={this.mustShowBreadcrumb}
         ref={(component) => { this.form = component; }} />,
       this.element,
     );
