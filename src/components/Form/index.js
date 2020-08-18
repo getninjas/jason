@@ -22,6 +22,7 @@ const propTypes = {
   onSubmit: PropTypes.func,
   onStepChange: PropTypes.func,
   mustShowBreadcrumb: PropTypes.bool,
+  buttonCustomClasses: PropTypes.string,
 };
 
 const defaultProps = {
@@ -35,6 +36,7 @@ const defaultProps = {
   onSubmitFieldError() {},
   onSubmitError() {},
   onStepChange() {},
+  buttonCustomClasses: '',
 };
 
 export default class Form extends Component {
@@ -57,6 +59,7 @@ export default class Form extends Component {
       action: this.props.action,
       steps: [],
       mustShowBreadcrumb: this.props.mustShowBreadcrumb,
+      buttonCustomClasses: this.props.buttonCustomClasses,
     };
 
     this.formStyle = 'form container sh-form-content space-box-small';

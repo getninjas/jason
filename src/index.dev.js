@@ -35,7 +35,9 @@ class Jason {
         onSubmitError={this.onSubmitError}
         onStepChange={this.onStepChange}
         mustShowBreadcrumb={this.mustShowBreadcrumb}
-        ref={(component) => { this.form = component; }} />,
+        ref={(component) => { this.form = component; }}
+        buttonCustomClasses={this.buttonCustomClasses}
+        />,
       this.element,
     );
   }
@@ -55,6 +57,7 @@ const jason = new Jason({
   onStepChange: () => { },
   element: document.getElementById('root'),
   mustShowBreadcrumb: true,
+  buttonCustomClasses: '',
 });
 
 jason.init();
