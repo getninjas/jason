@@ -34,7 +34,8 @@ export default class Jason {
         onSubmitError={ this.onSubmitError }
         onStepChange={ this.onStepChange }
         mustShowBreadcrumb={this.mustShowBreadcrumb}
-        ref={(component) => { this.form = component; }} />,
+        ref={(component) => { this.form = component; }}
+        buttonCustomClasses={this.buttonCustomClasses} />,
       this.element,
     );
   }

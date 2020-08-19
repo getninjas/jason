@@ -250,7 +250,7 @@ export default class Form extends Component {
   }
 
   render() {
-    const { steps, activeStepIndex, action, mustShowBreadcrumb } = this.state;
+    const { steps, activeStepIndex, action, mustShowBreadcrumb, buttonCustomClasses } = this.state;
     const { name, data } = this.props;
     const headerMarkup = (steps.length
       && steps[activeStepIndex]
@@ -276,6 +276,7 @@ export default class Form extends Component {
                   onFieldChange={this.onFieldChange}
                   visible={this.isStepVisible(index)}
                   zipcodeUrlService={data.zipcodeUrlService}
+                  buttonCustomClasses={buttonCustomClasses}
                 />
               );
             })

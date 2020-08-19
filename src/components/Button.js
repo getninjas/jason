@@ -6,33 +6,27 @@ const propTypes = {
   children: PropTypes.string.isRequired,
   handleButtonClick: PropTypes.func.isRequired,
   isSubmit: PropTypes.bool,
+  buttonCustomClasses: PropTypes.string,
 };
 
 const defaultProps = {
   children: 'Prosseguir',
   isSubmit: false,
+  buttonCustomClasses: 'btn btn--regular btn--high-contrast btn--fluid space-box-medium',
 };
 
 export default class Button extends Component {
-  constructor(props) {
-    super(props);
-    this.defaultButtonStyle = 'btn btn--regular btn--high-contrast btn--fluid space-box-medium';
-  }
-
   render() {
-    const type = this.props.isSubmit ? 'submit' : 'button';
+    const { buttonCustomClasses, isSubmit, handleButtonClick, children } = this.props;
+    const type = isSubmit ? 'submit' : 'button';
 
     return (
-      <AppContext.Consumer>
-        { context =>
-          <button
-            type={type}
-            className={context.buttonCustomClasses ? context.buttonCustomClasses : this.defaultButtonStyle}
-            onClick={this.props.handleButtonClick}>
-            {this.props.children}
-          </button>
-        }
-      </AppContext.Consumer>
+      <button
+        type={type}
+        className={buttonCustomClasses || defaultProps.buttonCustomClasses}
+        onClick={handleButtonClick}>
+        {children}
+      </button>
     );
   }
 }

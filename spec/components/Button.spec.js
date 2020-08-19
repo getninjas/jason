@@ -21,4 +21,18 @@ describe('Button', () => {
       expect(component.prop('type')).toBe('submit');
     });
   });
+
+  describe('when prop buttonCustomClasses is defined', () => {
+    it('renders button with class defined as "button--primary"', () => {
+      const component = shallow(<Button buttonCustomClasses='button--primary' handleButtonClick={() => {}}>Test</Button>);
+
+      expect(component.prop('className')).toEqual('button--primary');
+    });
+
+    it('renders button with class default as "btn--regular"', () => {
+      const component = shallow(<Button buttonCustomClasses='btn--regular' handleButtonClick={() => {}}>Test</Button>);
+
+      expect(component.prop('className')).toEqual('btn--regular');
+    });
+  });
 });
