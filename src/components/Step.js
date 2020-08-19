@@ -16,16 +16,18 @@ const propTypes = {
   headerMarkup: PropTypes.string,
   visible: PropTypes.bool,
   isLast: PropTypes.bool,
+  buttonCustomClasses: PropTypes.string,
 };
 
 const defaultProps = {
   visible: false,
   isLast: false,
+  buttonCustomClasses: '',
 };
 
 export default class Step extends Component {
   render() {
-    const { buttonText, fields } = this.props;
+    const { buttonText, fields, buttonCustomClasses } = this.props;
 
     return (
       <fieldset className="form__container inputs" style={{ display: display(this.props.visible) }}>
@@ -51,7 +53,11 @@ export default class Step extends Component {
           )
         }
 
-        <Button isSubmit={this.props.isLast} handleButtonClick={this.props.onSubmit}>
+        <Button
+          isSubmit={this.props.isLast}
+          handleButtonClick={this.props.onSubmit}
+          buttonCustomClasses={buttonCustomClasses}
+        >
           {buttonText}
         </Button>
       </fieldset>
