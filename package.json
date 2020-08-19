@@ -1,6 +1,6 @@
 {
   "name": "jason-react-form",
-  "version": "3.11.2",
+  "version": "3.12.0",
   "main": "build/static/js/main.js",
   "license": "MIT",
   "scripts": {
