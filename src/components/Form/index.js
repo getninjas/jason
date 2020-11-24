@@ -191,6 +191,12 @@ export default class Form extends Component {
     }
   }
 
+  previousStep({ activeStepIndex, stepsCount }) {
+    if (activeStepIndex <= stepsCount) {
+      this.setState({ activeStepIndex: activeStepIndex - 1 });
+    }
+  }
+
   onFieldBlur({ value, id, required, type, minLength, regexPattern }) {
     const errorMessages = this.errorMessages;
     const fields = this.currentStep.fields.map((item) => {
@@ -249,6 +255,10 @@ export default class Form extends Component {
     return index === this.state.stepsCount;
   }
 
+  isFirstStep(index) {
+    return index === 0;
+  }
+
   render() {
     const { steps, activeStepIndex, action, mustShowBreadcrumb, buttonCustomClasses } = this.state;
     const { name, data } = this.props;
@@ -271,12 +281,14 @@ export default class Form extends Component {
                   formName={name}
                   onSubmit={this.onSubmit}
                   isLast={this.isLastStep(index)}
+                  isFirst={this.isFirstStep(index)}
                   key={`${name}-step-${index}`}
                   onFieldBlur={this.onFieldBlur}
                   onFieldChange={this.onFieldChange}
                   visible={this.isStepVisible(index)}
                   zipcodeUrlService={data.zipcodeUrlService}
                   buttonCustomClasses={buttonCustomClasses}
+                  handleBackButton={() => this.previousStep(this.state)}
                 />
               );
             })

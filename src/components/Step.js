@@ -17,6 +17,8 @@ const propTypes = {
   visible: PropTypes.bool,
   isLast: PropTypes.bool,
   buttonCustomClasses: PropTypes.string,
+  isFirst: PropTypes.bool,
+  handleBackButton: PropTypes.func,
 };
 
 const defaultProps = {
@@ -52,6 +54,14 @@ export default class Step extends Component {
             </Field>,
           )
         }
+
+        {!this.props.isFirst && <Button
+          isSubmit={false}
+          handleButtonClick={this.props.handleBackButton}
+          buttonCustomClasses={buttonCustomClasses}
+        >
+          Voltar
+        </Button>}
 
         <Button
           isSubmit={this.props.isLast}
