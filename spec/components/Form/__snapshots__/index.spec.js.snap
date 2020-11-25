@@ -442,13 +442,6 @@ Array [
         onClick={[Function]}
         type="button"
       >
-        Voltar
-      </button>
-      <button
-        className="btn btn--regular btn--high-contrast btn--fluid space-box-medium"
-        onClick={[Function]}
-        type="button"
-      >
         Start request
       </button>
     </fieldset>
@@ -610,13 +603,6 @@ Array [
           
         </span>
       </div>
-      <button
-        className="btn btn--regular btn--high-contrast btn--fluid space-box-medium"
-        onClick={[Function]}
-        type="button"
-      >
-        Voltar
-      </button>
       <button
         className="btn btn--regular btn--high-contrast btn--fluid space-box-medium"
         onClick={[Function]}

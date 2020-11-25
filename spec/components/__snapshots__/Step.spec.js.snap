@@ -82,12 +82,6 @@ exports[`Step renders with props 1`] = `
   </div>
   <button
     className="btn btn--regular btn--high-contrast btn--fluid space-box-medium"
-    type="button"
-  >
-    Voltar
-  </button>
-  <button
-    className="btn btn--regular btn--high-contrast btn--fluid space-box-medium"
     onClick={[Function]}
     type="button"
   >
@@ -176,12 +170,6 @@ exports[`Step renders without breadcrumb 1`] = `
       
     </span>
   </div>
-  <button
-    className="btn btn--regular btn--high-contrast btn--fluid space-box-medium"
-    type="button"
-  >
-    Voltar
-  </button>
   <button
     className="btn btn--regular btn--high-contrast btn--fluid space-box-medium"
     onClick={[Function]}

@@ -21,6 +21,7 @@ const propTypes = {
   handleBackButton: PropTypes.func,
   backButtonCustomClasses: PropTypes.string,
   backButtonText: PropTypes.string,
+  enableBackButton: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -29,6 +30,7 @@ const defaultProps = {
   buttonCustomClasses: '',
   backButtonCustomClasses: '',
   backButtonText: 'Back',
+  enableBackButton: false,
 };
 
 export default class Step extends Component {
@@ -65,7 +67,7 @@ export default class Step extends Component {
           )
         }
 
-        {!this.props.isFirst && <Button
+        {this.props.enableBackButton && !this.props.isFirst && <Button
           isSubmit={false}
           handleButtonClick={this.props.handleBackButton}
           buttonCustomClasses={backButtonCustomClasses}
