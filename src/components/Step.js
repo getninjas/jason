@@ -17,17 +17,31 @@ const propTypes = {
   visible: PropTypes.bool,
   isLast: PropTypes.bool,
   buttonCustomClasses: PropTypes.string,
+  isFirst: PropTypes.bool,
+  handleBackButton: PropTypes.func,
+  backButtonCustomClasses: PropTypes.string,
+  backButtonText: PropTypes.string,
+  enableBackButton: PropTypes.bool,
 };
 
 const defaultProps = {
   visible: false,
   isLast: false,
   buttonCustomClasses: '',
+  backButtonCustomClasses: '',
+  backButtonText: 'Back',
+  enableBackButton: false,
 };
 
 export default class Step extends Component {
   render() {
-    const { buttonText, fields, buttonCustomClasses } = this.props;
+    const {
+      buttonText,
+      fields,
+      buttonCustomClasses,
+      backButtonCustomClasses,
+      backButtonText,
+    } = this.props;
 
     return (
       <fieldset className="form__container inputs" style={{ display: display(this.props.visible) }}>
@@ -52,6 +66,14 @@ export default class Step extends Component {
             </Field>,
           )
         }
+
+        {this.props.enableBackButton && !this.props.isFirst && <Button
+          isSubmit={false}
+          handleButtonClick={this.props.handleBackButton}
+          buttonCustomClasses={backButtonCustomClasses}
+        >
+          {backButtonText}
+        </Button>}
 
         <Button
           isSubmit={this.props.isLast}

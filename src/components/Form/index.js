@@ -23,6 +23,9 @@ const propTypes = {
   onStepChange: PropTypes.func,
   mustShowBreadcrumb: PropTypes.bool,
   buttonCustomClasses: PropTypes.string,
+  backButtonCustomClasses: PropTypes.string,
+  backButtonText: PropTypes.string,
+  enableBackButton: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -36,7 +39,6 @@ const defaultProps = {
   onSubmitFieldError() {},
   onSubmitError() {},
   onStepChange() {},
-  buttonCustomClasses: '',
 };
 
 export default class Form extends Component {
@@ -68,6 +70,7 @@ export default class Form extends Component {
     this.onFieldBlur = this.onFieldBlur.bind(this);
     this.errorMessages = this.props.data.errorMessages;
     this.handleZipcodeExternalLinkClick = this.handleZipcodeExternalLinkClick.bind(this);
+    this.firstStepIndex = 0;
   }
 
   get currentStep() {
@@ -191,6 +194,12 @@ export default class Form extends Component {
     }
   }
 
+  previousStep({ activeStepIndex, stepsCount }) {
+    if (activeStepIndex <= stepsCount) {
+      this.setState({ activeStepIndex: activeStepIndex - 1 });
+    }
+  }
+
   onFieldBlur({ value, id, required, type, minLength, regexPattern }) {
     const errorMessages = this.errorMessages;
     const fields = this.currentStep.fields.map((item) => {
@@ -249,9 +258,13 @@ export default class Form extends Component {
     return index === this.state.stepsCount;
   }
 
+  isFirstStep(index) {
+    return index === this.firstStepIndex;
+  }
+
   render() {
     const { steps, activeStepIndex, action, mustShowBreadcrumb, buttonCustomClasses } = this.state;
-    const { name, data } = this.props;
+    const { name, data, backButtonCustomClasses, backButtonText, enableBackButton } = this.props;
     const headerMarkup = (steps.length
       && steps[activeStepIndex]
       && steps[activeStepIndex].headerMarkup);
@@ -271,12 +284,17 @@ export default class Form extends Component {
                   formName={name}
                   onSubmit={this.onSubmit}
                   isLast={this.isLastStep(index)}
+                  isFirst={this.isFirstStep(index)}
                   key={`${name}-step-${index}`}
                   onFieldBlur={this.onFieldBlur}
                   onFieldChange={this.onFieldChange}
                   visible={this.isStepVisible(index)}
                   zipcodeUrlService={data.zipcodeUrlService}
                   buttonCustomClasses={buttonCustomClasses}
+                  handleBackButton={() => this.previousStep(this.state)}
+                  backButtonCustomClasses={backButtonCustomClasses}
+                  backButtonText={backButtonText}
+                  enableBackButton={enableBackButton}
                 />
               );
             })
