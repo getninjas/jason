@@ -35,7 +35,9 @@ export default class Jason {
         onStepChange={ this.onStepChange }
         mustShowBreadcrumb={this.mustShowBreadcrumb}
         ref={(component) => { this.form = component; }}
-        buttonCustomClasses={this.buttonCustomClasses} />,
+        buttonCustomClasses={this.buttonCustomClasses}
+        backButtonCustomClasses={this.backButtonCustomClasses}
+        backButtonText={this.backButtonText} />,
       this.element,
     );
   }

@@ -23,6 +23,8 @@ const propTypes = {
   onStepChange: PropTypes.func,
   mustShowBreadcrumb: PropTypes.bool,
   buttonCustomClasses: PropTypes.string,
+  backButtonCustomClasses: PropTypes.string,
+  backButtonText: PropTypes.string,
 };
 
 const defaultProps = {
@@ -36,7 +38,6 @@ const defaultProps = {
   onSubmitFieldError() {},
   onSubmitError() {},
   onStepChange() {},
-  buttonCustomClasses: '',
 };
 
 export default class Form extends Component {
@@ -68,6 +69,7 @@ export default class Form extends Component {
     this.onFieldBlur = this.onFieldBlur.bind(this);
     this.errorMessages = this.props.data.errorMessages;
     this.handleZipcodeExternalLinkClick = this.handleZipcodeExternalLinkClick.bind(this);
+    this.firstStepIndex = 0;
   }
 
   get currentStep() {
@@ -256,12 +258,12 @@ export default class Form extends Component {
   }
 
   isFirstStep(index) {
-    return index === 0;
+    return index === this.firstStepIndex;
   }
 
   render() {
     const { steps, activeStepIndex, action, mustShowBreadcrumb, buttonCustomClasses } = this.state;
-    const { name, data } = this.props;
+    const { name, data, backButtonCustomClasses, backButtonText } = this.props;
     const headerMarkup = (steps.length
       && steps[activeStepIndex]
       && steps[activeStepIndex].headerMarkup);
@@ -289,6 +291,8 @@ export default class Form extends Component {
                   zipcodeUrlService={data.zipcodeUrlService}
                   buttonCustomClasses={buttonCustomClasses}
                   handleBackButton={() => this.previousStep(this.state)}
+                  backButtonCustomClasses={backButtonCustomClasses}
+                  backButtonText={backButtonText}
                 />
               );
             })
