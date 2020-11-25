@@ -37,7 +37,7 @@ class Jason {
         mustShowBreadcrumb={this.mustShowBreadcrumb}
         ref={(component) => { this.form = component; }}
         buttonCustomClasses={this.buttonCustomClasses}
-        enableBackButton={false}
+        enableBackButton={true}
         />,
       this.element,
     );
