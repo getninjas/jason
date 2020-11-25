@@ -23,6 +23,7 @@ const propTypes = {
   onStepChange: PropTypes.func,
   mustShowBreadcrumb: PropTypes.bool,
   buttonCustomClasses: PropTypes.string,
+  changeSubmitPayload: PropTypes.func,
 };
 
 const defaultProps = {
@@ -37,6 +38,7 @@ const defaultProps = {
   onSubmitError() {},
   onStepChange() {},
   buttonCustomClasses: '',
+  changeSubmitPayload(body) { return body; },
 };
 
 export default class Form extends Component {
@@ -148,7 +150,7 @@ export default class Form extends Component {
       this.props.onSubmit();
 
       const body = this.getFields();
-      const response = await axios.post(this.state.action, body);
+      const response = await axios.post(this.state.action, this.props.changeSubmitPayload(body));
 
       this.props.onSubmitSuccess(response);
     } catch (error) {
