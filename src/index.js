@@ -24,21 +24,23 @@ export default class Jason {
       <Form data={this.data.form}
         name={this.name}
         action={this.action}
-        onReady={ this.onReady }
-        handleZipcodeExternalLinkClick={ event => this.handleZipcodeExternalLinkClick(event) }
-        onZipcodeFetchSuccess={ (data) => { this.onZipcodeFetchSuccess(data); } }
-        onZipcodeFetchError={ (data) => { this.onZipcodeFetchError(data); } }
-        onSubmit={ this.onSubmit }
-        onSubmitSuccess={ this.onSubmitSuccess }
-        onSubmitFieldError={ this.onSubmitFieldError }
-        onSubmitError={ this.onSubmitError }
-        onStepChange={ this.onStepChange }
+        onReady={this.onReady}
+        handleZipcodeExternalLinkClick={event => this.handleZipcodeExternalLinkClick(event)}
+        onZipcodeFetchSuccess={(data) => { this.onZipcodeFetchSuccess(data); }}
+        onZipcodeFetchError={(data) => { this.onZipcodeFetchError(data); }}
+        onSubmit={this.onSubmit}
+        onSubmitSuccess={this.onSubmitSuccess}
+        onSubmitFieldError={this.onSubmitFieldError}
+        onSubmitError={this.onSubmitError}
+        onStepChange={this.onStepChange}
         mustShowBreadcrumb={this.mustShowBreadcrumb}
         ref={(component) => { this.form = component; }}
         buttonCustomClasses={this.buttonCustomClasses}
         backButtonCustomClasses={this.backButtonCustomClasses}
         backButtonText={this.backButtonText}
-        enableBackButton={this.enableBackButton} />,
+        enableBackButton={this.enableBackButton}
+        changeSubmitPayload={this.changeSubmitPayload}
+      />,
       this.element,
     );
   }
