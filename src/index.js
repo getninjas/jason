@@ -37,8 +37,6 @@ export default class Jason {
         ref={(component) => { this.form = component; }}
         buttonCustomClasses={this.buttonCustomClasses}
         backButtonCustomClasses={this.backButtonCustomClasses}
-        backButtonText={this.backButtonText}
-        enableBackButton={this.enableBackButton}
         changeSubmitPayload={this.changeSubmitPayload}
       />,
       this.element,

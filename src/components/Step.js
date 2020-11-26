@@ -41,10 +41,20 @@ export default class Step extends Component {
       buttonCustomClasses,
       backButtonCustomClasses,
       backButtonText,
+      visible,
+      onFieldChange,
+      onFieldBlur,
+      formName,
+      zipcodeUrlService,
+      isLast,
+      onSubmit,
+      enableBackButton,
+      isFirst,
+      handleBackButton,
     } = this.props;
 
     return (
-      <fieldset className="form__container inputs" style={{ display: display(this.props.visible) }}>
+      <fieldset className="form__container inputs" style={{ display: display(visible) }}>
         {
           fields.map((item, index) =>
             <Field
@@ -57,31 +67,34 @@ export default class Step extends Component {
                 Factory.getComponent({
                   item,
                   index,
-                  onFieldChange: this.props.onFieldChange,
-                  onFieldBlur: this.props.onFieldBlur,
-                  formName: this.props.formName,
-                  zipcodeUrlService: this.props.zipcodeUrlService,
+                  onFieldChange,
+                  onFieldBlur,
+                  formName,
+                  zipcodeUrlService,
                 })
               }
             </Field>,
           )
         }
 
-        {this.props.enableBackButton && !this.props.isFirst && <Button
-          isSubmit={false}
-          handleButtonClick={this.props.handleBackButton}
-          buttonCustomClasses={backButtonCustomClasses}
-        >
-          {backButtonText}
-        </Button>}
+        <div className="form__actions">
+          {enableBackButton && !isFirst && <Button
+            isSubmit={false}
+            handleButtonClick={handleBackButton}
+            buttonCustomClasses={backButtonCustomClasses}
+          >
+            {backButtonText}
+          </Button>}
 
-        <Button
-          isSubmit={this.props.isLast}
-          handleButtonClick={this.props.onSubmit}
-          buttonCustomClasses={buttonCustomClasses}
-        >
-          {buttonText}
-        </Button>
+          <Button
+            isSubmit={isLast}
+            handleButtonClick={onSubmit}
+            buttonCustomClasses={buttonCustomClasses}
+          >
+            {buttonText}
+          </Button>
+        </div>
+
       </fieldset>
     );
   }

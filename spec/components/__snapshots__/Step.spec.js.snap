@@ -80,13 +80,17 @@ exports[`Step renders with props 1`] = `
       
     </span>
   </div>
-  <button
-    className="btn btn--regular btn--high-contrast btn--fluid space-box-medium"
-    onClick={[Function]}
-    type="button"
+  <div
+    className="form__actions"
   >
-    next step
-  </button>
+    <button
+      className="btn btn--regular btn--high-contrast btn--fluid space-box-medium"
+      onClick={[Function]}
+      type="button"
+    >
+      next step
+    </button>
+  </div>
 </fieldset>
 `;
 
@@ -170,12 +174,16 @@ exports[`Step renders without breadcrumb 1`] = `
       
     </span>
   </div>
-  <button
-    className="btn btn--regular btn--high-contrast btn--fluid space-box-medium"
-    onClick={[Function]}
-    type="button"
+  <div
+    className="form__actions"
   >
-    next step
-  </button>
+    <button
+      className="btn btn--regular btn--high-contrast btn--fluid space-box-medium"
+      onClick={[Function]}
+      type="button"
+    >
+      next step
+    </button>
+  </div>
 </fieldset>
 `;
