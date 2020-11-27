@@ -96,13 +96,17 @@ Array [
           
         </span>
       </div>
-      <button
-        className="btn btn--regular btn--high-contrast btn--fluid space-box-medium"
-        onClick={[Function]}
-        type="button"
+      <div
+        className="form__actions"
       >
-        Continue
-      </button>
+        <button
+          className="btn btn--regular btn--high-contrast btn--fluid space-box-medium"
+          onClick={[Function]}
+          type="button"
+        >
+          Continue
+        </button>
+      </div>
     </fieldset>
     <fieldset
       className="form__container inputs"
@@ -437,13 +441,24 @@ Array [
           
         </span>
       </div>
-      <button
-        className="btn btn--regular btn--high-contrast btn--fluid space-box-medium"
-        onClick={[Function]}
-        type="button"
+      <div
+        className="form__actions"
       >
-        Start request
-      </button>
+        <button
+          className="btn btn--regular btn--high-contrast btn--fluid space-box-medium"
+          onClick={[Function]}
+          type="button"
+        >
+          Back
+        </button>
+        <button
+          className="btn btn--regular btn--high-contrast btn--fluid space-box-medium"
+          onClick={[Function]}
+          type="button"
+        >
+          Start request
+        </button>
+      </div>
     </fieldset>
     <fieldset
       className="form__container inputs"
@@ -603,13 +618,24 @@ Array [
           
         </span>
       </div>
-      <button
-        className="btn btn--regular btn--high-contrast btn--fluid space-box-medium"
-        onClick={[Function]}
-        type="submit"
+      <div
+        className="form__actions"
       >
-        Finish
-      </button>
+        <button
+          className="btn btn--regular btn--high-contrast btn--fluid space-box-medium"
+          onClick={[Function]}
+          type="button"
+        >
+          Return
+        </button>
+        <button
+          className="btn btn--regular btn--high-contrast btn--fluid space-box-medium"
+          onClick={[Function]}
+          type="submit"
+        >
+          Finish
+        </button>
+      </div>
     </fieldset>
   </form>,
 ]

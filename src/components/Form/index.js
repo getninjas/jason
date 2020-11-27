@@ -24,8 +24,6 @@ const propTypes = {
   mustShowBreadcrumb: PropTypes.bool,
   buttonCustomClasses: PropTypes.string,
   backButtonCustomClasses: PropTypes.string,
-  backButtonText: PropTypes.string,
-  enableBackButton: PropTypes.bool,
   changeSubmitPayload: PropTypes.func,
 };
 
@@ -267,7 +265,7 @@ export default class Form extends Component {
 
   render() {
     const { steps, activeStepIndex, action, mustShowBreadcrumb, buttonCustomClasses } = this.state;
-    const { name, data, backButtonCustomClasses, backButtonText, enableBackButton } = this.props;
+    const { name, data, backButtonCustomClasses } = this.props;
     const headerMarkup = (steps.length
       && steps[activeStepIndex]
       && steps[activeStepIndex].headerMarkup);
@@ -278,7 +276,7 @@ export default class Form extends Component {
           className={this.formStyle}>
           {
             steps.map((step, index) => {
-              const { buttonText, fields } = step;
+              const { buttonText, fields, enableBackButton, backButtonText } = step;
 
               return (
                 <Step
