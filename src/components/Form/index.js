@@ -29,15 +29,15 @@ const propTypes = {
 
 const defaultProps = {
   method: 'POST',
-  onReady() {},
+  onReady() { },
   handleZipcodeExternalLinkClick(event) { return false; },
-  onZipcodeFetchSuccess() {},
-  onZipcodeFetchError() {},
-  onSubmit() {},
-  onSubmitSuccess() {},
-  onSubmitFieldError() {},
-  onSubmitError() {},
-  onStepChange() {},
+  onZipcodeFetchSuccess() { },
+  onZipcodeFetchError() { },
+  onSubmit() { },
+  onSubmitSuccess() { },
+  onSubmitFieldError() { },
+  onSubmitError() { },
+  onStepChange() { },
   buttonCustomClasses: '',
   changeSubmitPayload(body) { return body; },
 };
@@ -117,7 +117,7 @@ export default class Form extends Component {
   }
 
   formSubmit() {
-    this.handleStepChange();
+    this.handleStepChange('next');
 
     if (this.isLastStep(this.state.activeStepIndex)) {
       this.handleSubmit();
@@ -166,19 +166,28 @@ export default class Form extends Component {
     return { data: { ...fields, address: { ...this.state.address } } };
   }
 
-  beforeStepChange() {
+  beforeStepChange(direction) {
     const currentStep = this.state.steps[this.state.activeStepIndex];
 
-    return currentStep.beforeChange ? currentStep.beforeChange(currentStep) : this.props.onStepChange();
+    return currentStep.beforeChange
+      ? currentStep.beforeChange(currentStep, direction, this.state.activeStepIndex)
+      : this.props.onStepChange(currentStep, direction, this.state.activeStepIndex);
   }
 
-  async handleStepChange() {
-    const { updatedFields, isValid } = validateStep(this.currentStep.fields, this.errorMessages);
+  async handleStepChange(direction) {
+    if (direction === 'previous') {
+      await this.beforeStepChange(direction);
 
+      this.previousStep(this.state);
+
+      return;
+    }
+
+    const { updatedFields, isValid } = validateStep(this.currentStep.fields, this.errorMessages);
     this.updateStep(updatedFields);
 
     if (isValid) {
-      await this.beforeStepChange();
+      await this.beforeStepChange(direction);
 
       this.nextStep(this.state);
 
@@ -271,7 +280,7 @@ export default class Form extends Component {
       && steps[activeStepIndex].headerMarkup);
     return (
       <AppContext.Provider value={this.state}>
-        { addHeaderMarkup(headerMarkup) }
+        { addHeaderMarkup(headerMarkup)}
         <form noValidate onSubmit={this.onSubmit} name={name} action={action}
           className={this.formStyle}>
           {
@@ -292,7 +301,7 @@ export default class Form extends Component {
                   visible={this.isStepVisible(index)}
                   zipcodeUrlService={data.zipcodeUrlService}
                   buttonCustomClasses={buttonCustomClasses}
-                  handleBackButton={() => this.previousStep(this.state)}
+                  handleBackButton={() => this.handleStepChange('previous')}
                   backButtonCustomClasses={backButtonCustomClasses}
                   backButtonText={backButtonText}
                   enableBackButton={enableBackButton}
