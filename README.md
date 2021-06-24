@@ -3,7 +3,7 @@
 # Jason [WIP]
 
 [![NPM Package](https://img.shields.io/npm/v/jason-react-form.svg)](https://www.npmjs.com/package/jason-react-form)
-[![Build Status](https://travis-ci.org/getninjas/jason.svg?branch=master)](https://travis-ci.org/getninjas/jason)
+[![Build Status](https://travis-ci.com/getninjas/jason.svg?branch=master)](https://travis-ci.com/getninjas/jason)
 [![Maintainability](https://api.codeclimate.com/v1/badges/0b5625561d38930bb65e/maintainability)](https://codeclimate.com/github/getninjas/jason/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/0b5625561d38930bb65e/test_coverage)](https://codeclimate.com/github/getninjas/jason/test_coverage)
 
