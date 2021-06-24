@@ -86,7 +86,6 @@ export default class Checkbox extends Component {
     if (typeof element !== 'undefined' && element !== null) {
       const str = element.innerHTML;
       if (this.props.values[0].href !== undefined) {
-        console.log('log', this.props.values[0].href);
         const res = str.replace(/\[(.*?)\]/, `<a href=${this.props.values[0].href} target="_blank">$1</a>`);
         element.innerHTML = res;
       }
