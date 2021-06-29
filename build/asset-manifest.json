@@ -1,6 +1,6 @@
 {
   "main.js": "/static/js/main.js",
   "index.html": "/index.html",
-  "precache-manifest.d02e52ef13b8edc65fc6e42718b2e12c.js": "/precache-manifest.d02e52ef13b8edc65fc6e42718b2e12c.js",
+  "precache-manifest.b70b2fe379cfc69cf833f8a73482395e.js": "/precache-manifest.b70b2fe379cfc69cf833f8a73482395e.js",
   "service-worker.js": "/service-worker.js"
 }
