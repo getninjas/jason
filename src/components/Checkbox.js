@@ -22,11 +22,9 @@ const defaultProps = {
 export default class Checkbox extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       checked: false,
     };
-
     this.ref = createRef();
     this.onChange = this.onChange.bind(this);
     this.onBlurCheckbox = this.onBlurCheckbox.bind(this);
@@ -84,6 +82,15 @@ export default class Checkbox extends Component {
       required,
     } = this.props;
 
+    const element = document.getElementById('checkboxLink');
+    if (typeof element !== 'undefined' && element !== null) {
+      const str = element.innerHTML;
+      if (this.props.values[0].href !== undefined) {
+        const res = str.replace(/\[(.*?)\]/, `<a href=${this.props.values[0].href} target="_blank">$1</a>`);
+        element.innerHTML = res;
+      }
+    }
+
     return (
       <ul>
         {this.props.values.map((elem, idx) => (
@@ -108,7 +115,7 @@ export default class Checkbox extends Component {
                   ref={this.ref}
                   onBlur={this.onBlurInputOther} />
               </label>
-            ) : <label key={`${elem.databaseId}-${idx}`} htmlFor={elem.databaseId}>
+            ) : <label id={elem.id} key={`${elem.databaseId}-${idx}`} htmlFor={elem.databaseId}>
                   {elem.value}
                 </label>
             }
